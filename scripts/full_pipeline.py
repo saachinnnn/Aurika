@@ -2,6 +2,8 @@ import os
 import json
 import time
 import requests
+import argparse
+import getpass
 from pathlib import Path
 from dotenv import load_dotenv
 from collections import defaultdict
@@ -14,31 +16,27 @@ from collections import defaultdict
 env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
-LEETCODE_SESSION = os.getenv("LEETCODE_SESSION")
-CSRF_TOKEN = os.getenv("LEETCODE_CSRF_TOKEN")
-CF_CLEARANCE = os.getenv("CF_CLEARANCE")
-
-if not LEETCODE_SESSION or not CSRF_TOKEN:
-    print("❌ Error: Missing LEETCODE_SESSION or CSRF_TOKEN in .env")
-    exit(1)
-
-HEADERS = {
-    "Content-Type": "application/json",
-    "Referer": "https://leetcode.com/",
-    "Origin": "https://leetcode.com",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "X-CSRFToken": CSRF_TOKEN,
-    "Cookie": f"LEETCODE_SESSION={LEETCODE_SESSION}; csrftoken={CSRF_TOKEN}; cf_clearance={CF_CLEARANCE}",
-}
-
 GRAPHQL_URL = "https://leetcode.com/graphql/"
 DATA_DIR = Path("data")
+
+# Fields to strictly EXCLUDE from the saved JSON
+EXCLUDED_FIELDS = {
+    # Judge / Execution Noise
+    "testBodies", "testDescriptions", "testInfo", 
+    "fullCodeOutput", "stdOutput", "codeOutput", 
+    "lastTestcase", "expectedOutput", 
+    "totalCorrect", "totalTestcases", 
+    "runtimeDistribution", "memoryDistribution",
+    # Frontend / UI / Tracking
+    "userAvatar", "avatar", "profileUrl",
+    # Other
+    "codeSnippets"
+}
 
 # -----------------------------------------------------------------------------
 # GraphQL Queries
 # -----------------------------------------------------------------------------
 
-# Query 1: Get User Status (to find username)
 QUERY_USER_STATUS = """
 query globalData {
     userStatus {
@@ -48,9 +46,6 @@ query globalData {
 }
 """
 
-# Query 2: Submission List (History)
-# Using generic submissionList. If this fails, we might fall back to recentSubmissionList 
-# but that's limited. We assume submissionList works with valid Auth.
 QUERY_SUBMISSION_LIST = """
 query submissionList($offset: Int!, $limit: Int!) {
     submissionList(offset: $offset, limit: $limit) {
@@ -69,18 +64,17 @@ query submissionList($offset: Int!, $limit: Int!) {
 }
 """
 
-# Query 3: Submission Details (Code)
 QUERY_SUBMISSION_DETAILS = """
 query submissionDetails($submissionId: Int!) {
     submissionDetails(submissionId: $submissionId) {
         runtime
         runtimeDisplay
         runtimePercentile
-        runtimeDistribution
+        # runtimeDistribution (Dropped later)
         memory
         memoryDisplay
         memoryPercentile
-        memoryDistribution
+        # memoryDistribution (Dropped later)
         code
         timestamp
         statusCode
@@ -88,7 +82,7 @@ query submissionDetails($submissionId: Int!) {
             username
             profile {
                 realName
-                userAvatar
+                # userAvatar (Dropped later)
             }
         }
         lang {
@@ -109,6 +103,7 @@ query submissionDetails($submissionId: Int!) {
         }
         runtimeError
         compileError
+        # Judge noise (Dropped later)
         lastTestcase
         codeOutput
         expectedOutput
@@ -123,7 +118,6 @@ query submissionDetails($submissionId: Int!) {
 }
 """
 
-# Query 4: Problem Metadata (Content, Tags, Difficulty)
 QUERY_PROBLEM_DETAILS = """
 query selectProblem($titleSlug: String!) {
     question(titleSlug: $titleSlug) {
@@ -152,7 +146,32 @@ query selectProblem($titleSlug: String!) {
 # Helpers
 # -----------------------------------------------------------------------------
 
-def gql_request(query, variables=None, operation_name=None):
+def clean_data(data):
+    """
+    Recursively remove excluded keys from a dictionary or list.
+    """
+    if isinstance(data, dict):
+        return {
+            k: clean_data(v) 
+            for k, v in data.items() 
+            if k not in EXCLUDED_FIELDS
+        }
+    elif isinstance(data, list):
+        return [clean_data(item) for item in data]
+    else:
+        return data
+
+def get_headers(session, csrf, clearance):
+    return {
+        "Content-Type": "application/json",
+        "Referer": "https://leetcode.com/",
+        "Origin": "https://leetcode.com",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "X-CSRFToken": csrf,
+        "Cookie": f"LEETCODE_SESSION={session}; csrftoken={csrf}; cf_clearance={clearance}",
+    }
+
+def gql_request(query, variables, operation_name, headers):
     payload = {
         "query": query,
         "variables": variables or {}
@@ -161,35 +180,31 @@ def gql_request(query, variables=None, operation_name=None):
         payload["operationName"] = operation_name
         
     try:
-        response = requests.post(GRAPHQL_URL, headers=HEADERS, json=payload, timeout=15)
+        response = requests.post(GRAPHQL_URL, headers=headers, json=payload, timeout=15)
         response.raise_for_status()
         return response.json()
     except Exception as e:
         print(f"Request failed: {e}")
-        if hasattr(response, 'text'):
+        if 'response' in locals() and hasattr(response, 'text'):
             print(response.text)
         return None
 
-def get_username():
+def get_username(headers):
     print("Fetching user profile...")
-    data = gql_request(QUERY_USER_STATUS, operation_name="globalData")
+    data = gql_request(QUERY_USER_STATUS, {}, "globalData", headers)
     if not data or "data" not in data or not data["data"]["userStatus"]["isSignedIn"]:
-        print("Auth Failed: User is not signed in. Check cookies.")
+        print("Auth Failed: User is not signed in. Check credentials.")
         return None
     return data["data"]["userStatus"]["username"]
 
-def fetch_all_submissions_list():
-    """
-    Fetches the metadata of ALL submissions (pagination).
-    Returns a list of submission summaries.
-    """
+def fetch_all_submissions_list(headers):
     offset = 0
     limit = 20
     all_submissions = []
     
     print("Fetching submission list...")
     while True:
-        data = gql_request(QUERY_SUBMISSION_LIST, {"offset": offset, "limit": limit}, "submissionList")
+        data = gql_request(QUERY_SUBMISSION_LIST, {"offset": offset, "limit": limit}, "submissionList", headers)
         if not data or "data" not in data or not data["data"]["submissionList"]:
             print("Failed to fetch submission list or end reached unexpectedly.")
             break
@@ -205,13 +220,15 @@ def fetch_all_submissions_list():
             break
             
         offset += limit
-        time.sleep(1) # Rate limit politeness
+        time.sleep(1)
         
     return all_submissions
 
-def process_pipeline():
+def run_extraction(session, csrf, clearance):
+    headers = get_headers(session, csrf, clearance)
+    
     # 1. Get Username
-    username = get_username()
+    username = get_username(headers)
     if not username:
         return
     
@@ -221,10 +238,10 @@ def process_pipeline():
     user_dir.mkdir(parents=True, exist_ok=True)
     
     # 2. Fetch All Submissions List
-    submissions_summary = fetch_all_submissions_list()
+    submissions_summary = fetch_all_submissions_list(headers)
     print(f"Total Submissions Found: {len(submissions_summary)}")
     
-    # 3. Group by Question (titleSlug)
+    # 3. Group by Question
     grouped = defaultdict(list)
     for sub in submissions_summary:
         slug = sub.get("titleSlug")
@@ -237,39 +254,32 @@ def process_pipeline():
     for i, (slug, subs) in enumerate(grouped.items(), 1):
         print(f"[{i}/{len(grouped)}] Processing: {slug}")
         
-        # Check if file exists (optional: skip if already done?)
-        # For now, we overwrite to ensure "perfect sync" and missing data is added
-        
-        # A. Fetch Problem Metadata (ONCE per question)
+        # A. Fetch Problem Metadata
         print(f"   Getting metadata for {slug}...")
-        meta_data = gql_request(QUERY_PROBLEM_DETAILS, {"titleSlug": slug}, "selectProblem")
+        meta_data = gql_request(QUERY_PROBLEM_DETAILS, {"titleSlug": slug}, "selectProblem", headers)
         if not meta_data or "data" not in meta_data:
             print(f"   Failed to get metadata for {slug}")
             question_data = {"error": "Failed to fetch"}
         else:
-            question_data = meta_data["data"]["question"]
+            question_data = clean_data(meta_data["data"]["question"])
             
-        # B. Fetch Submission Code for EACH submission
+        # B. Fetch Submission Code
         full_submissions = []
         for sub in subs:
             sub_id = sub["id"]
-            # Optimization: If we have cached details in raw/submission_details, use that?
-            # User wants "ideal pipeline", let's fetch fresh or reuse if we want to be fast.
-            # To be safe and "Extremely crucial", let's fetch fresh or check cache.
-            # Given the constraints, let's fetch to be sure we get everything.
-            
             print(f"   Fetching code for submission {sub_id}...")
-            detail_data = gql_request(QUERY_SUBMISSION_DETAILS, {"submissionId": sub_id}, "submissionDetails")
+            detail_data = gql_request(QUERY_SUBMISSION_DETAILS, {"submissionId": sub_id}, "submissionDetails", headers)
             
             if detail_data and "data" in detail_data and detail_data["data"]["submissionDetails"]:
-                # Merge summary info with detailed info
-                full_sub = {**sub, **detail_data["data"]["submissionDetails"]}
+                # Merge and Clean
+                cleaned_details = clean_data(detail_data["data"]["submissionDetails"])
+                full_sub = {**sub, **cleaned_details}
                 full_submissions.append(full_sub)
             else:
                 print(f"   Failed to fetch details for {sub_id}")
-                full_submissions.append(sub) # Keep summary at least
+                full_submissions.append(sub)
             
-            time.sleep(0.5) # Sleep between submissions
+            time.sleep(0.5)
             
         # 5. Construct Final JSON
         final_output = {
@@ -284,7 +294,45 @@ def process_pipeline():
             json.dump(final_output, f, indent=2, ensure_ascii=False)
             
         print(f"   Saved to {file_path}")
-        time.sleep(1) # Sleep between questions
+        time.sleep(1)
+
+def interactive_cli():
+    print("=== LeetCode Data Extractor CLI ===")
+    
+    # Check env first
+    env_session = os.getenv("LEETCODE_SESSION")
+    env_csrf = os.getenv("LEETCODE_CSRF_TOKEN")
+    env_cf = os.getenv("CF_CLEARANCE")
+    
+    use_env = False
+    if env_session and env_csrf and env_cf:
+        print("Found credentials in .env file.")
+        choice = input("Do you want to use them? (y/n): ").strip().lower()
+        if choice == 'y':
+            use_env = True
+            
+    if use_env:
+        session = env_session
+        csrf = env_csrf
+        cf = env_cf
+    else:
+        print("\nPlease enter your LeetCode credentials:")
+        print("(You can find these in browser cookies/headers)")
+        session = input("LEETCODE_SESSION: ").strip()
+        csrf = input("csrftoken: ").strip()
+        cf = input("cf_clearance: ").strip()
+        
+        # Optionally save to .env
+        save = input("Save these to .env for future use? (y/n): ").strip().lower()
+        if save == 'y':
+            with open(env_path, 'w', encoding='utf-8') as f:
+                f.write(f"LEETCODE_SESSION={session}\n")
+                f.write(f"LEETCODE_CSRF_TOKEN={csrf}\n")
+                f.write(f"CF_CLEARANCE={cf}\n")
+            print("Saved to .env")
+
+    print("\nStarting extraction pipeline...")
+    run_extraction(session, csrf, cf)
 
 if __name__ == "__main__":
-    process_pipeline()
+    interactive_cli()
