@@ -1,4 +1,28 @@
-data/
-.env
-alfa-leetcode-api/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
 aurika_venv/
+
+# Secrets
+.env
+
+# Data and Logs
+data/
+logs/
+
+# Tests
+tests/
+
+# IDE
+.vscode/
+.idea/
+
+# Distribution
+dist/
+build/
+*.egg-info/
