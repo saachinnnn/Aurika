@@ -1,5 +1,5 @@
 import json
-import time
+import asyncio
 import logging
 import httpx
 from pathlib import Path
@@ -16,6 +16,8 @@ logger = logging.getLogger(__name__)
 # -----------------------------------------------------------------------------
 # Constants & Queries
 # -----------------------------------------------------------------------------
+
+CONCURRENCY_LIMIT = 5  # Max parallel requests
 
 QUERY_SUBMISSION_LIST = """
 query submissionList($offset: Int!, $limit: Int!) {
@@ -131,12 +133,13 @@ EXCLUDED_FIELDS = {
 # -----------------------------------------------------------------------------
 
 class LeetCodeHarvester:
-    def __init__(self, client: httpx.Client, username: str, console: Optional[Console] = None):
+    def __init__(self, client: httpx.AsyncClient, username: str, console: Optional[Console] = None):
         self.client = client
         self.username = username
         self.console = console or Console()
         self.user_raw_dir = RAW_DATA_DIR / username
         self.user_raw_dir.mkdir(parents=True, exist_ok=True)
+        self.semaphore = asyncio.Semaphore(CONCURRENCY_LIMIT)
 
     def _clean_data(self, data: Any) -> Any:
         """Recursively remove excluded keys."""
@@ -151,9 +154,9 @@ class LeetCodeHarvester:
         else:
             return data
 
-    def _gql_request(self, query: str, variables: dict, operation_name: str) -> Optional[dict]:
+    async def _gql_request(self, query: str, variables: dict, operation_name: str) -> Optional[dict]:
         try:
-            response = self.client.post(
+            response = await self.client.post(
                 GRAPHQL_URL,
                 json={"query": query, "variables": variables, "operationName": operation_name}
             )
@@ -162,31 +165,27 @@ class LeetCodeHarvester:
             
             if "errors" in data:
                 logger.error(f"GraphQL Error in {operation_name}: {data['errors']}")
-                if self.console:
-                    self.console.print(f"[bold red]GraphQL Error:[/bold red] {data['errors']}")
                 return None
                 
             return data
         except httpx.HTTPError as e:
             logger.error(f"Request failed for {operation_name}: {e}")
-            if self.console:
-                self.console.print(f"[bold red]Request Failed:[/bold red] {e}")
             return None
 
-    def fetch_submission_history(self) -> List[Dict]:
+    async def fetch_submission_history(self) -> List[Dict]:
         """Fetches the complete submission history list."""
         offset = 0
         limit = 20
         all_submissions = []
         
-        # Use rich status if console available
         status_context = self.console.status("[bold cyan]Fetching submission history...", spinner="dots") if self.console else None
         
         try:
             if status_context: status_context.__enter__()
             
             while True:
-                data = self._gql_request(QUERY_SUBMISSION_LIST, {"offset": offset, "limit": limit}, "submissionList")
+                # List fetching is sequential because of pagination dependency
+                data = await self._gql_request(QUERY_SUBMISSION_LIST, {"offset": offset, "limit": limit}, "submissionList")
                 if not data or "data" not in data or not data["data"]["submissionList"]:
                     break
                     
@@ -203,21 +202,65 @@ class LeetCodeHarvester:
                     break
                     
                 offset += limit
-                time.sleep(0.5)
+                await asyncio.sleep(0.2) # Small delay for list paging
         finally:
             if status_context: status_context.__exit__(None, None, None)
             
         return all_submissions
 
-    def harvest_all(self):
+    async def process_problem(self, slug: str, subs: List[Dict], progress: Progress, task_id: Any):
         """
-        Main harvesting loop:
-        1. Fetch History
-        2. Group by Question
-        3. For each question: Fetch Metadata + Submission Code
-        4. Save to Disk
+        Fetches metadata and details for a single problem.
+        Controlled by semaphore for concurrency.
         """
-        submissions_summary = self.fetch_submission_history()
+        async with self.semaphore:
+            progress.update(task_id, description=f"[cyan]Processing: {slug}")
+            
+            # A. Fetch Metadata
+            meta_response = await self._gql_request(QUERY_PROBLEM_DETAILS, {"titleSlug": slug}, "selectProblem")
+            if not meta_response or "data" not in meta_response:
+                question_data = {"error": "Failed to fetch"}
+            else:
+                question_data = self._clean_data(meta_response["data"]["question"])
+            
+            # B. Fetch Submissions (Sequential per problem, to avoid hammering details for one problem)
+            # We could parallelize this too, but let's keep it simple: parallel problems, serial submissions inside.
+            full_submissions = []
+            for sub in subs:
+                sub_id = sub["id"]
+                detail_response = await self._gql_request(QUERY_SUBMISSION_DETAILS, {"submissionId": sub_id}, "submissionDetails")
+                
+                if detail_response and "data" in detail_response and detail_response["data"]["submissionDetails"]:
+                    cleaned_details = self._clean_data(detail_response["data"]["submissionDetails"])
+                    full_sub = {**sub, **cleaned_details}
+                    full_submissions.append(full_sub)
+                else:
+                    full_submissions.append(sub)
+                
+                # Tiny sleep to be polite even inside the semaphore
+                await asyncio.sleep(0.1)
+            
+            # Save
+            final_output = {
+                "question_name": slug,
+                "problem_metadata": question_data,
+                "submissions": full_submissions
+            }
+            
+            file_path = self.user_raw_dir / f"{slug}.json"
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(final_output, f, indent=2, ensure_ascii=False)
+            
+            progress.advance(task_id)
+            
+            # Post-task cooldown to respect rate limits globally
+            await asyncio.sleep(0.5)
+
+    async def harvest_all(self):
+        """
+        Main harvesting loop: Concurrent execution.
+        """
+        submissions_summary = await self.fetch_submission_history()
         
         if self.console:
             self.console.print(f"[info]Total Submissions Found: [bold]{len(submissions_summary)}[/bold][/info]")
@@ -231,7 +274,7 @@ class LeetCodeHarvester:
 
         if self.console:
             self.console.print(f"[info]Unique Problems Attempted: [bold]{len(grouped)}[/bold][/info]")
-            self.console.print("\n[bold]Starting detailed extraction...[/bold]")
+            self.console.print(f"\n[bold]Starting concurrent extraction (Max {CONCURRENCY_LIMIT} threads)...[/bold]")
 
         # Progress Bar
         with Progress(
@@ -244,44 +287,13 @@ class LeetCodeHarvester:
             
             main_task = progress.add_task("[cyan]Processing Problems...", total=len(grouped))
             
-            for i, (slug, subs) in enumerate(grouped.items(), 1):
-                progress.update(main_task, description=f"[cyan]Processing: {slug}")
-                
-                # A. Fetch Metadata
-                meta_response = self._gql_request(QUERY_PROBLEM_DETAILS, {"titleSlug": slug}, "selectProblem")
-                if not meta_response or "data" not in meta_response:
-                    question_data = {"error": "Failed to fetch"}
-                else:
-                    question_data = self._clean_data(meta_response["data"]["question"])
-                
-                # B. Fetch Submissions
-                full_submissions = []
-                for sub in subs:
-                    sub_id = sub["id"]
-                    detail_response = self._gql_request(QUERY_SUBMISSION_DETAILS, {"submissionId": sub_id}, "submissionDetails")
-                    
-                    if detail_response and "data" in detail_response and detail_response["data"]["submissionDetails"]:
-                        cleaned_details = self._clean_data(detail_response["data"]["submissionDetails"])
-                        full_sub = {**sub, **cleaned_details}
-                        full_submissions.append(full_sub)
-                    else:
-                        full_submissions.append(sub)
-                    
-                    time.sleep(0.3) # Rate limit
-                
-                # Save
-                final_output = {
-                    "question_name": slug,
-                    "problem_metadata": question_data,
-                    "submissions": full_submissions
-                }
-                
-                file_path = self.user_raw_dir / f"{slug}.json"
-                with open(file_path, "w", encoding="utf-8") as f:
-                    json.dump(final_output, f, indent=2, ensure_ascii=False)
-                
-                progress.advance(main_task)
-                time.sleep(0.5)
+            # Create tasks
+            tasks = []
+            for slug, subs in grouped.items():
+                tasks.append(self.process_problem(slug, subs, progress, main_task))
+            
+            # Run concurrently
+            await asyncio.gather(*tasks)
 
         if self.console:
             from rich.panel import Panel

@@ -1,12 +1,14 @@
-import questionary # This is a popular library used to create interactive terminal user interfaces (TIs
+import asyncio
+import questionary
 from rich.console import Console
 from rich.panel import Panel
 from rich.theme import Theme
-# Rich is used for beautiful terminal output with colors and styles.
-from src.pipeline.stage_1_harvester.authentication import LeetCodeAuthenticator, AuthenticationError # These two are the script files written for ensuring authentication.
-from src.pipeline.stage_1_harvester.harvester import LeetCodeHarvester # The class inside harvester.py.
+from pathlib import Path
 
-# Apparently this acts like the orchestrator for the pipeline in stage of data ingestion.
+from src.pipeline.config import ROOT_DIR
+from src.pipeline.stage_1_harvester.authentication import LeetCodeAuthenticator, AuthenticationError
+from src.pipeline.stage_1_harvester.harvester import LeetCodeHarvester
+
 # Custom Rich Theme
 custom_theme = Theme({
     "info": "cyan",
@@ -16,7 +18,13 @@ custom_theme = Theme({
     "highlight": "magenta",
 })
 console = Console(theme=custom_theme)
-# This is the start function which is called from scripts/run_pipeline.py
+
+async def run_harvester(auth: LeetCodeAuthenticator, username: str):
+    """Async wrapper for the harvesting process."""
+    async with auth.get_client() as client:
+        harvester = LeetCodeHarvester(client, username, console)
+        await harvester.harvest_all()
+
 def start():
     console.print(Panel.fit(
         "[bold cyan]LeetCode Data Extractor[/bold cyan]\n"
@@ -24,38 +32,36 @@ def start():
         border_style="cyan"
     ))
     
+    
     console.print("\n[bold]Please enter your LeetCode credentials:[/bold]")
     console.print("[dim](You can find these in your browser cookies/headers)[/dim]")
         
-    session = questionary.password("LEETCODE_SESSION:").ask() # Hides teh input for security
+    session = questionary.password("LEETCODE_SESSION:").ask()
     csrf = questionary.text("csrftoken:").ask()
     cf = questionary.text("cf_clearance:").ask()
         
     if not session or not csrf or not cf:
         console.print("[error]All credentials are required![/error]")
         return
-        # The above is a precatutionary that checks that all credentials are provided.
+
     console.print() # Spacer
     
     # Run Pipeline
     try:
-        # 1. Authenticate
-        auth = LeetCodeAuthenticator(session, csrf, cf) # Creates and instance of the authenticator class.
-        username = auth.validate() # Validate the credentials and get the username.
+        # 1. Authenticate (Synchronous check)
+        auth = LeetCodeAuthenticator(session, csrf, cf)
+        username = auth.validate()
         console.print(f"[success]Authenticated as: [bold]{username}[/bold][/success]")
         
-        # 2. Harvest
-        # Get authenticated client
-        with auth.get_client() as client:
-            harvester = LeetCodeHarvester(client, username, console)
-            harvester.harvest_all()
+        # 2. Harvest (Async Task)
+        asyncio.run(run_harvester(auth, username))
             
     except AuthenticationError as e:
         console.print(f"[error]Authentication Failed: {e}[/error]")
     except Exception as e:
         console.print(f"[error]An unexpected error occurred: {e}[/error]")
         import traceback
-        console.print(traceback.format_exc()) # Prints the full traceback for debugging.
+        console.print(traceback.format_exc())
 
 if __name__ == "__main__":
     start()

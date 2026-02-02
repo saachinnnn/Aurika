@@ -118,12 +118,12 @@ class LeetCodeAuthenticator:
                 logger.warning(f"Network error during auth check: {e}")
                 raise
 
-    def get_client(self) -> httpx.Client:
+    def get_client(self) -> httpx.AsyncClient:
         """
-        Returns a configured httpx.Client ready for requests.
+        Returns a configured httpx.AsyncClient ready for requests.
         The caller is responsible for closing the client (context manager recommended).
         """
-        return httpx.Client(
+        return httpx.AsyncClient(
             http2=True,
             headers=self._get_headers(),
             cookies=self._get_cookies(),
