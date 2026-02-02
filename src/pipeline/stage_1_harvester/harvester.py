@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 # Constants & Queries
 # -----------------------------------------------------------------------------
 
-CONCURRENCY_LIMIT = 5  # Max parallel requests
+CONCURRENCY_LIMIT = 25  # Max parallel requests
 
 QUERY_SUBMISSION_LIST = """
 query submissionList($offset: Int!, $limit: Int!) {
@@ -254,7 +254,7 @@ class LeetCodeHarvester:
             progress.advance(task_id)
             
             # Post-task cooldown to respect rate limits globally
-            await asyncio.sleep(0.5)
+            await asyncio.sleep(0.1)
 
     async def harvest_all(self):
         """
