@@ -1,0 +1,104 @@
+{
+  "question_name": "strictly-palindromic-number",
+  "problem_metadata": {
+    "questionId": "2481",
+    "title": "Strictly Palindromic Number",
+    "titleSlug": "strictly-palindromic-number",
+    "content": "<p>An integer <code>n</code> is <strong>strictly palindromic</strong> if, for <strong>every</strong> base <code>b</code> between <code>2</code> and <code>n - 2</code> (<strong>inclusive</strong>), the string representation of the integer <code>n</code> in base <code>b</code> is <strong>palindromic</strong>.</p>\n\n<p>Given an integer <code>n</code>, return <code>true</code> <em>if </em><code>n</code><em> is <strong>strictly palindromic</strong> and </em><code>false</code><em> otherwise</em>.</p>\n\n<p>A string is <strong>palindromic</strong> if it reads the same forward and backward.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 9\n<strong>Output:</strong> false\n<strong>Explanation:</strong> In base 2: 9 = 1001 (base 2), which is palindromic.\nIn base 3: 9 = 100 (base 3), which is not palindromic.\nTherefore, 9 is not strictly palindromic so we return false.\nNote that in bases 4, 5, 6, and 7, n = 9 is also not palindromic.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 4\n<strong>Output:</strong> false\n<strong>Explanation:</strong> We only consider base 2: 4 = 100 (base 2), which is not palindromic.\nTherefore, we return false.\n\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>4 &lt;= n &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"166.1K\", \"totalSubmission\": \"184.6K\", \"totalAcceptedRaw\": 166093, \"totalSubmissionRaw\": 184590, \"acRate\": \"90.0%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Brainteaser",
+        "slug": "brainteaser",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Consider the representation of the given number in the base n - 2.",
+      "The number n in base (n - 2) is always 12, which is not palindromic."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1852854987",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17688000,
+      "timestamp": 1765453117,
+      "title": "Strictly Palindromic Number",
+      "titleSlug": "strictly-palindromic-number",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 63.0449,
+      "code": "class Solution:\n    def isStrictlyPalindromic(self, n: int) -> bool:\n        return False\n            \n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2481",
+        "titleSlug": "strictly-palindromic-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1852854199",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17964000,
+      "timestamp": 1765453031,
+      "title": "Strictly Palindromic Number",
+      "titleSlug": "strictly-palindromic-number",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 52.9603,
+      "code": "class Solution:\n    def isStrictlyPalindromic(self, n: int) -> bool:\n        def to_base(num,base):\n            if num == 0:\n                return \"0\"\n            \n            result = \"\"\n\n            while num > 0:\n                num,remainder = divmod(num,base)\n                result = str(remainder) + result\n            \n            return result\n        \n        for i in range(2,n - 1):\n            num = n\n            op = to_base(num,i)\n            if not op[::] == op[::-1]:\n                return False\n        return True\n            \n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2481",
+        "titleSlug": "strictly-palindromic-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

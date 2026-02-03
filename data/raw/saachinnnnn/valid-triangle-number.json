@@ -1,0 +1,76 @@
+{
+  "question_name": "valid-triangle-number",
+  "problem_metadata": {
+    "questionId": "611",
+    "title": "Valid Triangle Number",
+    "titleSlug": "valid-triangle-number",
+    "content": "<p>Given an integer array <code>nums</code>, return <em>the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,2,3,4]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> Valid combinations are: \n2,3,4 (using the first 2)\n2,3,4 (using the second 2)\n2,2,3\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [4,2,3,4]\n<strong>Output:</strong> 4\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 1000</code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"356.2K\", \"totalSubmission\": \"629.1K\", \"totalAcceptedRaw\": 356165, \"totalSubmissionRaw\": 629054, \"acRate\": \"56.6%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1782833855",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 429,
+      "memory": 17820000,
+      "timestamp": 1758851567,
+      "title": "Valid Triangle Number",
+      "titleSlug": "valid-triangle-number",
+      "runtimeDisplay": "429 ms",
+      "runtimePercentile": 76.35210000000002,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 60.34560000000002,
+      "code": "class Solution(object):\n    def triangleNumber(self, nums):\n        \"\"\"\n        :type nums: List[int]\n        :rtype: int\n        \"\"\"\n        nums.sort()\n        c = 0\n        for i in range(len(nums)-1, 1, -1):\n            l = 0\n            r = i - 1\n            while l < r:\n                if nums[l] + nums[r] > nums[i]:\n                    c += r - l\n                    r -= 1\n                else:\n                    l += 1\n        return c",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "611",
+        "titleSlug": "valid-triangle-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

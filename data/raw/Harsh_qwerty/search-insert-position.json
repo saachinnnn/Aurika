@@ -1,0 +1,96 @@
+{
+  "question_name": "search-insert-position",
+  "problem_metadata": {
+    "questionId": "35",
+    "title": "Search Insert Position",
+    "titleSlug": "search-insert-position",
+    "content": "<p>Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>\n\n<p>You must&nbsp;write an algorithm with&nbsp;<code>O(log n)</code> runtime complexity.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,5,6], target = 5\n<strong>Output:</strong> 2\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,5,6], target = 2\n<strong>Output:</strong> 1\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,5,6], target = 7\n<strong>Output:</strong> 4\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n\t<li><code>nums</code> contains <strong>distinct</strong> values sorted in <strong>ascending</strong> order.</li>\n\t<li><code>-10<sup>4</sup> &lt;= target &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"4.5M\", \"totalSubmission\": \"8.9M\", \"totalAcceptedRaw\": 4484405, \"totalSubmissionRaw\": 8873947, \"acRate\": \"50.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1885570752",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 8224000,
+      "timestamp": 1768462185,
+      "title": "Search Insert Position",
+      "titleSlug": "search-insert-position",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "8.2 MB",
+      "memoryPercentile": 52.042699999999996,
+      "code": "int searchInsert(int* nums, int numsSize, int target) {\n    #include <stdio.h>\n    int mid, left=0,right=numsSize-1;\n    \n    while(left<=right){\n        mid=(left+right)/2;\n\n        if (nums[mid]==target){\n            return mid;\n        }\n        else if (nums[mid]<target){\n            left=mid+1;\n        }\n        else{\n            right=mid-1;\n        }\n    }\n    return left;\n\n}",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "35",
+        "titleSlug": "search-insert-position",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1885569042",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 8224000,
+      "timestamp": 1768462052,
+      "title": "Search Insert Position",
+      "titleSlug": "search-insert-position",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "8.2 MB",
+      "memoryPercentile": 52.042699999999996,
+      "code": "int searchInsert(int* nums, int numsSize, int target) {\n    #include <stdio.h>\n    int mid, left=0,right=numsSize-1;\n    \n    while(left<=right){\n        mid=(left+right)/2;\n\n        if (nums[mid]==target){\n            return mid;\n        }\n        else if (nums[mid]<target){\n            left=mid+1;\n        }\n        else{\n            right=mid-1;\n        }\n    }\n    return left;\n\n}",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "35",
+        "titleSlug": "search-insert-position",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

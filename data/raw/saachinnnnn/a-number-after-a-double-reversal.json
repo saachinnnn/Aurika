@@ -1,0 +1,93 @@
+{
+  "question_name": "a-number-after-a-double-reversal",
+  "problem_metadata": {
+    "questionId": "2238",
+    "title": "A Number After a Double Reversal",
+    "titleSlug": "a-number-after-a-double-reversal",
+    "content": "<p><strong>Reversing</strong> an integer means to reverse all its digits.</p>\n\n<ul>\n\t<li>For example, reversing <code>2021</code> gives <code>1202</code>. Reversing <code>12300</code> gives <code>321</code> as the <strong>leading zeros are not retained</strong>.</li>\n</ul>\n\n<p>Given an integer <code>num</code>, <strong>reverse</strong> <code>num</code> to get <code>reversed1</code>, <strong>then reverse</strong> <code>reversed1</code> to get <code>reversed2</code>. Return <code>true</code> <em>if</em> <code>reversed2</code> <em>equals</em> <code>num</code>. Otherwise return <code>false</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 526\n<strong>Output:</strong> true\n<strong>Explanation:</strong> Reverse num to get 625, then reverse 625 to get 526, which equals num.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 1800\n<strong>Output:</strong> false\n<strong>Explanation:</strong> Reverse num to get 81, then reverse 81 to get 18, which does not equal num.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 0\n<strong>Output:</strong> true\n<strong>Explanation:</strong> Reverse num to get 0, then reverse 0 to get 0, which equals num.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= num &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"147.3K\", \"totalSubmission\": \"180.1K\", \"totalAcceptedRaw\": 147270, \"totalSubmissionRaw\": 180100, \"acRate\": \"81.8%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Other than the number 0 itself, any number that ends with 0 would lose some digits permanently when reversed."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1796615676",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17864000,
+      "timestamp": 1760031628,
+      "title": "A Number After a Double Reversal",
+      "titleSlug": "a-number-after-a-double-reversal",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 48.70889999999999,
+      "code": "class Solution:\n    def isSameAfterReversals(self, num: int) -> bool:\n        reversed1 = int(str(num)[::-1])\n        reversed2 = int(str(reversed1)[::-1])\n        return reversed2 == num",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2238",
+        "titleSlug": "a-number-after-a-double-reversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1796615256",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 17972000,
+      "timestamp": 1760031605,
+      "title": "A Number After a Double Reversal",
+      "titleSlug": "a-number-after-a-double-reversal",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 2.9342000000000006,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 44.952999999999996,
+      "code": "class Solution:\n    def isSameAfterReversals(self, num: int) -> bool:\n        return num == 0 or num % 10 != 0",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2238",
+        "titleSlug": "a-number-after-a-double-reversal",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "question_name": "find-subarrays-with-equal-sum",
+  "problem_metadata": {
+    "questionId": "2480",
+    "title": "Find Subarrays With Equal Sum",
+    "titleSlug": "find-subarrays-with-equal-sum",
+    "content": "<p>Given a <strong>0-indexed</strong> integer array <code>nums</code>, determine whether there exist <strong>two</strong> subarrays of length <code>2</code> with <strong>equal</strong> sum. Note that the two subarrays must begin at <strong>different</strong> indices.</p>\n\n<p>Return <code>true</code><em> if these subarrays exist, and </em><code>false</code><em> otherwise.</em></p>\n\n<p>A <b>subarray</b> is a contiguous non-empty sequence of elements within an array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [4,2,4]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The subarrays with elements [4,2] and [2,4] have the same sum of 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> No two subarrays of size 2 have the same sum.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,0,0]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The subarrays [nums[0],nums[1]] and [nums[1],nums[2]] have the same sum of 0. \nNote that even though the subarrays have the same content, the two subarrays are considered different because they are in different positions in the original array.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"70.9K\", \"totalSubmission\": \"106.1K\", \"totalAcceptedRaw\": 70880, \"totalSubmissionRaw\": 106078, \"acRate\": \"66.8%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use a counter to keep track of the subarray sums.",
+      "Use a hashset to check if any two sums are equal."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1828851886",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17908000,
+      "timestamp": 1763048652,
+      "title": "Find Subarrays With Equal Sum",
+      "titleSlug": "find-subarrays-with-equal-sum",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 53.5496,
+      "code": "class Solution:\n    def findSubarrays(self, nums: List[int]) -> bool:\n        if not nums or len(nums) <= 2:\n            return False\n        windowsum = sum(nums[:2])\n        hashset = set()\n        hashset.add(windowsum)\n        for right in range(2,len(nums)):\n            windowsum -= nums[right - 2]\n            windowsum += nums[right]\n            if windowsum in hashset:\n                return True\n            hashset.add(windowsum)\n        return False",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2480",
+        "titleSlug": "find-subarrays-with-equal-sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1828653031",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18136000,
+      "timestamp": 1763031066,
+      "title": "Find Subarrays With Equal Sum",
+      "titleSlug": "find-subarrays-with-equal-sum",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18.1 MB",
+      "memoryPercentile": 41.78489999999999,
+      "code": "class Solution:\n    def findSubarrays(self, nums: List[int]) -> bool:\n        if not nums or len(nums) <= 2:\n            return False\n        windowsum = sum(nums[:2])\n        hashset = set()\n        hashset.add(windowsum)\n        for right in range(2,len(nums)):\n            windowsum -= nums[right - 2]\n            windowsum += nums[right]\n            if windowsum in hashset:\n                return True\n            hashset.add(windowsum)\n        return False",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2480",
+        "titleSlug": "find-subarrays-with-equal-sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

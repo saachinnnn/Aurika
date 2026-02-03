@@ -1,0 +1,66 @@
+{
+  "question_name": "fizz-buzz",
+  "problem_metadata": {
+    "questionId": "412",
+    "title": "Fizz Buzz",
+    "titleSlug": "fizz-buzz",
+    "content": "<p>Given an integer <code>n</code>, return <em>a string array </em><code>answer</code><em> (<strong>1-indexed</strong>) where</em>:</p>\n\n<ul>\n\t<li><code>answer[i] == &quot;FizzBuzz&quot;</code> if <code>i</code> is divisible by <code>3</code> and <code>5</code>.</li>\n\t<li><code>answer[i] == &quot;Fizz&quot;</code> if <code>i</code> is divisible by <code>3</code>.</li>\n\t<li><code>answer[i] == &quot;Buzz&quot;</code> if <code>i</code> is divisible by <code>5</code>.</li>\n\t<li><code>answer[i] == i</code> (as a string) if none of the above conditions are true.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> n = 3\n<strong>Output:</strong> [\"1\",\"2\",\"Fizz\"]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> n = 5\n<strong>Output:</strong> [\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\"]\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> n = 15\n<strong>Output:</strong> [\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\",\"Fizz\",\"7\",\"8\",\"Fizz\",\"Buzz\",\"11\",\"Fizz\",\"13\",\"14\",\"FizzBuzz\"]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"1.7M\", \"totalSubmission\": \"2.3M\", \"totalAcceptedRaw\": 1713389, \"totalSubmissionRaw\": 2279045, \"acRate\": \"75.2%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Simulation",
+        "slug": "simulation",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1793313115",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18240000,
+      "timestamp": 1759767478,
+      "title": "Fizz Buzz",
+      "titleSlug": "fizz-buzz",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18.2 MB",
+      "memoryPercentile": 63.95449999999999,
+      "code": "class Solution:\n    def fizzBuzz(self, n: int) -> List[str]:\n        return [ \"FizzBuzz\" if num % 3 == 0 and num % 5 == 0 else \"Fizz\" if num % 3 == 0 else \"Buzz\" if num % 5 == 0 else str(num) for num in range(1, n + 1)]",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "412",
+        "titleSlug": "fizz-buzz",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

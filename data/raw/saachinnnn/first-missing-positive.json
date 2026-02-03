@@ -1,0 +1,95 @@
+{
+  "question_name": "first-missing-positive",
+  "problem_metadata": {
+    "questionId": "41",
+    "title": "First Missing Positive",
+    "titleSlug": "first-missing-positive",
+    "content": "<p>Given an unsorted integer array <code>nums</code>. Return the <em>smallest positive integer</em> that is <em>not present</em> in <code>nums</code>.</p>\n\n<p>You must implement an algorithm that runs in <code>O(n)</code> time and uses <code>O(1)</code> auxiliary space.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,0]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The numbers in the range [1,2] are all in the array.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,4,-1,1]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> 1 is in the array but 2 is missing.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [7,8,9,11,12]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The smallest positive integer 1 is missing.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+    "difficulty": "Hard",
+    "stats": "{\"totalAccepted\": \"1.7M\", \"totalSubmission\": \"4M\", \"totalAcceptedRaw\": 1674343, \"totalSubmissionRaw\": 3958444, \"acRate\": \"42.3%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Think about how you would solve the problem in non-constant space.  Can you apply that logic to the existing space?",
+      "We don't care about duplicates or non-positive integers",
+      "Remember that O(2n) = O(n)"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1607515337",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 11,
+      "memory": 34800000,
+      "timestamp": 1744720123,
+      "title": "First Missing Positive",
+      "titleSlug": "first-missing-positive",
+      "runtimeDisplay": "11 ms",
+      "runtimePercentile": 99.40599999999999,
+      "memoryDisplay": "34.8 MB",
+      "memoryPercentile": 15.205299999999944,
+      "code": "class Solution:\n    def firstMissingPositive(self, nums: List[int]) -> int:\n        nums = set(nums)\n        \n        positiveElement : int = 1\n        while True:\n            if positiveElement not in nums:\n                return positiveElement\n            positiveElement += 1\n        return False\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "41",
+        "titleSlug": "first-missing-positive",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1607514471",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "python3",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1744720049",
+      "title": "First Missing Positive",
+      "titleSlug": "first-missing-positive"
+    },
+    {
+      "id": "1471183543",
+      "statusDisplay": "Accepted",
+      "lang": "python",
+      "runtime": "21 ms",
+      "memory": "25.9 MB",
+      "timestamp": "1733418299",
+      "title": "First Missing Positive",
+      "titleSlug": "first-missing-positive"
+    },
+    {
+      "id": "1471179836",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "python",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1733418036",
+      "title": "First Missing Positive",
+      "titleSlug": "first-missing-positive"
+    }
+  ]
+}

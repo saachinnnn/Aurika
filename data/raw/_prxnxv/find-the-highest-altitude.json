@@ -1,0 +1,99 @@
+{
+  "question_name": "find-the-highest-altitude",
+  "problem_metadata": {
+    "questionId": "1833",
+    "title": "Find the Highest Altitude",
+    "titleSlug": "find-the-highest-altitude",
+    "content": "<p>There is a biker going on a road trip. The road trip consists of <code>n + 1</code> points at different altitudes. The biker starts his trip on point <code>0</code> with altitude equal <code>0</code>.</p>\n\n<p>You are given an integer array <code>gain</code> of length <code>n</code> where <code>gain[i]</code> is the <strong>net gain in altitude</strong> between points <code>i</code>​​​​​​ and <code>i + 1</code> for all (<code>0 &lt;= i &lt; n)</code>. Return <em>the <strong>highest altitude</strong> of a point.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> gain = [-5,1,5,0,-7]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The altitudes are [0,-5,-4,1,1,-6]. The highest is 1.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> gain = [-4,-3,-2,-1,4,3,2]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> The altitudes are [0,-4,-7,-9,-10,-6,-3,-1]. The highest is 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == gain.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 100</code></li>\n\t<li><code>-100 &lt;= gain[i] &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"688.4K\", \"totalSubmission\": \"820.9K\", \"totalAcceptedRaw\": 688416, \"totalSubmissionRaw\": 820918, \"acRate\": \"83.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Let's note that the altitude of an element is the sum of gains of all the elements behind it",
+      "Getting the altitudes can be done by getting the prefix sum array of the given array"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1893553458",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 0,
+      "memory": 10848000,
+      "timestamp": 1769103066,
+      "title": "Find the Highest Altitude",
+      "titleSlug": "find-the-highest-altitude",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "10.8 MB",
+      "memoryPercentile": 44.59350000000001,
+      "code": "class Solution {\npublic:\n    int largestAltitude(vector<int>& gain) {\n            int altitude = 0, maxAlt = 0;\n    for (int g : gain) {\n        altitude += g;\n        maxAlt = max(maxAlt, altitude);\n    }\n    return maxAlt;\n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "1833",
+        "titleSlug": "find-the-highest-altitude",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1893552935",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 0,
+      "memory": 10952000,
+      "timestamp": 1769103040,
+      "title": "Find the Highest Altitude",
+      "titleSlug": "find-the-highest-altitude",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "11 MB",
+      "memoryPercentile": 20.897200000000012,
+      "code": "class Solution {\npublic:\n    int largestAltitude(vector<int>& gain) {\n            int altitude = 0, maxAlt = 0;\n    for (int g : gain) {\n        altitude += g;\n        maxAlt = max(maxAlt, altitude);\n    }\n    return maxAlt;\n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "1833",
+        "titleSlug": "find-the-highest-altitude",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

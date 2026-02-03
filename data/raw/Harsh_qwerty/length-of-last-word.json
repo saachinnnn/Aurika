@@ -1,0 +1,126 @@
+{
+  "question_name": "length-of-last-word",
+  "problem_metadata": {
+    "questionId": "58",
+    "title": "Length of Last Word",
+    "titleSlug": "length-of-last-word",
+    "content": "<p>Given a string <code>s</code> consisting of words and spaces, return <em>the length of the <strong>last</strong> word in the string.</em></p>\n\n<p>A <strong>word</strong> is a maximal <span data-keyword=\"substring-nonempty\">substring</span> consisting of non-space characters only.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;Hello World&quot;\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> The last word is &quot;World&quot; with length 5.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;   fly me   to   the moon  &quot;\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The last word is &quot;moon&quot; with length 4.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;luffy is still joyboy&quot;\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The last word is &quot;joyboy&quot; with length 6.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>s</code> consists of only English letters and spaces <code>&#39; &#39;</code>.</li>\n\t<li>There will be at least one word in <code>s</code>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"3.2M\", \"totalSubmission\": \"5.6M\", \"totalAcceptedRaw\": 3235278, \"totalSubmissionRaw\": 5568008, \"acRate\": \"58.1%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1890010195",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 8080000,
+      "timestamp": 1768836724,
+      "title": "Length of Last Word",
+      "titleSlug": "length-of-last-word",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "8.1 MB",
+      "memoryPercentile": 32.4848,
+      "code": "#include <string.h>\n\nint lengthOfLastWord(char* s) {\n    int len=0,last=0;\n    for (int i=0;s[i] !='\\0';i++){\n        \n        if (s[i]!=' '){\n            len++;\n            last=len;\n        }\n        else {\n            len=0;\n        }\n    }\n    return last;\n}",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "58",
+        "titleSlug": "length-of-last-word",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1890009129",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 7972000,
+      "timestamp": 1768836669,
+      "title": "Length of Last Word",
+      "titleSlug": "length-of-last-word",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "8 MB",
+      "memoryPercentile": 77.8595,
+      "code": "#include <string.h>\n\nint lengthOfLastWord(char* s) {\n    int len=0,last=0;\n    for (int i=0;s[i] !='\\0';i++){\n        \n        if (s[i]!=' '){\n            len++;\n            last=len;\n        }\n        else {\n            len=0;\n        }\n    }\n    return last;\n}",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "58",
+        "titleSlug": "length-of-last-word",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1890007699",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 8060000,
+      "timestamp": 1768836588,
+      "title": "Length of Last Word",
+      "titleSlug": "length-of-last-word",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "#include <string.h>\n\nint lengthOfLastWord(char* s) {\n    int len=0;\n    for (int i=0;s[i] !='\\0';i++){\n        \n        if (s[i]!=' '){\n            len++;\n        }\n        else {\n            len=0;\n        }\n    }\n    return len;\n}",
+      "statusCode": 11,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "58",
+        "titleSlug": "length-of-last-word",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

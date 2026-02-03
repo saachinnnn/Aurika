@@ -1,0 +1,145 @@
+{
+  "question_name": "max-number-of-k-sum-pairs",
+  "problem_metadata": {
+    "questionId": "1798",
+    "title": "Max Number of K-Sum Pairs",
+    "titleSlug": "max-number-of-k-sum-pairs",
+    "content": "<p>You are given an integer array <code>nums</code> and an integer <code>k</code>.</p>\n\n<p>In one operation, you can pick two numbers from the array whose sum equals <code>k</code> and remove them from the array.</p>\n\n<p>Return <em>the maximum number of operations you can perform on the array</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4], k = 5\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Starting with nums = [1,2,3,4]:\n- Remove numbers 1 and 4, then nums = [2,3]\n- Remove numbers 2 and 3, then nums = []\nThere are no more pairs that sum up to 5, hence a total of 2 operations.</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,1,3,4,3], k = 6\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> Starting with nums = [3,1,3,4,3]:\n- Remove the first two 3&#39;s, then nums = [1,4,3]\nThere are no more pairs that sum up to 6, hence a total of 1 operation.</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li><code>1 &lt;= k &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"576K\", \"totalSubmission\": \"1M\", \"totalAcceptedRaw\": 575996, \"totalSubmissionRaw\": 1013833, \"acRate\": \"56.8%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "The abstract problem asks to count the number of disjoint pairs with a given sum k.",
+      "For each possible value x, it can be paired up with k - x.",
+      "The number of such pairs equals to  min(count(x), count(k-x)), unless that x = k / 2, where the number of such pairs will be floor(count(x) / 2)."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1828068708",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 515,
+      "memory": 30728000,
+      "timestamp": 1762970089,
+      "title": "Max Number of K-Sum Pairs",
+      "titleSlug": "max-number-of-k-sum-pairs",
+      "runtimeDisplay": "515 ms",
+      "runtimePercentile": 17.186799999999984,
+      "memoryDisplay": "30.7 MB",
+      "memoryPercentile": 49.81909999999997,
+      "code": "from collections import defaultdict\nclass Solution:\n    def maxOperations(self, nums: List[int], k: int) -> int:\n        # Solving this using hashtable.\n        hashmap = defaultdict(int)\n        ans = 0\n        for num in nums:\n            difference = k - num\n            if difference in hashmap:\n                ans += 1\n                hashmap[difference] -= 1\n                if hashmap[difference] == 0:\n                    del hashmap[difference]\n            else:\n                hashmap[num] += 1\n        return ans",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1798",
+        "titleSlug": "max-number-of-k-sum-pairs",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1828063849",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 493,
+      "memory": 30732000,
+      "timestamp": 1762969794,
+      "title": "Max Number of K-Sum Pairs",
+      "titleSlug": "max-number-of-k-sum-pairs",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def maxOperations(self, nums: List[int], k: int) -> int:\n        # Solving this using hashtable.\n        hashmap = {}\n        ans = 0\n        for num in nums:\n            difference = k - num\n            if difference in hashmap:\n                ans += 1\n                hashmap[difference] -= 1\n                if hashmap[difference] == 0:\n                    del hashmap[difference]\n            else:\n                hashmap[num] = 1\n        return ans",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1798",
+        "titleSlug": "max-number-of-k-sum-pairs",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1828057101",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 513,
+      "memory": 29764000,
+      "timestamp": 1762969382,
+      "title": "Max Number of K-Sum Pairs",
+      "titleSlug": "max-number-of-k-sum-pairs",
+      "runtimeDisplay": "513 ms",
+      "runtimePercentile": 19.289999999999985,
+      "memoryDisplay": "29.8 MB",
+      "memoryPercentile": 81.46549999999998,
+      "code": "class Solution:\n    def maxOperations(self, nums: List[int], k: int) -> int:\n        # Two pointers problem after sorting the array.\n        \n        nums.sort()\n        left_ptr = 0\n        right_ptr = len(nums) - 1\n        ans = 0\n        while left_ptr < right_ptr:\n            total = nums[left_ptr] + nums[right_ptr]\n            if total == k:\n                ans += 1\n                left_ptr += 1\n                right_ptr -= 1\n            elif total < k:\n                left_ptr += 1\n            else:\n                right_ptr -= 1\n        return ans",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1798",
+        "titleSlug": "max-number-of-k-sum-pairs",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

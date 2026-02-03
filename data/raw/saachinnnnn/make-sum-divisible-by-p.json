@@ -1,0 +1,70 @@
+{
+  "question_name": "make-sum-divisible-by-p",
+  "problem_metadata": {
+    "questionId": "1694",
+    "title": "Make Sum Divisible by P",
+    "titleSlug": "make-sum-divisible-by-p",
+    "content": "<p>Given an array of positive integers <code>nums</code>, remove the <strong>smallest</strong> subarray (possibly <strong>empty</strong>) such that the <strong>sum</strong> of the remaining elements is divisible by <code>p</code>. It is <strong>not</strong> allowed to remove the whole array.</p>\n\n<p>Return <em>the length of the smallest subarray that you need to remove, or </em><code>-1</code><em> if it&#39;s impossible</em>.</p>\n\n<p>A <strong>subarray</strong> is defined as a contiguous block of elements in the array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,1,4,2], p = 6\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The sum of the elements in nums is 10, which is not divisible by 6. We can remove the subarray [4], and the sum of the remaining elements is 6, which is divisible by 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [6,3,5,2], p = 9\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> We cannot remove a single element to get a sum divisible by 9. The best way is to remove the subarray [5,2], leaving us with [6,3] with sum 9.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3], p = 3\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> Here the sum is 6. which is already divisible by 3. Thus we do not need to remove anything.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li><code>1 &lt;= p &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"220.3K\", \"totalSubmission\": \"516.9K\", \"totalAcceptedRaw\": 220335, \"totalSubmissionRaw\": 516949, \"acRate\": \"42.6%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use prefix sums to calculate the subarray sums.",
+      "Suppose you know the remainder for the sum of the entire array. How does removing a subarray affect that remainder? What remainder does the subarray need to have in order to make the rest of the array sum up to be divisible by k?",
+      "Use a map to keep track of the rightmost index for every prefix sum % p."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1842865250",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 60,
+      "memory": 38076000,
+      "timestamp": 1764466877,
+      "title": "Make Sum Divisible by P",
+      "titleSlug": "make-sum-divisible-by-p",
+      "runtimeDisplay": "60 ms",
+      "runtimePercentile": 98.16399999999996,
+      "memoryDisplay": "38.1 MB",
+      "memoryPercentile": 69.00629999999998,
+      "code": "class Solution:\n    def minSubarray(self, nums: List[int], p: int) -> int:\n        total = sum(nums)\n        need = total % p\n        if need == 0:\n            return 0\n\n        mp = {0: -1}\n        prefix = 0\n        res = len(nums)\n\n        for i, x in enumerate(nums):\n            prefix = (prefix + x) % p\n            target = (prefix - need) % p\n            if target in mp:\n                res = min(res, i - mp[target])\n            mp[prefix] = i\n\n        return res if res < len(nums) else -1",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1694",
+        "titleSlug": "make-sum-divisible-by-p",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

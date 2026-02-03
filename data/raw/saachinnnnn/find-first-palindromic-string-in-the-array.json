@@ -1,0 +1,69 @@
+{
+  "question_name": "find-first-palindromic-string-in-the-array",
+  "problem_metadata": {
+    "questionId": "2231",
+    "title": "Find First Palindromic String in the Array",
+    "titleSlug": "find-first-palindromic-string-in-the-array",
+    "content": "<p>Given an array of strings <code>words</code>, return <em>the first <strong>palindromic</strong> string in the array</em>. If there is no such string, return <em>an <strong>empty string</strong> </em><code>&quot;&quot;</code>.</p>\n\n<p>A string is <strong>palindromic</strong> if it reads the same forward and backward.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;abc&quot;,&quot;car&quot;,&quot;ada&quot;,&quot;racecar&quot;,&quot;cool&quot;]\n<strong>Output:</strong> &quot;ada&quot;\n<strong>Explanation:</strong> The first string that is palindromic is &quot;ada&quot;.\nNote that &quot;racecar&quot; is also palindromic, but it is not the first.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;notapalindrome&quot;,&quot;racecar&quot;]\n<strong>Output:</strong> &quot;racecar&quot;\n<strong>Explanation:</strong> The first and only string that is palindromic is &quot;racecar&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;def&quot;,&quot;ghi&quot;]\n<strong>Output:</strong> &quot;&quot;\n<strong>Explanation:</strong> There are no palindromic strings, so the empty string is returned.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= words.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= words[i].length &lt;= 100</code></li>\n\t<li><code>words[i]</code> consists only of lowercase English letters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"372.9K\", \"totalSubmission\": \"444.1K\", \"totalAcceptedRaw\": 372861, \"totalSubmissionRaw\": 444067, \"acRate\": \"84.0%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Iterate through the elements in order. As soon as the current element is a palindrome, return it.",
+      "To check if an element is a palindrome, can you reverse the string?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1770475790",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17772000,
+      "timestamp": 1757851647,
+      "title": "Find First Palindromic String in the Array",
+      "titleSlug": "find-first-palindromic-string-in-the-array",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 72.23039999999999,
+      "code": "class Solution:\n    def firstPalindrome(self, words: List[str]) -> str:\n        if len(words) is 0:\n            return \"\"\n        for word in words:\n            if word[::] == word[::-1]:\n                return word\n        return \"\"",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2231",
+        "titleSlug": "find-first-palindromic-string-in-the-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "question_name": "number-of-ways-to-divide-a-long-corridor",
+  "problem_metadata": {
+    "questionId": "2251",
+    "title": "Number of Ways to Divide a Long Corridor",
+    "titleSlug": "number-of-ways-to-divide-a-long-corridor",
+    "content": "<p>Along a long library corridor, there is a line of seats and decorative plants. You are given a <strong>0-indexed</strong> string <code>corridor</code> of length <code>n</code> consisting of letters <code>&#39;S&#39;</code> and <code>&#39;P&#39;</code> where each <code>&#39;S&#39;</code> represents a seat and each <code>&#39;P&#39;</code> represents a plant.</p>\n\n<p>One room divider has <strong>already</strong> been installed to the left of index <code>0</code>, and <strong>another</strong> to the right of index <code>n - 1</code>. Additional room dividers can be installed. For each position between indices <code>i - 1</code> and <code>i</code> (<code>1 &lt;= i &lt;= n - 1</code>), at most one divider can be installed.</p>\n\n<p>Divide the corridor into non-overlapping sections, where each section has <strong>exactly two seats</strong> with any number of plants. There may be multiple ways to perform the division. Two ways are <strong>different</strong> if there is a position with a room divider installed in the first way but not in the second way.</p>\n\n<p>Return <em>the number of ways to divide the corridor</em>. Since the answer may be very large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>. If there is no way, return <code>0</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/12/04/1.png\" style=\"width: 410px; height: 199px;\" />\n<pre>\n<strong>Input:</strong> corridor = &quot;SSPPSPS&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> There are 3 different ways to divide the corridor.\nThe black bars in the above image indicate the two room dividers already installed.\nNote that in each of the ways, <strong>each</strong> section has exactly <strong>two</strong> seats.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/12/04/2.png\" style=\"width: 357px; height: 68px;\" />\n<pre>\n<strong>Input:</strong> corridor = &quot;PPSPSP&quot;\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> There is only 1 way to divide the corridor, by not installing any additional dividers.\nInstalling any would create some section that does not have exactly two seats.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/12/12/3.png\" style=\"width: 115px; height: 68px;\" />\n<pre>\n<strong>Input:</strong> corridor = &quot;S&quot;\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> There is no way to divide the corridor because there will always be a section that does not have exactly two seats.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == corridor.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>corridor[i]</code> is either <code>&#39;S&#39;</code> or <code>&#39;P&#39;</code>.</li>\n</ul>\n",
+    "difficulty": "Hard",
+    "stats": "{\"totalAccepted\": \"140K\", \"totalSubmission\": \"256.4K\", \"totalAcceptedRaw\": 139997, \"totalSubmissionRaw\": 256445, \"acRate\": \"54.6%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Divide the corridor into segments. Each segment has two seats, starts precisely with one seat, and ends precisely with the other seat.",
+      "How many dividers can you install between two adjacent segments? You must install precisely one. Otherwise, you would have created a section with not exactly two seats.",
+      "If there are k plants between two adjacent segments, there are k + 1 positions (ways) you could install the divider you must install.",
+      "The problem now becomes: Find the product of all possible positions between every two adjacent segments."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1855844542",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 192,
+      "memory": 17932000,
+      "timestamp": 1765766843,
+      "title": "Number of Ways to Divide a Long Corridor",
+      "titleSlug": "number-of-ways-to-divide-a-long-corridor",
+      "runtimeDisplay": "192 ms",
+      "runtimePercentile": 86.70210000000009,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 98.3923,
+      "code": "class Solution:\n    def numberOfWays(self, corridor: str) -> int:\n        mod = 10**9 + 7\n\n        total_seats = corridor.count(\"S\")\n        if total_seats == 0 or total_seats % 2 == 1:\n            return 0\n\n        ans = 1\n        seat = 0\n        plant = 0\n\n        for c in corridor:\n            if c == \"S\":\n                if seat == 2:\n                    ans = ans * (plant + 1) % mod\n                    plant = 0\n                    seat = 0\n                seat += 1\n            else:  \n                if seat == 2:\n                    plant += 1\n\n        return ans\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2251",
+        "titleSlug": "number-of-ways-to-divide-a-long-corridor",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1855844067",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 198,
+      "memory": 18368000,
+      "timestamp": 1765766785,
+      "title": "Number of Ways to Divide a Long Corridor",
+      "titleSlug": "number-of-ways-to-divide-a-long-corridor",
+      "runtimeDisplay": "198 ms",
+      "runtimePercentile": 84.23700000000008,
+      "memoryDisplay": "18.4 MB",
+      "memoryPercentile": 57.053900000000006,
+      "code": "class Solution:\n    def numberOfWays(self, corridor: str) -> int:\n        mod = 10**9 + 7\n\n        total_seats = corridor.count(\"S\")\n        if total_seats == 0 or total_seats % 2 == 1:\n            return 0\n\n        ans = 1\n        seat = 0\n        plant = 0\n\n        for c in corridor:\n            if c == \"S\":\n                if seat == 2:\n                    ans = ans * (plant + 1) % mod\n                    plant = 0\n                    seat = 0\n                seat += 1\n            else:  \n                if seat == 2:\n                    plant += 1\n\n        return ans\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2251",
+        "titleSlug": "number-of-ways-to-divide-a-long-corridor",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "question_name": "robot-return-to-origin",
+  "problem_metadata": {
+    "questionId": "657",
+    "title": "Robot Return to Origin",
+    "titleSlug": "robot-return-to-origin",
+    "content": "<p>There is a robot starting at the position <code>(0, 0)</code>, the origin, on a 2D plane. Given a sequence of its moves, judge if this robot <strong>ends up at </strong><code>(0, 0)</code> after it completes its moves.</p>\n\n<p>You are given a string <code>moves</code> that represents the move sequence of the robot where <code>moves[i]</code> represents its <code>i<sup>th</sup></code> move. Valid moves are <code>&#39;R&#39;</code> (right), <code>&#39;L&#39;</code> (left), <code>&#39;U&#39;</code> (up), and <code>&#39;D&#39;</code> (down).</p>\n\n<p>Return <code>true</code><em> if the robot returns to the origin after it finishes all of its moves, or </em><code>false</code><em> otherwise</em>.</p>\n\n<p><strong>Note</strong>: The way that the robot is &quot;facing&quot; is irrelevant. <code>&#39;R&#39;</code> will always make the robot move to the right once, <code>&#39;L&#39;</code> will always make it move left, etc. Also, assume that the magnitude of the robot&#39;s movement is the same for each move.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> moves = &quot;UD&quot;\n<strong>Output:</strong> true\n<strong>Explanation</strong>: The robot moves up once, and then down once. All moves have the same magnitude, so it ended up at the origin where it started. Therefore, we return true.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> moves = &quot;LL&quot;\n<strong>Output:</strong> false\n<strong>Explanation</strong>: The robot moves left twice. It ends up two &quot;moves&quot; to the left of the origin. We return false because it is not at the origin at the end of its moves.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= moves.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>moves</code> only contains the characters <code>&#39;U&#39;</code>, <code>&#39;D&#39;</code>, <code>&#39;L&#39;</code> and <code>&#39;R&#39;</code>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"536.9K\", \"totalSubmission\": \"702.1K\", \"totalAcceptedRaw\": 536932, \"totalSubmissionRaw\": 702067, \"acRate\": \"76.5%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Simulation",
+        "slug": "simulation",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1829490329",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17736000,
+      "timestamp": 1763113304,
+      "title": "Robot Return to Origin",
+      "titleSlug": "robot-return-to-origin",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 68.08510000000001,
+      "code": "from collections import defaultdict\nclass Solution:\n    def judgeCircle(self, moves: str) -> bool:\n        return moves.count('R') == moves.count('L') and moves.count('U') == moves.count('D')\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "657",
+        "titleSlug": "robot-return-to-origin",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1829489784",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 31,
+      "memory": 18160000,
+      "timestamp": 1763113244,
+      "title": "Robot Return to Origin",
+      "titleSlug": "robot-return-to-origin",
+      "runtimeDisplay": "31 ms",
+      "runtimePercentile": 6.952599999999976,
+      "memoryDisplay": "18.2 MB",
+      "memoryPercentile": 50.98790000000002,
+      "code": "from collections import defaultdict\nclass Solution:\n    def judgeCircle(self, moves: str) -> bool:\n        Movement = defaultdict(int)\n        for move in moves:\n            if move == 'D':\n                if 'U' in Movement:\n                    Movement['U'] -= 1\n                    if Movement['U'] == 0:\n                        del Movement['U']\n                else:\n                    Movement['D'] += 1\n            elif move == 'U':\n                if 'D' in Movement:\n                    Movement['D'] -= 1\n                    if Movement['D'] == 0:\n                        del Movement['D']\n                else:\n                    Movement['U'] += 1\n            elif move == 'L':\n                if 'R' in Movement:\n                    Movement['R'] -= 1\n                    if Movement['R'] == 0:\n                        del Movement['R']\n                else:\n                    Movement['L'] += 1\n            elif move == 'R':\n                if 'L' in Movement:\n                    Movement['L'] -= 1\n                    if Movement['L'] == 0:\n                        del Movement['L']\n                else:\n                    Movement['R'] += 1\n        return not Movement\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "657",
+        "titleSlug": "robot-return-to-origin",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

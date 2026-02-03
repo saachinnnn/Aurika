@@ -1,0 +1,84 @@
+{
+  "question_name": "implement-router",
+  "problem_metadata": {
+    "questionId": "3827",
+    "title": "Implement Router",
+    "titleSlug": "implement-router",
+    "content": "<p>Design a data structure that can efficiently manage data packets in a network router. Each data packet consists of the following attributes:</p>\n\n<ul>\n\t<li><code>source</code>: A unique identifier for the machine that generated the packet.</li>\n\t<li><code>destination</code>: A unique identifier for the target machine.</li>\n\t<li><code>timestamp</code>: The time at which the packet arrived at the router.</li>\n</ul>\n\n<p>Implement the <code>Router</code> class:</p>\n\n<p><code>Router(int memoryLimit)</code>: Initializes the Router object with a fixed memory limit.</p>\n\n<ul>\n\t<li><code>memoryLimit</code> is the <strong>maximum</strong> number of packets the router can store at any given time.</li>\n\t<li>If adding a new packet would exceed this limit, the <strong>oldest</strong> packet must be removed to free up space.</li>\n</ul>\n\n<p><code>bool addPacket(int source, int destination, int timestamp)</code>: Adds a packet with the given attributes to the router.</p>\n\n<ul>\n\t<li>A packet is considered a duplicate if another packet with the same <code>source</code>, <code>destination</code>, and <code>timestamp</code> already exists in the router.</li>\n\t<li>Return <code>true</code> if the packet is successfully added (i.e., it is not a duplicate); otherwise return <code>false</code>.</li>\n</ul>\n\n<p><code>int[] forwardPacket()</code>: Forwards the next packet in FIFO (First In First Out) order.</p>\n\n<ul>\n\t<li>Remove the packet from storage.</li>\n\t<li>Return the packet as an array <code>[source, destination, timestamp]</code>.</li>\n\t<li>If there are no packets to forward, return an empty array.</li>\n</ul>\n\n<p><code>int getCount(int destination, int startTime, int endTime)</code>:</p>\n\n<ul>\n\t<li>Returns the number of packets currently stored in the router (i.e., not yet forwarded) that have the specified destination and have timestamps in the inclusive range <code>[startTime, endTime]</code>.</li>\n</ul>\n\n<p><strong>Note</strong> that queries for <code>addPacket</code> will be made in non-decreasing order of <code>timestamp</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong><br />\n<span class=\"example-io\">[&quot;Router&quot;, &quot;addPacket&quot;, &quot;addPacket&quot;, &quot;addPacket&quot;, &quot;addPacket&quot;, &quot;addPacket&quot;, &quot;forwardPacket&quot;, &quot;addPacket&quot;, &quot;getCount&quot;]<br />\n[[3], [1, 4, 90], [2, 5, 90], [1, 4, 90], [3, 5, 95], [4, 5, 105], [], [5, 2, 110], [5, 100, 110]]</span></p>\n\n<p><strong>Output:</strong><br />\n<span class=\"example-io\">[null, true, true, false, true, true, [2, 5, 90], true, 1] </span></p>\n\n<p><strong>Explanation</strong></p>\nRouter router = new Router(3); // Initialize Router with memoryLimit of 3.<br />\nrouter.addPacket(1, 4, 90); // Packet is added. Return True.<br />\nrouter.addPacket(2, 5, 90); // Packet is added. Return True.<br />\nrouter.addPacket(1, 4, 90); // This is a duplicate packet. Return False.<br />\nrouter.addPacket(3, 5, 95); // Packet is added. Return True<br />\nrouter.addPacket(4, 5, 105); // Packet is added, <code>[1, 4, 90]</code> is removed as number of packets exceeds memoryLimit. Return True.<br />\nrouter.forwardPacket(); // Return <code>[2, 5, 90]</code> and remove it from router.<br />\nrouter.addPacket(5, 2, 110); // Packet is added. Return True.<br />\nrouter.getCount(5, 100, 110); // The only packet with destination 5 and timestamp in the inclusive range <code>[100, 110]</code> is <code>[4, 5, 105]</code>. Return 1.</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong><br />\n<span class=\"example-io\">[&quot;Router&quot;, &quot;addPacket&quot;, &quot;forwardPacket&quot;, &quot;forwardPacket&quot;]<br />\n[[2], [7, 4, 90], [], []]</span></p>\n\n<p><strong>Output:</strong><br />\n<span class=\"example-io\">[null, true, [7, 4, 90], []] </span></p>\n\n<p><strong>Explanation</strong></p>\nRouter router = new Router(2); // Initialize <code>Router</code> with <code>memoryLimit</code> of 2.<br />\nrouter.addPacket(7, 4, 90); // Return True.<br />\nrouter.forwardPacket(); // Return <code>[7, 4, 90]</code>.<br />\nrouter.forwardPacket(); // There are no packets left, return <code>[]</code>.</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= memoryLimit &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= source, destination &lt;= 2 * 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= timestamp &lt;= 10<sup>9</sup></code></li>\n\t<li><code>1 &lt;= startTime &lt;= endTime &lt;= 10<sup>9</sup></code></li>\n\t<li>At most <code>10<sup>5</sup></code> calls will be made to <code>addPacket</code>, <code>forwardPacket</code>, and <code>getCount</code> methods altogether.</li>\n\t<li>queries for <code>addPacket</code> will be made in non-decreasing order of <code>timestamp</code>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"88K\", \"totalSubmission\": \"224.4K\", \"totalAcceptedRaw\": 88015, \"totalSubmissionRaw\": 224435, \"acRate\": \"39.2%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      },
+      {
+        "name": "Design",
+        "slug": "design",
+        "translatedName": null
+      },
+      {
+        "name": "Queue",
+        "slug": "queue",
+        "translatedName": null
+      },
+      {
+        "name": "Ordered Set",
+        "slug": "ordered-set",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "A deque can simulate the adding and forwarding of packets efficiently.",
+      "Use binary search for counting packets within a timestamp range."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1776674732",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 289,
+      "memory": 82604000,
+      "timestamp": 1758345449,
+      "title": "Implement Router",
+      "titleSlug": "implement-router",
+      "runtimeDisplay": "289 ms",
+      "runtimePercentile": 83.7838000000001,
+      "memoryDisplay": "82.6 MB",
+      "memoryPercentile": 6.029200000000116,
+      "code": "class Router:\n    def __init__(self, memoryLimit: int):\n        self.size = memoryLimit\n        self.packets = {}  # key -> [source, destination, timestamp]\n        self.counts = defaultdict(list)  # destination -> sorted list of timestamps\n        self.queue = deque()  # FIFO order of packets\n\n    def addPacket(self, source: int, destination: int, timestamp: int) -> bool:\n        key = self._encode(source, destination, timestamp)\n\n        # Duplicate check\n        if key in self.packets:\n            return False\n\n        # If memory full, forward oldest packet\n        if len(self.packets) >= self.size:\n            self.forwardPacket()\n\n        # Add packet\n        self.packets[key] = [source, destination, timestamp]\n        self.queue.append(key)\n        self.counts[destination].append(timestamp)\n\n        return True\n\n    def forwardPacket(self):\n        if not self.packets:\n            return []\n\n        key = self.queue.popleft()\n        packet = self.packets.pop(key)\n\n        dest = packet[1]\n        self.counts[dest].pop(0)  # remove the earliest timestamp\n\n        return packet\n\n    def getCount(self, destination: int, startTime: int, endTime: int) -> int:\n        timestamps = self.counts.get(destination, [])\n        if not timestamps:\n            return 0\n\n        # Binary search for range\n        left = bisect.bisect_left(timestamps, startTime)\n        right = bisect.bisect_right(timestamps, endTime)\n\n        return right - left\n\n    def _encode(self, source: int, destination: int, timestamp: int) -> int:\n        # Encode uniquely into 1 number\n        return (source << 40) | (destination << 20) | timestamp",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3827",
+        "titleSlug": "implement-router",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "question_name": "count-partitions-with-max-min-difference-at-most-k",
+  "problem_metadata": {
+    "questionId": "3835",
+    "title": "Count Partitions With Max-Min Difference at Most K",
+    "titleSlug": "count-partitions-with-max-min-difference-at-most-k",
+    "content": "<p>You are given an integer array <code>nums</code> and an integer <code>k</code>. Your task is to partition <code>nums</code> into one or more <strong>non-empty</strong> contiguous segments such that in each segment, the difference between its <strong>maximum</strong> and <strong>minimum</strong> elements is <strong>at most</strong> <code>k</code>.</p>\n\n<p>Return the total number of ways to partition <code>nums</code> under this condition.</p>\n\n<p>Since the answer may be too large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [9,4,1,3,7], k = 4</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">6</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>There are 6 valid partitions where the difference between the maximum and minimum elements in each segment is at most <code>k = 4</code>:</p>\n\n<ul>\n\t<li><code>[[9], [4], [1], [3], [7]]</code></li>\n\t<li><code>[[9], [4], [1], [3, 7]]</code></li>\n\t<li><code>[[9], [4], [1, 3], [7]]</code></li>\n\t<li><code>[[9], [4, 1], [3], [7]]</code></li>\n\t<li><code>[[9], [4, 1], [3, 7]]</code></li>\n\t<li><code>[[9], [4, 1, 3], [7]]</code></li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [3,3,4], k = 0</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>There are 2 valid partitions that satisfy the given conditions:</p>\n\n<ul>\n\t<li><code>[[3], [3], [4]]</code></li>\n\t<li><code>[[3, 3], [4]]</code></li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li><code>0 &lt;= k &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"64.2K\", \"totalSubmission\": \"108.9K\", \"totalAcceptedRaw\": 64207, \"totalSubmissionRaw\": 108949, \"acRate\": \"58.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      },
+      {
+        "name": "Queue",
+        "slug": "queue",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Queue",
+        "slug": "monotonic-queue",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use dynamic programming.",
+      "Let <code>dp[idx]</code> be the count of ways to partition the array with the last partition ending at index <code>idx</code>.",
+      "Try using a sliding window; we can track the minimum and maximum in the window using deques."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1848486693",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 423,
+      "memory": 26036000,
+      "timestamp": 1765035347,
+      "title": "Count Partitions With Max-Min Difference at Most K",
+      "titleSlug": "count-partitions-with-max-min-difference-at-most-k",
+      "runtimeDisplay": "423 ms",
+      "runtimePercentile": 71.18430000000008,
+      "memoryDisplay": "26 MB",
+      "memoryPercentile": 42.51419999999998,
+      "code": "from collections import deque\n\nclass Solution:\n    def countPartitions(self, nums, k):\n        MOD = 10**9 + 7\n        n = len(nums)\n\n        dp = [0] * (n + 1)\n        pref = [0] * (n + 1)\n\n        dp[0] = 1\n        pref[0] = 1\n\n        max_q = deque()\n        min_q = deque()\n        left = 0\n\n        for right in range(n):\n            # update max deque\n            while max_q and max_q[-1] < nums[right]:\n                max_q.pop()\n            max_q.append(nums[right])\n\n            # update min deque\n            while min_q and min_q[-1] > nums[right]:\n                min_q.pop()\n            min_q.append(nums[right])\n\n            # shrink left pointer\n            while max_q[0] - min_q[0] > k:\n                if max_q[0] == nums[left]:\n                    max_q.popleft()\n                if min_q[0] == nums[left]:\n                    min_q.popleft()\n                left += 1\n\n            # dp[right+1] = prefix sum from dp[left] to dp[right]\n            dp[right+1] = (pref[right] - pref[left-1] if left > 0 else pref[right]) % MOD\n\n            # update prefix\n            pref[right+1] = (pref[right] + dp[right+1]) % MOD\n\n        return dp[n]\n\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3835",
+        "titleSlug": "count-partitions-with-max-min-difference-at-most-k",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

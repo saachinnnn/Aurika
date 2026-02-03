@@ -1,0 +1,84 @@
+{
+  "question_name": "largest-color-value-in-a-directed-graph",
+  "problem_metadata": {
+    "questionId": "1986",
+    "title": "Largest Color Value in a Directed Graph",
+    "titleSlug": "largest-color-value-in-a-directed-graph",
+    "content": "<p>There is a <strong>directed graph</strong> of <code>n</code> colored nodes and <code>m</code> edges. The nodes are numbered from <code>0</code> to <code>n - 1</code>.</p>\n\n<p>You are given a string <code>colors</code> where <code>colors[i]</code> is a lowercase English letter representing the <strong>color</strong> of the <code>i<sup>th</sup></code> node in this graph (<strong>0-indexed</strong>). You are also given a 2D array <code>edges</code> where <code>edges[j] = [a<sub>j</sub>, b<sub>j</sub>]</code> indicates that there is a <strong>directed edge</strong> from node <code>a<sub>j</sub></code> to node <code>b<sub>j</sub></code>.</p>\n\n<p>A valid <strong>path</strong> in the graph is a sequence of nodes <code>x<sub>1</sub> -&gt; x<sub>2</sub> -&gt; x<sub>3</sub> -&gt; ... -&gt; x<sub>k</sub></code> such that there is a directed edge from <code>x<sub>i</sub></code> to <code>x<sub>i+1</sub></code> for every <code>1 &lt;= i &lt; k</code>. The <strong>color value</strong> of the path is the number of nodes that are colored the <strong>most frequently</strong> occurring color along that path.</p>\n\n<p>Return <em>the <strong>largest color value</strong> of any valid path in the given graph, or </em><code>-1</code><em> if the graph contains a cycle</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<p><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/21/leet1.png\" style=\"width: 400px; height: 182px;\" /></p>\n\n<pre>\n<strong>Input:</strong> colors = &quot;abaca&quot;, edges = [[0,1],[0,2],[2,3],[3,4]]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The path 0 -&gt; 2 -&gt; 3 -&gt; 4 contains 3 nodes that are colored <code>&quot;a&quot; (red in the above image)</code>.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<p><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/21/leet2.png\" style=\"width: 85px; height: 85px;\" /></p>\n\n<pre>\n<strong>Input:</strong> colors = &quot;a&quot;, edges = [[0,0]]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> There is a cycle from 0 to 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == colors.length</code></li>\n\t<li><code>m == edges.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= m &lt;= 10<sup>5</sup></code></li>\n\t<li><code>colors</code> consists of lowercase English letters.</li>\n\t<li><code>0 &lt;= a<sub>j</sub>, b<sub>j</sub>&nbsp;&lt; n</code></li>\n</ul>\n",
+    "difficulty": "Hard",
+    "stats": "{\"totalAccepted\": \"147.8K\", \"totalSubmission\": \"257.7K\", \"totalAcceptedRaw\": 147787, \"totalSubmissionRaw\": 257736, \"acRate\": \"57.3%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      },
+      {
+        "name": "Graph Theory",
+        "slug": "graph",
+        "translatedName": null
+      },
+      {
+        "name": "Topological Sort",
+        "slug": "topological-sort",
+        "translatedName": null
+      },
+      {
+        "name": "Memoization",
+        "slug": "memoization",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use topological sort.",
+      "let dp[u][c] := the maximum count of vertices with color c of any path starting from vertex u. (by JerryJin2905)"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1645247847",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 2229,
+      "memory": 79320000,
+      "timestamp": 1748282322,
+      "title": "Largest Color Value in a Directed Graph",
+      "titleSlug": "largest-color-value-in-a-directed-graph",
+      "runtimeDisplay": "2229 ms",
+      "runtimePercentile": 12.125599999999494,
+      "memoryDisplay": "79.3 MB",
+      "memoryPercentile": 89.97299999999994,
+      "code": "from collections import deque, defaultdict\n\nclass Solution:\n    def largestPathValue(self, colors: str, edges: List[List[int]]) -> int:\n        n = len(colors)\n        adj = [[] for _ in range(n)]\n        indegree = [0] * n\n\n        for u, v in edges:\n            adj[u].append(v)\n            indegree[v] += 1\n\n        dp = [[0] * 26 for _ in range(n)]\n        queue = deque()\n\n        for i in range(n):\n            if indegree[i] == 0:\n                queue.append(i)\n            dp[i][ord(colors[i]) - ord('a')] = 1\n\n        visited = 0\n        maxColor = 0\n\n        while queue:\n            node = queue.popleft()\n            visited += 1\n\n            for neighbor in adj[node]:\n                for c in range(26):\n                    inc = 1 if ord(colors[neighbor]) - ord('a') == c else 0\n                    dp[neighbor][c] = max(dp[neighbor][c], dp[node][c] + inc)\n\n                indegree[neighbor] -= 1\n                if indegree[neighbor] == 0:\n                    queue.append(neighbor)\n\n            maxColor = max(maxColor, max(dp[node]))\n\n        return maxColor if visited == n else -1",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1986",
+        "titleSlug": "largest-color-value-in-a-directed-graph",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

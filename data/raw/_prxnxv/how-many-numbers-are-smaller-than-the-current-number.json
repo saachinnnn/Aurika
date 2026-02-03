@@ -1,0 +1,109 @@
+{
+  "question_name": "how-many-numbers-are-smaller-than-the-current-number",
+  "problem_metadata": {
+    "questionId": "1482",
+    "title": "How Many Numbers Are Smaller Than the Current Number",
+    "titleSlug": "how-many-numbers-are-smaller-than-the-current-number",
+    "content": "<p>Given the array <code>nums</code>, for each <code>nums[i]</code> find out how many numbers in the array are smaller than it. That is, for each <code>nums[i]</code> you have to count the number of valid <code>j&#39;s</code>&nbsp;such that&nbsp;<code>j != i</code> <strong>and</strong> <code>nums[j] &lt; nums[i]</code>.</p>\n\n<p>Return the answer in an array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [8,1,2,2,3]\n<strong>Output:</strong> [4,0,1,1,3]\n<strong>Explanation:</strong> \nFor nums[0]=8 there exist four smaller numbers than it (1, 2, 2 and 3). \nFor nums[1]=1 does not exist any smaller number than it.\nFor nums[2]=2 there exist one smaller number than it (1). \nFor nums[3]=2 there exist one smaller number than it (1). \nFor nums[4]=3 there exist three smaller numbers than it (1, 2 and 2).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [6,5,4,8]\n<strong>Output:</strong> [2,1,0,3]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [7,7,7,7]\n<strong>Output:</strong> [0,0,0,0]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 500</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"818.5K\", \"totalSubmission\": \"935.9K\", \"totalAcceptedRaw\": 818472, \"totalSubmissionRaw\": 935898, \"acRate\": \"87.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Counting Sort",
+        "slug": "counting-sort",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Brute force for each array element.",
+      "In order to improve the time complexity, we can sort the array and get the answer for each array element."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1893541965",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 5,
+      "memory": 14180000,
+      "timestamp": 1769102545,
+      "title": "How Many Numbers Are Smaller Than the Current Number",
+      "titleSlug": "how-many-numbers-are-smaller-than-the-current-number",
+      "runtimeDisplay": "5 ms",
+      "runtimePercentile": 53.1807,
+      "memoryDisplay": "14.2 MB",
+      "memoryPercentile": 79.52009999999999,
+      "code": "class Solution {\npublic:\n    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {\n         vector<int> ans;\n    for (int i = 0; i < nums.size(); i++) {\n        int cnt = 0;\n        for (int j = 0; j < nums.size(); j++)\n            if (nums[j] < nums[i]) cnt++;\n        ans.push_back(cnt);\n    }\n    return ans;\n        \n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "1482",
+        "titleSlug": "how-many-numbers-are-smaller-than-the-current-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1893541573",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 10,
+      "memory": 14132000,
+      "timestamp": 1769102528,
+      "title": "How Many Numbers Are Smaller Than the Current Number",
+      "titleSlug": "how-many-numbers-are-smaller-than-the-current-number",
+      "runtimeDisplay": "10 ms",
+      "runtimePercentile": 33.035500000000006,
+      "memoryDisplay": "14.1 MB",
+      "memoryPercentile": 79.52009999999999,
+      "code": "class Solution {\npublic:\n    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {\n         vector<int> ans;\n    for (int i = 0; i < nums.size(); i++) {\n        int cnt = 0;\n        for (int j = 0; j < nums.size(); j++)\n            if (nums[j] < nums[i]) cnt++;\n        ans.push_back(cnt);\n    }\n    return ans;\n        \n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "1482",
+        "titleSlug": "how-many-numbers-are-smaller-than-the-current-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

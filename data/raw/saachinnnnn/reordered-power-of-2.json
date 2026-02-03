@@ -1,0 +1,76 @@
+{
+  "question_name": "reordered-power-of-2",
+  "problem_metadata": {
+    "questionId": "900",
+    "title": "Reordered Power of 2",
+    "titleSlug": "reordered-power-of-2",
+    "content": "<p>You are given an integer <code>n</code>. We reorder the digits in any order (including the original order) such that the leading digit is not zero.</p>\n\n<p>Return <code>true</code> <em>if and only if we can do this so that the resulting number is a power of two</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> true\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 10\n<strong>Output:</strong> false\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"227.8K\", \"totalSubmission\": \"345.1K\", \"totalAcceptedRaw\": 227812, \"totalSubmissionRaw\": 345093, \"acRate\": \"66.0%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      },
+      {
+        "name": "Enumeration",
+        "slug": "enumeration",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1730390475",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17664000,
+      "timestamp": 1754846908,
+      "title": "Reordered Power of 2",
+      "titleSlug": "reordered-power-of-2",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 61.09020000000001,
+      "code": "class Solution:\n    def reorderedPowerOf2(self, n: int) -> bool:\n        def count_digits(x):\n            return ''.join(sorted(str(x)))\n\n        target = count_digits(n)\n        \n        for i in range(31):\n            if count_digits(1 << i) == target:\n                return True\n        return False",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "900",
+        "titleSlug": "reordered-power-of-2",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

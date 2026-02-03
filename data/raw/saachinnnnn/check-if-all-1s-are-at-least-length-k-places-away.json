@@ -1,0 +1,163 @@
+{
+  "question_name": "check-if-all-1s-are-at-least-length-k-places-away",
+  "problem_metadata": {
+    "questionId": "1548",
+    "title": "Check If All 1's Are at Least Length K Places Away",
+    "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+    "content": "<p>Given an binary array <code>nums</code> and an integer <code>k</code>, return <code>true</code><em> if all </em><code>1</code><em>&#39;s are at least </em><code>k</code><em> places away from each other, otherwise return </em><code>false</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/04/15/sample_1_1791.png\" style=\"width: 428px; height: 181px;\" />\n<pre>\n<strong>Input:</strong> nums = [1,0,0,0,1,0,0,1], k = 2\n<strong>Output:</strong> true\n<strong>Explanation:</strong> Each of the 1s are at least 2 places away from each other.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/04/15/sample_2_1791.png\" style=\"width: 320px; height: 173px;\" />\n<pre>\n<strong>Input:</strong> nums = [1,0,0,1,0,1], k = 2\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The second 1 and third 1 are only one apart from each other.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= k &lt;= nums.length</code></li>\n\t<li><code>nums[i]</code> is <code>0</code> or <code>1</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"210.7K\", \"totalSubmission\": \"327.9K\", \"totalAcceptedRaw\": 210711, \"totalSubmissionRaw\": 327926, \"acRate\": \"64.3%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Each time you find a number 1, check whether or not it is K or more places away from the next one. If it's not, return false."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1832019999",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 4,
+      "memory": 21112000,
+      "timestamp": 1763360640,
+      "title": "Check If All 1's Are at Least Length K Places Away",
+      "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+      "runtimeDisplay": "4 ms",
+      "runtimePercentile": 88.8717,
+      "memoryDisplay": "21.1 MB",
+      "memoryPercentile": 68.006,
+      "code": "class Solution:\n    def kLengthApart(self, nums: List[int], k: int) -> bool:\n        if k == 0:\n            return True # Edge case.\n        prev = None\n        for idx,num in enumerate(nums):\n            if num == 1:\n                if prev is not None and idx - prev <= k:\n                    return False\n                prev = idx\n        return True",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1548",
+        "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1832013145",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 20900000,
+      "timestamp": 1763360168,
+      "title": "Check If All 1's Are at Least Length K Places Away",
+      "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 79.5209,
+      "memoryDisplay": "20.9 MB",
+      "memoryPercentile": 99.38170000000001,
+      "code": "class Solution:\n    def kLengthApart(self, nums: List[int], k: int) -> bool:\n        count = 0\n        flag = False\n        for idx in range(len(nums)):\n            if nums[idx] == 1 and not flag:\n                flag = True\n                continue\n            if flag:\n                if nums[idx] == 1:\n                    if count < k:\n                        return False\n                    count = 0\n                else:\n                    count += 1\n        return True",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1548",
+        "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1832011302",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 11,
+      "memory": 21008000,
+      "timestamp": 1763360037,
+      "title": "Check If All 1's Are at Least Length K Places Away",
+      "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def kLengthApart(self, nums: List[int], k: int) -> bool:\n        count = 0\n        for idx in range(len(nums)):\n            if idx == 0 and nums[idx] == 1:\n                continue\n            if nums[idx] == 1:\n                if count < k:\n                    return False\n                count = 0\n            else:\n                count += 1\n        return True",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1548",
+        "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1832010719",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 11,
+      "memory": 21000000,
+      "timestamp": 1763359994,
+      "title": "Check If All 1's Are at Least Length K Places Away",
+      "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def kLengthApart(self, nums: List[int], k: int) -> bool:\n        count = 0\n        for idx in range(len(nums)):\n            if idx == 0:\n                continue\n            if nums[idx] == 1:\n                if count < k:\n                    return False\n                count = 0\n            else:\n                count += 1\n        return True",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1548",
+        "titleSlug": "check-if-all-1s-are-at-least-length-k-places-away",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

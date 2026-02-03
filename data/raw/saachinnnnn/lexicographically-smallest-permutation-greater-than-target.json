@@ -1,0 +1,81 @@
+{
+  "question_name": "lexicographically-smallest-permutation-greater-than-target",
+  "problem_metadata": {
+    "questionId": "4020",
+    "title": "Lexicographically Smallest Permutation Greater Than Target",
+    "titleSlug": "lexicographically-smallest-permutation-greater-than-target",
+    "content": "<p>You are given two strings <code>s</code> and <code>target</code>, both having length <code>n</code>, consisting of lowercase English letters.</p>\n\n<p>Return the <strong>lexicographically smallest <span data-keyword=\"permutation-string\">permutation</span></strong> of <code>s</code> that is <strong>strictly</strong> greater than <code>target</code>. If no permutation of <code>s</code> is lexicographically strictly greater than <code>target</code>, return an empty string.</p>\n\n<p>A string <code>a</code> is <strong>lexicographically strictly greater </strong>than a string <code>b</code> (of the same length) if in the first position where <code>a</code> and <code>b</code> differ, string <code>a</code> has a letter that appears later in the alphabet than the corresponding letter in <code>b</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;abc&quot;, target = &quot;bba&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;bca&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The permutations of <code>s</code> (in lexicographical order) are <code>&quot;abc&quot;</code>, <code>&quot;acb&quot;</code>, <code>&quot;bac&quot;</code>, <code>&quot;bca&quot;</code>, <code>&quot;cab&quot;</code>, and <code>&quot;cba&quot;</code>.</li>\n\t<li>The lexicographically smallest permutation that is strictly greater than <code>target</code> is <code>&quot;bca&quot;</code>.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;leet&quot;, target = &quot;code&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;eelt&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The permutations of <code>s</code> (in lexicographical order) are <code>&quot;eelt&quot;</code>, <code>&quot;eetl&quot;</code>, <code>&quot;elet&quot;</code>, <code>&quot;elte&quot;</code>, <code>&quot;etel&quot;</code>, <code>&quot;etle&quot;</code>, <code>&quot;leet&quot;</code>, <code>&quot;lete&quot;</code>, <code>&quot;ltee&quot;</code>, <code>&quot;teel&quot;</code>, <code>&quot;tele&quot;</code>, and <code>&quot;tlee&quot;</code>.</li>\n\t<li>The lexicographically smallest permutation that is strictly greater than <code>target</code> is <code>&quot;eelt&quot;</code>.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;baba&quot;, target = &quot;bbaa&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The permutations of <code>s</code> (in lexicographical order) are <code>&quot;aabb&quot;</code>, <code>&quot;abab&quot;</code>, <code>&quot;abba&quot;</code>, <code>&quot;baab&quot;</code>, <code>&quot;baba&quot;</code>, and <code>&quot;bbaa&quot;</code>.</li>\n\t<li>None of them is lexicographically strictly greater than <code>target</code>. Therefore, the answer is <code>&quot;&quot;</code>.</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length == target.length &lt;= 300</code></li>\n\t<li><code>s</code> and <code>target</code> consist of only lowercase English letters.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"12.3K\", \"totalSubmission\": \"46.6K\", \"totalAcceptedRaw\": 12289, \"totalSubmissionRaw\": 46584, \"acRate\": \"26.4%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      },
+      {
+        "name": "Enumeration",
+        "slug": "enumeration",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Maintain frequency counts of <code>s</code>.",
+      "Walk left-to-right; if equal to <code>target[i]</code> is possible, take it and continue.",
+      "If not, try the smallest letter strictly greater than <code>target[i]</code>.",
+      "If neither, backtrack left to the most recent index where you matched <code>target</code> and try to bump there."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1805526743",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10853,
+      "memory": 17468000,
+      "timestamp": 1760843942,
+      "title": "Lexicographically Smallest Permutation Greater Than Target",
+      "titleSlug": "lexicographically-smallest-permutation-greater-than-target",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "from typing import List\nclass Solution:\n    def lexGreaterPermutation(self, s: str, target: str) -> str:\n        # A bit similar to todays daily question...\n\n        if not s or not target:\n            return \"\"\n\n        # The above is the edgecase.\n\n        n = len(s)\n        sortedarr : list = sorted(s)\n\n        # Lets create another function.\n        def next_permutation(arr : List[str]) -> bool:\n            idx = n - 2\n            while idx >= 0 and arr[idx] >= arr[idx + 1]:\n                idx -= 1\n            if idx == -1:\n                return False\n            jdx = n - 1\n            while arr[jdx] <= arr[idx]:\n                jdx -= 1\n            arr[idx],arr[jdx] = arr[jdx],arr[idx]\n            arr[idx + 1:] = reversed(arr[idx + 1:])\n            return True\n\n        # Now\n        if \"\".join(sortedarr) > target:\n            return \"\".join(sortedarr)\n\n        while next_permutation(sortedarr):\n            candidate = \"\".join(sortedarr)\n            if candidate > target:\n                return candidate\n        return \"\"",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4020",
+        "titleSlug": "lexicographically-smallest-permutation-greater-than-target",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

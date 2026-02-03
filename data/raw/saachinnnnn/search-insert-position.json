@@ -1,0 +1,96 @@
+{
+  "question_name": "search-insert-position",
+  "problem_metadata": {
+    "questionId": "35",
+    "title": "Search Insert Position",
+    "titleSlug": "search-insert-position",
+    "content": "<p>Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>\n\n<p>You must&nbsp;write an algorithm with&nbsp;<code>O(log n)</code> runtime complexity.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,5,6], target = 5\n<strong>Output:</strong> 2\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,5,6], target = 2\n<strong>Output:</strong> 1\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,5,6], target = 7\n<strong>Output:</strong> 4\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n\t<li><code>nums</code> contains <strong>distinct</strong> values sorted in <strong>ascending</strong> order.</li>\n\t<li><code>-10<sup>4</sup> &lt;= target &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"4.5M\", \"totalSubmission\": \"8.9M\", \"totalAcceptedRaw\": 4486485, \"totalSubmissionRaw\": 8877122, \"acRate\": \"50.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1789944145",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18200000,
+      "timestamp": 1759477602,
+      "title": "Search Insert Position",
+      "titleSlug": "search-insert-position",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18.2 MB",
+      "memoryPercentile": 77.07090000000001,
+      "code": "class Solution:\n    def searchInsert(self, nums: List[int], target: int) -> int:\n        # The simplest answer is just to return 'low'\n        low , high = 0 , len(nums) - 1\n\n        while low <= high:\n            mid = low + (high - low) // 2\n\n            if nums[mid] == target:\n                return mid\n            \n            elif nums[mid] > target:\n                high = mid - 1\n            \n            else:\n                low = mid + 1\n            \n        return low",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "35",
+        "titleSlug": "search-insert-position",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1789942798",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18688000,
+      "timestamp": 1759477482,
+      "title": "Search Insert Position",
+      "titleSlug": "search-insert-position",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def searchInsert(self, nums: List[int], target: int) -> int:\n        # I created this code from scratch....\n\n        if target == 0 or len(nums) == 0:\n            return 0\n        elif len(nums) == 1:\n            if target > nums[0]:\n                return 1\n            else:\n                return 0\n        \n        low , high = 0 , len(nums) - 1\n\n        while low <= high:\n            mid : int = low + (high - low) // 2\n\n            if nums[mid] == target:\n                return mid \n            \n            elif mid + 1 >= len(nums) and target > nums[mid]:\n                return mid + 1\n            \n            elif nums[mid + 1] > target and nums[mid] < target:\n                return mid + 1 \n            \n            elif nums[mid] > target:\n                high = mid - 1\n            \n            else:\n                low = mid + 1\n        return mid + 1\n    ",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "35",
+        "titleSlug": "search-insert-position",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

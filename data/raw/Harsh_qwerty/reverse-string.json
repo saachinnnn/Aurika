@@ -1,0 +1,63 @@
+{
+  "question_name": "reverse-string",
+  "problem_metadata": {
+    "questionId": "344",
+    "title": "Reverse String",
+    "titleSlug": "reverse-string",
+    "content": "<p>Write a function that reverses a string. The input string is given as an array of characters <code>s</code>.</p>\n\n<p>You must do this by modifying the input array <a href=\"https://en.wikipedia.org/wiki/In-place_algorithm\" target=\"_blank\">in-place</a> with <code>O(1)</code> extra memory.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> s = [\"h\",\"e\",\"l\",\"l\",\"o\"]\n<strong>Output:</strong> [\"o\",\"l\",\"l\",\"e\",\"h\"]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> s = [\"H\",\"a\",\"n\",\"n\",\"a\",\"h\"]\n<strong>Output:</strong> [\"h\",\"a\",\"n\",\"n\",\"a\",\"H\"]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>s[i]</code> is a <a href=\"https://en.wikipedia.org/wiki/ASCII#Printable_characters\" target=\"_blank\">printable ascii character</a>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"3.6M\", \"totalSubmission\": \"4.5M\", \"totalAcceptedRaw\": 3649667, \"totalSubmissionRaw\": 4535897, \"acRate\": \"80.5%\"}",
+    "topicTags": [
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "The entire logic for reversing a string is based on using the opposite directional two-pointer approach!"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1894188729",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 17280000,
+      "timestamp": 1769161464,
+      "title": "Reverse String",
+      "titleSlug": "reverse-string",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.3 MB",
+      "memoryPercentile": 20.02970000000001,
+      "code": "void reverseString(char* s, int sSize) {\n    char rev[sSize];\n\n    for (int i=0;i<sSize;i++){\n        rev[i]=s[sSize-i-1];\n    }\n\n    for (int i=0;i<sSize;i++){\n        s[i]=rev[i];\n    }\n}",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "344",
+        "titleSlug": "reverse-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "question_name": "valid-palindrome",
+  "problem_metadata": {
+    "questionId": "125",
+    "title": "Valid Palindrome",
+    "titleSlug": "valid-palindrome",
+    "content": "<p>A phrase is a <strong>palindrome</strong> if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.</p>\n\n<p>Given a string <code>s</code>, return <code>true</code><em> if it is a <strong>palindrome</strong>, or </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;A man, a plan, a canal: Panama&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> &quot;amanaplanacanalpanama&quot; is a palindrome.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;race a car&quot;\n<strong>Output:</strong> false\n<strong>Explanation:</strong> &quot;raceacar&quot; is not a palindrome.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot; &quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> s is an empty string &quot;&quot; after removing non-alphanumeric characters.\nSince an empty string reads the same forward and backward, it is a palindrome.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 2 * 10<sup>5</sup></code></li>\n\t<li><code>s</code> consists only of printable ASCII characters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"5.1M\", \"totalSubmission\": \"9.7M\", \"totalAcceptedRaw\": 5104171, \"totalSubmissionRaw\": 9700521, \"acRate\": \"52.6%\"}",
+    "topicTags": [
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1890033158",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 4,
+      "memory": 8516000,
+      "timestamp": 1768837967,
+      "title": "Valid Palindrome",
+      "titleSlug": "valid-palindrome",
+      "runtimeDisplay": "4 ms",
+      "runtimePercentile": 10.496399999999992,
+      "memoryDisplay": "8.5 MB",
+      "memoryPercentile": 50.439499999999995,
+      "code": "bool isPalindrome(char* s) {\n    int i=0,j=0;\n\n    while (s[i] != '\\0'){\n        if (s[i]>='a' && s[i]<='z' ){\n            s[j]=s[i];\n            j++;\n        }\n        else if ( s[i]>='A' && s[i]<='Z'){\n            s[j]=s[i]+('a'-'A');\n            j++;\n        }\n        else if (s[i] >= '0' && s[i] <= '9') {   \n            s[j++] = s[i];\n        }\n        i++;\n    }\n    s[j]='\\0';\n    bool ans=true;\n\n    for (int k=0,l=j-1;k<l;k++,l--){\n        if (s[k] != s[l]){\n            ans=false;\n        }\n    }\n    return ans;\n\n\n}",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "125",
+        "titleSlug": "valid-palindrome",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1890033002",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 8460000,
+      "timestamp": 1768837959,
+      "title": "Valid Palindrome",
+      "titleSlug": "valid-palindrome",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "8.5 MB",
+      "memoryPercentile": 89.9948,
+      "code": "bool isPalindrome(char* s) {\n    int i=0,j=0;\n\n    while (s[i] != '\\0'){\n        if (s[i]>='a' && s[i]<='z' ){\n            s[j]=s[i];\n            j++;\n        }\n        else if ( s[i]>='A' && s[i]<='Z'){\n            s[j]=s[i]+('a'-'A');\n            j++;\n        }\n        else if (s[i] >= '0' && s[i] <= '9') {   \n            s[j++] = s[i];\n        }\n        i++;\n    }\n    s[j]='\\0';\n    bool ans=true;\n\n    for (int k=0,l=j-1;k<l;k++,l--){\n        if (s[k] != s[l]){\n            ans=false;\n        }\n    }\n    return ans;\n\n\n}",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "125",
+        "titleSlug": "valid-palindrome",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1890031707",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 8452000,
+      "timestamp": 1768837889,
+      "title": "Valid Palindrome",
+      "titleSlug": "valid-palindrome",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "bool isPalindrome(char* s) {\n    int i=0,j=0;\n\n    while (s[i] != '\\0'){\n        if (s[i]>='a' && s[i]<='z' ){\n            s[j]=s[i];\n            j++;\n        }\n        else if ( s[i]>='A' && s[i]<='Z'){\n            s[j]=s[i]+('a'-'A');\n            j++;\n        }\n        i++;\n    }\n    s[j]='\\0';\n    bool ans=true;\n\n    for (int k=0,l=j-1;k<l;k++,l--){\n        if (s[k] != s[l]){\n            ans=false;\n        }\n    }\n    return ans;\n\n\n}",
+      "statusCode": 11,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "125",
+        "titleSlug": "valid-palindrome",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1890026816",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 8520000,
+      "timestamp": 1768837622,
+      "title": "Valid Palindrome",
+      "titleSlug": "valid-palindrome",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "bool isPalindrome(char* s) {\n    int i=0,j=0;\n\n    while (s[i] != '\\0'){\n        if (s[i]>='a' && s[i]<='z' ){\n            s[j]=s[i];\n            j++;\n        }\n        else if ( s[i]>='A' && s[i]<='Z'){\n            s[j]=s[i]+('a'-'A');\n            j++;\n        }\n        i++;\n    }\n    s[j]='\\0';\n    bool ans=true;\n\n    for (int k=0;k<i;k++){\n        for (int l=i;l=0;l--){\n            if (s[k] != s[l]){\n                ans=false;\n            }\n        }\n    }\n    return ans;\n\n\n}",
+      "statusCode": 11,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "125",
+        "titleSlug": "valid-palindrome",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "question_name": "detect-capital",
+  "problem_metadata": {
+    "questionId": "520",
+    "title": "Detect Capital",
+    "titleSlug": "detect-capital",
+    "content": "<p>We define the usage of capitals in a word to be right when one of the following cases holds:</p>\n\n<ul>\n\t<li>All letters in this word are capitals, like <code>&quot;USA&quot;</code>.</li>\n\t<li>All letters in this word are not capitals, like <code>&quot;leetcode&quot;</code>.</li>\n\t<li>Only the first letter in this word is capital, like <code>&quot;Google&quot;</code>.</li>\n</ul>\n\n<p>Given a string <code>word</code>, return <code>true</code> if the usage of capitals in it is right.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> word = \"USA\"\n<strong>Output:</strong> true\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> word = \"FlaG\"\n<strong>Output:</strong> false\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= word.length &lt;= 100</code></li>\n\t<li><code>word</code> consists of lowercase and uppercase English letters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"535K\", \"totalSubmission\": \"948.4K\", \"totalAcceptedRaw\": 535011, \"totalSubmissionRaw\": 948361, \"acRate\": \"56.4%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1791040335",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17704000,
+      "timestamp": 1759579961,
+      "title": "Detect Capital",
+      "titleSlug": "detect-capital",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 57.743999999999986,
+      "code": "class Solution:\n    def detectCapitalUse(self, word: str) -> bool:\n        all_up = word.isupper()\n        all_low = word.islower()\n        title_case = word[0].isupper() and word[1:].islower()\n\n        return all_up or all_low or title_case",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "520",
+        "titleSlug": "detect-capital",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1791038991",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 17728000,
+      "timestamp": 1759579839,
+      "title": "Detect Capital",
+      "titleSlug": "detect-capital",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 7.586599999999997,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 57.743999999999986,
+      "code": "class Solution:\n    def detectCapitalUse(self, word: str) -> bool:\n        if word.isupper():\n            return True\n        if word.islower():\n            return True\n        if word[0].isupper() == True and word[1:].islower() == True:\n            return True\n        return False",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "520",
+        "titleSlug": "detect-capital",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

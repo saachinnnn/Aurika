@@ -1,0 +1,135 @@
+{
+  "question_name": "find-all-numbers-disappeared-in-an-array",
+  "problem_metadata": {
+    "questionId": "448",
+    "title": "Find All Numbers Disappeared in an Array",
+    "titleSlug": "find-all-numbers-disappeared-in-an-array",
+    "content": "<p>Given an array <code>nums</code> of <code>n</code> integers where <code>nums[i]</code> is in the range <code>[1, n]</code>, return <em>an array of all the integers in the range</em> <code>[1, n]</code> <em>that do not appear in</em> <code>nums</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [4,3,2,7,8,2,3,1]\n<strong>Output:</strong> [5,6]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [1,1]\n<strong>Output:</strong> [2]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= n</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you do it without extra space and in <code>O(n)</code> runtime? You may assume the returned list does not count as extra space.</p>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"1.3M\", \"totalSubmission\": \"2M\", \"totalAcceptedRaw\": 1295691, \"totalSubmissionRaw\": 2036332, \"acRate\": \"63.6%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "This is a really easy problem if you decide to use additional memory. For those trying to write an initial solution using additional memory, think <b>counters!</b>",
+      "However, the trick really is to not use any additional space than what is already available to use. Sometimes, multiple passes over the input array help find the solution. However, there's an interesting piece of information in this problem that makes it easy to re-use the input array itself for the solution.",
+      "The problem specifies that the numbers in the array will be in the range [1, n] where n is the number of elements in the array. Can we use this information and modify the array in-place somehow to find what we need?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1834113532",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 35,
+      "memory": 36472000,
+      "timestamp": 1763547501,
+      "title": "Find All Numbers Disappeared in an Array",
+      "titleSlug": "find-all-numbers-disappeared-in-an-array",
+      "runtimeDisplay": "35 ms",
+      "runtimePercentile": 42.395200000000024,
+      "memoryDisplay": "36.5 MB",
+      "memoryPercentile": 14.543000000000001,
+      "code": "class Solution:\n    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:\n        supposed = set([num for num in range(1,len(nums) + 1)])\n        for num in nums:\n            if num in supposed:\n                supposed.remove(num)\n        return list(supposed)\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "448",
+        "titleSlug": "find-all-numbers-disappeared-in-an-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1829470675",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 32,
+      "memory": 36208000,
+      "timestamp": 1763111277,
+      "title": "Find All Numbers Disappeared in an Array",
+      "titleSlug": "find-all-numbers-disappeared-in-an-array",
+      "runtimeDisplay": "32 ms",
+      "runtimePercentile": 45.55460000000002,
+      "memoryDisplay": "36.2 MB",
+      "memoryPercentile": 14.8472,
+      "code": "class Solution:\n    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:\n        supposed = set([num for num in range(1,len(nums) + 1)])\n        for num in nums:\n            if num in supposed:\n                supposed.remove(num)\n        return list(supposed)\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "448",
+        "titleSlug": "find-all-numbers-disappeared-in-an-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1806900934",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10484,
+      "memory": 24204000,
+      "timestamp": 1760980487,
+      "title": "Find All Numbers Disappeared in an Array",
+      "titleSlug": "find-all-numbers-disappeared-in-an-array",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:\n        # O(N) solution would be...\n        answer : list = []\n\n        for idx in range(len(nums)):\n            if (idx + 1) not in nums:\n                answer.append(idx + 1)\n            else:\n                continue\n        return answer",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "448",
+        "titleSlug": "find-all-numbers-disappeared-in-an-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

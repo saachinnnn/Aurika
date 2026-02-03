@@ -1,0 +1,64 @@
+{
+  "question_name": "restore-finishing-order",
+  "problem_metadata": {
+    "questionId": "4008",
+    "title": "Restore Finishing Order",
+    "titleSlug": "restore-finishing-order",
+    "content": "<p>You are given an integer array <code>order</code> of length <code>n</code> and an integer array <code>friends</code>.</p>\n\n<ul>\n\t<li><code>order</code> contains every integer from 1 to <code>n</code> <strong>exactly once</strong>, representing the IDs of the participants of a race in their <strong>finishing</strong> order.</li>\n\t<li><code>friends</code> contains the IDs of your friends in the race <strong>sorted</strong> in strictly increasing order. Each ID in friends is guaranteed to appear in the <code>order</code> array.</li>\n</ul>\n\n<p>Return an array containing your friends&#39; IDs in their <strong>finishing</strong> order.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">order = [3,1,2,5,4], friends = [1,3,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[3,1,4]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The finishing order is <code>[<u><strong>3</strong></u>, <u><strong>1</strong></u>, 2, 5, <u><strong>4</strong></u>]</code>. Therefore, the finishing order of your friends is <code>[3, 1, 4]</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">order = [1,4,5,3,2], friends = [2,5]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[5,2]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The finishing order is <code>[1, 4, <u><strong>5</strong></u>, 3, <u><strong>2</strong></u>]</code>. Therefore, the finishing order of your friends is <code>[5, 2]</code>.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n == order.length &lt;= 100</code></li>\n\t<li><code>order</code> contains every integer from 1 to <code>n</code> exactly once</li>\n\t<li><code>1 &lt;= friends.length &lt;= min(8, n)</code></li>\n\t<li><code>1 &lt;= friends[i] &lt;= n</code></li>\n\t<li><code>friends</code> is strictly increasing</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"87.2K\", \"totalSubmission\": \"95.9K\", \"totalAcceptedRaw\": 87153, \"totalSubmissionRaw\": 95856, \"acRate\": \"90.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use a hash set for quick friend lookups from <code>friends</code>.",
+      "Iterate over <code>order</code>, checking the set to collect your friends in finishing order."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1830649231",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17824000,
+      "timestamp": 1763234926,
+      "title": "Restore Finishing Order",
+      "titleSlug": "restore-finishing-order",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 63.455799999999996,
+      "code": "class Solution:\n    def recoverOrder(self, order: List[int], friends: List[int]) -> List[int]:\n        ans = [0]*len(friends)\n        idx = 0\n        for ordr in order:\n            if ordr in friends:\n                ans[idx] = ordr\n                idx += 1\n        return ans",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4008",
+        "titleSlug": "restore-finishing-order",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "question_name": "single-number-ii",
+  "problem_metadata": {
+    "questionId": "137",
+    "title": "Single Number II",
+    "titleSlug": "single-number-ii",
+    "content": "<p>Given an integer array <code>nums</code> where&nbsp;every element appears <strong>three times</strong> except for one, which appears <strong>exactly once</strong>. <em>Find the single element and return it</em>.</p>\n\n<p>You must&nbsp;implement a solution with a linear runtime complexity and use&nbsp;only constant&nbsp;extra space.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [2,2,3,2]\n<strong>Output:</strong> 3\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [0,1,0,1,0,1,99]\n<strong>Output:</strong> 99\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n\t<li>Each element in <code>nums</code> appears exactly <strong>three times</strong> except for one element which appears <strong>once</strong>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"845.8K\", \"totalSubmission\": \"1.3M\", \"totalAcceptedRaw\": 845809, \"totalSubmissionRaw\": 1270915, \"acRate\": \"66.6%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Bit Manipulation",
+        "slug": "bit-manipulation",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1893075583",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 0,
+      "memory": 13552000,
+      "timestamp": 1769072694,
+      "title": "Single Number II",
+      "titleSlug": "single-number-ii",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "13.6 MB",
+      "memoryPercentile": 24.85560000000002,
+      "code": "class Solution {\npublic:\n    int singleNumber(vector<int>& nums) {\n            int ones = 0, twos = 0;\n\n    for (int x : nums) {\n        ones = (ones ^ x) & ~twos;\n        twos = (twos ^ x) & ~ones;\n    }\n\n    return ones;\n        \n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "137",
+        "titleSlug": "single-number-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "question_name": "3sum",
+  "problem_metadata": {
+    "questionId": "15",
+    "title": "3Sum",
+    "titleSlug": "3sum",
+    "content": "<p>Given an integer array nums, return all the triplets <code>[nums[i], nums[j], nums[k]]</code> such that <code>i != j</code>, <code>i != k</code>, and <code>j != k</code>, and <code>nums[i] + nums[j] + nums[k] == 0</code>.</p>\n\n<p>Notice that the solution set must not contain duplicate triplets.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,0,1,2,-1,-4]\n<strong>Output:</strong> [[-1,-1,2],[-1,0,1]]\n<strong>Explanation:</strong> \nnums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.\nnums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.\nnums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.\nThe distinct triplets are [-1,0,1] and [-1,-1,2].\nNotice that the order of the output and the order of the triplets does not matter.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1,1]\n<strong>Output:</strong> []\n<strong>Explanation:</strong> The only possible triplet does not sum up to 0.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,0,0]\n<strong>Output:</strong> [[0,0,0]]\n<strong>Explanation:</strong> The only possible triplet sums up to 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= nums.length &lt;= 3000</code></li>\n\t<li><code>-10<sup>5</sup> &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"5.6M\", \"totalSubmission\": \"14.6M\", \"totalAcceptedRaw\": 5603761, \"totalSubmissionRaw\": 14574687, \"acRate\": \"38.4%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "So, we essentially need to find three numbers x, y, and z such that they add up to the given value. If we fix one of the numbers say x, we are left with the two-sum problem at hand!",
+      "For the two-sum problem, if we fix one of the numbers, say x, we have to scan the entire array to find the next number y, which is value - x where value is the input parameter. Can we change our array somehow so that this search becomes faster?",
+      "The second train of thought for two-sum is, without changing the array, can we use additional space somehow? Like maybe a hash map to speed up the search?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1591736688",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 593,
+      "memory": 20748000,
+      "timestamp": 1743402763,
+      "title": "3Sum",
+      "titleSlug": "3sum",
+      "runtimeDisplay": "593 ms",
+      "runtimePercentile": 57.66889999999988,
+      "memoryDisplay": "20.7 MB",
+      "memoryPercentile": 60.698699999999995,
+      "code": "class Solution:\n    def threeSum(self, nums: List[int]) -> List[List[int]]:\n        Anslist : list = []\n        nums.sort()\n        for i in range(len(nums) - 2):\n            if i > 0 and nums[i] == nums[i - 1] : continue\n            x : int = nums[i]\n            left_ptr : int  = i + 1\n            right_ptr : int = len(nums) - 1\n            while left_ptr < right_ptr : \n                sum : int = nums[left_ptr] + nums[right_ptr] + x\n                if sum == 0 :\n                    Anslist.append([x,nums[left_ptr],nums[right_ptr]])\n                    left_ptr += 1\n                    right_ptr -= 1\n                    while left_ptr < right_ptr and nums[left_ptr] == nums[left_ptr - 1] :\n                        left_ptr += 1\n                    while left_ptr < right_ptr and nums[right_ptr] == nums[right_ptr + 1] :\n                        right_ptr -= 1\n                elif sum > 0 :\n                    right_ptr -= 1\n                else :\n                    left_ptr += 1\n        return Anslist",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "15",
+        "titleSlug": "3sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1591730595",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 566,
+      "memory": 18208000,
+      "timestamp": 1743402319,
+      "title": "3Sum",
+      "titleSlug": "3sum",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def threeSum(self, nums: List[int]) -> List[List[int]]:\n        Anslist : list = []\n        nums.sort()\n        for i in range(len(nums) - 2):\n            if i > 0 and nums[i] == nums[i - 1] : continue\n            x : int = nums[i]\n            left_ptr : int  = i + 1\n            right_ptr : int = len(nums) - 1\n            while left_ptr < right_ptr : \n                sum : int = nums[left_ptr] + nums[right_ptr] + x\n                if sum == 0 :\n                    Anslist.append([x,nums[left_ptr],nums[right_ptr]])\n                    left_ptr += 1\n                    right_ptr -= 1\n                    while left_ptr < right_ptr and nums[left_ptr] == nums[left_ptr - 1] :\n                        left_ptr += 1\n                    while left_ptr < right_ptr and nums[right_ptr] == nums[right_ptr + 1] :\n                        right_ptr -= 1\n                elif sum > 0 :\n                    left_ptr += 1\n                else :\n                    right_ptr -= 1\n        return Anslist",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "15",
+        "titleSlug": "3sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

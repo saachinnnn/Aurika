@@ -1,0 +1,201 @@
+{
+  "question_name": "contains-duplicate",
+  "problem_metadata": {
+    "questionId": "217",
+    "title": "Contains Duplicate",
+    "titleSlug": "contains-duplicate",
+    "content": "<p>Given an integer array <code>nums</code>, return <code>true</code> if any value appears <strong>at least twice</strong> in the array, and return <code>false</code> if every element is distinct.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The element 1 occurs at the indices 0 and 3.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>All elements are distinct.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,1,3,3,4,3,2,4,2]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"6.1M\", \"totalSubmission\": \"9.5M\", \"totalAcceptedRaw\": 6051034, \"totalSubmissionRaw\": 9454715, \"acRate\": \"64.0%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1889988819",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 2944,
+      "memory": 12972000,
+      "timestamp": 1768835546,
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "bool containsDuplicate(int* nums, int numsSize) {\n    \n    for (int i=0;i<numsSize;i++){\n        for (int j=i+1;j<numsSize;j++){\n            if (nums[i]==nums[j] && i != j){\n                return true;\n            }\n        }\n       \n    }\n    return false;\n}",
+      "statusCode": 14,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "217",
+        "titleSlug": "contains-duplicate",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1887127773",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 49,
+      "memory": 17272000,
+      "timestamp": 1768589272,
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate",
+      "runtimeDisplay": "49 ms",
+      "runtimePercentile": 50.641799999999975,
+      "memoryDisplay": "17.3 MB",
+      "memoryPercentile": 87.46180000000001,
+      "code": "#include <stdbool.h>\n#include <stdlib.h>\n\nint cmp(const void* a, const void* b) {\n    int x = *(const int*)a;\n    int y = *(const int*)b;\n    return (x > y) - (x < y);\n}\n\nbool containsDuplicate(int* nums, int numsSize) {\n    if (numsSize <= 1) return false;\n\n    qsort(nums, numsSize, sizeof(int), cmp);\n\n    for (int i = 1; i < numsSize; i++) {\n        if (nums[i] == nums[i - 1]) {\n            return true;\n        }\n    }\n    return false;\n}\n",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "217",
+        "titleSlug": "contains-duplicate",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1887126782",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 2956,
+      "memory": 12904000,
+      "timestamp": 1768589198,
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "#include <stdbool.h>\n\nbool containsDuplicate(int* nums, int numsSize) {\n    for (int i = 0; i < numsSize; i++) {\n        for (int j = i + 1; j < numsSize; j++) {\n            if (nums[i] == nums[j]) {\n                return true;\n            }\n        }\n    }\n    return false;\n}\n",
+      "statusCode": 14,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "217",
+        "titleSlug": "contains-duplicate",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1886782838",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 2961,
+      "memory": 12944000,
+      "timestamp": 1768566662,
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "bool containsDuplicate(int* nums, int numsSize) {\n    \n    for (int i=0;i<numsSize;i++){\n        for (int j=i+1;j<numsSize;j++){\n            if (nums[i]==nums[j] && i != j){\n                return true;\n            }\n        }\n       \n    }\n    return false;\n}",
+      "statusCode": 14,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "217",
+        "titleSlug": "contains-duplicate",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1886781254",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768566514",
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate"
+    },
+    {
+      "id": "1886774649",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768565912",
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate"
+    },
+    {
+      "id": "1886773571",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768565816",
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "question_name": "maximum-product-of-three-numbers",
+  "problem_metadata": {
+    "questionId": "628",
+    "title": "Maximum Product of Three Numbers",
+    "titleSlug": "maximum-product-of-three-numbers",
+    "content": "<p>Given an integer array <code>nums</code>, <em>find three numbers whose product is maximum and return the maximum product</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> 6\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,3,4]\n<strong>Output:</strong> 24\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> nums = [-1,-2,-3]\n<strong>Output:</strong> -6\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= nums.length &lt;=&nbsp;10<sup>4</sup></code></li>\n\t<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"470.2K\", \"totalSubmission\": \"1M\", \"totalAcceptedRaw\": 470155, \"totalSubmissionRaw\": 1029459, \"acRate\": \"45.7%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1814954391",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 24,
+      "memory": 18780000,
+      "timestamp": 1761736944,
+      "title": "Maximum Product of Three Numbers",
+      "titleSlug": "maximum-product-of-three-numbers",
+      "runtimeDisplay": "24 ms",
+      "runtimePercentile": 26.222100000000005,
+      "memoryDisplay": "18.8 MB",
+      "memoryPercentile": 59.2223,
+      "code": "class Solution:\n    def maximumProduct(self, nums: List[int]) -> int:\n        # More like threesum(The name puhlease,idk abt the name gng)\n        nums.sort()\n        product_1 : int = nums[-1]*nums[-2]*nums[-3]\n        product_2 : int = nums[-1]*nums[0]*nums[1]\n        return max(product_1,product_2)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "628",
+        "titleSlug": "maximum-product-of-three-numbers",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1814951948",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 28,
+      "memory": 18576000,
+      "timestamp": 1761736706,
+      "title": "Maximum Product of Three Numbers",
+      "titleSlug": "maximum-product-of-three-numbers",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def maximumProduct(self, nums: List[int]) -> int:\n        nums.sort()\n        return nums[-1]*nums[-2]*nums[-3]",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "628",
+        "titleSlug": "maximum-product-of-three-numbers",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

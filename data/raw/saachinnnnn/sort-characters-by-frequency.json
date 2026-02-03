@@ -1,0 +1,151 @@
+{
+  "question_name": "sort-characters-by-frequency",
+  "problem_metadata": {
+    "questionId": "451",
+    "title": "Sort Characters By Frequency",
+    "titleSlug": "sort-characters-by-frequency",
+    "content": "<p>Given a string <code>s</code>, sort it in <strong>decreasing order</strong> based on the <strong>frequency</strong> of the characters. The <strong>frequency</strong> of a character is the number of times it appears in the string.</p>\n\n<p>Return <em>the sorted string</em>. If there are multiple answers, return <em>any of them</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;tree&quot;\n<strong>Output:</strong> &quot;eert&quot;\n<strong>Explanation:</strong> &#39;e&#39; appears twice while &#39;r&#39; and &#39;t&#39; both appear once.\nSo &#39;e&#39; must appear before both &#39;r&#39; and &#39;t&#39;. Therefore &quot;eetr&quot; is also a valid answer.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;cccaaa&quot;\n<strong>Output:</strong> &quot;aaaccc&quot;\n<strong>Explanation:</strong> Both &#39;c&#39; and &#39;a&#39; appear three times, so both &quot;cccaaa&quot; and &quot;aaaccc&quot; are valid answers.\nNote that &quot;cacaca&quot; is incorrect, as the same characters must be together.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;Aabb&quot;\n<strong>Output:</strong> &quot;bbAa&quot;\n<strong>Explanation:</strong> &quot;bbaA&quot; is also a valid answer, but &quot;Aabb&quot; is incorrect.\nNote that &#39;A&#39; and &#39;a&#39; are treated as two different characters.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 5 * 10<sup>5</sup></code></li>\n\t<li><code>s</code> consists of uppercase and lowercase English letters and digits.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"1.1M\", \"totalSubmission\": \"1.4M\", \"totalAcceptedRaw\": 1062881, \"totalSubmissionRaw\": 1416433, \"acRate\": \"75.0%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Heap (Priority Queue)",
+        "slug": "heap-priority-queue",
+        "translatedName": null
+      },
+      {
+        "name": "Bucket Sort",
+        "slug": "bucket-sort",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1788175262",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 19132000,
+      "timestamp": 1759319383,
+      "title": "Sort Characters By Frequency",
+      "titleSlug": "sort-characters-by-frequency",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 80.81720000000001,
+      "memoryDisplay": "19.1 MB",
+      "memoryPercentile": 61.040099999999995,
+      "code": "from collections import Counter\nclass Solution:\n    def frequencySort(self, s: str) -> str:\n        # The Pythonic approach.\n        freq = Counter(s)\n        sortedfreq = sorted(freq.items(),key = lambda x : x[1],reverse = True)\n        return \"\".join([element * count for element,count in sortedfreq])\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "451",
+        "titleSlug": "sort-characters-by-frequency",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1788173255",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 18772000,
+      "timestamp": 1759319215,
+      "title": "Sort Characters By Frequency",
+      "titleSlug": "sort-characters-by-frequency",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 80.81720000000001,
+      "memoryDisplay": "18.8 MB",
+      "memoryPercentile": 75.7854,
+      "code": "from collections import Counter\nclass Solution:\n    def frequencySort(self, s: str) -> str:\n        # Complete Brute Force.\n        FrequencyMap : dict = Counter(s)\n        ans_str : list = []\n        \n        # Sorting the dictionary.\n        SortedDictionary : list = sorted(FrequencyMap.items(),key = lambda x : x[1], reverse = True)\n        for element,value in SortedDictionary:\n            ans_str.append(element*value)\n        return \"\".join(ans_str)\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "451",
+        "titleSlug": "sort-characters-by-frequency",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1788171251",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 19104000,
+      "timestamp": 1759319044,
+      "title": "Sort Characters By Frequency",
+      "titleSlug": "sort-characters-by-frequency",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 80.81720000000001,
+      "memoryDisplay": "19.1 MB",
+      "memoryPercentile": 61.040099999999995,
+      "code": "from collections import Counter\nclass Solution:\n    def frequencySort(self, s: str) -> str:\n        # Complete Brute Force.\n        FrequencyMap : dict = Counter(s)\n        ans_str : str = \"\"\n        \n        # Sorting the dictionary.\n        SortedDictionary : list = sorted(FrequencyMap.items(),key = lambda x : x[1], reverse = True)\n        for element,value in SortedDictionary:\n            ans_str += (element * value)\n        return ans_str",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "451",
+        "titleSlug": "sort-characters-by-frequency",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

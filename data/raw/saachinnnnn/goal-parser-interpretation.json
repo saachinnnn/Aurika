@@ -1,0 +1,128 @@
+{
+  "question_name": "goal-parser-interpretation",
+  "problem_metadata": {
+    "questionId": "1797",
+    "title": "Goal Parser Interpretation",
+    "titleSlug": "goal-parser-interpretation",
+    "content": "<p>You own a <strong>Goal Parser</strong> that can interpret a string <code>command</code>. The <code>command</code> consists of an alphabet of <code>&quot;G&quot;</code>, <code>&quot;()&quot;</code> and/or <code>&quot;(al)&quot;</code> in some order. The Goal Parser will interpret <code>&quot;G&quot;</code> as the string <code>&quot;G&quot;</code>, <code>&quot;()&quot;</code> as the string <code>&quot;o&quot;</code>, and <code>&quot;(al)&quot;</code> as the string <code>&quot;al&quot;</code>. The interpreted strings are then concatenated in the original order.</p>\n\n<p>Given the string <code>command</code>, return <em>the <strong>Goal Parser</strong>&#39;s interpretation of </em><code>command</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> command = &quot;G()(al)&quot;\n<strong>Output:</strong> &quot;Goal&quot;\n<strong>Explanation:</strong>&nbsp;The Goal Parser interprets the command as follows:\nG -&gt; G\n() -&gt; o\n(al) -&gt; al\nThe final concatenated result is &quot;Goal&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> command = &quot;G()()()()(al)&quot;\n<strong>Output:</strong> &quot;Gooooal&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> command = &quot;(al)G(al)()()G&quot;\n<strong>Output:</strong> &quot;alGalooG&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= command.length &lt;= 100</code></li>\n\t<li><code>command</code> consists of <code>&quot;G&quot;</code>, <code>&quot;()&quot;</code>, and/or <code>&quot;(al)&quot;</code> in some order.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"317.7K\", \"totalSubmission\": \"361.2K\", \"totalAcceptedRaw\": 317744, \"totalSubmissionRaw\": 361244, \"acRate\": \"88.0%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "You need to check at most 2 characters to determine which character comes next."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1828892931",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 36,
+      "memory": 17640000,
+      "timestamp": 1763051484,
+      "title": "Goal Parser Interpretation",
+      "titleSlug": "goal-parser-interpretation",
+      "runtimeDisplay": "36 ms",
+      "runtimePercentile": 74.93300000000004,
+      "memoryDisplay": "17.6 MB",
+      "memoryPercentile": 60.99199999999999,
+      "code": "class Solution:\n    def interpret(self, command: str) -> str:\n        return command.replace('()','o').replace('(al)','al')\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1797",
+        "titleSlug": "goal-parser-interpretation",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1828891714",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 44,
+      "memory": 17904000,
+      "timestamp": 1763051408,
+      "title": "Goal Parser Interpretation",
+      "titleSlug": "goal-parser-interpretation",
+      "runtimeDisplay": "44 ms",
+      "runtimePercentile": 33.04300000000005,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 47.05089999999999,
+      "code": "class Solution:\n    def interpret(self, command: str) -> str:\n        # Using stack.\n        stk = []\n        for idx in range(len(command)):\n            if command[idx] == '(':\n                if command[idx + 1] == ')':\n                    stk.append('o')\n            elif command[idx].isalpha():\n                stk.append(command[idx])\n        return ''.join(stk)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1797",
+        "titleSlug": "goal-parser-interpretation",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1828884993",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 34,
+      "memory": 17864000,
+      "timestamp": 1763050967,
+      "title": "Goal Parser Interpretation",
+      "titleSlug": "goal-parser-interpretation",
+      "runtimeDisplay": "34 ms",
+      "runtimePercentile": 83.37810000000003,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 52.01069999999999,
+      "code": "class Solution:\n    def interpret(self, command: str) -> str:\n        ans = []\n        for idx,char in enumerate(command):\n            if command[idx] == '(':\n                if command[idx + 1] == ')':\n                    ans.append('o')\n                else:\n                    continue\n            elif char.isalpha():\n                ans.append(char)\n        return \"\".join(ans)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1797",
+        "titleSlug": "goal-parser-interpretation",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

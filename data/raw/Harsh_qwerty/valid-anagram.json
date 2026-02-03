@@ -1,0 +1,271 @@
+{
+  "question_name": "valid-anagram",
+  "problem_metadata": {
+    "questionId": "242",
+    "title": "Valid Anagram",
+    "titleSlug": "valid-anagram",
+    "content": "<p>Given two strings <code>s</code> and <code>t</code>, return <code>true</code> if <code>t</code> is an <span data-keyword=\"anagram\">anagram</span> of <code>s</code>, and <code>false</code> otherwise.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;anagram&quot;, t = &quot;nagaram&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;rat&quot;, t = &quot;car&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length, t.length &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>s</code> and <code>t</code> consist of lowercase English letters.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> What if the inputs contain Unicode characters? How would you adapt your solution to such a case?</p>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"5.8M\", \"totalSubmission\": \"8.5M\", \"totalAcceptedRaw\": 5767099, \"totalSubmissionRaw\": 8521516, \"acRate\": \"67.7%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1887149501",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 8284000,
+      "timestamp": 1768591011,
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    if (strlen(s) != strlen(t)) return false;\n\n    int used[1000] = {0};\n\n    for (int i = 0; s[i] != '\\0'; i++) {\n        int count = 0;\n\n        for (int j = 0; t[j] != '\\0'; j++) {\n            if (used[j] == 0 && s[i] == t[j]) {\n                used[j] = 1;\n                count = 1;\n                break;\n            }\n        }\n\n        if (count == 0) {\n            return false;\n        }\n    }\n    return true;\n}\n",
+      "statusCode": 15,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "242",
+        "titleSlug": "valid-anagram",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "Line 13: Char 21: runtime error: index 1000 out of bounds for type 'int [1000]' [solution.c]",
+      "compileError": null
+    },
+    {
+      "id": "1887149356",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 11,
+      "memory": 113512000,
+      "timestamp": 1768590997,
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    if (strlen(s) != strlen(t)) return false;\n\n    int used[100000000] = {0};\n\n    for (int i = 0; s[i] != '\\0'; i++) {\n        int count = 0;\n\n        for (int j = 0; t[j] != '\\0'; j++) {\n            if (used[j] == 0 && s[i] == t[j]) {\n                used[j] = 1;\n                count = 1;\n                break;\n            }\n        }\n\n        if (count == 0) {\n            return false;\n        }\n    }\n    return true;\n}\n",
+      "statusCode": 15,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "242",
+        "titleSlug": "valid-anagram",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "Line 4:\nAddressSanitizer:DEADLYSIGNAL\n=================================================================\n==22==ERROR: AddressSanitizer: stack-overflow on address 0x7ffef9b5d268 (pc 0x55ecee2fbbb0 bp 0x7ffeffaba290 sp 0x7ffef9b5d268 T0)\n    #0 0x55ecee2fbbb0 in isAnagram solution.c:4\n    #1 0x55ecee2fb57a in main solution.c:4\n    #2 0x7f8c1116e1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #3 0x7f8c1116e28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #4 0x55ecee2fbac4 in _start (solution+0x1eac4) (BuildId: 590bb418800358295b152378e649613a0e25953f)\nSUMMARY: AddressSanitizer: stack-overflow solution.c:4 in isAnagram\n==22==ABORTING",
+      "compileError": null
+    },
+    {
+      "id": "1887149218",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 4,
+      "memory": 8120000,
+      "timestamp": 1768590987,
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    if (strlen(s) != strlen(t)) return false;\n\n    int used[1000] = {0};\n\n    for (int i = 0; s[i] != '\\0'; i++) {\n        int count = 0;\n\n        for (int j = 0; t[j] != '\\0'; j++) {\n            if (used[j] == 0 && s[i] == t[j]) {\n                used[j] = 1;\n                count = 1;\n                break;\n            }\n        }\n\n        if (count == 0) {\n            return false;\n        }\n    }\n    return true;\n}\n",
+      "statusCode": 15,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "242",
+        "titleSlug": "valid-anagram",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "Line 13: Char 21: runtime error: index 1000 out of bounds for type 'int [1000]' [solution.c]",
+      "compileError": null
+    },
+    {
+      "id": "1887149064",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 4,
+      "memory": 8244000,
+      "timestamp": 1768590975,
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "bool isAnagram(char* s, char* t) {\n    if (strlen(s) != strlen(t)) return false;\n\n    int used[1000] = {0};\n\n    for (int i = 0; s[i] != '\\0'; i++) {\n        int count = 0;\n\n        for (int j = 0; t[j] != '\\0'; j++) {\n            if (used[j] == 0 && s[i] == t[j]) {\n                used[j] = 1;\n                count = 1;\n                break;\n            }\n        }\n\n        if (count == 0) {\n            return false;\n        }\n    }\n    return true;\n}\n",
+      "statusCode": 15,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "242",
+        "titleSlug": "valid-anagram",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "Line 10: Char 21: runtime error: index 1000 out of bounds for type 'int [1000]' [solution.c]",
+      "compileError": null
+    },
+    {
+      "id": "1887148398",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590918",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887146460",
+      "statusDisplay": "Compile Error",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590755",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887145627",
+      "statusDisplay": "Compile Error",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590686",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887145360",
+      "statusDisplay": "Compile Error",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590664",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887143024",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590464",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887142257",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590403",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887138134",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590058",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887137919",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590038",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887137692",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768590021",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    },
+    {
+      "id": "1887137224",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768589985",
+      "title": "Valid Anagram",
+      "titleSlug": "valid-anagram"
+    }
+  ]
+}

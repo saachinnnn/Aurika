@@ -1,0 +1,208 @@
+{
+  "question_name": "daily-temperatures",
+  "problem_metadata": {
+    "questionId": "739",
+    "title": "Daily Temperatures",
+    "titleSlug": "daily-temperatures",
+    "content": "<p>Given an array of integers <code>temperatures</code> represents the daily temperatures, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is the number of days you have to wait after the</em> <code>i<sup>th</sup></code> <em>day to get a warmer temperature</em>. If there is no future day for which this is possible, keep <code>answer[i] == 0</code> instead.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> temperatures = [73,74,75,71,69,72,76,73]\n<strong>Output:</strong> [1,1,4,2,1,1,0,0]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> temperatures = [30,40,50,60]\n<strong>Output:</strong> [1,1,1,0]\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> temperatures = [30,60,90]\n<strong>Output:</strong> [1,1,0]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;=&nbsp;temperatures.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>30 &lt;=&nbsp;temperatures[i] &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"1.6M\", \"totalSubmission\": \"2.3M\", \"totalAcceptedRaw\": 1592866, \"totalSubmissionRaw\": 2334615, \"acRate\": \"68.2%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Stack",
+        "slug": "monotonic-stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "If the temperature is say, 70 today, then in the future a warmer temperature must be either 71, 72, 73, ..., 99, or 100.  We could remember when all of them occur next."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1834195387",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 106,
+      "memory": 26640000,
+      "timestamp": 1763554897,
+      "title": "Daily Temperatures",
+      "titleSlug": "daily-temperatures",
+      "runtimeDisplay": "106 ms",
+      "runtimePercentile": 46.71600000000007,
+      "memoryDisplay": "26.6 MB",
+      "memoryPercentile": 83.24350000000001,
+      "code": "class Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        ans = [0]*len(temperatures)\n        stack = []\n        for idx in range(len(temperatures) - 1,-1,-1):\n            while stack and temperatures[stack[-1]] <= temperatures[idx]:\n                stack.pop()\n            if stack:\n                ans[idx] = stack[-1] - idx\n            stack.append(idx)\n        return ans\n                ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "739",
+        "titleSlug": "daily-temperatures",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1834194828",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 93,
+      "memory": 27168000,
+      "timestamp": 1763554842,
+      "title": "Daily Temperatures",
+      "titleSlug": "daily-temperatures",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        ans = [0]*len(temperatures)\n        stack = []\n        for idx in range(len(temperatures) - 1,-1,-1):\n            while stack and temperatures[stack[-1]] < temperatures[idx]:\n                stack.pop()\n            if stack:\n                ans[idx] = stack[-1] - idx\n            stack.append(idx)\n        return ans\n                ",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "739",
+        "titleSlug": "daily-temperatures",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1813964496",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 108,
+      "memory": 26816000,
+      "timestamp": 1761648891,
+      "title": "Daily Temperatures",
+      "titleSlug": "daily-temperatures",
+      "runtimeDisplay": "108 ms",
+      "runtimePercentile": 43.74640000000007,
+      "memoryDisplay": "26.8 MB",
+      "memoryPercentile": 80.01520000000002,
+      "code": "from typing import List\nclass Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        # Instead of appending the distance to the stack as well which makes things more complicated, we can calculate the distance directly.\n        ## So...\n\n        ans : List[int] = [0]*len(temperatures)\n        stack : list = []\n        for idx in range(len(temperatures) - 1,-1,-1):\n            while stack and temperatures[idx] >= temperatures[stack[-1]]:\n                stack.pop()\n            if stack:\n                ans[idx] = stack[-1] - idx\n            stack.append(idx)\n        return ans\n# In the above approach we compute the distance simply by saving the index of the element in stack and subtracting it with current index traversing through the loop so that we can get the distance for the answer.\n## Thus that distance is updated with the answer array.\n### Much simpler solution than what i did earlier but both works in the same time complexity.\n\n\n# So its not essentialy to add the distance/span to the stack like we did with stock and span question earlier.",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "739",
+        "titleSlug": "daily-temperatures",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1813954902",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 173,
+      "memory": 26696000,
+      "timestamp": 1761648000,
+      "title": "Daily Temperatures",
+      "titleSlug": "daily-temperatures",
+      "runtimeDisplay": "173 ms",
+      "runtimePercentile": 5.201100000000071,
+      "memoryDisplay": "26.7 MB",
+      "memoryPercentile": 83.24350000000001,
+      "code": "class Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        # Okay I am going to solve this.\n        if not temperatures:\n            return []\n        \n        # I think this approach \n        ans : list = [0]*len(temperatures)\n        stack : list = []\n        for idx in range(len(temperatures) - 1,-1,-1):\n            temperature = 1\n            if idx == len(temperatures) - 1:\n                ans[idx] = 0\n                stack.append((temperatures[idx],1))\n            else:\n                while stack and temperatures[idx] >= stack[-1][0]:\n                    temp = stack.pop()\n                    temperature += temp[1]\n                if stack == []:\n                    ans[idx] = 0\n                else:\n                    ans[idx] = temperature\n                stack.append((temperatures[idx],temperature))\n        return ans\n            \n            \n                    ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "739",
+        "titleSlug": "daily-temperatures",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1813953400",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 176,
+      "memory": 29832000,
+      "timestamp": 1761647858,
+      "title": "Daily Temperatures",
+      "titleSlug": "daily-temperatures",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        # Okay I am going to solve this.\n        if not temperatures:\n            return []\n        \n        # I think this approach \n        ans : list = [0]*len(temperatures)\n        stack : list = []\n        for idx in range(len(temperatures) - 1,-1,-1):\n            temperature = 1\n            if idx == len(temperatures) - 1:\n                ans[idx] = 0\n                stack.append((temperatures[idx],1))\n            else:\n                while stack and temperatures[idx] > stack[-1][0]:\n                    temp = stack.pop()\n                    temperature += temp[1]\n                if stack == []:\n                    ans[idx] = 0\n                else:\n                    ans[idx] = temperature\n                stack.append((temperatures[idx],temperature))\n        return ans\n            \n            \n                    ",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "739",
+        "titleSlug": "daily-temperatures",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

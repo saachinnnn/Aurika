@@ -1,0 +1,46 @@
+{
+  "question_name": "pascals-triangle-ii",
+  "problem_metadata": {
+    "questionId": "119",
+    "title": "Pascal's Triangle II",
+    "titleSlug": "pascals-triangle-ii",
+    "content": "<p>Given an integer <code>rowIndex</code>, return the <code>rowIndex<sup>th</sup></code> (<strong>0-indexed</strong>) row of the <strong>Pascal&#39;s triangle</strong>.</p>\n\n<p>In <strong>Pascal&#39;s triangle</strong>, each number is the sum of the two numbers directly above it as shown:</p>\n<img alt=\"\" src=\"https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif\" style=\"height:240px; width:260px\" />\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> rowIndex = 3\n<strong>Output:</strong> [1,3,3,1]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> rowIndex = 0\n<strong>Output:</strong> [1]\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> rowIndex = 1\n<strong>Output:</strong> [1,1]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= rowIndex &lt;= 33</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you optimize your algorithm to use only <code>O(rowIndex)</code> extra space?</p>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"1.2M\", \"totalSubmission\": \"1.8M\", \"totalAcceptedRaw\": 1178836, \"totalSubmissionRaw\": 1759104, \"acRate\": \"67.0%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1517724734",
+      "statusDisplay": "Accepted",
+      "lang": "cpp",
+      "runtime": "0 ms",
+      "memory": "9.5 MB",
+      "timestamp": "1737617736",
+      "title": "Pascal's Triangle II",
+      "titleSlug": "pascals-triangle-ii"
+    },
+    {
+      "id": "1517719120",
+      "statusDisplay": "Runtime Error",
+      "lang": "cpp",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1737617313",
+      "title": "Pascal's Triangle II",
+      "titleSlug": "pascals-triangle-ii"
+    }
+  ]
+}

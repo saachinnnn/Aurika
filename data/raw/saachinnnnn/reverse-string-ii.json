@@ -1,0 +1,61 @@
+{
+  "question_name": "reverse-string-ii",
+  "problem_metadata": {
+    "questionId": "541",
+    "title": "Reverse String II",
+    "titleSlug": "reverse-string-ii",
+    "content": "<p>Given a string <code>s</code> and an integer <code>k</code>, reverse the first <code>k</code> characters for every <code>2k</code> characters counting from the start of the string.</p>\n\n<p>If there are fewer than <code>k</code> characters left, reverse all of them. If there are less than <code>2k</code> but greater than or equal to <code>k</code> characters, then reverse the first <code>k</code> characters and leave the other as original.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> s = \"abcdefg\", k = 2\n<strong>Output:</strong> \"bacdfeg\"\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> s = \"abcd\", k = 2\n<strong>Output:</strong> \"bacd\"\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>s</code> consists of only lowercase English letters.</li>\n\t<li><code>1 &lt;= k &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"365.6K\", \"totalSubmission\": \"686.6K\", \"totalAcceptedRaw\": 365556, \"totalSubmissionRaw\": 686633, \"acRate\": \"53.2%\"}",
+    "topicTags": [
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1807654777",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18116000,
+      "timestamp": 1761057321,
+      "title": "Reverse String II",
+      "titleSlug": "reverse-string-ii",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18.1 MB",
+      "memoryPercentile": 49.6789,
+      "code": "class Solution:\n    def reverseStr(self, s: str, k: int) -> str:\n        # Starting case.\n        if len(s) < k:\n            return s[::-1] \n        elif len(s) >= k and len(s) < 2*k:\n            reverse_list : list = list(s[:k][::-1]) + list(s[k:])\n            return \"\".join(reverse_list)\n        reverse_list : list = list(s)\n        iterator : int = 0\n        while iterator < len(s):\n            reverse_list[iterator:iterator + k] = reverse_list[iterator:iterator + k][::-1]\n            iterator += 2*k\n        return \"\".join(reverse_list)\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "541",
+        "titleSlug": "reverse-string-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

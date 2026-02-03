@@ -1,0 +1,68 @@
+{
+  "question_name": "sum-of-elements-with-frequency-divisible-by-k",
+  "problem_metadata": {
+    "questionId": "4068",
+    "title": "Sum of Elements With Frequency Divisible by K",
+    "titleSlug": "sum-of-elements-with-frequency-divisible-by-k",
+    "content": "<p>You are given an integer array <code>nums</code> and an integer <code>k</code>.</p>\n\n<p>Return an integer denoting the <strong>sum</strong> of all elements in <code>nums</code> whose <strong><span data-keyword=\"frequency-array\">frequency</span></strong> is divisible by <code>k</code>, or 0 if there are no such elements.</p>\n\n<p><strong>Note:</strong> An element is included in the sum <strong>exactly</strong> as many times as it appears in the array if its total frequency is divisible by <code>k</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,2,3,3,3,3,4], k = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">16</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The number 1 appears once (odd frequency).</li>\n\t<li>The number 2 appears twice (even frequency).</li>\n\t<li>The number 3 appears four times (even frequency).</li>\n\t<li>The number 4 appears once (odd frequency).</li>\n</ul>\n\n<p>So, the total sum is <code>2 + 2 + 3 + 3 + 3 + 3 = 16</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,4,5], k = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>There are no elements that appear an even number of times, so the total sum is 0.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [4,4,4,1,2,3], k = 3</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">12</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The number 1 appears once.</li>\n\t<li>The number 2 appears once.</li>\n\t<li>The number 3 appears once.</li>\n\t<li>The number 4 appears three times.</li>\n</ul>\n\n<p>So, the total sum is <code>4 + 4 + 4 = 12</code>.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n\t<li><code>1 &lt;= k &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"49K\", \"totalSubmission\": \"63.4K\", \"totalAcceptedRaw\": 49027, \"totalSubmissionRaw\": 63393, \"acRate\": \"77.3%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Simulate as described"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1798965177",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 4,
+      "memory": 26312000,
+      "timestamp": 1760241097,
+      "title": "Sum of Elements With Frequency Divisible by K",
+      "titleSlug": "sum-of-elements-with-frequency-divisible-by-k",
+      "runtimeDisplay": "4 ms",
+      "runtimePercentile": 16.853899999999996,
+      "memoryDisplay": "26.3 MB",
+      "memoryPercentile": 12.859000000000023,
+      "code": "class Solution {\npublic:\n    int sumDivisibleByK(vector<int>& nums, int k) {\n         unordered_map<int, int> freq;\n\n        // Count frequencies\n        for (int num : nums) {\n            freq[num]++;\n        }\n\n        int sum = 0;\n        // Add value * frequency if divisible by k\n        for (auto& p : freq) {\n            if (p.second % k == 0) {\n                sum += p.first * p.second;\n            }\n        }\n\n        return sum;\n\n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "4068",
+        "titleSlug": "sum-of-elements-with-frequency-divisible-by-k",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

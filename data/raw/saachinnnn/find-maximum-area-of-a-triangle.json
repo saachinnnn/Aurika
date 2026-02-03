@@ -1,0 +1,85 @@
+{
+  "question_name": "find-maximum-area-of-a-triangle",
+  "problem_metadata": {
+    "questionId": "3868",
+    "title": "Find Maximum Area of a Triangle",
+    "titleSlug": "find-maximum-area-of-a-triangle",
+    "content": "<p>You are given a 2D array <code>coords</code> of size <code>n x 2</code>, representing the coordinates of <code>n</code> points in an infinite Cartesian plane.</p>\n\n<p>Find <strong>twice</strong> the <strong>maximum</strong> area of a triangle with its corners at <em>any</em> three elements from <code>coords</code>, such that at least one side of this triangle is <strong>parallel</strong> to the x-axis or y-axis. Formally, if the maximum area of such a triangle is <code>A</code>, return <code>2 * A</code>.</p>\n\n<p>If no such triangle exists, return -1.</p>\n\n<p><strong>Note</strong> that a triangle <em>cannot</em> have zero area.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">coords = [[1,1],[1,2],[3,2],[3,3]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><img src=\"https://assets.leetcode.com/uploads/2025/04/19/image-20250420010047-1.png\" style=\"width: 300px; height: 289px;\" /></p>\n\n<p>The triangle shown in the image has a base 1 and height 2. Hence its area is <code>1/2 * base * height = 1</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">coords = [[1,1],[2,2],[3,3]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">-1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The only possible triangle has corners <code>(1, 1)</code>, <code>(2, 2)</code>, and <code>(3, 3)</code>. None of its sides are parallel to the x-axis or the y-axis.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n == coords.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= coords[i][0], coords[i][1] &lt;= 10<sup>6</sup></code></li>\n\t<li>All <code>coords[i]</code> are <strong>unique</strong>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"11.6K\", \"totalSubmission\": \"40.3K\", \"totalAcceptedRaw\": 11627, \"totalSubmissionRaw\": 40337, \"acRate\": \"28.8%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      },
+      {
+        "name": "Geometry",
+        "slug": "geometry",
+        "translatedName": null
+      },
+      {
+        "name": "Enumeration",
+        "slug": "enumeration",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "<code>area * 2 = base * height</code>",
+      "Let the base be parallel to the x‑axis or y‑axis",
+      "Sort to find the maximum base for each fixed <code>x</code> (or <code>y</code>), then the maximum height comes from the extreme values of the other coordinate."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1671698481",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10871,
+      "memory": 33604000,
+      "timestamp": 1750519889,
+      "title": "Find Maximum Area of a Triangle",
+      "titleSlug": "find-maximum-area-of-a-triangle",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def maxArea(self, coords: List[List[int]]) -> int:\n        point_set = set(map(tuple, coords))\n        max_area = 0\n        n = len(coords)\n\n        for i in range(n):\n            x1, y1 = coords[i]\n            for j in range(i + 1, n):\n                x2, y2 = coords[j]\n\n                # At least one side should be parallel to x or y axis\n                if x1 == x2 or y1 == y2:\n                    for k in range(n):\n                        if k == i or k == j:\n                            continue\n                        x3, y3 = coords[k]\n                        # Triangle formed by (x1,y1), (x2,y2), (x3,y3)\n                        # Compute twice the area using the Shoelace formula\n                        area2 = abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2))\n                        if area2 > 0:\n                            max_area = max(max_area, area2)\n\n        return max_area if max_area > 0 else -1",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3868",
+        "titleSlug": "find-maximum-area-of-a-triangle",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

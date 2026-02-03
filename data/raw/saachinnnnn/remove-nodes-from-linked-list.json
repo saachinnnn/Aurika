@@ -1,0 +1,109 @@
+{
+  "question_name": "remove-nodes-from-linked-list",
+  "problem_metadata": {
+    "questionId": "2573",
+    "title": "Remove Nodes From Linked List",
+    "titleSlug": "remove-nodes-from-linked-list",
+    "content": "<p>You are given the <code>head</code> of a linked list.</p>\n\n<p>Remove every node which has a node with a greater value anywhere to the right side of it.</p>\n\n<p>Return <em>the </em><code>head</code><em> of the modified linked list.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2022/10/02/drawio.png\" style=\"width: 631px; height: 51px;\" />\n<pre>\n<strong>Input:</strong> head = [5,2,13,3,8]\n<strong>Output:</strong> [13,8]\n<strong>Explanation:</strong> The nodes that should be removed are 5, 2 and 3.\n- Node 13 is to the right of node 5.\n- Node 13 is to the right of node 2.\n- Node 8 is to the right of node 3.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> head = [1,1,1,1]\n<strong>Output:</strong> [1,1,1,1]\n<strong>Explanation:</strong> Every node has value 1, so no nodes are removed.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of the nodes in the given list is in the range <code>[1, 10<sup>5</sup>]</code>.</li>\n\t<li><code>1 &lt;= Node.val &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"260K\", \"totalSubmission\": \"347.7K\", \"totalAcceptedRaw\": 259952, \"totalSubmissionRaw\": 347731, \"acRate\": \"74.8%\"}",
+    "topicTags": [
+      {
+        "name": "Linked List",
+        "slug": "linked-list",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Recursion",
+        "slug": "recursion",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Stack",
+        "slug": "monotonic-stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Iterate on nodes in reversed order.",
+      "When iterating in reversed order, save the maximum value that was passed before."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1835119600",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 269,
+      "memory": 58660000,
+      "timestamp": 1763642016,
+      "title": "Remove Nodes From Linked List",
+      "titleSlug": "remove-nodes-from-linked-list",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nfrom collections import Counter\nclass Solution:\n    def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        # First we get the list of values.\n        values = []\n        pointer = head\n        while pointer:\n            values.append(pointer.val)\n            pointer = pointer.next\n        nge = []\n        stack = []\n        for idx in range(len(values) - 1,-1,-1):\n            while stack and stack[-1] < values[idx]:\n                stack.pop()\n            if not stack:\n                nge.append(values[idx])\n            stack.append(values[idx])\n        nge = Counter(nge)\n        dummynode = ListNode(0)\n        dummynode.next = head\n        curr = head \n        prev = dummynode\n        while curr:\n            if nge.get(curr.val,0) == 0:\n                prev.next = curr.next\n                nge[curr.val] -= 1\n            else:\n                prev = curr\n            curr = curr.next\n        return dummynode.next",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2573",
+        "titleSlug": "remove-nodes-from-linked-list",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1835114502",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 175,
+      "memory": 55416000,
+      "timestamp": 1763641472,
+      "title": "Remove Nodes From Linked List",
+      "titleSlug": "remove-nodes-from-linked-list",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def removeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        # First we get the list of values.\n        values = []\n        pointer = head\n        while pointer:\n            values.append(pointer.val)\n            pointer = pointer.next\n        nge = set()\n        stack = []\n        for idx in range(len(values) - 1,-1,-1):\n            while stack and stack[-1] < values[idx]:\n                stack.pop()\n            if not stack:\n                nge.add(values[idx])\n            stack.append(values[idx])\n        dummynode = ListNode(0)\n        dummynode.next = head\n        curr = head \n        prev = dummynode\n        while curr:\n            if curr.val not in nge:\n                prev.next = curr.next\n            else:\n                prev = curr\n            curr = curr.next\n        return dummynode.next",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2573",
+        "titleSlug": "remove-nodes-from-linked-list",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

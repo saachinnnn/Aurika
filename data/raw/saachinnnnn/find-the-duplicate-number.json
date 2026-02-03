@@ -1,0 +1,71 @@
+{
+  "question_name": "find-the-duplicate-number",
+  "problem_metadata": {
+    "questionId": "287",
+    "title": "Find the Duplicate Number",
+    "titleSlug": "find-the-duplicate-number",
+    "content": "<p>Given an array of integers <code>nums</code> containing&nbsp;<code>n + 1</code> integers where each integer is in the range <code>[1, n]</code> inclusive.</p>\n\n<p>There is only <strong>one repeated number</strong> in <code>nums</code>, return <em>this&nbsp;repeated&nbsp;number</em>.</p>\n\n<p>You must solve the problem <strong>without</strong> modifying the array <code>nums</code>&nbsp;and using only constant extra space.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,4,2,2]\n<strong>Output:</strong> 2\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,1,3,4,2]\n<strong>Output:</strong> 3\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,3,3,3,3]\n<strong>Output:</strong> 3</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>nums.length == n + 1</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= n</code></li>\n\t<li>All the integers in <code>nums</code> appear only <strong>once</strong> except for <strong>precisely one integer</strong> which appears <strong>two or more</strong> times.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><b>Follow up:</b></p>\n\n<ul>\n\t<li>How can we prove that at least one duplicate number must exist in <code>nums</code>?</li>\n\t<li>Can you solve the problem in linear runtime complexity?</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"2.5M\", \"totalSubmission\": \"3.8M\", \"totalAcceptedRaw\": 2455638, \"totalSubmissionRaw\": 3843344, \"acRate\": \"63.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      },
+      {
+        "name": "Bit Manipulation",
+        "slug": "bit-manipulation",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1768999495",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 35,
+      "memory": 38736000,
+      "timestamp": 1757747242,
+      "title": "Find the Duplicate Number",
+      "titleSlug": "find-the-duplicate-number",
+      "runtimeDisplay": "35 ms",
+      "runtimePercentile": 29.287499999999987,
+      "memoryDisplay": "38.7 MB",
+      "memoryPercentile": 6.417199999999955,
+      "code": "from collections import Counter\nclass Solution:\n    def findDuplicate(self, nums: List[int]) -> int:\n        Hashmap : dict = Counter(nums)\n        for key in Hashmap:\n            if Hashmap[key] > 1:\n                return key",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "287",
+        "titleSlug": "find-the-duplicate-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

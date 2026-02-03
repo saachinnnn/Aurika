@@ -1,0 +1,136 @@
+{
+  "question_name": "contains-duplicate-ii",
+  "problem_metadata": {
+    "questionId": "219",
+    "title": "Contains Duplicate II",
+    "titleSlug": "contains-duplicate-ii",
+    "content": "<p>Given an integer array <code>nums</code> and an integer <code>k</code>, return <code>true</code> <em>if there are two <strong>distinct indices</strong> </em><code>i</code><em> and </em><code>j</code><em> in the array such that </em><code>nums[i] == nums[j]</code><em> and </em><code>abs(i - j) &lt;= k</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,1], k = 3\n<strong>Output:</strong> true\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,0,1,1], k = 1\n<strong>Output:</strong> true\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,1,2,3], k = 2\n<strong>Output:</strong> false\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li><code>0 &lt;= k &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"1.7M\", \"totalSubmission\": \"3.3M\", \"totalAcceptedRaw\": 1661920, \"totalSubmissionRaw\": 3282364, \"acRate\": \"50.6%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1788959891",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 35,
+      "memory": 30844000,
+      "timestamp": 1759389566,
+      "title": "Contains Duplicate II",
+      "titleSlug": "contains-duplicate-ii",
+      "runtimeDisplay": "35 ms",
+      "runtimePercentile": 41.17370000000001,
+      "memoryDisplay": "30.8 MB",
+      "memoryPercentile": 83.08010000000003,
+      "code": "class Solution:\n    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:\n        # There exists a set approach to this as well.\n        \n        ## Defining a set approach with sliding window algorithm.\n\n        windowset : set = set()\n\n        for idx in range(len(nums)):\n\n            if idx > k:\n                windowset.remove(nums[idx - k - 1])\n            \n            if nums[idx] in windowset:\n                return True\n            \n            windowset.add(nums[idx])\n        return False",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "219",
+        "titleSlug": "contains-duplicate-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1788956659",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 27,
+      "memory": 36528000,
+      "timestamp": 1759389324,
+      "title": "Contains Duplicate II",
+      "titleSlug": "contains-duplicate-ii",
+      "runtimeDisplay": "27 ms",
+      "runtimePercentile": 81.16170000000001,
+      "memoryDisplay": "36.5 MB",
+      "memoryPercentile": 41.86890000000005,
+      "code": "class Solution:\n    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:\n        # A bit better code would be.\n        DuplicateChecker : dict = {}\n        for idx , num in enumerate(nums):\n            if num in DuplicateChecker and abs(idx - DuplicateChecker[num]) <= k:\n                return True\n            DuplicateChecker[num] = idx\n        return False",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "219",
+        "titleSlug": "contains-duplicate-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1788952947",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 29,
+      "memory": 36720000,
+      "timestamp": 1759389051,
+      "title": "Contains Duplicate II",
+      "titleSlug": "contains-duplicate-ii",
+      "runtimeDisplay": "29 ms",
+      "runtimePercentile": 67.38300000000001,
+      "memoryDisplay": "36.7 MB",
+      "memoryPercentile": 21.112700000000054,
+      "code": "class Solution:\n    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:\n        # So I am going to implement a hashmap that stores the elements and their indices.\n        \n        # Edge case.\n        if len(nums) < 2:\n            return False\n        \n        DuplicateChecker : dict = {}\n\n        for idx in range(len(nums)): # We traverse through the array\n            if nums[idx] in DuplicateChecker:\n                if abs(idx - DuplicateChecker[nums[idx]]) <= k:\n                    return True\n                else:\n                    DuplicateChecker[nums[idx]] = idx\n            else:\n                DuplicateChecker[nums[idx]] = idx\n        return False",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "219",
+        "titleSlug": "contains-duplicate-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "question_name": "majority-element",
+  "problem_metadata": {
+    "questionId": "169",
+    "title": "Majority Element",
+    "titleSlug": "majority-element",
+    "content": "<p>Given an array <code>nums</code> of size <code>n</code>, return <em>the majority element</em>.</p>\n\n<p>The majority element is the element that appears more than <code>&lfloor;n / 2&rfloor;</code> times. You may assume that the majority element always exists in the array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [3,2,3]\n<strong>Output:</strong> 3\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [2,2,1,1,1,2,2]\n<strong>Output:</strong> 2\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li>The input is generated such that a majority element will exist in the array.</li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow-up:</strong> Could you solve the problem in linear time and in <code>O(1)</code> space?",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"5.2M\", \"totalSubmission\": \"7.8M\", \"totalAcceptedRaw\": 5151736, \"totalSubmissionRaw\": 7797807, \"acRate\": \"66.1%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Divide and Conquer",
+        "slug": "divide-and-conquer",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1893511273",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 7,
+      "memory": 28172000,
+      "timestamp": 1769101041,
+      "title": "Majority Element",
+      "titleSlug": "majority-element",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 11.1586,
+      "memoryDisplay": "28.2 MB",
+      "memoryPercentile": 62.52480000000003,
+      "code": "class Solution {\npublic:\n    int majorityElement(vector<int>& nums) {\n        unordered_map<int, int> count;\n        int res = 0, maxCount = 0;\n\n        for (int num : nums) {\n            count[num]++;\n            if (count[num] > maxCount) {\n                res = num;\n                maxCount = count[num];\n            }\n        }\n        return res;\n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "169",
+        "titleSlug": "majority-element",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

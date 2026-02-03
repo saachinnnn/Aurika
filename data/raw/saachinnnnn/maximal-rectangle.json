@@ -1,0 +1,76 @@
+{
+  "question_name": "maximal-rectangle",
+  "problem_metadata": {
+    "questionId": "85",
+    "title": "Maximal Rectangle",
+    "titleSlug": "maximal-rectangle",
+    "content": "<p>Given a <code>rows x cols</code>&nbsp;binary <code>matrix</code> filled with <code>0</code>&#39;s and <code>1</code>&#39;s, find the largest rectangle containing only <code>1</code>&#39;s and return <em>its area</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2020/09/14/maximal.jpg\" style=\"width: 402px; height: 322px;\" />\n<pre>\n<strong>Input:</strong> matrix = [[&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;],[&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;],[&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;],[&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;]]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The maximal rectangle is shown in the above picture.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> matrix = [[&quot;0&quot;]]\n<strong>Output:</strong> 0\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> matrix = [[&quot;1&quot;]]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>rows == matrix.length</code></li>\n\t<li><code>cols == matrix[i].length</code></li>\n\t<li><code>1 &lt;= rows, cols &lt;= 200</code></li>\n\t<li><code>matrix[i][j]</code> is <code>&#39;0&#39;</code> or <code>&#39;1&#39;</code>.</li>\n</ul>\n",
+    "difficulty": "Hard",
+    "stats": "{\"totalAccepted\": \"769K\", \"totalSubmission\": \"1.3M\", \"totalAcceptedRaw\": 769015, \"totalSubmissionRaw\": 1327064, \"acRate\": \"57.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Matrix",
+        "slug": "matrix",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Stack",
+        "slug": "monotonic-stack",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1882594853",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1143,
+      "memory": 23044000,
+      "timestamp": 1768207877,
+      "title": "Maximal Rectangle",
+      "titleSlug": "maximal-rectangle",
+      "runtimeDisplay": "1143 ms",
+      "runtimePercentile": 5.064800000000151,
+      "memoryDisplay": "23 MB",
+      "memoryPercentile": 97.0334,
+      "code": "class Solution:\n    def maximalRectangle(self, matrix: List[List[str]]) -> int:\n        if not matrix or not matrix[0]:\n            return 0\n\n        M = len(matrix)\n        N = len(matrix[0])\n\n        # Convert characters to integers\n        for i in range(M):\n            for j in range(N):\n                matrix[i][j] = int(matrix[i][j])\n\n        # Row-wise prefix widths\n        for i in range(M):\n            for j in range(1, N):\n                if matrix[i][j] == 1:\n                    matrix[i][j] += matrix[i][j - 1]\n\n        Ans = 0\n\n        # Fix each column\n        for j in range(N):\n            for i in range(M):\n                width = matrix[i][j]\n                if width == 0:\n                    continue\n\n                # Expand downward\n                currWidth = width\n                k = i\n                while k < M and matrix[k][j] > 0:\n                    currWidth = min(currWidth, matrix[k][j])\n                    height = k - i + 1\n                    Ans = max(Ans, currWidth * height)\n                    k += 1\n\n                # Expand upward\n                currWidth = width\n                k = i\n                while k >= 0 and matrix[k][j] > 0:\n                    currWidth = min(currWidth, matrix[k][j])\n                    height = i - k + 1\n                    Ans = max(Ans, currWidth * height)\n                    k -= 1\n\n        return Ans",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "85",
+        "titleSlug": "maximal-rectangle",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

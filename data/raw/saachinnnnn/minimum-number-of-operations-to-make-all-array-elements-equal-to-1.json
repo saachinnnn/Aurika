@@ -1,0 +1,69 @@
+{
+  "question_name": "minimum-number-of-operations-to-make-all-array-elements-equal-to-1",
+  "problem_metadata": {
+    "questionId": "2753",
+    "title": "Minimum Number of Operations to Make All Array Elements Equal to 1",
+    "titleSlug": "minimum-number-of-operations-to-make-all-array-elements-equal-to-1",
+    "content": "<p>You are given a <strong>0-indexed</strong>&nbsp;array <code>nums</code> consisting of <strong>positive</strong> integers. You can do the following operation on the array <strong>any</strong> number of times:</p>\n\n<ul>\n\t<li>Select an index <code>i</code> such that <code>0 &lt;= i &lt; n - 1</code> and replace either of&nbsp;<code>nums[i]</code> or <code>nums[i+1]</code> with their gcd value.</li>\n</ul>\n\n<p>Return <em>the <strong>minimum</strong> number of operations to make all elements of </em><code>nums</code><em> equal to </em><code>1</code>. If it is impossible, return <code>-1</code>.</p>\n\n<p>The gcd of two integers is the greatest common divisor of the two integers.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,6,3,4]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> We can do the following operations:\n- Choose index i = 2 and replace nums[2] with gcd(3,4) = 1. Now we have nums = [2,6,1,4].\n- Choose index i = 1 and replace nums[1] with gcd(6,1) = 1. Now we have nums = [2,1,1,4].\n- Choose index i = 0 and replace nums[0] with gcd(2,1) = 1. Now we have nums = [1,1,1,4].\n- Choose index i = 2 and replace nums[3] with gcd(1,4) = 1. Now we have nums = [1,1,1,1].\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,10,6,14]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> It can be shown that it is impossible to make all the elements equal to 1.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 50</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"86.9K\", \"totalSubmission\": \"159.1K\", \"totalAcceptedRaw\": 86920, \"totalSubmissionRaw\": 159099, \"acRate\": \"54.6%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Number Theory",
+        "slug": "number-theory",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Note that if you have at least one occurrence of 1 in the array, then you can make all the other elements equal to 1 with one operation each.",
+      "Try finding the shortest subarray with a gcd equal to 1."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1827996057",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 8,
+      "memory": 17900000,
+      "timestamp": 1762965651,
+      "title": "Minimum Number of Operations to Make All Array Elements Equal to 1",
+      "titleSlug": "minimum-number-of-operations-to-make-all-array-elements-equal-to-1",
+      "runtimeDisplay": "8 ms",
+      "runtimePercentile": 8.724900000000002,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 50.78310000000001,
+      "code": "class Solution:\n    def minOperations(self, nums: List[int]) -> int:\n        n = len(nums)\n        # check if there is 1 in `nums`\n        ones = nums.count(1)\n        # if so, we can make all the other elements equal to 1 with one operation each\n        # e.g. [2,6,1,4] -> [2,1,1,4] -> [1,1,1,4] -> [1,1,1,1]\n        # the number of operation to make all equal to 1 is simply n - number of 1s\n        if ones: return n - ones\n        res = inf\n        # try finding the shortest subarray with a gcd equal to 1.\n        for i in range(n):\n            # subarray starting from i\n            g = nums[i]\n            # try each element after i\n            for j in range(i + 1, n):\n                # to calculate gcd\n                g = gcd(g, nums[j])\n                # if the gcd is 1\n                if g == 1:\n                    # then we calculate the min ops\n                    res = min(res, j - i)\n        # no result -> return -1\n        if res == inf: return -1\n        # otherwise, return res + n - 1\n        # i.e. the min ops to turn the shortest subarray to 1 + \n        #      use that 1 to convert n - 1 elements to 1\n        return res + n - 1",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2753",
+        "titleSlug": "minimum-number-of-operations-to-make-all-array-elements-equal-to-1",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

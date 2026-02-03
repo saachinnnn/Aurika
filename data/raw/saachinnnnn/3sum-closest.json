@@ -1,0 +1,101 @@
+{
+  "question_name": "3sum-closest",
+  "problem_metadata": {
+    "questionId": "16",
+    "title": "3Sum Closest",
+    "titleSlug": "3sum-closest",
+    "content": "<p>Given an integer array <code>nums</code> of length <code>n</code> and an integer <code>target</code>, find three integers at <strong>distinct indices</strong> in <code>nums</code> such that the sum is closest to <code>target</code>.</p>\n\n<p>Return <em>the sum of the three integers</em>.</p>\n\n<p>You may assume that each input would have exactly one solution.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,2,1,-4], target = 1\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,0,0], target = 1\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> The sum that is closest to the target is 0. (0 + 0 + 0 = 0).\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= nums.length &lt;= 500</code></li>\n\t<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>\n\t<li><code>-10<sup>4</sup> &lt;= target &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"1.7M\", \"totalSubmission\": \"3.6M\", \"totalAcceptedRaw\": 1731004, \"totalSubmissionRaw\": 3612429, \"acRate\": \"47.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1807633667",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 347,
+      "memory": 17848000,
+      "timestamp": 1761055895,
+      "title": "3Sum Closest",
+      "titleSlug": "3sum-closest",
+      "runtimeDisplay": "347 ms",
+      "runtimePercentile": 71.37880000000035,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 61.1788,
+      "code": "class Solution:\n    def threeSumClosest(self, nums: List[int], target: int) -> int:\n        nums.sort()\n        closest = float('inf')\n        \n        for i in range(len(nums) - 2):\n            left, right = i + 1, len(nums) - 1\n            while left < right:\n                curr_sum = nums[i] + nums[left] + nums[right]\n                if curr_sum == target:\n                    return target\n                if abs(target - curr_sum) < abs(target - closest):\n                    closest = curr_sum\n                if curr_sum < target:\n                    left += 1\n                else:\n                    right -= 1\n        return closest",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "16",
+        "titleSlug": "3sum-closest",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1807620249",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 710,
+      "memory": 18072000,
+      "timestamp": 1761054946,
+      "title": "3Sum Closest",
+      "titleSlug": "3sum-closest",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def threeSumClosest(self, nums: List[int], target: int) -> int:\n        # Could use a 3sum approach.\n        ## Edge cases.\n        if not nums:\n            return 0 # This is the basic edge case.\n        \n        nums.sort() # To do the 3sum approach we have to sort it first.\n\n        # Now.\n        maxsum : int = float('-inf')\n        for idx in range(len(nums) - 2):\n            currsum : int = float('-inf')\n            x : int = nums[idx]\n            left = idx + 1\n            right = len(nums) - 1\n            while left < right:\n                if (nums[left] + nums[right] + x) == target:\n                    left += 1\n                    continue # Not the ideal case.\n                elif (nums[left]) + nums[right] + x < target:\n                    if abs(target - currsum) > abs(target - (nums[left] + nums[right] + x)):\n                        currsum = nums[left] + nums[right] + x\n                    left += 1\n                else:\n                    if abs(target - currsum) > abs(target - (nums[left] + nums[right] + x)):\n                        currsum = nums[left] + nums[right] + x\n                    right -= 1\n            maxsum = max(maxsum,currsum)\n        return maxsum",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "16",
+        "titleSlug": "3sum-closest",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

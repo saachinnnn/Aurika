@@ -1,0 +1,64 @@
+{
+  "question_name": "count-operations-to-obtain-zero",
+  "problem_metadata": {
+    "questionId": "2288",
+    "title": "Count Operations to Obtain Zero",
+    "titleSlug": "count-operations-to-obtain-zero",
+    "content": "<p>You are given two <strong>non-negative</strong> integers <code>num1</code> and <code>num2</code>.</p>\n\n<p>In one <strong>operation</strong>, if <code>num1 &gt;= num2</code>, you must subtract <code>num2</code> from <code>num1</code>, otherwise subtract <code>num1</code> from <code>num2</code>.</p>\n\n<ul>\n\t<li>For example, if <code>num1 = 5</code> and <code>num2 = 4</code>, subtract <code>num2</code> from <code>num1</code>, thus obtaining <code>num1 = 1</code> and <code>num2 = 4</code>. However, if <code>num1 = 4</code> and <code>num2 = 5</code>, after one operation, <code>num1 = 4</code> and <code>num2 = 1</code>.</li>\n</ul>\n\n<p>Return <em>the <strong>number of operations</strong> required to make either</em> <code>num1 = 0</code> <em>or</em> <code>num2 = 0</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> num1 = 2, num2 = 3\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> \n- Operation 1: num1 = 2, num2 = 3. Since num1 &lt; num2, we subtract num1 from num2 and get num1 = 2, num2 = 3 - 2 = 1.\n- Operation 2: num1 = 2, num2 = 1. Since num1 &gt; num2, we subtract num2 from num1.\n- Operation 3: num1 = 1, num2 = 1. Since num1 == num2, we subtract num2 from num1.\nNow num1 = 0 and num2 = 1. Since num1 == 0, we do not need to perform any further operations.\nSo the total number of operations required is 3.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> num1 = 10, num2 = 10\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> \n- Operation 1: num1 = 10, num2 = 10. Since num1 == num2, we subtract num2 from num1 and get num1 = 10 - 10 = 0.\nNow num1 = 0 and num2 = 10. Since num1 == 0, we are done.\nSo the total number of operations required is 1.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= num1, num2 &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"220.1K\", \"totalSubmission\": \"275.6K\", \"totalAcceptedRaw\": 220071, \"totalSubmissionRaw\": 275635, \"acRate\": \"79.8%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Simulation",
+        "slug": "simulation",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Try simulating the process until either of the two integers is zero.",
+      "Count the number of operations done."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1825182706",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 0,
+      "memory": 8044000,
+      "timestamp": 1762699470,
+      "title": "Count Operations to Obtain Zero",
+      "titleSlug": "count-operations-to-obtain-zero",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "8 MB",
+      "memoryPercentile": 4.899699999999992,
+      "code": "class Solution {\npublic:\n    int countOperations(int num1, int num2) {\n        int count=0;\n        while(num2!=0 && num1!=0){\n             if (num1 >= num2) {\n                num1 = num1 - num2;\n            } \n            // If num2 is greater than num1\n            else {\n                num2 = num2 - num1;\n            }\n            count++;\n        }\n        return count;\n\n        \n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "2288",
+        "titleSlug": "count-operations-to-obtain-zero",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

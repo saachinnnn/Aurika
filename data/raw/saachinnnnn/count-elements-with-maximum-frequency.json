@@ -1,0 +1,69 @@
+{
+  "question_name": "count-elements-with-maximum-frequency",
+  "problem_metadata": {
+    "questionId": "3242",
+    "title": "Count Elements With Maximum Frequency",
+    "titleSlug": "count-elements-with-maximum-frequency",
+    "content": "<p>You are given an array <code>nums</code> consisting of <strong>positive</strong> integers.</p>\n\n<p>Return <em>the <strong>total frequencies</strong> of elements in</em><em> </em><code>nums</code>&nbsp;<em>such that those elements all have the <strong>maximum</strong> frequency</em>.</p>\n\n<p>The <strong>frequency</strong> of an element is the number of occurrences of that element in the array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,2,3,1,4]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The elements 1 and 2 have a frequency of 2 which is the maximum frequency in the array.\nSo the number of elements in the array with maximum frequency is 4.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5]\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> All elements of the array have a frequency of 1 which is the maximum.\nSo the number of elements in the array with maximum frequency is 5.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"409.8K\", \"totalSubmission\": \"512.9K\", \"totalAcceptedRaw\": 409775, \"totalSubmissionRaw\": 512905, \"acRate\": \"79.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Find frequencies of all elements of the array.",
+      "Find the elements that have the maximum frequencies and count their total occurrences."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1780403903",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 17996000,
+      "timestamp": 1758646247,
+      "title": "Count Elements With Maximum Frequency",
+      "titleSlug": "count-elements-with-maximum-frequency",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 34.7387,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 51.9002,
+      "code": "class Solution:\n    def maxFrequencyElements(self, nums: list[int]) -> int:\n        freq = [0] * 101\n        mx = 0\n        res = 0\n        for n in nums:\n            freq[n] += 1\n            f = freq[n]\n            if f > mx:\n                mx = f\n                res = f\n            elif f == mx:\n                res += f\n        return res",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3242",
+        "titleSlug": "count-elements-with-maximum-frequency",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

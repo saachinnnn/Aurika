@@ -1,0 +1,58 @@
+{
+  "question_name": "alice-and-bob-playing-flower-game",
+  "problem_metadata": {
+    "questionId": "3279",
+    "title": "Alice and Bob Playing Flower Game",
+    "titleSlug": "alice-and-bob-playing-flower-game",
+    "content": "<p>Alice and Bob are playing a turn-based game on a field, with two lanes of flowers between them. There are <code>x</code> flowers in the first lane between Alice and Bob, and <code>y</code> flowers in the second lane between them.</p>\n\n<p><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2025/08/27/3021.png\" style=\"width: 300px; height: 150px;\" /></p>\n\n<p>The game proceeds as follows:</p>\n\n<ol>\n\t<li>Alice takes the first turn.</li>\n\t<li>In each turn, a player must choose either one of the lane&nbsp;and pick one flower from that side.</li>\n\t<li>At the end of the turn, if there are no flowers left at all in either lane, the <strong>current</strong> player captures their opponent and wins the game.</li>\n</ol>\n\n<p>Given two integers, <code>n</code> and <code>m</code>, the task is to compute the number of possible pairs <code>(x, y)</code> that satisfy the conditions:</p>\n\n<ul>\n\t<li>Alice must win the game according to the described rules.</li>\n\t<li>The number of flowers <code>x</code> in the first lane must be in the range <code>[1,n]</code>.</li>\n\t<li>The number of flowers <code>y</code> in the second lane must be in the range <code>[1,m]</code>.</li>\n</ul>\n\n<p>Return <em>the number of possible pairs</em> <code>(x, y)</code> <em>that satisfy the conditions mentioned in the statement</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 3, m = 2\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The following pairs satisfy conditions described in the statement: (1,2), (3,2), (2,1).\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1, m = 1\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> No pairs satisfy the conditions described in the statement.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n, m &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"126.2K\", \"totalSubmission\": \"209.9K\", \"totalAcceptedRaw\": 126200, \"totalSubmissionRaw\": 209921, \"acRate\": \"60.1%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "(x, y) is valid if and only if they have different parities."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1752612021",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17948000,
+      "timestamp": 1756483834,
+      "title": "Alice and Bob Playing Flower Game",
+      "titleSlug": "alice-and-bob-playing-flower-game",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 52.42129999999998,
+      "code": "class Solution:\n    def flowerGame(self, n: int, m: int) -> int:\n        odd1 = (n + 1) // 2\n        even1 = n // 2\n\n        odd2 = (m + 1) // 2\n        even2 = m // 2\n\n        return odd1 * even2 + odd2 * even1\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3279",
+        "titleSlug": "alice-and-bob-playing-flower-game",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

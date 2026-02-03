@@ -1,0 +1,91 @@
+{
+  "question_name": "remove-duplicates-from-sorted-list",
+  "problem_metadata": {
+    "questionId": "83",
+    "title": "Remove Duplicates from Sorted List",
+    "titleSlug": "remove-duplicates-from-sorted-list",
+    "content": "<p>Given the <code>head</code> of a sorted linked list, <em>delete all duplicates such that each element appears only once</em>. Return <em>the linked list <strong>sorted</strong> as well</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/list1.jpg\" style=\"width: 302px; height: 242px;\" />\n<pre>\n<strong>Input:</strong> head = [1,1,2]\n<strong>Output:</strong> [1,2]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/list2.jpg\" style=\"width: 542px; height: 222px;\" />\n<pre>\n<strong>Input:</strong> head = [1,1,2,3,3]\n<strong>Output:</strong> [1,2,3]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the list is in the range <code>[0, 300]</code>.</li>\n\t<li><code>-100 &lt;= Node.val &lt;= 100</code></li>\n\t<li>The list is guaranteed to be <strong>sorted</strong> in ascending order.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"2.3M\", \"totalSubmission\": \"4M\", \"totalAcceptedRaw\": 2253925, \"totalSubmissionRaw\": 4015013, \"acRate\": \"56.1%\"}",
+    "topicTags": [
+      {
+        "name": "Linked List",
+        "slug": "linked-list",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1721684084",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17764000,
+      "timestamp": 1754211245,
+      "title": "Remove Duplicates from Sorted List",
+      "titleSlug": "remove-duplicates-from-sorted-list",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 62.56700000000001,
+      "code": "class Solution:\n    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        if head is None or head.next is None:\n            return head\n\n        seen = set()\n        dummy = ListNode(-1)\n        tail = dummy\n        curr = head\n\n        while curr:\n            if curr.val not in seen:\n                seen.add(curr.val)\n                tail.next = curr\n                tail = tail.next\n            # If duplicate, skip it by not updating tail\n            curr = curr.next\n\n        # Terminate the list\n        tail.next = None\n\n        return dummy.next",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "83",
+        "titleSlug": "remove-duplicates-from-sorted-list",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1721681407",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1,
+      "memory": 18016000,
+      "timestamp": 1754211049,
+      "title": "Remove Duplicates from Sorted List",
+      "titleSlug": "remove-duplicates-from-sorted-list",
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 33.815,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 48.957100000000004,
+      "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        ''' How to solve this problem....\n            Steps:-\n            1) Just use the dummy node method and keep a tailpointer and maintain a hashset LMFAO.\n            2) DONE TA DA!\n            '''\n\n            # First the edge cases.\n        if head is None:\n            return None\n        elif head.next is None:\n            return head\n        else:\n            Hashset : set = set()\n            dummy = ListNode(-1)\n            tail = dummy\n            tail.next = head\n                \n            curr = head\n            while curr is not None:\n                if curr.val in Hashset:\n                    tail.next = curr.next\n                else:\n                    Hashset.add(curr.val)\n                    tail.next = curr\n                    tail = tail.next\n                curr = curr.next\n            return dummy.next",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "83",
+        "titleSlug": "remove-duplicates-from-sorted-list",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "question_name": "sum-of-even-numbers-after-queries",
+  "problem_metadata": {
+    "questionId": "1027",
+    "title": "Sum of Even Numbers After Queries",
+    "titleSlug": "sum-of-even-numbers-after-queries",
+    "content": "<p>You are given an integer array <code>nums</code> and an array <code>queries</code> where <code>queries[i] = [val<sub>i</sub>, index<sub>i</sub>]</code>.</p>\n\n<p>For each query <code>i</code>, first, apply <code>nums[index<sub>i</sub>] = nums[index<sub>i</sub>] + val<sub>i</sub></code>, then print the sum of the even values of <code>nums</code>.</p>\n\n<p>Return <em>an integer array </em><code>answer</code><em> where </em><code>answer[i]</code><em> is the answer to the </em><code>i<sup>th</sup></code><em> query</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4], queries = [[1,0],[-3,1],[-4,0],[2,3]]\n<strong>Output:</strong> [8,6,2,4]\n<strong>Explanation:</strong> At the beginning, the array is [1,2,3,4].\nAfter adding 1 to nums[0], the array is [2,2,3,4], and the sum of even values is 2 + 2 + 4 = 8.\nAfter adding -3 to nums[1], the array is [2,-1,3,4], and the sum of even values is 2 + 4 = 6.\nAfter adding -4 to nums[0], the array is [-2,-1,3,4], and the sum of even values is -2 + 4 = 2.\nAfter adding 2 to nums[3], the array is [-2,-1,3,6], and the sum of even values is -2 + 6 = 4.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1], queries = [[4,0]]\n<strong>Output:</strong> [0]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= queries.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= val<sub>i</sub> &lt;= 10<sup>4</sup></code></li>\n\t<li><code>0 &lt;= index<sub>i</sub> &lt; nums.length</code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"153.7K\", \"totalSubmission\": \"223.6K\", \"totalAcceptedRaw\": 153744, \"totalSubmissionRaw\": 223631, \"acRate\": \"68.7%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Simulation",
+        "slug": "simulation",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1833886743",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 24,
+      "memory": 23100000,
+      "timestamp": 1763529574,
+      "title": "Sum of Even Numbers After Queries",
+      "titleSlug": "sum-of-even-numbers-after-queries",
+      "runtimeDisplay": "24 ms",
+      "runtimePercentile": 26.9225,
+      "memoryDisplay": "23.1 MB",
+      "memoryPercentile": 63.24749999999998,
+      "code": "class Solution:\n    def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        # I overcomplicated things for this question argh.\n        ansarray = [0]*len(nums)\n        runningsum = sum(num if num % 2 == 0 else 0 for num in nums)\n        for idx,(val,i) in enumerate(queries):\n            prev = nums[i]\n\n            if prev % 2 == 0: # We remove the element from the runningsum if its even\n                runningsum -= prev\n            \n            nums[i] += val\n            if nums[i] % 2 == 0:\n                runningsum += nums[i]\n            \n            ansarray[idx] = runningsum\n        return ansarray[:len(queries)]\n            ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1027",
+        "titleSlug": "sum-of-even-numbers-after-queries",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1833885232",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 11,
+      "memory": 23120000,
+      "timestamp": 1763529467,
+      "title": "Sum of Even Numbers After Queries",
+      "titleSlug": "sum-of-even-numbers-after-queries",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def sumEvenAfterQueries(self, nums: List[int], queries: List[List[int]]) -> List[int]:\n        # I overcomplicated things for this question argh.\n        ansarray = [0]*len(nums)\n        runningsum = sum(num if num % 2 == 0 else 0 for num in nums)\n        for idx,(val,i) in enumerate(queries):\n            prev = nums[i]\n\n            if prev % 2 == 0: # We remove the element from the runningsum if its even\n                runningsum -= prev\n            \n            nums[i] += val\n            if nums[i] % 2 == 0:\n                runningsum += nums[i]\n            \n            ansarray[idx] = runningsum\n        return ansarray\n            ",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1027",
+        "titleSlug": "sum-of-even-numbers-after-queries",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

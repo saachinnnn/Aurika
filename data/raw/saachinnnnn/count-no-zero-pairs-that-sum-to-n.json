@@ -1,0 +1,136 @@
+{
+  "question_name": "count-no-zero-pairs-that-sum-to-n",
+  "problem_metadata": {
+    "questionId": "4049",
+    "title": "Count No-Zero Pairs That Sum to N",
+    "titleSlug": "count-no-zero-pairs-that-sum-to-n",
+    "content": "<p>A <strong>no-zero</strong> integer is a <strong>positive</strong> integer that <strong>does not contain the digit</strong> 0 in its decimal representation.</p>\n\n<p>Given an integer <code>n</code>, count the number of pairs <code>(a, b)</code> where:</p>\n\n<ul>\n\t<li><code>a</code> and <code>b</code> are <strong>no-zero</strong> integers.</li>\n\t<li><code>a + b = n</code></li>\n</ul>\n\n<p>Return an integer denoting the number of such pairs.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">n = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The only pair is <code>(1, 1)</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">n = 3</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The pairs are <code>(1, 2)</code> and <code>(2, 1)</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">n = 11</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">8</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The pairs are <code>(2, 9)</code>, <code>(3, 8)</code>, <code>(4, 7)</code>, <code>(5, 6)</code>, <code>(6, 5)</code>, <code>(7, 4)</code>, <code>(8, 3)</code>, and <code>(9, 2)</code>. Note that <code>(1, 10)</code> and <code>(10, 1)</code> do not satisfy the conditions because 10 contains 0 in its decimal representation.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= n &lt;= 10<sup>15</sup></code></li>\n</ul>\n",
+    "difficulty": "Hard",
+    "stats": "{\"totalAccepted\": \"4.9K\", \"totalSubmission\": \"35.3K\", \"totalAcceptedRaw\": 4917, \"totalSubmissionRaw\": 35292, \"acRate\": \"13.9%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use digit DP over the decimal representation of <code>n</code>.",
+      "At each digit, track whether a carry is present and whether <code>a</code> or <code>b</code> has used a zero so far.",
+      "Transition by choosing digits for <code>a</code> and <code>b</code> that add up (with carry) to the current digit of <code>n</code>.",
+      "Subtract the cases where either number ends up being zero-containing when <code>n</code> itself is no-zero."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1791730749",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10506,
+      "memory": 186008000,
+      "timestamp": 1759635667,
+      "title": "Count No-Zero Pairs That Sum to N",
+      "titleSlug": "count-no-zero-pairs-that-sum-to-n",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def countNoZeroPairs(self, n: int) -> int:\n        # A function call that makes TLE nonexistent i hope.\n        def is_no_zero(x: int) -> bool:\n            while x:\n                if x % 10 == 0:\n                    return False\n                x //= 10\n            return True\n\n        # Lets maintain a set this time.\n        no_zero_set : set = set()\n        for i in range(1,n):\n            if is_no_zero(i):\n                no_zero_set.add(i)\n\n        count : int = 0\n\n        # Now we can write the main logic n2 + n1 = n\n        for n1 in no_zero_set:\n            n2 = n - n1\n            if n2 in no_zero_set:\n                count +=1 \n        return count\n\n        ",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4049",
+        "titleSlug": "count-no-zero-pairs-that-sum-to-n",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1791717965",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10910,
+      "memory": 17568000,
+      "timestamp": 1759635136,
+      "title": "Count No-Zero Pairs That Sum to N",
+      "titleSlug": "count-no-zero-pairs-that-sum-to-n",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def countNoZeroPairs(self, n: int) -> int:\n        # Creating a function for solving TLE.\n        def is_not_zero(x : int) -> bool:\n            while x:\n                if x % 10 == 0:\n                    return False\n                x //= 10\n            return True\n        # hmmm so we solve this by looping from 1 to n - 1.\n        ## We can play around the fact that a + b = n\n\n        ## b = n - a \n\n        count : int = 0\n\n        for n1 in range(1,n): # We are iterating from 1 to n - 1\n            n2 = n - n1 # As per the formula.\n            if is_not_zero(n1) and is_not_zero(n2):\n                count += 1\n        return count",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4049",
+        "titleSlug": "count-no-zero-pairs-that-sum-to-n",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1791712209",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10818,
+      "memory": 17404000,
+      "timestamp": 1759634891,
+      "title": "Count No-Zero Pairs That Sum to N",
+      "titleSlug": "count-no-zero-pairs-that-sum-to-n",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def countNoZeroPairs(self, n: int) -> int:\n        # hmmm so we solve this by looping from 1 to n - 1.\n        ## We can play around the fact that a + b = n\n\n        ## b = n - a \n\n        count : int = 0\n\n        for n1 in range(1,n): # We are iterating from 1 to n - 1\n            n2 = n - n1 # As per the formula.\n            if '0' not in str(n1) and '0' not in str(n2):\n                count += 1\n        return count",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4049",
+        "titleSlug": "count-no-zero-pairs-that-sum-to-n",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "question_name": "find-pivot-index",
+  "problem_metadata": {
+    "questionId": "724",
+    "title": "Find Pivot Index",
+    "titleSlug": "find-pivot-index",
+    "content": "<p>Given an array of integers <code>nums</code>, calculate the <strong>pivot index</strong> of this array.</p>\n\n<p>The <strong>pivot index</strong> is the index where the sum of all the numbers <strong>strictly</strong> to the left of the index is equal to the sum of all the numbers <strong>strictly</strong> to the index&#39;s right.</p>\n\n<p>If the index is on the left edge of the array, then the left sum is <code>0</code> because there are no elements to the left. This also applies to the right edge of the array.</p>\n\n<p>Return <em>the <strong>leftmost pivot index</strong></em>. If no such index exists, return <code>-1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,7,3,6,5,6]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong>\nThe pivot index is 3.\nLeft sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11\nRight sum = nums[4] + nums[5] = 5 + 6 = 11\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong>\nThere is no index that satisfies the conditions in the problem statement.</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,1,-1]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong>\nThe pivot index is 0.\nLeft sum = 0 (no elements to the left of index 0)\nRight sum = nums[1] + nums[2] = 1 + -1 = 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Note:</strong> This question is the same as&nbsp;1991:&nbsp;<a href=\"https://leetcode.com/problems/find-the-middle-index-in-array/\" target=\"_blank\">https://leetcode.com/problems/find-the-middle-index-in-array/</a></p>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"1.6M\", \"totalSubmission\": \"2.6M\", \"totalAcceptedRaw\": 1586805, \"totalSubmissionRaw\": 2562448, \"acRate\": \"61.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Create an array sumLeft where sumLeft[i] is the sum of all the numbers to the left of index i.",
+      "Create an array sumRight where sumRight[i] is the sum of all the numbers to the right of index i.",
+      "For each index i, check if sumLeft[i] equals sumRight[i]. If so, return i. If no such i is found, return -1."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1787787365",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 4,
+      "memory": 18672000,
+      "timestamp": 1759286714,
+      "title": "Find Pivot Index",
+      "titleSlug": "find-pivot-index",
+      "runtimeDisplay": "4 ms",
+      "runtimePercentile": 72.9152,
+      "memoryDisplay": "18.7 MB",
+      "memoryPercentile": 67.89230000000002,
+      "code": "class Solution:\n    def pivotIndex(self, nums: List[int]) -> int:\n        # Same thing just in a different way.\n        leftsum , rightsum = 0,sum(nums)\n\n        for idx,ele in enumerate(nums):\n            rightsum -= ele\n\n            if leftsum == rightsum:\n                return idx\n            \n            leftsum += ele\n        return -1\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "724",
+        "titleSlug": "find-pivot-index",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787785021",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 18616000,
+      "timestamp": 1759286443,
+      "title": "Find Pivot Index",
+      "titleSlug": "find-pivot-index",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 57.7506,
+      "memoryDisplay": "18.6 MB",
+      "memoryPercentile": 67.89230000000002,
+      "code": "class Solution:\n    def pivotIndex(self, nums: List[int]) -> int:\n        # Now doing the Totalling method.\n        Total : int = sum(nums)\n        LeftTotal : int = 0\n\n        # Now looping once.\n        for i in range(len(nums)):\n            RightTotal : int = Total - LeftTotal - nums[i]\n\n            if RightTotal == LeftTotal:\n                return i\n            LeftTotal += nums[i]\n        return -1",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "724",
+        "titleSlug": "find-pivot-index",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787782527",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 13,
+      "memory": 18548000,
+      "timestamp": 1759286144,
+      "title": "Find Pivot Index",
+      "titleSlug": "find-pivot-index",
+      "runtimeDisplay": "13 ms",
+      "runtimePercentile": 23.784399999999994,
+      "memoryDisplay": "18.5 MB",
+      "memoryPercentile": 76.62420000000002,
+      "code": "class Solution:\n    def pivotIndex(self, nums: List[int]) -> int:\n        # First we calculate the Prefixsum for this.\n        for i in range(1,len(nums)):\n            nums[i] += nums[i - 1]\n\n\n        # Now we run another for loop to get the pivot index.\n        for i in range(len(nums)):\n            if i == 0:\n                if nums[0] == nums[-1]:\n                    return 0\n                else:\n                    continue\n            if nums[i - 1] == (nums[-1] - nums[i]):\n                return i\n        return -1",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "724",
+        "titleSlug": "find-pivot-index",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1646175944",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 18516000,
+      "timestamp": 1748361618,
+      "title": "Find Pivot Index",
+      "titleSlug": "find-pivot-index",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 57.7506,
+      "memoryDisplay": "18.5 MB",
+      "memoryPercentile": 76.62420000000002,
+      "code": "class Solution:\n    def pivotIndex(self, nums: List[int]) -> int:\n        Total = sum(nums)\n\n        left_sum = 0\n\n        for i in range(len(nums)):\n            right_sum = Total - left_sum - nums[i]\n            \n            if right_sum == left_sum:\n                return i\n            left_sum += nums[i]\n        return -1\n\n\n\n\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "724",
+        "titleSlug": "find-pivot-index",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1646154347",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 11,
+      "memory": 18612000,
+      "timestamp": 1748360159,
+      "title": "Find Pivot Index",
+      "titleSlug": "find-pivot-index",
+      "runtimeDisplay": "11 ms",
+      "runtimePercentile": 32.17979999999999,
+      "memoryDisplay": "18.6 MB",
+      "memoryPercentile": 67.89230000000002,
+      "code": "class Solution:\n    def pivotIndex(self, nums: List[int]) -> int:\n        for i in range(1,len(nums)):\n            nums[i] += nums[i - 1]\n        \n        for i in range(len(nums)):\n            left_sum = 0\n            right_sum = 0\n            if i == 0:\n                left_sum = 0\n            else:\n                left_sum = nums[i - 1]\n            if i == len(nums) - 1:\n                right_sum = 0\n            else:\n                right_sum = nums[-1] - nums[i]\n            if left_sum == right_sum:\n                return i\n        return -1\n\n\n\n\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "724",
+        "titleSlug": "find-pivot-index",
+        "hasFrontendPreview": false
+      },
+      "notes": "[ Time taken: 13 m 9 s ]",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

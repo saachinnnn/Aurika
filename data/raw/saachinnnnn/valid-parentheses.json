@@ -1,0 +1,240 @@
+{
+  "question_name": "valid-parentheses",
+  "problem_metadata": {
+    "questionId": "20",
+    "title": "Valid Parentheses",
+    "titleSlug": "valid-parentheses",
+    "content": "<p>Given a string <code>s</code> containing just the characters <code>&#39;(&#39;</code>, <code>&#39;)&#39;</code>, <code>&#39;{&#39;</code>, <code>&#39;}&#39;</code>, <code>&#39;[&#39;</code> and <code>&#39;]&#39;</code>, determine if the input string is valid.</p>\n\n<p>An input string is valid if:</p>\n\n<ol>\n\t<li>Open brackets must be closed by the same type of brackets.</li>\n\t<li>Open brackets must be closed in the correct order.</li>\n\t<li>Every close bracket has a corresponding open bracket of the same type.</li>\n</ol>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;()&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;()[]{}&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;(]&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n</div>\n\n<p><strong class=\"example\">Example 4:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;([])&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p><strong class=\"example\">Example 5:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;([)]&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>s</code> consists of parentheses only <code>&#39;()[]{}&#39;</code>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"7.1M\", \"totalSubmission\": \"16.4M\", \"totalAcceptedRaw\": 7142322, \"totalSubmissionRaw\": 16390087, \"acRate\": \"43.6%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use a stack of characters.",
+      "When you encounter an opening bracket, push it to the top of the stack.",
+      "When you encounter a closing bracket, check if the top of the stack was the opening for it. If yes, pop it from the stack. Otherwise, return false."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1815624275",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 18060000,
+      "timestamp": 1761799285,
+      "title": "Valid Parentheses",
+      "titleSlug": "valid-parentheses",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 36.5531,
+      "memoryDisplay": "18.1 MB",
+      "memoryPercentile": 52.41089999999999,
+      "code": "class Solution:\n    def isValid(self, s: str) -> bool:\n        stack : list = []\n        matching : dict = {')':'(','}':'{',']':'['}\n        for char in s:\n            if char in matching.values():\n                stack.append(char)\n            elif char in matching:\n                if not stack or matching[char] != stack[-1]:\n                    return False\n                stack.pop()\n            else:\n                return False\n        return not stack",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "20",
+        "titleSlug": "valid-parentheses",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1726366025",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1,
+      "memory": 17620000,
+      "timestamp": 1754538028,
+      "title": "Valid Parentheses",
+      "titleSlug": "valid-parentheses",
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 48.6139,
+      "memoryDisplay": "17.6 MB",
+      "memoryPercentile": 72.4562,
+      "code": "class Solution:\n    def isValid(self, s: str) -> bool:\n        stack = []\n        matching = {')':'(','}':'{',']':'['}\n\n        for ch in s:\n            if ch in matching.values():\n                stack.append(ch)\n            elif ch in matching:\n                if not stack or stack[-1] != matching[ch]:\n                    return False\n                stack.pop()\n            else:\n                return False\n        return not stack",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "20",
+        "titleSlug": "valid-parentheses",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1726362578",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18048000,
+      "timestamp": 1754537696,
+      "title": "Valid Parentheses",
+      "titleSlug": "valid-parentheses",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 52.41089999999999,
+      "code": "from collections import defaultdict\nclass Solution:\n    def isValid(self, s: str) -> bool:\n        stack : list = []\n        Hashmap : dict = defaultdict(int)\n        for ch in s:\n            if ch == '[' or ch == '{' or ch == '(':\n                Hashmap[ch] += 1\n                stack.append(ch)\n            else:\n                if ch == ']':\n                    if '[' not in Hashmap or Hashmap['['] == 0:\n                        return False\n                    elif stack[-1] != '[':\n                        return False\n                    stack.pop()\n                    Hashmap['['] -= 1\n                elif ch == '}':\n                    if '{' not in Hashmap or Hashmap['{'] == 0:\n                        return False\n                    elif stack[-1] != '{':\n                        return False\n                    stack.pop()\n                    Hashmap['{'] -= 1\n                else:\n                    if '(' not in Hashmap or Hashmap['('] == 0:\n                        return False\n                    elif stack[-1] != '(':\n                        return False\n                    stack.pop()\n                    Hashmap['('] -= 1\n        return len(stack) == 0",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "20",
+        "titleSlug": "valid-parentheses",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1726359312",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 43,
+      "memory": 17984000,
+      "timestamp": 1754537386,
+      "title": "Valid Parentheses",
+      "titleSlug": "valid-parentheses",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "from collections import defaultdict\nclass Solution:\n    def isValid(self, s: str) -> bool:\n        stack : list = []\n        Hashmap : dict = defaultdict(int)\n        for ch in s:\n            if ch == '[' or ch == '{' or ch == '(':\n                Hashmap[ch] += 1\n                stack.append(ch)\n            else:\n                if ch == ']':\n                    if '[' not in Hashmap:\n                        return False\n                    elif stack[-1] != '[':\n                        return False\n                    stack.pop()\n                    Hashmap[ch] -= 1\n                elif ch == '}':\n                    if '{' not in Hashmap:\n                        return False\n                    elif stack[-1] != '{':\n                        return False\n                    stack.pop()\n                    Hashmap[ch] -= 1\n                else:\n                    if '(' not in Hashmap:\n                        return False\n                    elif stack[-1] != '(':\n                        return False\n                    stack.pop()\n                    Hashmap[ch] -= 1\n        return len(stack) == 0",
+      "statusCode": 15,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "20",
+        "titleSlug": "valid-parentheses",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "IndexError: list index out of range\n         ~~~~~^^^^\n    elif stack[-1] != '{':\nLine 21 in isValid (Solution.py)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ret = Solution().isValid(param_1)\nLine 57 in _driver (Solution.py)\n    _driver()\nLine 72 in <module> (Solution.py)",
+      "compileError": null
+    },
+    {
+      "id": "1670300336",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 17972000,
+      "timestamp": 1750407561,
+      "title": "Valid Parentheses",
+      "titleSlug": "valid-parentheses",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 36.5531,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 57.02459999999999,
+      "code": "class Solution:\n    def isValid(self, s: str) -> bool:\n        stack : list = []\n        match = {\")\":\"(\",\"]\":\"[\",\"}\":\"{\"}\n\n        for ch in s:\n            if ch in match.values():\n                stack.append(ch)\n            elif ch in match:\n                if not stack or stack[-1] != match[ch]:\n                    return False\n                stack.pop()\n            else:\n                return False\n        return not stack",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "20",
+        "titleSlug": "valid-parentheses",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1670286140",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17780000,
+      "timestamp": 1750406503,
+      "title": "Valid Parentheses",
+      "titleSlug": "valid-parentheses",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def isValid(self, s: str) -> bool:\n        ans : list = []\n        for i in range(len(s) - 1,-1,-1):\n            element = s[i]\n            if (element == \"]\" or element == \"}\" or element == \")\"):\n                ans.append(element)\n            elif (element == \"[\" or element == \"{\" or element == \"(\"):\n                if (element == \"[\" and \"]\" in ans):\n                    ans.remove(\"]\")\n                elif (element == \"{\" and \"}\" in ans):\n                    ans.remove(\"}\")\n                elif (element == \"(\" and \")\" in ans):\n                    ans.remove(\")\")\n                else:\n                    return False\n        if len(ans) == 0:\n            return True\n        else:\n            return False",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "20",
+        "titleSlug": "valid-parentheses",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

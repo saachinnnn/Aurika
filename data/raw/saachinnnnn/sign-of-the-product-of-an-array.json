@@ -1,0 +1,64 @@
+{
+  "question_name": "sign-of-the-product-of-an-array",
+  "problem_metadata": {
+    "questionId": "1950",
+    "title": "Sign of the Product of an Array",
+    "titleSlug": "sign-of-the-product-of-an-array",
+    "content": "<p>Implement a function <code>signFunc(x)</code> that returns:</p>\n\n<ul>\n\t<li><code>1</code> if <code>x</code> is positive.</li>\n\t<li><code>-1</code> if <code>x</code> is negative.</li>\n\t<li><code>0</code> if <code>x</code> is equal to <code>0</code>.</li>\n</ul>\n\n<p>You are given an integer array <code>nums</code>. Let <code>product</code> be the product of all values in the array <code>nums</code>.</p>\n\n<p>Return <code>signFunc(product)</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,-2,-3,-4,3,2,1]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The product of all values in the array is 144, and signFunc(144) = 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,5,0,2,-3]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> The product of all values in the array is 0, and signFunc(0) = 0\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,1,-1,1,-1]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> The product of all values in the array is -1, and signFunc(-1) = -1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"428.2K\", \"totalSubmission\": \"660.1K\", \"totalAcceptedRaw\": 428168, \"totalSubmissionRaw\": 660096, \"acRate\": \"64.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "If there is a 0 in the array the answer is 0",
+      "To avoid overflow make all the negative numbers -1 and all positive numbers 1 and calculate the prod"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1770512144",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17728000,
+      "timestamp": 1757854440,
+      "title": "Sign of the Product of an Array",
+      "titleSlug": "sign-of-the-product-of-an-array",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 65.2432,
+      "code": "class Solution:\n    def arraySign(self, nums: List[int]) -> int:\n        product : int = 1\n        for num in nums:\n            if num < 0:\n                product *= -1\n            elif num > 0:\n                product *= 1\n            else:\n                return 0\n        return product",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1950",
+        "titleSlug": "sign-of-the-product-of-an-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

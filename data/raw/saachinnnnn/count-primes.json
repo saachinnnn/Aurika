@@ -1,0 +1,75 @@
+{
+  "question_name": "count-primes",
+  "problem_metadata": {
+    "questionId": "204",
+    "title": "Count Primes",
+    "titleSlug": "count-primes",
+    "content": "<p>Given an integer <code>n</code>, return <em>the number of prime numbers that are strictly less than</em> <code>n</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 10\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> There are 4 prime numbers less than 10, they are 2, 3, 5, 7.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 0\n<strong>Output:</strong> 0\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= n &lt;= 5 * 10<sup>6</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"1.2M\", \"totalSubmission\": \"3.4M\", \"totalAcceptedRaw\": 1212827, \"totalSubmissionRaw\": 3399214, \"acRate\": \"35.7%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Enumeration",
+        "slug": "enumeration",
+        "translatedName": null
+      },
+      {
+        "name": "Number Theory",
+        "slug": "number-theory",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Checking all the integers in the range [1, n - 1] is not efficient. Think about a better approach.",
+      "Since most of the numbers are not primes, we need a fast approach to exclude the non-prime integers.",
+      "Use Sieve of Eratosthenes."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1800437284",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1217,
+      "memory": 56204000,
+      "timestamp": 1760368855,
+      "title": "Count Primes",
+      "titleSlug": "count-primes",
+      "runtimeDisplay": "1217 ms",
+      "runtimePercentile": 78.1307000000005,
+      "memoryDisplay": "56.2 MB",
+      "memoryPercentile": 73.20050000000009,
+      "code": "class Solution:\n    def countPrimes(self, n: int) -> int:\n        # There is something called sieve of Eratosthenes.\n        if n < 2:\n            return 0\n        is_prime : list = [True] * n\n        is_prime[0] = is_prime[1] = False\n        for i in range(2,int(n**0.5) + 1):\n            if is_prime[i]:\n                for j in range(i*i,n,i):\n                    is_prime[j] = False\n        return sum(is_prime)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "204",
+        "titleSlug": "count-primes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

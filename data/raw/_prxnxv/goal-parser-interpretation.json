@@ -1,0 +1,58 @@
+{
+  "question_name": "goal-parser-interpretation",
+  "problem_metadata": {
+    "questionId": "1797",
+    "title": "Goal Parser Interpretation",
+    "titleSlug": "goal-parser-interpretation",
+    "content": "<p>You own a <strong>Goal Parser</strong> that can interpret a string <code>command</code>. The <code>command</code> consists of an alphabet of <code>&quot;G&quot;</code>, <code>&quot;()&quot;</code> and/or <code>&quot;(al)&quot;</code> in some order. The Goal Parser will interpret <code>&quot;G&quot;</code> as the string <code>&quot;G&quot;</code>, <code>&quot;()&quot;</code> as the string <code>&quot;o&quot;</code>, and <code>&quot;(al)&quot;</code> as the string <code>&quot;al&quot;</code>. The interpreted strings are then concatenated in the original order.</p>\n\n<p>Given the string <code>command</code>, return <em>the <strong>Goal Parser</strong>&#39;s interpretation of </em><code>command</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> command = &quot;G()(al)&quot;\n<strong>Output:</strong> &quot;Goal&quot;\n<strong>Explanation:</strong>&nbsp;The Goal Parser interprets the command as follows:\nG -&gt; G\n() -&gt; o\n(al) -&gt; al\nThe final concatenated result is &quot;Goal&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> command = &quot;G()()()()(al)&quot;\n<strong>Output:</strong> &quot;Gooooal&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> command = &quot;(al)G(al)()()G&quot;\n<strong>Output:</strong> &quot;alGalooG&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= command.length &lt;= 100</code></li>\n\t<li><code>command</code> consists of <code>&quot;G&quot;</code>, <code>&quot;()&quot;</code>, and/or <code>&quot;(al)&quot;</code> in some order.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"317.5K\", \"totalSubmission\": \"361K\", \"totalAcceptedRaw\": 317498, \"totalSubmissionRaw\": 360970, \"acRate\": \"88.0%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "You need to check at most 2 characters to determine which character comes next."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1826992089",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 0,
+      "memory": 8292000,
+      "timestamp": 1762873589,
+      "title": "Goal Parser Interpretation",
+      "titleSlug": "goal-parser-interpretation",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "8.3 MB",
+      "memoryPercentile": 51.8333,
+      "code": "class Solution {\npublic:\n    string interpret(string command) {\n        string ginterpret;\n        for (size_t i = 0; i < command.length(); i++) {\n            if (command[i] == 'G') {\n                ginterpret += 'G';\n                \n                \n\n            } else if (command[i] == '(' && command[i + 1] == ')') {\n                ginterpret += 'o';\n                i++;\n            } else if (command[i] == '(' && command[i + 1] == 'a' &&\n                       command[i + 2] == 'l' && command[i+3]==')') {\n                ginterpret += \"al\";\n                i=i+3;\n            }\n            \n        }\n        return ginterpret;\n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "1797",
+        "titleSlug": "goal-parser-interpretation",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "question_name": "next-greater-numerically-balanced-number",
+  "problem_metadata": {
+    "questionId": "2174",
+    "title": "Next Greater Numerically Balanced Number",
+    "titleSlug": "next-greater-numerically-balanced-number",
+    "content": "<p>An integer <code>x</code> is <strong>numerically balanced</strong> if for every digit <code>d</code> in the number <code>x</code>, there are <strong>exactly</strong> <code>d</code> occurrences of that digit in <code>x</code>.</p>\n\n<p>Given an integer <code>n</code>, return <em>the <strong>smallest numerically balanced</strong> number <strong>strictly greater</strong> than </em><code>n</code><em>.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 22\n<strong>Explanation:</strong> \n22 is numerically balanced since:\n- The digit 2 occurs 2 times. \nIt is also the smallest numerically balanced number strictly greater than 1.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1000\n<strong>Output:</strong> 1333\n<strong>Explanation:</strong> \n1333 is numerically balanced since:\n- The digit 1 occurs 1 time.\n- The digit 3 occurs 3 times. \nIt is also the smallest numerically balanced number strictly greater than 1000.\nNote that 1022 cannot be the answer because 0 appeared more than 0 times.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 3000\n<strong>Output:</strong> 3133\n<strong>Explanation:</strong> \n3133 is numerically balanced since:\n- The digit 1 occurs 1 time.\n- The digit 3 occurs 3 times.\nIt is also the smallest numerically balanced number strictly greater than 3000.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= n &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"103.6K\", \"totalSubmission\": \"164.4K\", \"totalAcceptedRaw\": 103594, \"totalSubmissionRaw\": 164405, \"acRate\": \"63.0%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Backtracking",
+        "slug": "backtracking",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      },
+      {
+        "name": "Enumeration",
+        "slug": "enumeration",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "How far away can the next greater numerically balanced number be from n?",
+      "With the given constraints, what is the largest numerically balanced number?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1810399706",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 4,
+      "memory": 17820000,
+      "timestamp": 1761315430,
+      "title": "Next Greater Numerically Balanced Number",
+      "titleSlug": "next-greater-numerically-balanced-number",
+      "runtimeDisplay": "4 ms",
+      "runtimePercentile": 87.72569999999999,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 55.05410000000001,
+      "code": "from itertools import permutations\n\nclass Solution:\n    balanced_numbers = None\n\n    @staticmethod\n    def init_balanced_numbers():\n        s = set()\n        bases = [\n            \"1\", \"22\", \"122\", \"333\", \"1333\", \"4444\", \"14444\", \"22333\", \"55555\",\n            \"122333\", \"155555\", \"224444\", \"666666\", \"1224444\", \"1666666\",\n            \"2255555\", \"3334444\", \"7777777\", \"12255555\"\n        ]\n\n        for base in bases:\n            for p in set(permutations(sorted(base))):\n                s.add(int(\"\".join(p)))\n        return sorted(s)\n\n    def __init__(self):\n        if Solution.balanced_numbers is None:\n            Solution.balanced_numbers = Solution.init_balanced_numbers()\n\n    def nextBeautifulNumber(self, n: int) -> int:\n        for x in Solution.balanced_numbers:\n            if x > n:\n                return x\n        return -1\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2174",
+        "titleSlug": "next-greater-numerically-balanced-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1810399052",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10308,
+      "memory": 17452000,
+      "timestamp": 1761315382,
+      "title": "Next Greater Numerically Balanced Number",
+      "titleSlug": "next-greater-numerically-balanced-number",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def nextBeautifulNumber(self, n: int) -> int:\n        nums = []\n        self.generate(0, [0] * 10, nums)\n        nums.sort()\n        for num in nums:\n            if num > n:\n                return num\n        return -1\n\n    def generate(self, num: int, count: list[int], nums: list[int]) -> None:\n        if num > 0 and self.is_beautiful(count):\n            nums.append(num)\n        if num > 1224444:\n            return\n\n        for d in range(1, 8):\n            if count[d] < d:\n                count[d] += 1\n                self.generate(num * 10 + d, count, nums)\n                count[d] -= 1\n\n    def is_beautiful(self, count: list[int]) -> bool:\n        for d in range(1, 8):\n            if count[d] != 0 and count[d] != d:\n                return False\n        return True",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2174",
+        "titleSlug": "next-greater-numerically-balanced-number",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

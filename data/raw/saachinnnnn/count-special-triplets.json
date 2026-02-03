@@ -1,0 +1,104 @@
+{
+  "question_name": "count-special-triplets",
+  "problem_metadata": {
+    "questionId": "3885",
+    "title": "Count Special Triplets",
+    "titleSlug": "count-special-triplets",
+    "content": "<p>You are given an integer array <code>nums</code>.</p>\n\n<p>A <strong>special triplet</strong> is defined as a triplet of indices <code>(i, j, k)</code> such that:</p>\n\n<ul>\n\t<li><code>0 &lt;= i &lt; j &lt; k &lt; n</code>, where <code>n = nums.length</code></li>\n\t<li><code>nums[i] == nums[j] * 2</code></li>\n\t<li><code>nums[k] == nums[j] * 2</code></li>\n</ul>\n\n<p>Return the total number of <strong>special triplets</strong> in the array.</p>\n\n<p>Since the answer may be large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [6,3,6]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The only special triplet is <code>(i, j, k) = (0, 1, 2)</code>, where:</p>\n\n<ul>\n\t<li><code>nums[0] = 6</code>, <code>nums[1] = 3</code>, <code>nums[2] = 6</code></li>\n\t<li><code>nums[0] = nums[1] * 2 = 3 * 2 = 6</code></li>\n\t<li><code>nums[2] = nums[1] * 2 = 3 * 2 = 6</code></li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [0,1,0,0]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The only special triplet is <code>(i, j, k) = (0, 2, 3)</code>, where:</p>\n\n<ul>\n\t<li><code>nums[0] = 0</code>, <code>nums[2] = 0</code>, <code>nums[3] = 0</code></li>\n\t<li><code>nums[0] = nums[2] * 2 = 0 * 2 = 0</code></li>\n\t<li><code>nums[3] = nums[2] * 2 = 0 * 2 = 0</code></li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [8,4,2,8,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>There are exactly two special triplets:</p>\n\n<ul>\n\t<li><code>(i, j, k) = (0, 1, 3)</code>\n\n\t<ul>\n\t\t<li><code>nums[0] = 8</code>, <code>nums[1] = 4</code>, <code>nums[3] = 8</code></li>\n\t\t<li><code>nums[0] = nums[1] * 2 = 4 * 2 = 8</code></li>\n\t\t<li><code>nums[3] = nums[1] * 2 = 4 * 2 = 8</code></li>\n\t</ul>\n\t</li>\n\t<li><code>(i, j, k) = (1, 2, 4)</code>\n\t<ul>\n\t\t<li><code>nums[1] = 4</code>, <code>nums[2] = 2</code>, <code>nums[4] = 4</code></li>\n\t\t<li><code>nums[1] = nums[2] * 2 = 2 * 2 = 4</code></li>\n\t\t<li><code>nums[4] = nums[2] * 2 = 2 * 2 = 4</code></li>\n\t</ul>\n\t</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= n == nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"115.8K\", \"totalSubmission\": \"245.8K\", \"totalAcceptedRaw\": 115824, \"totalSubmissionRaw\": 245839, \"acRate\": \"47.1%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use frequency arrays or maps, e.g. <code>freqPrev</code> and <code>freqNext</code>—to track how many times each value appears before and after the current index.",
+      "For each index <code>j</code> in the triplet (<code>i</code>,<code>j</code>,<code>k</code>), compute its contribution to the answer using your freqPrev and freqNext counts."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1850644064",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 798,
+      "memory": 40364000,
+      "timestamp": 1765247710,
+      "title": "Count Special Triplets",
+      "titleSlug": "count-special-triplets",
+      "runtimeDisplay": "798 ms",
+      "runtimePercentile": 38.146200000000114,
+      "memoryDisplay": "40.4 MB",
+      "memoryPercentile": 82.39000000000013,
+      "code": "class Solution:\n    def specialTriplets(self, nums: List[int]) -> int:\n        n, MOD=len(nums), 10**9+7\n        freq, prev=Counter(nums), Counter()\n        cnt=0\n        prev[nums[0]]+=1\n        for i in range(1, n-1):\n            x=nums[i]\n            x2=x<<1\n            cnt+=prev[x2]*(freq[x2]-prev[x2]-(x==0))\n            prev[x]+=1\n        return cnt%MOD",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3885",
+        "titleSlug": "count-special-triplets",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1850643024",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10806,
+      "memory": 18480000,
+      "timestamp": 1765247582,
+      "title": "Count Special Triplets",
+      "titleSlug": "count-special-triplets",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def specialTriplets(self, nums: List[int]) -> int:\n        c = 0\n        # Brute force\n        for i in range(len(nums) - 2):\n            for j in range(i + 1,len(nums) - 1):\n                if nums[i] == nums[j] * 2:\n                    for k in range(j + 1,len(nums)):\n                        if nums[k] == nums[j] * 2:\n                            c += 1\n        return min(c,10**9 + 7)",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3885",
+        "titleSlug": "count-special-triplets",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

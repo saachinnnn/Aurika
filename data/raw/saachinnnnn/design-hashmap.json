@@ -1,0 +1,111 @@
+{
+  "question_name": "design-hashmap",
+  "problem_metadata": {
+    "questionId": "817",
+    "title": "Design HashMap",
+    "titleSlug": "design-hashmap",
+    "content": "<p>Design a HashMap without using any built-in hash table libraries.</p>\n\n<p>Implement the <code>MyHashMap</code> class:</p>\n\n<ul>\n\t<li><code>MyHashMap()</code> initializes the object with an empty map.</li>\n\t<li><code>void put(int key, int value)</code> inserts a <code>(key, value)</code> pair into the HashMap. If the <code>key</code> already exists in the map, update the corresponding <code>value</code>.</li>\n\t<li><code>int get(int key)</code> returns the <code>value</code> to which the specified <code>key</code> is mapped, or <code>-1</code> if this map contains no mapping for the <code>key</code>.</li>\n\t<li><code>void remove(key)</code> removes the <code>key</code> and its corresponding <code>value</code> if the map contains the mapping for the <code>key</code>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input</strong>\n[&quot;MyHashMap&quot;, &quot;put&quot;, &quot;put&quot;, &quot;get&quot;, &quot;get&quot;, &quot;put&quot;, &quot;get&quot;, &quot;remove&quot;, &quot;get&quot;]\n[[], [1, 1], [2, 2], [1], [3], [2, 1], [2], [2], [2]]\n<strong>Output</strong>\n[null, null, null, 1, -1, null, 1, null, -1]\n\n<strong>Explanation</strong>\nMyHashMap myHashMap = new MyHashMap();\nmyHashMap.put(1, 1); // The map is now [[1,1]]\nmyHashMap.put(2, 2); // The map is now [[1,1], [2,2]]\nmyHashMap.get(1);    // return 1, The map is now [[1,1], [2,2]]\nmyHashMap.get(3);    // return -1 (i.e., not found), The map is now [[1,1], [2,2]]\nmyHashMap.put(2, 1); // The map is now [[1,1], [2,1]] (i.e., update the existing value)\nmyHashMap.get(2);    // return 1, The map is now [[1,1], [2,1]]\nmyHashMap.remove(2); // remove the mapping for 2, The map is now [[1,1]]\nmyHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= key, value &lt;= 10<sup>6</sup></code></li>\n\t<li>At most <code>10<sup>4</sup></code> calls will be made to <code>put</code>, <code>get</code>, and <code>remove</code>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"742.5K\", \"totalSubmission\": \"1.1M\", \"totalAcceptedRaw\": 742490, \"totalSubmissionRaw\": 1119473, \"acRate\": \"66.3%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Linked List",
+        "slug": "linked-list",
+        "translatedName": null
+      },
+      {
+        "name": "Design",
+        "slug": "design",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Function",
+        "slug": "hash-function",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1830627812",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 13,
+      "memory": 20924000,
+      "timestamp": 1763232899,
+      "title": "Design HashMap",
+      "titleSlug": "design-hashmap",
+      "runtimeDisplay": "13 ms",
+      "runtimePercentile": 97.6941,
+      "memoryDisplay": "20.9 MB",
+      "memoryPercentile": 76.11560000000001,
+      "code": "class MyHashMap:\n\n    def __init__(self):\n        self.hashmap = {}        \n\n    def put(self, key: int, value: int) -> None:\n        self.hashmap[key] = value\n\n    def get(self, key: int) -> int:\n        return self.hashmap.get(key,-1)\n\n    def remove(self, key: int) -> None:\n        if key in self.hashmap:\n            del self.hashmap[key]\n\n\n# Your MyHashMap object will be instantiated and called as such:\n# obj = MyHashMap()\n# obj.put(key,value)\n# param_2 = obj.get(key)\n# obj.remove(key)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "817",
+        "titleSlug": "design-hashmap",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1830619618",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1809,
+      "memory": 20744000,
+      "timestamp": 1763232191,
+      "title": "Design HashMap",
+      "titleSlug": "design-hashmap",
+      "runtimeDisplay": "1809 ms",
+      "runtimePercentile": 5.004199999999851,
+      "memoryDisplay": "20.7 MB",
+      "memoryPercentile": 85.90190000000001,
+      "code": "class MyHashMap:\n    # Easiest question of my life lowkey????\n    def __init__(self):\n        self.hashmap : list = []\n\n    def put(self, key: int, value: int) -> None:\n        if self.hashmap:\n            for idx,num in enumerate(self.hashmap):\n                if num[0] == key:\n                    self.hashmap[idx][1] = value\n                    return\n        self.hashmap.append([key,value])\n\n    def get(self, key: int) -> int:\n        if self.hashmap:\n            for num in self.hashmap:\n                if num[0] == key:\n                    return num[1]\n        return -1\n\n    def remove(self, key: int) -> None:\n        for idx,num in enumerate(self.hashmap):\n            if num[0] == key:\n                self.hashmap.pop(idx)\n                return\n\n\n# Your MyHashMap object will be instantiated and called as such:\n# obj = MyHashMap()\n# obj.put(key,value)\n# param_2 = obj.get(key)\n# obj.remove(key)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "817",
+        "titleSlug": "design-hashmap",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

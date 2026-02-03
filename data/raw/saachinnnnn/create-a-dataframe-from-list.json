@@ -1,0 +1,87 @@
+{
+  "question_name": "create-a-dataframe-from-list",
+  "problem_metadata": {
+    "questionId": "3062",
+    "title": "Create a DataFrame from List",
+    "titleSlug": "create-a-dataframe-from-list",
+    "content": "<p>Write a solution to <strong>create</strong> a DataFrame from a 2D list called <code>student_data</code>. This 2D list contains the IDs and ages of some students.</p>\n\n<p>The DataFrame should have two columns, <code>student_id</code> and <code>age</code>, and be in the same order as the original 2D list.</p>\n\n<p>The result format is in the following example.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:\n</strong>student_data:<strong>\n</strong><code>[\n  [1, 15],\n  [2, 11],\n  [3, 11],\n  [4, 20]\n]</code>\n<strong>Output:</strong>\n+------------+-----+\n| student_id | age |\n+------------+-----+\n| 1          | 15  |\n| 2          | 11  |\n| 3          | 11  |\n| 4          | 20  |\n+------------+-----+\n<strong>Explanation:</strong>\nA DataFrame was created on top of student_data, with two columns named <code>student_id</code> and <code>age</code>.\n</pre>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"243.5K\", \"totalSubmission\": \"300.2K\", \"totalAcceptedRaw\": 243483, \"totalSubmissionRaw\": 300185, \"acRate\": \"81.1%\"}",
+    "topicTags": [],
+    "hints": [
+      "Consider using a built-in function in pandas library and specifying the column names within it."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1643225465",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "pythondata",
+        "verboseName": "Pandas"
+      },
+      "runtime": 255,
+      "memory": 65760000,
+      "timestamp": 1748102353,
+      "title": "Create a DataFrame from List",
+      "titleSlug": "create-a-dataframe-from-list",
+      "runtimeDisplay": "255 ms",
+      "runtimePercentile": 50.972700000000025,
+      "memoryDisplay": "65.8 MB",
+      "memoryPercentile": 72.90400000000002,
+      "code": "import pandas as pd\n\ndef createDataframe(student_data: List[List[int]]) -> pd.DataFrame:\n    df = pd.DataFrame(student_data, columns = ['student_id','age'])\n    return df",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3062",
+        "titleSlug": "create-a-dataframe-from-list",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1643223064",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "pythondata",
+        "verboseName": "Pandas"
+      },
+      "runtime": 255,
+      "memory": 65856000,
+      "timestamp": 1748102251,
+      "title": "Create a DataFrame from List",
+      "titleSlug": "create-a-dataframe-from-list",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "import pandas as pd\n\ndef createDataframe(student_data: List[List[int]]) -> pd.DataFrame:\n    df = pd.DataFrame([[1,15],[2,11],[3,11],[4,20]], columns = ['student_id','age'])\n    return df",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3062",
+        "titleSlug": "create-a-dataframe-from-list",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "question_name": "maximum-median-sum-of-subsequences-of-size-3",
+  "problem_metadata": {
+    "questionId": "3766",
+    "title": "Maximum Median Sum of Subsequences of Size 3",
+    "titleSlug": "maximum-median-sum-of-subsequences-of-size-3",
+    "content": "<p>You are given an integer array <code>nums</code> with a length divisible by 3.</p>\n\n<p>You want to make the array empty in steps. In each step, you can select any three elements from the array, compute their <strong>median</strong>, and remove the selected elements from the array.</p>\n\n<p>The <strong>median</strong> of an odd-length sequence is defined as the middle element of the sequence when it is sorted in non-decreasing order.</p>\n\n<p>Return the <strong>maximum</strong> possible sum of the medians computed from the selected elements.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [2,1,3,2,1,3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>In the first step, select elements at indices 2, 4, and 5, which have a median 3. After removing these elements, <code>nums</code> becomes <code>[2, 1, 2]</code>.</li>\n\t<li>In the second step, select elements at indices 0, 1, and 2, which have a median 2. After removing these elements, <code>nums</code> becomes empty.</li>\n</ul>\n\n<p>Hence, the sum of the medians is <code>3 + 2 = 5</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,10,10,10,10]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">20</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>In the first step, select elements at indices 0, 2, and 3, which have a median 10. After removing these elements, <code>nums</code> becomes <code>[1, 10, 10]</code>.</li>\n\t<li>In the second step, select elements at indices 0, 1, and 2, which have a median 10. After removing these elements, <code>nums</code> becomes empty.</li>\n</ul>\n\n<p>Hence, the sum of the medians is <code>10 + 10 = 20</code>.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 5 * 10<sup>5</sup></code></li>\n\t<li><code>nums.length % 3 == 0</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"61K\", \"totalSubmission\": \"94K\", \"totalAcceptedRaw\": 60962, \"totalSubmissionRaw\": 94047, \"acRate\": \"64.8%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Game Theory",
+        "slug": "game-theory",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Sort the values in <code>nums</code>.",
+      "Repeatedly pick the largest 2 values and the minimum value."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1712863084",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 69,
+      "memory": 67640000,
+      "timestamp": 1753588353,
+      "title": "Maximum Median Sum of Subsequences of Size 3",
+      "titleSlug": "maximum-median-sum-of-subsequences-of-size-3",
+      "runtimeDisplay": "69 ms",
+      "runtimePercentile": 77.68049999999997,
+      "memoryDisplay": "67.6 MB",
+      "memoryPercentile": 83.26839999999999,
+      "code": "import heapq\n\nclass Solution:\n    def maximumMedianSum(self, nums: List[int]) -> int:\n        nums.sort(reverse=True)\n        n = len(nums)\n        res = 0\n        j = 1\n        for i in range(n // 3):\n            res += nums[j]\n            j += 2\n        return res\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3766",
+        "titleSlug": "maximum-median-sum-of-subsequences-of-size-3",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

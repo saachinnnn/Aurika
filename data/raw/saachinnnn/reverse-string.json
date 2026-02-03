@@ -1,0 +1,38 @@
+{
+  "question_name": "reverse-string",
+  "problem_metadata": {
+    "questionId": "344",
+    "title": "Reverse String",
+    "titleSlug": "reverse-string",
+    "content": "<p>Write a function that reverses a string. The input string is given as an array of characters <code>s</code>.</p>\n\n<p>You must do this by modifying the input array <a href=\"https://en.wikipedia.org/wiki/In-place_algorithm\" target=\"_blank\">in-place</a> with <code>O(1)</code> extra memory.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> s = [\"h\",\"e\",\"l\",\"l\",\"o\"]\n<strong>Output:</strong> [\"o\",\"l\",\"l\",\"e\",\"h\"]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> s = [\"H\",\"a\",\"n\",\"n\",\"a\",\"h\"]\n<strong>Output:</strong> [\"h\",\"a\",\"n\",\"n\",\"a\",\"H\"]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>s[i]</code> is a <a href=\"https://en.wikipedia.org/wiki/ASCII#Printable_characters\" target=\"_blank\">printable ascii character</a>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"3.7M\", \"totalSubmission\": \"4.5M\", \"totalAcceptedRaw\": 3650648, \"totalSubmissionRaw\": 4537020, \"acRate\": \"80.5%\"}",
+    "topicTags": [
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "The entire logic for reversing a string is based on using the opposite directional two-pointer approach!"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1469459715",
+      "statusDisplay": "Accepted",
+      "lang": "cpp",
+      "runtime": "0 ms",
+      "memory": "27.3 MB",
+      "timestamp": "1733247052",
+      "title": "Reverse String",
+      "titleSlug": "reverse-string"
+    }
+  ]
+}

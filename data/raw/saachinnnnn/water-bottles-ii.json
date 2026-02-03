@@ -1,0 +1,63 @@
+{
+  "question_name": "water-bottles-ii",
+  "problem_metadata": {
+    "questionId": "3336",
+    "title": "Water Bottles II",
+    "titleSlug": "water-bottles-ii",
+    "content": "<p>You are given two integers <code>numBottles</code> and <code>numExchange</code>.</p>\n\n<p><code>numBottles</code> represents the number of full water bottles that you initially have. In one operation, you can perform one of the following operations:</p>\n\n<ul>\n\t<li>Drink any number of full water bottles turning them into empty bottles.</li>\n\t<li>Exchange <code>numExchange</code> empty bottles with one full water bottle. Then, increase <code>numExchange</code> by one.</li>\n</ul>\n\n<p>Note that you cannot exchange multiple batches of empty bottles for the same value of <code>numExchange</code>. For example, if <code>numBottles == 3</code> and <code>numExchange == 1</code>, you cannot exchange <code>3</code> empty water bottles for <code>3</code> full bottles.</p>\n\n<p>Return <em>the <strong>maximum</strong> number of water bottles you can drink</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/01/28/exampleone1.png\" style=\"width: 948px; height: 482px; padding: 10px; background: #fff; border-radius: .5rem;\" />\n<pre>\n<strong>Input:</strong> numBottles = 13, numExchange = 6\n<strong>Output:</strong> 15\n<strong>Explanation:</strong> The table above shows the number of full water bottles, empty water bottles, the value of numExchange, and the number of bottles drunk.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/01/28/example231.png\" style=\"width: 990px; height: 642px; padding: 10px; background: #fff; border-radius: .5rem;\" />\n<pre>\n<strong>Input:</strong> numBottles = 10, numExchange = 3\n<strong>Output:</strong> 13\n<strong>Explanation:</strong> The table above shows the number of full water bottles, empty water bottles, the value of numExchange, and the number of bottles drunk.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= numBottles &lt;= 100 </code></li>\n\t<li><code>1 &lt;= numExchange &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"165.7K\", \"totalSubmission\": \"212.2K\", \"totalAcceptedRaw\": 165736, \"totalSubmissionRaw\": 212183, \"acRate\": \"78.1%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Simulation",
+        "slug": "simulation",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Simulate the process step by step. At each step, drink <code>numExchange</code> bottles of water then exchange them for a full bottle. Keep repeating this step until you cannot exchange  bottles anymore."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1789480018",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 39,
+      "memory": 17604000,
+      "timestamp": 1759428031,
+      "title": "Water Bottles II",
+      "titleSlug": "water-bottles-ii",
+      "runtimeDisplay": "39 ms",
+      "runtimePercentile": 69.84830000000002,
+      "memoryDisplay": "17.6 MB",
+      "memoryPercentile": 64.20839999999998,
+      "code": "class Solution:\n    def maxBottlesDrunk(self, numBottles: int, numExchange: int) -> int:\n        bottleDrunk = numBottles\n        emptyBottles = numBottles\n\n        while emptyBottles >= numExchange:\n            emptyBottles -= numExchange\n            numExchange += 1\n            bottleDrunk += 1\n            emptyBottles += 1\n        return bottleDrunk\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3336",
+        "titleSlug": "water-bottles-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

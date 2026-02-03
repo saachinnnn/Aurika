@@ -1,0 +1,108 @@
+{
+  "question_name": "longest-balanced-substring-i",
+  "problem_metadata": {
+    "questionId": "4055",
+    "title": "Longest Balanced Substring I",
+    "titleSlug": "longest-balanced-substring-i",
+    "content": "<p>You are given a string <code>s</code> consisting of lowercase English letters.</p>\n\n<p>A <strong><span data-keyword=\"substring-nonempty\">substring</span></strong> of <code>s</code> is called <strong>balanced</strong> if all <strong>distinct</strong> characters in the <strong>substring</strong> appear the <strong>same</strong> number of times.</p>\n\n<p>Return the <strong>length</strong> of the <strong>longest balanced substring</strong> of <code>s</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;abbac&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">4</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The longest balanced substring is <code>&quot;abba&quot;</code> because both distinct characters <code>&#39;a&#39;</code> and <code>&#39;b&#39;</code> each appear exactly 2 times.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;zzabccy&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">4</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The longest balanced substring is <code>&quot;zabc&quot;</code> because the distinct characters <code>&#39;z&#39;</code>, <code>&#39;a&#39;</code>, <code>&#39;b&#39;</code>, and <code>&#39;c&#39;</code> each appear exactly 1 time.​​​​​​​</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;aba&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><strong>​​​​​​​</strong>One of the longest balanced substrings is <code>&quot;ab&quot;</code> because both distinct characters <code>&#39;a&#39;</code> and <code>&#39;b&#39;</code> each appear exactly 1 time. Another longest balanced substring is <code>&quot;ba&quot;</code>.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 1000</code></li>\n\t<li><code>s</code> consists of lowercase English letters.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"30.9K\", \"totalSubmission\": \"58.7K\", \"totalAcceptedRaw\": 30874, \"totalSubmissionRaw\": 58689, \"acRate\": \"52.6%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      },
+      {
+        "name": "Enumeration",
+        "slug": "enumeration",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use bruteforce over all substrings"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1798905758",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 5605,
+      "memory": 17780000,
+      "timestamp": 1760238253,
+      "title": "Longest Balanced Substring I",
+      "titleSlug": "longest-balanced-substring-i",
+      "runtimeDisplay": "5605 ms",
+      "runtimePercentile": 20.00750000000014,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 51.3636,
+      "code": "from collections import defaultdict\nclass Solution:\n    def longestBalanced(self, s: str) -> int:\n        # Okay so its going to be a O(n2) solution which will get accepted i think for below <= 1000 testcases.\n        anslength : int = 0\n\n        n = len(s)\n\n        for left in range(n):\n            count = defaultdict(int)\n            for right in range(left,n):\n                count[s[right]] += 1\n\n\n                values = [v for v in count.values() if v > 0]\n                if values:\n                    if max(values) == min(values):\n                        anslength = max(anslength,right - left + 1)\n        return anslength",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4055",
+        "titleSlug": "longest-balanced-substring-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1798890923",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 4031,
+      "memory": 18012000,
+      "timestamp": 1760237616,
+      "title": "Longest Balanced Substring I",
+      "titleSlug": "longest-balanced-substring-i",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "\nfrom collections import defaultdict\nclass Solution:\n    def longestBalanced(self, s: str) -> int:\n        # O(N2) solution could work.\n        n = len(s)\n        maxlength = 0\n\n        for freq in range(1,n + 1):\n            count = defaultdict(int)\n            left = 0\n            distinct = 0\n\n            for right in range(n):\n                count[s[right]] += 1\n                if count[s[right]] == 1:\n                    distinct += 1\n                while (right - left + 1) > freq * distinct:\n                    count[s[left]] -= 1\n                    if count[s[left]] == 0:\n                        distinct -= 1\n                    left += 1\n                if (right - left + 1) == freq * distinct:\n                    if all(v == freq for v in count.values() if v > 0):\n                        maxlength = max(maxlength,right - left + 1)\n        return maxlength",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4055",
+        "titleSlug": "longest-balanced-substring-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

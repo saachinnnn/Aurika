@@ -1,0 +1,68 @@
+{
+  "question_name": "longest-substring-without-repeating-characters",
+  "problem_metadata": {
+    "questionId": "3",
+    "title": "Longest Substring Without Repeating Characters",
+    "titleSlug": "longest-substring-without-repeating-characters",
+    "content": "<p>Given a string <code>s</code>, find the length of the <strong>longest</strong> <span data-keyword=\"substring-nonempty\"><strong>substring</strong></span> without duplicate characters.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abcabcbb&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The answer is &quot;abc&quot;, with the length of 3. Note that <code>&quot;bca&quot;</code> and <code>&quot;cab&quot;</code> are also correct answers.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;bbbbb&quot;\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The answer is &quot;b&quot;, with the length of 1.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;pwwkew&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The answer is &quot;wke&quot;, with the length of 3.\nNotice that the answer must be a substring, &quot;pwke&quot; is a subsequence and not a substring.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= s.length &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>s</code> consists of English letters, digits, symbols and spaces.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"8.9M\", \"totalSubmission\": \"23.2M\", \"totalAcceptedRaw\": 8888046, \"totalSubmissionRaw\": 23180596, \"acRate\": \"38.3%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Generate all possible substrings & check for each substring if it's valid and keep updating maxLen accordingly."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1635412632",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 19,
+      "memory": 17808000,
+      "timestamp": 1747387056,
+      "title": "Longest Substring Without Repeating Characters",
+      "titleSlug": "longest-substring-without-repeating-characters",
+      "runtimeDisplay": "19 ms",
+      "runtimePercentile": 39.829699999999995,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 60.604900000000015,
+      "code": "class Solution:\n    def lengthOfLongestSubstring(self, s: str) -> int:\n        l = 0\n        longest = 0\n        N = len(s)\n        hashset : set = set()\n\n        for r in range(N):\n            while s[r] in hashset:\n                hashset.remove(s[l])\n                l += 1\n\n            w = (r - l) + 1\n            longest = max(w,longest)\n            hashset.add(s[r])\n        return longest",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3",
+        "titleSlug": "longest-substring-without-repeating-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

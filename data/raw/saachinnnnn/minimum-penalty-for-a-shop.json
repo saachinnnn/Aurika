@@ -1,0 +1,64 @@
+{
+  "question_name": "minimum-penalty-for-a-shop",
+  "problem_metadata": {
+    "questionId": "2576",
+    "title": "Minimum Penalty for a Shop",
+    "titleSlug": "minimum-penalty-for-a-shop",
+    "content": "<p>You are given the customer visit log of a shop represented by a <strong>0-indexed</strong> string <code>customers</code> consisting only of characters <code>&#39;N&#39;</code> and <code>&#39;Y&#39;</code>:</p>\n\n<ul>\n\t<li>if the <code>i<sup>th</sup></code> character is <code>&#39;Y&#39;</code>, it means that customers come at the <code>i<sup>th</sup></code> hour</li>\n\t<li>whereas <code>&#39;N&#39;</code> indicates that no customers come at the <code>i<sup>th</sup></code> hour.</li>\n</ul>\n\n<p>If the shop closes at the <code>j<sup>th</sup></code> hour (<code>0 &lt;= j &lt;= n</code>), the <strong>penalty</strong> is calculated as follows:</p>\n\n<ul>\n\t<li>For every hour when the shop is open and no customers come, the penalty increases by <code>1</code>.</li>\n\t<li>For every hour when the shop is closed and customers come, the penalty increases by <code>1</code>.</li>\n</ul>\n\n<p>Return<em> the <strong>earliest</strong> hour at which the shop must be closed to incur a <strong>minimum</strong> penalty.</em></p>\n\n<p><strong>Note</strong> that if a shop closes at the <code>j<sup>th</sup></code> hour, it means the shop is closed at the hour <code>j</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> customers = &quot;YYNY&quot;\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> \n- Closing the shop at the 0<sup>th</sup> hour incurs in 1+1+0+1 = 3 penalty.\n- Closing the shop at the 1<sup>st</sup> hour incurs in 0+1+0+1 = 2 penalty.\n- Closing the shop at the 2<sup>nd</sup> hour incurs in 0+0+0+1 = 1 penalty.\n- Closing the shop at the 3<sup>rd</sup> hour incurs in 0+0+1+1 = 2 penalty.\n- Closing the shop at the 4<sup>th</sup> hour incurs in 0+0+1+0 = 1 penalty.\nClosing the shop at 2<sup>nd</sup> or 4<sup>th</sup> hour gives a minimum penalty. Since 2 is earlier, the optimal closing time is 2.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> customers = &quot;NNNNN&quot;\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> It is best to close the shop at the 0<sup>th</sup> hour as no customers arrive.</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> customers = &quot;YYYY&quot;\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> It is best to close the shop at the 4<sup>th</sup> hour as customers arrive at each hour.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= customers.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>customers</code> consists only of characters <code>&#39;Y&#39;</code> and <code>&#39;N&#39;</code>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"229.8K\", \"totalSubmission\": \"322.7K\", \"totalAcceptedRaw\": 229750, \"totalSubmissionRaw\": 322665, \"acRate\": \"71.2%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "At any index, the penalty is the sum of prefix count of ‘N’ and suffix count of ‘Y’.",
+      "Enumerate all indices and find the minimum such value."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1865821809",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 41,
+      "memory": 18004000,
+      "timestamp": 1766754379,
+      "title": "Minimum Penalty for a Shop",
+      "titleSlug": "minimum-penalty-for-a-shop",
+      "runtimeDisplay": "41 ms",
+      "runtimePercentile": 95.067,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 42.49289999999999,
+      "code": "class Solution:\n    def bestClosingTime(self, customers: str) -> int:\n        bestTime = 0\n        minPenalty = 0\n        prefix = 0\n        \n        for i in range(len(customers)):\n            prefix += -1 if customers[i] == 'Y' else 1\n            \n            if prefix < minPenalty:\n                bestTime = i + 1\n                minPenalty = prefix\n        \n        return bestTime",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2576",
+        "titleSlug": "minimum-penalty-for-a-shop",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

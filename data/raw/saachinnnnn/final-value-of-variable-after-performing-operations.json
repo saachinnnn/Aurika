@@ -1,0 +1,104 @@
+{
+  "question_name": "final-value-of-variable-after-performing-operations",
+  "problem_metadata": {
+    "questionId": "2137",
+    "title": "Final Value of Variable After Performing Operations",
+    "titleSlug": "final-value-of-variable-after-performing-operations",
+    "content": "<p>There is a programming language with only <strong>four</strong> operations and <strong>one</strong> variable <code>X</code>:</p>\n\n<ul>\n\t<li><code>++X</code> and <code>X++</code> <strong>increments</strong> the value of the variable <code>X</code> by <code>1</code>.</li>\n\t<li><code>--X</code> and <code>X--</code> <strong>decrements</strong> the value of the variable <code>X</code> by <code>1</code>.</li>\n</ul>\n\n<p>Initially, the value of <code>X</code> is <code>0</code>.</p>\n\n<p>Given an array of strings <code>operations</code> containing a list of operations, return <em>the <strong>final </strong>value of </em><code>X</code> <em>after performing all the operations</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> operations = [&quot;--X&quot;,&quot;X++&quot;,&quot;X++&quot;]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong>&nbsp;The operations are performed as follows:\nInitially, X = 0.\n--X: X is decremented by 1, X =  0 - 1 = -1.\nX++: X is incremented by 1, X = -1 + 1 =  0.\nX++: X is incremented by 1, X =  0 + 1 =  1.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> operations = [&quot;++X&quot;,&quot;++X&quot;,&quot;X++&quot;]\n<strong>Output:</strong> 3\n<strong>Explanation: </strong>The operations are performed as follows:\nInitially, X = 0.\n++X: X is incremented by 1, X = 0 + 1 = 1.\n++X: X is incremented by 1, X = 1 + 1 = 2.\nX++: X is incremented by 1, X = 2 + 1 = 3.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> operations = [&quot;X++&quot;,&quot;++X&quot;,&quot;--X&quot;,&quot;X--&quot;]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong>&nbsp;The operations are performed as follows:\nInitially, X = 0.\nX++: X is incremented by 1, X = 0 + 1 = 1.\n++X: X is incremented by 1, X = 1 + 1 = 2.\n--X: X is decremented by 1, X = 2 - 1 = 1.\nX--: X is decremented by 1, X = 1 - 1 = 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= operations.length &lt;= 100</code></li>\n\t<li><code>operations[i]</code> will be either <code>&quot;++X&quot;</code>, <code>&quot;X++&quot;</code>, <code>&quot;--X&quot;</code>, or <code>&quot;X--&quot;</code>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"635.9K\", \"totalSubmission\": \"702.3K\", \"totalAcceptedRaw\": 635916, \"totalSubmissionRaw\": 702307, \"acRate\": \"90.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Simulation",
+        "slug": "simulation",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "There are only two operations to keep track of.",
+      "Use a variable to store the value after each operation."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1806888714",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17724000,
+      "timestamp": 1760979505,
+      "title": "Final Value of Variable After Performing Operations",
+      "titleSlug": "final-value-of-variable-after-performing-operations",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 59.4875,
+      "code": "class Solution:\n    def finalValueAfterOperations(self, operations: List[str]) -> int:\n        answer : int = 0\n\n        for operation in operations:\n            if operation == \"--X\" or operation == \"X--\":\n                answer -= 1\n            else:\n                answer += 1\n        return answer",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2137",
+        "titleSlug": "final-value-of-variable-after-performing-operations",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1790842905",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17748000,
+      "timestamp": 1759563247,
+      "title": "Final Value of Variable After Performing Operations",
+      "titleSlug": "final-value-of-variable-after-performing-operations",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 59.4875,
+      "code": "class Solution:\n    def finalValueAfterOperations(self, operations: List[str]) -> int:\n        answer : int = 0\n\n        for operation in operations:\n            if operation == \"--X\" or operation == \"X--\":\n                answer -= 1\n            else:\n                answer += 1\n        return answer",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2137",
+        "titleSlug": "final-value-of-variable-after-performing-operations",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

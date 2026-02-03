@@ -1,0 +1,80 @@
+{
+  "question_name": "minimum-operations-to-equalize-binary-string",
+  "problem_metadata": {
+    "questionId": "3983",
+    "title": "Minimum Operations to Equalize Binary String",
+    "titleSlug": "minimum-operations-to-equalize-binary-string",
+    "content": "<p>You are given a binary string <code>s</code>, and an integer <code>k</code>.</p>\n\n<p>In one operation, you must choose <strong>exactly</strong> <code>k</code> <strong>different</strong> indices and <strong>flip</strong> each <code>&#39;0&#39;</code> to <code>&#39;1&#39;</code> and each <code>&#39;1&#39;</code> to <code>&#39;0&#39;</code>.</p>\n\n<p>Return the <strong>minimum</strong> number of operations required to make all characters in the string equal to <code>&#39;1&#39;</code>. If it is not possible, return -1.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;110&quot;, k = 1</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>There is one <code>&#39;0&#39;</code> in <code>s</code>.</li>\n\t<li>Since <code>k = 1</code>, we can flip it directly in one operation.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;0101&quot;, k = 3</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>One optimal set of operations choosing <code>k = 3</code> indices in each operation is:</p>\n\n<ul>\n\t<li><strong>Operation 1</strong>: Flip indices <code>[0, 1, 3]</code>. <code>s</code> changes from <code>&quot;0101&quot;</code> to <code>&quot;1000&quot;</code>.</li>\n\t<li><strong>Operation 2</strong>: Flip indices <code>[1, 2, 3]</code>. <code>s</code> changes from <code>&quot;1000&quot;</code> to <code>&quot;1111&quot;</code>.</li>\n</ul>\n\n<p>Thus, the minimum number of operations is 2.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;101&quot;, k = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">-1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Since <code>k = 2</code> and <code>s</code> has only one <code>&#39;0&#39;</code>, it is impossible to flip exactly <code>k</code> indices to make all <code>&#39;1&#39;</code>. Hence, the answer is -1.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>​​​​​​​5</sup></code></li>\n\t<li><code>s[i]</code> is either <code>&#39;0&#39;</code> or <code>&#39;1&#39;</code>.</li>\n\t<li><code>1 &lt;= k &lt;= s.length</code></li>\n</ul>\n",
+    "difficulty": "Hard",
+    "stats": "{\"totalAccepted\": \"3.1K\", \"totalSubmission\": \"15.4K\", \"totalAcceptedRaw\": 3119, \"totalSubmissionRaw\": 15440, \"acRate\": \"20.2%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Breadth-First Search",
+        "slug": "breadth-first-search",
+        "translatedName": null
+      },
+      {
+        "name": "Union-Find",
+        "slug": "union-find",
+        "translatedName": null
+      },
+      {
+        "name": "Ordered Set",
+        "slug": "ordered-set",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Model state as <code>z</code> = number of zeros; flipping <code>k</code> picks <code>i</code> zeros (<code>i</code> between <code>max(0, k - (n - z))</code> and <code>min(k, z)</code>) and transforms <code>z</code> to <code>z'</code> = <code>z + k - 2 * i</code>, so <code>z'</code> lies in a contiguous range and has parity <code>(z + k) % 2</code>.",
+      "Build a graph on states <code>0..n</code> and run <code>BFS</code> from initial <code>z</code> to reach <code>0</code>; each edge from <code>z</code> goes to all <code>z'</code> in that computed interval.",
+      "For speed, keep two ordered sets of unvisited states by parity and erase ranges with <code>lower_bound</code> while <code>BFSing</code> to achieve near <code>O(n log n)</code> time."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1753660262",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 24,
+      "memory": 18264000,
+      "timestamp": 1756566603,
+      "title": "Minimum Operations to Equalize Binary String",
+      "titleSlug": "minimum-operations-to-equalize-binary-string",
+      "runtimeDisplay": "24 ms",
+      "runtimePercentile": 81.53840000000001,
+      "memoryDisplay": "18.3 MB",
+      "memoryPercentile": 92.30770000000001,
+      "code": "class Solution:\n    def minOperations(self, s: str, k: int) -> int:\n        n = len(s)\n        z = s.count('0')\n        w = n - z\n\n        # trivial cases\n        if z == 0:\n            return 0\n        if k == 0:\n            return -1\n\n        # special case k == n\n        if k == n:\n            # flipping all bits toggles everyone; only works if all zero (one op)\n            # or already all ones (handled above).\n            return 1 if z == n else -1\n\n        # search minimal m (1..n)\n        # (we can limit to n because when n-k >= 1 the needed m will be <= n)\n        for m in range(1, n + 1):\n            if m * k < z:\n                continue\n            if ((m * k - z) & 1) == 1:  # need difference to be even\n                continue\n\n            if m % 2 == 0:\n                # even m: condition reduced to m*(n-k) >= z\n                if m * (n - k) >= z:\n                    return m\n            else:\n                # odd m: condition reduced to m*(n-k) >= n - z\n                if m * (n - k) >= (n - z):\n                    return m\n\n        return -1\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3983",
+        "titleSlug": "minimum-operations-to-equalize-binary-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

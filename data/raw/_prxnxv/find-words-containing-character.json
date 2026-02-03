@@ -1,0 +1,133 @@
+{
+  "question_name": "find-words-containing-character",
+  "problem_metadata": {
+    "questionId": "3194",
+    "title": "Find Words Containing Character",
+    "titleSlug": "find-words-containing-character",
+    "content": "<p>You are given a <strong>0-indexed</strong> array of strings <code>words</code> and a character <code>x</code>.</p>\n\n<p>Return <em>an <strong>array of indices</strong> representing the words that contain the character </em><code>x</code>.</p>\n\n<p><strong>Note</strong> that the returned array may be in <strong>any</strong> order.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;leet&quot;,&quot;code&quot;], x = &quot;e&quot;\n<strong>Output:</strong> [0,1]\n<strong>Explanation:</strong> &quot;e&quot; occurs in both words: &quot;l<strong><u>ee</u></strong>t&quot;, and &quot;cod<u><strong>e</strong></u>&quot;. Hence, we return indices 0 and 1.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;abc&quot;,&quot;bcd&quot;,&quot;aaaa&quot;,&quot;cbc&quot;], x = &quot;a&quot;\n<strong>Output:</strong> [0,2]\n<strong>Explanation:</strong> &quot;a&quot; occurs in &quot;<strong><u>a</u></strong>bc&quot;, and &quot;<u><strong>aaaa</strong></u>&quot;. Hence, we return indices 0 and 2.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;abc&quot;,&quot;bcd&quot;,&quot;aaaa&quot;,&quot;cbc&quot;], x = &quot;z&quot;\n<strong>Output:</strong> []\n<strong>Explanation:</strong> &quot;z&quot; does not occur in any of the words. Hence, we return an empty array.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= words.length &lt;= 50</code></li>\n\t<li><code>1 &lt;= words[i].length &lt;= 50</code></li>\n\t<li><code>x</code> is a lowercase English letter.</li>\n\t<li><code>words[i]</code> consists only of lowercase English letters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"378.4K\", \"totalSubmission\": \"418.7K\", \"totalAcceptedRaw\": 378425, \"totalSubmissionRaw\": 418665, \"acRate\": \"90.4%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use two nested loops."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1794878885",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "runtime": 3,
+      "memory": 12432000,
+      "timestamp": 1759896966,
+      "title": "Find Words Containing Character",
+      "titleSlug": "find-words-containing-character",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 41.416599999999995,
+      "memoryDisplay": "12.4 MB",
+      "memoryPercentile": 56.782700000000006,
+      "code": "class Solution(object):\n    def findWordsContaining(self, words, x):\n        \n        L=[]\n        for i in range(len(words)):\n            if words[i].find(x)!=-1:\n                L.append(i)\n        return L\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "3194",
+        "titleSlug": "find-words-containing-character",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1794877525",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "runtime": 5,
+      "memory": 12596000,
+      "timestamp": 1759896864,
+      "title": "Find Words Containing Character",
+      "titleSlug": "find-words-containing-character",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution(object):\n    def findWordsContaining(self, words, x):\n        \n        L=[]\n        for i in range(len(words)):\n            if words[i].find(x)!=1:\n                L.append(i)\n        return L\n        ",
+      "statusCode": 11,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "3194",
+        "titleSlug": "find-words-containing-character",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1794877279",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "runtime": 15,
+      "memory": 12428000,
+      "timestamp": 1759896844,
+      "title": "Find Words Containing Character",
+      "titleSlug": "find-words-containing-character",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution(object):\n    def findWordsContaining(self, words, x):\n        \n        L=[]\n        for i in range(len(words)):\n            if words[i].find(x)!=1:\n                L.append[i]\n        return L\n        ",
+      "statusCode": 15,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "3194",
+        "titleSlug": "find-words-containing-character",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "TypeError: 'builtin_function_or_method' object has no attribute '__getitem__'\n    L.append[i]\nLine 7 in findWordsContaining (Solution.py)\n    ret = Solution().findWordsContaining(param_1, param_2)\nLine 39 in _driver (Solution.py)\n    _driver()\nLine 53 in <module> (Solution.py)",
+      "compileError": null
+    }
+  ]
+}

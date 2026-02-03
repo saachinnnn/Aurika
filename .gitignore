@@ -12,7 +12,6 @@ aurika_venv/
 .env
 
 # Data and Logs
-data/
 logs/
 
 # Tests

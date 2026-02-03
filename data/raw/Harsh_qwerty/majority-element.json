@@ -1,0 +1,236 @@
+{
+  "question_name": "majority-element",
+  "problem_metadata": {
+    "questionId": "169",
+    "title": "Majority Element",
+    "titleSlug": "majority-element",
+    "content": "<p>Given an array <code>nums</code> of size <code>n</code>, return <em>the majority element</em>.</p>\n\n<p>The majority element is the element that appears more than <code>&lfloor;n / 2&rfloor;</code> times. You may assume that the majority element always exists in the array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [3,2,3]\n<strong>Output:</strong> 3\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [2,2,1,1,1,2,2]\n<strong>Output:</strong> 2\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li>The input is generated such that a majority element will exist in the array.</li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow-up:</strong> Could you solve the problem in linear time and in <code>O(1)</code> space?",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"5.2M\", \"totalSubmission\": \"7.8M\", \"totalAcceptedRaw\": 5160805, \"totalSubmissionRaw\": 7810557, \"acRate\": \"66.1%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Divide and Conquer",
+        "slug": "divide-and-conquer",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1886769286",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 2901,
+      "memory": 9328000,
+      "timestamp": 1768565441,
+      "title": "Majority Element",
+      "titleSlug": "majority-element",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "int majorityElement(int* nums, int numsSize) {\n    int majority = numsSize / 2;\n    int arr[2] = {0, 0};\n\n    for (int i = 0; i < numsSize; i++) {\n        int count = 0;\n        for (int j = 0; j < numsSize; j++) {\n            if (nums[i] == nums[j] && i != j) {\n                count += 1;\n            }\n        }\n        if (count > arr[0]) {\n            arr[0] = count;\n            arr[1] = nums[i];\n        }\n    }\n    if (numsSize == 1) {\n        return nums[0];\n    } else {\n        return arr[1];\n    }\n}",
+      "statusCode": 14,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "169",
+        "titleSlug": "majority-element",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1886766335",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 2913,
+      "memory": 9384000,
+      "timestamp": 1768565180,
+      "title": "Majority Element",
+      "titleSlug": "majority-element",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "int majorityElement(int* nums, int numsSize) {\n    int majority = numsSize / 2;\n    int arr[2] = {0, 0};\n\n    for (int i = 0; i < numsSize; i++) {\n        int count = 0;\n        for (int j = 0; j < numsSize; j++) {\n            if (nums[i] == nums[j] && i != j) {\n                count += 1;\n            }\n        }\n        if (count > arr[0]) {\n            arr[0] = count;\n            arr[1] = nums[i];\n        }\n    }\n    if (numsSize == 1) {\n        return nums[0];\n    } else {\n        return arr[1];\n    }\n}",
+      "statusCode": 14,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "169",
+        "titleSlug": "majority-element",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1886760035",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 2789,
+      "memory": 9284000,
+      "timestamp": 1768564627,
+      "title": "Majority Element",
+      "titleSlug": "majority-element",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "int majorityElement(int* nums, int numsSize) {\n    int majority=numsSize/2;\n    int arr[2]={0,0};\n\n    for (int i=0;i<numsSize;i++){\n        int count=0;\n        for (int j=0;j<numsSize;j++){\n            if (nums[i]==nums[j] && i != j){\n                count +=1;\n            }\n        }\n        if (count>arr[0]){\n            arr[0]=count;\n            arr[1]=nums[i];\n        }        \n    }\n    if(numsSize==1){\n        return nums[0];\n    }\n    else{\n        return arr[1];\n    }\n}",
+      "statusCode": 14,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "169",
+        "titleSlug": "majority-element",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1886757802",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768564437",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    },
+    {
+      "id": "1886755280",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768564214",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    },
+    {
+      "id": "1886751810",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768563918",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    },
+    {
+      "id": "1886747798",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768563574",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    },
+    {
+      "id": "1886743497",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768563199",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    },
+    {
+      "id": "1886741966",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768563071",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    },
+    {
+      "id": "1886739909",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768562896",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    },
+    {
+      "id": "1886738766",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768562804",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    },
+    {
+      "id": "1886736339",
+      "statusDisplay": "Wrong Answer",
+      "lang": "c",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1768562599",
+      "title": "Majority Element",
+      "titleSlug": "majority-element"
+    }
+  ]
+}

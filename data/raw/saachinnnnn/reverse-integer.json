@@ -1,0 +1,126 @@
+{
+  "question_name": "reverse-integer",
+  "problem_metadata": {
+    "questionId": "7",
+    "title": "Reverse Integer",
+    "titleSlug": "reverse-integer",
+    "content": "<p>Given a signed 32-bit integer <code>x</code>, return <code>x</code><em> with its digits reversed</em>. If reversing <code>x</code> causes the value to go outside the signed 32-bit integer range <code>[-2<sup>31</sup>, 2<sup>31</sup> - 1]</code>, then return <code>0</code>.</p>\n\n<p><strong>Assume the environment does not allow you to store 64-bit integers (signed or unsigned).</strong></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 123\n<strong>Output:</strong> 321\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = -123\n<strong>Output:</strong> -321\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 120\n<strong>Output:</strong> 21\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>-2<sup>31</sup> &lt;= x &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"4.7M\", \"totalSubmission\": \"15.1M\", \"totalAcceptedRaw\": 4742196, \"totalSubmissionRaw\": 15105076, \"acRate\": \"31.4%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1800415132",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 38,
+      "memory": 17576000,
+      "timestamp": 1760367531,
+      "title": "Reverse Integer",
+      "titleSlug": "reverse-integer",
+      "runtimeDisplay": "38 ms",
+      "runtimePercentile": 74.53910000000006,
+      "memoryDisplay": "17.6 MB",
+      "memoryPercentile": 71.77210000000001,
+      "code": "class Solution:\n    def reverse(self, x: int) -> int:\n        rev = int(str(abs(x))[::-1])\n        if rev > 2**31 - 1:\n            return 0\n        return rev if x >= 0 else -rev",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "7",
+        "titleSlug": "reverse-integer",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1800414119",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 29,
+      "memory": 17912000,
+      "timestamp": 1760367466,
+      "title": "Reverse Integer",
+      "titleSlug": "reverse-integer",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def reverse(self, x: int) -> int:\n        # Checking for overflow condition.\n        rev = int(str(abs(x))[::-1])\n        if rev > 2**32 - 1:\n            return 0\n        return rev if x >= 0 else -rev",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "7",
+        "titleSlug": "reverse-integer",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1800412294",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 39,
+      "memory": 17592000,
+      "timestamp": 1760367351,
+      "title": "Reverse Integer",
+      "titleSlug": "reverse-integer",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def reverse(self, x: int) -> int:\n        return int(str(x)[::-1]) if x >= 0 else int(\"-\" + str(x*-1)[::-1])",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "7",
+        "titleSlug": "reverse-integer",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

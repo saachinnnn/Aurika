@@ -1,0 +1,163 @@
+{
+  "question_name": "shuffle-the-array",
+  "problem_metadata": {
+    "questionId": "1580",
+    "title": "Shuffle the Array",
+    "titleSlug": "shuffle-the-array",
+    "content": "<p>Given the array <code>nums</code> consisting of <code>2n</code> elements in the form <code>[x<sub>1</sub>,x<sub>2</sub>,...,x<sub>n</sub>,y<sub>1</sub>,y<sub>2</sub>,...,y<sub>n</sub>]</code>.</p>\r\n\r\n<p><em>Return the array in the form</em> <code>[x<sub>1</sub>,y<sub>1</sub>,x<sub>2</sub>,y<sub>2</sub>,...,x<sub>n</sub>,y<sub>n</sub>]</code>.</p>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong class=\"example\">Example 1:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> nums = [2,5,1,3,4,7], n = 3\r\n<strong>Output:</strong> [2,3,5,4,1,7] \r\n<strong>Explanation:</strong> Since x<sub>1</sub>=2, x<sub>2</sub>=5, x<sub>3</sub>=1, y<sub>1</sub>=3, y<sub>2</sub>=4, y<sub>3</sub>=7 then the answer is [2,3,5,4,1,7].\r\n</pre>\r\n\r\n<p><strong class=\"example\">Example 2:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> nums = [1,2,3,4,4,3,2,1], n = 4\r\n<strong>Output:</strong> [1,4,2,3,3,2,4,1]\r\n</pre>\r\n\r\n<p><strong class=\"example\">Example 3:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> nums = [1,1,2,2], n = 2\r\n<strong>Output:</strong> [1,2,1,2]\r\n</pre>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong>Constraints:</strong></p>\r\n\r\n<ul>\r\n\t<li><code>1 &lt;= n &lt;= 500</code></li>\r\n\t<li><code>nums.length == 2n</code></li>\r\n\t<li><code>1 &lt;= nums[i] &lt;= 10^3</code></li>\r\n</ul>",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"984.8K\", \"totalSubmission\": \"1.1M\", \"totalAcceptedRaw\": 984800, \"totalSubmissionRaw\": 1106684, \"acRate\": \"89.0%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use two pointers to create the new array of 2n elements. The first starting at the beginning and the other starting at (n+1)th position. Alternate between them and create the new array."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1833255535",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 64,
+      "memory": 17836000,
+      "timestamp": 1763465438,
+      "title": "Shuffle the Array",
+      "titleSlug": "shuffle-the-array",
+      "runtimeDisplay": "64 ms",
+      "runtimePercentile": 32.82300000000005,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 67.79209999999999,
+      "code": "class Solution(object):\n    def shuffle(self, nums, n):\n        l = []\n        \n        for i in range(n):\n            l.append(nums[i])\n            l.append(nums[n + i])\n        \n        return l",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1580",
+        "titleSlug": "shuffle-the-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1829573127",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 67,
+      "memory": 18204000,
+      "timestamp": 1763122395,
+      "title": "Shuffle the Array",
+      "titleSlug": "shuffle-the-array",
+      "runtimeDisplay": "67 ms",
+      "runtimePercentile": 19.036800000000053,
+      "memoryDisplay": "18.2 MB",
+      "memoryPercentile": 46.337499999999984,
+      "code": "class Solution(object):\n    def shuffle(self, nums, n):\n        l = []\n        \n        for i in range(n):\n            l.append(nums[i])\n            l.append(nums[n + i])\n        \n        return l",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1580",
+        "titleSlug": "shuffle-the-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1829572399",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 63,
+      "memory": 17864000,
+      "timestamp": 1763122310,
+      "title": "Shuffle the Array",
+      "titleSlug": "shuffle-the-array",
+      "runtimeDisplay": "63 ms",
+      "runtimePercentile": 38.22960000000005,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 67.79209999999999,
+      "code": "class Solution:\n    def shuffle(self, nums: List[int], n: int) -> List[int]:\n        ans = []\n        for idx in range(n):\n            ans.append(nums[idx])\n            ans.append(nums[idx + n])\n        return ans",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1580",
+        "titleSlug": "shuffle-the-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1829571630",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 56,
+      "memory": 18028000,
+      "timestamp": 1763122221,
+      "title": "Shuffle the Array",
+      "titleSlug": "shuffle-the-array",
+      "runtimeDisplay": "56 ms",
+      "runtimePercentile": 75.56830000000004,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 56.491399999999985,
+      "code": "class Solution:\n    def shuffle(self, nums: List[int], n: int) -> List[int]:\n        firstarray = nums[:n]\n        secondarray = nums[n:]\n        ans = []\n        for idx in range(len(firstarray)):\n            ans.append(firstarray[idx])\n            ans.append(secondarray[idx])\n        return ans",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1580",
+        "titleSlug": "shuffle-the-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

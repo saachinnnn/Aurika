@@ -1,0 +1,124 @@
+{
+  "question_name": "count-subarrays-with-majority-element-i",
+  "problem_metadata": {
+    "questionId": "4074",
+    "title": "Count Subarrays With Majority Element I",
+    "titleSlug": "count-subarrays-with-majority-element-i",
+    "content": "<p>You are given an integer array <code>nums</code> and an integer <code>target</code>.</p>\n\n<p>Return the number of <strong><span data-keyword=\"subarray-nonempty\">subarrays</span></strong> of <code>nums</code> in which <code>target</code> is the <strong>majority element</strong>.</p>\n\n<p>The <strong>majority element</strong> of a subarray is the element that appears <strong>strictly</strong> <strong>more than half</strong> of the times in that subarray.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,2,3], target = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Valid subarrays with <code>target = 2</code> as the majority element:</p>\n\n<ul>\n\t<li><code>nums[1..1] = [2]</code></li>\n\t<li><code>nums[2..2] = [2]</code></li>\n\t<li><code>nums[1..2] = [2,2]</code></li>\n\t<li><code>nums[0..2] = [1,2,2]</code></li>\n\t<li><code>nums[1..3] = [2,2,3]</code></li>\n</ul>\n\n<p>So there are 5 such subarrays.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,1,1], target = 1</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">10</span></p>\n\n<p><strong>Explanation: </strong></p>\n\n<p><strong>​​​​​​​</strong>All 10 subarrays have 1 as the majority element.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3], target = 4</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><code>target = 4</code> does not appear in <code>nums</code> at all. Therefore, there cannot be any subarray where 4 is the majority element. Hence the answer is 0.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>​​​​​​​9</sup></code></li>\n\t<li><code>1 &lt;= target &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"25K\", \"totalSubmission\": \"38.4K\", \"totalAcceptedRaw\": 24976, \"totalSubmissionRaw\": 38422, \"acRate\": \"65.0%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Divide and Conquer",
+        "slug": "divide-and-conquer",
+        "translatedName": null
+      },
+      {
+        "name": "Segment Tree",
+        "slug": "segment-tree",
+        "translatedName": null
+      },
+      {
+        "name": "Merge Sort",
+        "slug": "merge-sort",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use brute force",
+      "Count all subarrays where <code>2 * count(target) > length</code>"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1824342711",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10789,
+      "memory": 17648000,
+      "timestamp": 1762622432,
+      "title": "Count Subarrays With Majority Element I",
+      "titleSlug": "count-subarrays-with-majority-element-i",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def countMajoritySubarrays(self, nums: List[int], target: int) -> int:\n        # Brute force approach.\n        total : int = 0\n        for i in range(len(nums)):\n            for j in range(i,len(nums)):\n                target_count = nums[i:j+1].count(target)\n                if target_count > len(nums[i:j+1]) // 2:\n                    total += 1\n        return total",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4074",
+        "titleSlug": "count-subarrays-with-majority-element-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1824339839",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10769,
+      "memory": 17620000,
+      "timestamp": 1762622221,
+      "title": "Count Subarrays With Majority Element I",
+      "titleSlug": "count-subarrays-with-majority-element-i",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def countMajoritySubarrays(self, nums: List[int], target: int) -> int:\n        if target not in nums:\n            return 0\n        # The above is the edge case.\n        ## Brute force approach.\n\n        total : int = 0\n        for i in range(len(nums)):\n            for j in range(i,len(nums)):\n                if max(nums[i:j + 1]) == target:\n                    total += 1\n        return total",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4074",
+        "titleSlug": "count-subarrays-with-majority-element-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

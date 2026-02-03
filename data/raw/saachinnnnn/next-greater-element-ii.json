@@ -1,0 +1,136 @@
+{
+  "question_name": "next-greater-element-ii",
+  "problem_metadata": {
+    "questionId": "503",
+    "title": "Next Greater Element II",
+    "titleSlug": "next-greater-element-ii",
+    "content": "<p>Given a circular integer array <code>nums</code> (i.e., the next element of <code>nums[nums.length - 1]</code> is <code>nums[0]</code>), return <em>the <strong>next greater number</strong> for every element in</em> <code>nums</code>.</p>\n\n<p>The <strong>next greater number</strong> of a number <code>x</code> is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn&#39;t exist, return <code>-1</code> for this number.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,1]\n<strong>Output:</strong> [2,-1,2]\nExplanation: The first 1&#39;s next greater number is 2; \nThe number 2 can&#39;t find next greater number. \nThe second 1&#39;s next greater number needs to search circularly, which is also 2.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,3]\n<strong>Output:</strong> [2,3,4,-1,4]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"739.4K\", \"totalSubmission\": \"1.1M\", \"totalAcceptedRaw\": 739404, \"totalSubmissionRaw\": 1090984, \"acRate\": \"67.8%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Monotonic Stack",
+        "slug": "monotonic-stack",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1815633412",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 31,
+      "memory": 19336000,
+      "timestamp": 1761800117,
+      "title": "Next Greater Element II",
+      "titleSlug": "next-greater-element-ii",
+      "runtimeDisplay": "31 ms",
+      "runtimePercentile": 28.440800000000028,
+      "memoryDisplay": "19.3 MB",
+      "memoryPercentile": 83.37069999999999,
+      "code": "class Solution:\n    def nextGreaterElements(self, nums: List[int]) -> List[int]:\n        # What if I just scale the array into twice the size.\n        n = len(nums)\n        stack : list = []\n        ansarray : list = [0]*n\n        for idx in range((2*n) - 1,-1,-1):\n            while stack and nums[idx%n] >= stack[-1]:\n                stack.pop()\n            if not stack:\n                ansarray[idx%n] = -1\n            else:\n                ansarray[idx%n] = stack[-1]\n            stack.append(nums[idx%n])\n        return ansarray[:n]\n\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "503",
+        "titleSlug": "next-greater-element-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1815632052",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 23,
+      "memory": 19744000,
+      "timestamp": 1761799993,
+      "title": "Next Greater Element II",
+      "titleSlug": "next-greater-element-ii",
+      "runtimeDisplay": "23 ms",
+      "runtimePercentile": 59.92080000000003,
+      "memoryDisplay": "19.7 MB",
+      "memoryPercentile": 57.03659999999998,
+      "code": "class Solution:\n    def nextGreaterElements(self, nums: List[int]) -> List[int]:\n        # What if I just scale the array into twice the size.\n        n = len(nums)\n        nums = nums + nums\n        stack : list = []\n        ansarray : list = [0]*len(nums)\n        for idx in range(len(nums) - 1,-1,-1):\n            while stack and nums[idx] >= stack[-1]:\n                stack.pop()\n            if not stack:\n                ansarray[idx] = -1\n            else:\n                ansarray[idx] = stack[-1]\n            stack.append(nums[idx])\n        return ansarray[:n]\n\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "503",
+        "titleSlug": "next-greater-element-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1815630928",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 29,
+      "memory": 19592000,
+      "timestamp": 1761799892,
+      "title": "Next Greater Element II",
+      "titleSlug": "next-greater-element-ii",
+      "runtimeDisplay": "29 ms",
+      "runtimePercentile": 31.393700000000027,
+      "memoryDisplay": "19.6 MB",
+      "memoryPercentile": 67.44939999999998,
+      "code": "class Solution:\n    def nextGreaterElements(self, nums: List[int]) -> List[int]:\n        # What if I just scale the array into twice the size.\n        n = len(nums)\n        nums = nums + nums\n        stack : list = []\n        ansarray : list = [0]*len(nums)\n        for idx in range(len(nums) - 1,-1,-1):\n            if idx == len(nums) - 1:\n                ansarray[idx] = -1\n                stack.append(nums[idx])\n            else:\n                while stack and nums[idx] >= stack[-1]:\n                    stack.pop()\n                if not stack:\n                    ansarray[idx] = -1\n                else:\n                    ansarray[idx] = stack[-1]\n                stack.append(nums[idx])\n        return ansarray[:n]\n\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "503",
+        "titleSlug": "next-greater-element-ii",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "question_name": "minimum-operations-to-make-array-sum-divisible-by-k",
+  "problem_metadata": {
+    "questionId": "3846",
+    "title": "Minimum Operations to Make Array Sum Divisible by K",
+    "titleSlug": "minimum-operations-to-make-array-sum-divisible-by-k",
+    "content": "<p>You are given an integer array <code>nums</code> and an integer <code>k</code>. You can perform the following operation any number of times:</p>\n\n<ul>\n\t<li>Select an index <code>i</code> and replace <code>nums[i]</code> with <code>nums[i] - 1</code>.</li>\n</ul>\n\n<p>Return the <strong>minimum</strong> number of operations required to make the sum of the array divisible by <code>k</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [3,9,7], k = 5</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">4</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>Perform 4 operations on <code>nums[1] = 9</code>. Now, <code>nums = [3, 5, 7]</code>.</li>\n\t<li>The sum is 15, which is divisible by 5.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [4,1,3], k = 4</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The sum is 8, which is already divisible by 4. Hence, no operations are needed.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [3,2], k = 6</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>Perform 3 operations on <code>nums[0] = 3</code> and 2 operations on <code>nums[1] = 2</code>. Now, <code>nums = [0, 0]</code>.</li>\n\t<li>The sum is 0, which is divisible by 6.</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 1000</code></li>\n\t<li><code>1 &lt;= k &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"172.5K\", \"totalSubmission\": \"186.6K\", \"totalAcceptedRaw\": 172467, \"totalSubmissionRaw\": 186571, \"acRate\": \"92.4%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "<code> sum(nums) % k </code>"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1842697645",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17928000,
+      "timestamp": 1764441097,
+      "title": "Minimum Operations to Make Array Sum Divisible by K",
+      "titleSlug": "minimum-operations-to-make-array-sum-divisible-by-k",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 58.043499999999966,
+      "code": "class Solution:\n    def minOperations(self, nums: List[int], k: int) -> int:\n        Total = sum(nums)\n        count = 0\n        while Total % k != 0:\n            Total -= 1\n            count += 1\n        return count",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3846",
+        "titleSlug": "minimum-operations-to-make-array-sum-divisible-by-k",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "question_name": "find-if-digit-game-can-be-won",
+  "problem_metadata": {
+    "questionId": "3515",
+    "title": "Find if Digit Game Can Be Won",
+    "titleSlug": "find-if-digit-game-can-be-won",
+    "content": "<p>You are given an array of <strong>positive</strong> integers <code>nums</code>.</p>\n\n<p>Alice and Bob are playing a game. In the game, Alice can choose <strong>either</strong> all single-digit numbers or all double-digit numbers from <code>nums</code>, and the rest of the numbers are given to Bob. Alice wins if the sum of her numbers is <strong>strictly greater</strong> than the sum of Bob&#39;s numbers.</p>\n\n<p>Return <code>true</code> if Alice can win this game, otherwise, return <code>false</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,4,10]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Alice cannot win by choosing either single-digit or double-digit numbers.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,4,5,14]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Alice can win by choosing single-digit numbers which have a sum equal to 15.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [5,5,5,25]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Alice can win by choosing double-digit numbers which have a sum equal to 25.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 99</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"105.3K\", \"totalSubmission\": \"129.3K\", \"totalAcceptedRaw\": 105315, \"totalSubmissionRaw\": 129286, \"acRate\": \"81.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Alice wins if the sum of all single-digit numbers and the sum of all double-digit numbers are different."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1770515007",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17728000,
+      "timestamp": 1757854650,
+      "title": "Find if Digit Game Can Be Won",
+      "titleSlug": "find-if-digit-game-can-be-won",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 58.65789999999999,
+      "code": "class Solution:\n    def canAliceWin(self, nums: List[int]) -> bool:\n        Singlesum : int = 0\n        Doublesum : int = 0\n        for num in nums:\n            if len(str(num)) == 1:\n                Singlesum += num\n            else:\n                Doublesum += num\n        return not Singlesum == Doublesum",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3515",
+        "titleSlug": "find-if-digit-game-can-be-won",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

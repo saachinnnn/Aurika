@@ -1,0 +1,66 @@
+{
+  "question_name": "sort-array-by-parity",
+  "problem_metadata": {
+    "questionId": "941",
+    "title": "Sort Array By Parity",
+    "titleSlug": "sort-array-by-parity",
+    "content": "<p>Given an integer array <code>nums</code>, move all the even integers at the beginning of the array followed by all the odd integers.</p>\n\n<p>Return <em><strong>any array</strong> that satisfies this condition</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,1,2,4]\n<strong>Output:</strong> [2,4,3,1]\n<strong>Explanation:</strong> The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0]\n<strong>Output:</strong> [0]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 5000</code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 5000</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"988.4K\", \"totalSubmission\": \"1.3M\", \"totalAcceptedRaw\": 988388, \"totalSubmissionRaw\": 1292927, \"acRate\": \"76.4%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1814943033",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1,
+      "memory": 18164000,
+      "timestamp": 1761735816,
+      "title": "Sort Array By Parity",
+      "titleSlug": "sort-array-by-parity",
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 61.052,
+      "memoryDisplay": "18.2 MB",
+      "memoryPercentile": 70.586,
+      "code": "class Solution:\n    def sortArrayByParity(self, nums: List[int]) -> List[int]:\n        # Classic two pointer approach.\n        ## This question is so nostalgic my god wow.\n\n        if not nums:\n            return []\n        left_ptr : int = 0\n        right_ptr : int = len(nums) - 1\n\n        while left_ptr < right_ptr:\n            if nums[left_ptr] % 2 != 0 and nums[right_ptr] % 2 == 0:\n                nums[left_ptr] , nums[right_ptr] = nums[right_ptr] , nums[left_ptr]\n                left_ptr += 1\n                right_ptr -=1\n            elif nums[left_ptr] % 2 == 0:\n                left_ptr += 1\n            else:\n                right_ptr -= 1\n        return nums",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "941",
+        "titleSlug": "sort-array-by-parity",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

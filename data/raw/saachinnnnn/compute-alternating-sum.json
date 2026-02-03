@@ -1,0 +1,63 @@
+{
+  "question_name": "compute-alternating-sum",
+  "problem_metadata": {
+    "questionId": "4058",
+    "title": "Compute Alternating Sum",
+    "titleSlug": "compute-alternating-sum",
+    "content": "<p>You are given an integer array <code>nums</code>.</p>\n\n<p>The <strong>alternating sum</strong> of <code>nums</code> is the value obtained by <strong>adding</strong> elements at even indices and <strong>subtracting</strong> elements at odd indices. That is, <code>nums[0] - nums[1] + nums[2] - nums[3]...</code></p>\n\n<p>Return an integer denoting the alternating sum of <code>nums</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,3,5,7]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">-4</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>Elements at even indices are <code>nums[0] = 1</code> and <code>nums[2] = 5</code> because 0 and 2 are even numbers.</li>\n\t<li>Elements at odd indices are <code>nums[1] = 3</code> and <code>nums[3] = 7</code> because 1 and 3 are odd numbers.</li>\n\t<li>The alternating sum is <code>nums[0] - nums[1] + nums[2] - nums[3] = 1 - 3 + 5 - 7 = -4</code>.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [100]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">100</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The only element at even indices is <code>nums[0] = 100</code> because 0 is an even number.</li>\n\t<li>There are no elements on odd indices.</li>\n\t<li>The alternating sum is <code>nums[0] = 100</code>.</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"63.2K\", \"totalSubmission\": \"70.6K\", \"totalAcceptedRaw\": 63205, \"totalSubmissionRaw\": 70614, \"acRate\": \"89.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Simulation",
+        "slug": "simulation",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Simulate as described"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1791635588",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18112000,
+      "timestamp": 1759632128,
+      "title": "Compute Alternating Sum",
+      "titleSlug": "compute-alternating-sum",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18.1 MB",
+      "memoryPercentile": 50.025300000000016,
+      "code": "class Solution:\n    def alternatingSum(self, nums: List[int]) -> int:\n        return sum(num if idx % 2 == 0 else -num for idx, num in enumerate(nums))",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "4058",
+        "titleSlug": "compute-alternating-sum",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

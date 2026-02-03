@@ -1,0 +1,79 @@
+{
+  "question_name": "find-the-number-of-ways-to-place-people-i",
+  "problem_metadata": {
+    "questionId": "3278",
+    "title": "Find the Number of Ways to Place People I",
+    "titleSlug": "find-the-number-of-ways-to-place-people-i",
+    "content": "<p>You are given a 2D array <code>points</code> of size <code>n x 2</code> representing integer coordinates of some points on a 2D plane, where <code>points[i] = [x<sub>i</sub>, y<sub>i</sub>]</code>.</p>\n\n<p>Count the number of pairs of points <code>(A, B)</code>, where</p>\n\n<ul>\n\t<li><code>A</code> is on the <strong>upper left</strong> side of <code>B</code>, and</li>\n\t<li>there are no other points in the rectangle (or line) they make (<strong>including the border</strong>), except for the points <code>A</code> and <code>B</code>.</li>\n</ul>\n\n<p>Return the count.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">points = [[1,1],[2,2],[3,3]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><img src=\"https://assets.leetcode.com/uploads/2024/01/04/example1alicebob.png\" style=\"width: 427px; height: 350px;\" /></p>\n\n<p>There is no way to choose <code>A</code> and <code>B</code> such that&nbsp;<code>A</code> is on the upper left side of <code>B</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">points = [[6,2],[4,4],[2,6]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><img height=\"365\" src=\"https://assets.leetcode.com/uploads/2024/06/25/t2.jpg\" width=\"1321\" /></p>\n\n<ul>\n\t<li>The left one is the pair <code>(points[1], points[0])</code>, where <code>points[1]</code> is on the upper left side of <code>points[0]</code> and the rectangle is empty.</li>\n\t<li>The middle one is the pair <code>(points[2], points[1])</code>, same as the left one it is a valid pair.</li>\n\t<li>The right one is the pair <code>(points[2], points[0])</code>, where <code>points[2]</code> is on the upper left side of <code>points[0]</code>, but <code>points[1]</code> is inside the rectangle so it&#39;s not a valid pair.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">points = [[3,1],[1,3],[1,1]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><img src=\"https://assets.leetcode.com/uploads/2024/06/25/t3.jpg\" style=\"width: 1269px; height: 350px;\" /></p>\n\n<ul>\n\t<li>The left one is the pair <code>(points[2], points[0])</code>, where <code>points[2]</code> is on the upper left side of <code>points[0]</code> and there are no other points on the line they form. Note that it is a valid state when the two points form a line.</li>\n\t<li>The middle one is the pair <code>(points[1], points[2])</code>, it is a valid pair same as the left one.</li>\n\t<li>The right one is the pair <code>(points[1], points[0])</code>, it is not a valid pair as <code>points[2]</code> is on the border of the rectangle.</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= n &lt;= 50</code></li>\n\t<li><code>points[i].length == 2</code></li>\n\t<li><code>0 &lt;= points[i][0], points[i][1] &lt;= 50</code></li>\n\t<li>All <code>points[i]</code> are distinct.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"115K\", \"totalSubmission\": \"179.6K\", \"totalAcceptedRaw\": 115031, \"totalSubmissionRaw\": 179555, \"acRate\": \"64.1%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Geometry",
+        "slug": "geometry",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Enumeration",
+        "slug": "enumeration",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "We can enumerate all the upper-left and lower-right corners.",
+      "If the upper-left corner is <code>(x1, y1)</code> and lower-right corner is <code>(x2, y2)</code>, check that there is no point <code>(x, y)</code> such that <code>x1 <= x <= x2</code> and <code>y2 <= y <= y1</code>."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1757153703",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 18,
+      "memory": 17492000,
+      "timestamp": 1756824646,
+      "title": "Find the Number of Ways to Place People I",
+      "titleSlug": "find-the-number-of-ways-to-place-people-i",
+      "runtimeDisplay": "18 ms",
+      "runtimePercentile": 58.60990000000001,
+      "memoryDisplay": "17.5 MB",
+      "memoryPercentile": 72.98579999999998,
+      "code": "class Solution:\n    def numberOfPairs(self, P: List[List[int]]) -> int:\n        P.sort(key=lambda p: (-p[0], p[1]))\n        n, ans=len(P), 0\n        for i in range(n-1):\n            y=1<<31\n            for j in range(i+1, n):\n                if y>P[j][1]>=P[i][1]:\n                    ans+=1\n                    y=P[j][1]\n        return ans",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3278",
+        "titleSlug": "find-the-number-of-ways-to-place-people-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

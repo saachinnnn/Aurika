@@ -1,0 +1,106 @@
+{
+  "question_name": "subarray-sum-equals-k",
+  "problem_metadata": {
+    "questionId": "560",
+    "title": "Subarray Sum Equals K",
+    "titleSlug": "subarray-sum-equals-k",
+    "content": "<p>Given an array of integers <code>nums</code> and an integer <code>k</code>, return <em>the total number of subarrays whose sum equals to</em> <code>k</code>.</p>\n\n<p>A subarray is a contiguous <strong>non-empty</strong> sequence of elements within an array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,1,1], k = 2\n<strong>Output:</strong> 2\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,3], k = 3\n<strong>Output:</strong> 2\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>\n\t<li><code>-10<sup>7</sup> &lt;= k &lt;= 10<sup>7</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"2.2M\", \"totalSubmission\": \"4.8M\", \"totalAcceptedRaw\": 2241280, \"totalSubmissionRaw\": 4801765, \"acRate\": \"46.7%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Will Brute force work here? Try to optimize it.",
+      "Can we optimize it by using some extra space?",
+      "What about storing sum frequencies in a hash table? Will it be useful?",
+      "sum(i,j)=sum(0,j)-sum(0,i), where sum(i,j) represents the sum of all the elements from index i to j-1.\r\n\r\nCan we use this property to optimize it."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1639108142",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 28,
+      "memory": 20508000,
+      "timestamp": 1747730009,
+      "title": "Subarray Sum Equals K",
+      "titleSlug": "subarray-sum-equals-k",
+      "runtimeDisplay": "28 ms",
+      "runtimePercentile": 76.13759999999999,
+      "memoryDisplay": "20.5 MB",
+      "memoryPercentile": 60.4581,
+      "code": "class Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n      Prefixsum = 0\n      count = 0\n\n      FrequencyHashmap = {0:1} # This is extremely important and moreover the Prefixsum is at 0 currently.\n\n      for num in nums:\n        Prefixsum += num\n\n        if Prefixsum - k in FrequencyHashmap:\n            count += FrequencyHashmap[Prefixsum - k]\n        \n\n        if Prefixsum in FrequencyHashmap:\n            FrequencyHashmap[Prefixsum] += 1\n        else:\n            FrequencyHashmap[Prefixsum] = 1\n      return count",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "560",
+        "titleSlug": "subarray-sum-equals-k",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1639084501",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10854,
+      "memory": 19620000,
+      "timestamp": 1747727982,
+      "title": "Subarray Sum Equals K",
+      "titleSlug": "subarray-sum-equals-k",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def subarraySum(self, nums: List[int], k: int) -> int:\n        # First letme try solving using bruteforce....\n        Prefixsum = [0]*len(nums)\n        Prefixsum[0] = nums[0]\n        for i in range(1,len(nums)):\n            Prefixsum[i] = nums[i] + Prefixsum[i - 1]\n        count = Prefixsum.count(k)\n        for i in range(len(Prefixsum) - 1):\n            for j in range(i+1,len(Prefixsum)):\n                if Prefixsum[j] - Prefixsum[i] == k:\n                    count += 1\n        return count\n    ",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "560",
+        "titleSlug": "subarray-sum-equals-k",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

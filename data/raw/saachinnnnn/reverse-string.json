@@ -1,0 +1,133 @@
+{
+  "question_name": "reverse-string",
+  "problem_metadata": {
+    "questionId": "344",
+    "title": "Reverse String",
+    "titleSlug": "reverse-string",
+    "content": "<p>Write a function that reverses a string. The input string is given as an array of characters <code>s</code>.</p>\n\n<p>You must do this by modifying the input array <a href=\"https://en.wikipedia.org/wiki/In-place_algorithm\" target=\"_blank\">in-place</a> with <code>O(1)</code> extra memory.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> s = [\"h\",\"e\",\"l\",\"l\",\"o\"]\n<strong>Output:</strong> [\"o\",\"l\",\"l\",\"e\",\"h\"]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> s = [\"H\",\"a\",\"n\",\"n\",\"a\",\"h\"]\n<strong>Output:</strong> [\"h\",\"a\",\"n\",\"n\",\"a\",\"H\"]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>s[i]</code> is a <a href=\"https://en.wikipedia.org/wiki/ASCII#Printable_characters\" target=\"_blank\">printable ascii character</a>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"3.7M\", \"totalSubmission\": \"4.5M\", \"totalAcceptedRaw\": 3651462, \"totalSubmissionRaw\": 4537959, \"acRate\": \"80.5%\"}",
+    "topicTags": [
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "The entire logic for reversing a string is based on using the opposite directional two-pointer approach!"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1787986277",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 23028000,
+      "timestamp": 1759302948,
+      "title": "Reverse String",
+      "titleSlug": "reverse-string",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 10.027500000000003,
+      "memoryDisplay": "23 MB",
+      "memoryPercentile": 59.88250000000002,
+      "code": "class Solution:\n    def reverseString(self, s: List[str]) -> None:\n        \"\"\"\n        Do not return anything, modify s in-place instead.\n        \"\"\"\n        # Another way to do this.....\n        left = 0\n        right = len(s) - 1\n\n        while left < right:\n            s[left] , s[right] = s[right] , s[left]\n            left += 1\n            right -= 1\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "344",
+        "titleSlug": "reverse-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787984059",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 22960000,
+      "timestamp": 1759302777,
+      "title": "Reverse String",
+      "titleSlug": "reverse-string",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 44.7837,
+      "memoryDisplay": "23 MB",
+      "memoryPercentile": 68.25910000000002,
+      "code": "class Solution:\n    def reverseString(self, s: List[str]) -> None:\n        \"\"\"\n        Do not return anything, modify s in-place instead.\n        \"\"\"\n        idx = 0\n        while idx < (len(s) // 2):\n            s[idx] , s[len(s) - idx - 1] = s[len(s) - idx - 1] , s[idx]\n            idx += 1\n        \n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "344",
+        "titleSlug": "reverse-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787981137",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 23020000,
+      "timestamp": 1759302559,
+      "title": "Reverse String",
+      "titleSlug": "reverse-string",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "23 MB",
+      "memoryPercentile": 59.88250000000002,
+      "code": "class Solution:\n    def reverseString(self, s: List[str]) -> None:\n        \"\"\"\n        Do not return anything, modify s in-place instead.\n        \"\"\"\n        s.reverse()",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "344",
+        "titleSlug": "reverse-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "question_name": "min-stack",
+  "problem_metadata": {
+    "questionId": "155",
+    "title": "Min Stack",
+    "titleSlug": "min-stack",
+    "content": "<p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>\n\n<p>Implement the <code>MinStack</code> class:</p>\n\n<ul>\n\t<li><code>MinStack()</code> initializes the stack object.</li>\n\t<li><code>void push(int val)</code> pushes the element <code>val</code> onto the stack.</li>\n\t<li><code>void pop()</code> removes the element on the top of the stack.</li>\n\t<li><code>int top()</code> gets the top element of the stack.</li>\n\t<li><code>int getMin()</code> retrieves the minimum element in the stack.</li>\n</ul>\n\n<p>You must implement a solution with <code>O(1)</code> time complexity for each function.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input</strong>\n[&quot;MinStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;getMin&quot;,&quot;pop&quot;,&quot;top&quot;,&quot;getMin&quot;]\n[[],[-2],[0],[-3],[],[],[],[]]\n\n<strong>Output</strong>\n[null,null,null,null,-3,null,0,-2]\n\n<strong>Explanation</strong>\nMinStack minStack = new MinStack();\nminStack.push(-2);\nminStack.push(0);\nminStack.push(-3);\nminStack.getMin(); // return -3\nminStack.pop();\nminStack.top();    // return 0\nminStack.getMin(); // return -2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>-2<sup>31</sup> &lt;= val &lt;= 2<sup>31</sup> - 1</code></li>\n\t<li>Methods <code>pop</code>, <code>top</code> and <code>getMin</code> operations will always be called on <strong>non-empty</strong> stacks.</li>\n\t<li>At most <code>3 * 10<sup>4</sup></code> calls will be made to <code>push</code>, <code>pop</code>, <code>top</code>, and <code>getMin</code>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"2.6M\", \"totalSubmission\": \"4.5M\", \"totalAcceptedRaw\": 2576493, \"totalSubmissionRaw\": 4472737, \"acRate\": \"57.6%\"}",
+    "topicTags": [
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      },
+      {
+        "name": "Design",
+        "slug": "design",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Consider each node in the stack having a minimum value. (Credits to @aakarshmadhavan)"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1813836266",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 9,
+      "memory": 21356000,
+      "timestamp": 1761637069,
+      "title": "Min Stack",
+      "titleSlug": "min-stack",
+      "runtimeDisplay": "9 ms",
+      "runtimePercentile": 29.6071,
+      "memoryDisplay": "21.4 MB",
+      "memoryPercentile": 61.92750000000003,
+      "code": "class MinStack:\n    # Resolving one of the classics.\n    ## Using two stacks.\n    def __init__(self):\n        self.stack = []\n        self.minstack = []\n\n    def push(self, val: int) -> None:\n        if self.minstack == [] or self.minstack[-1] >= val:\n            self.minstack.append(val)\n        self.stack.append(val)\n\n    def pop(self) -> None:\n        element = self.stack.pop()\n        if self.minstack[-1] == element:\n            self.minstack.pop()\n\n    def top(self) -> int:\n        return self.stack[-1]\n\n    def getMin(self) -> int:\n        return self.minstack[-1]\n\n\n# Your MinStack object will be instantiated and called as such:\n# obj = MinStack()\n# obj.push(val)\n# obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.getMin()",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "155",
+        "titleSlug": "min-stack",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1726369764",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 21180000,
+      "timestamp": 1754538375,
+      "title": "Min Stack",
+      "titleSlug": "min-stack",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 49.5573,
+      "memoryDisplay": "21.2 MB",
+      "memoryPercentile": 71.29330000000003,
+      "code": "class MinStack:\n\n    def __init__(self):\n        self.stack : list = []\n        self.minstack : list = []\n\n    def push(self, val: int) -> None:\n        if not self.minstack:\n            self.minstack.append(val)\n        elif self.minstack[-1] >= val:\n            self.minstack.append(val)\n        self.stack.append(val)\n\n    def pop(self) -> None:\n        element = self.stack.pop()\n        if element == self.minstack[-1]:\n            self.minstack.pop()\n\n    def top(self) -> int:\n        return self.stack[-1]\n\n    def getMin(self) -> int:\n        return self.minstack[-1]\n\n\n# Your MinStack object will be instantiated and called as such:\n# obj = MinStack()\n# obj.push(val)\n# obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.getMin()",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "155",
+        "titleSlug": "min-stack",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1670314165",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 4,
+      "memory": 21448000,
+      "timestamp": 1750408556,
+      "title": "Min Stack",
+      "titleSlug": "min-stack",
+      "runtimeDisplay": "4 ms",
+      "runtimePercentile": 69.312,
+      "memoryDisplay": "21.4 MB",
+      "memoryPercentile": 56.83840000000003,
+      "code": "class MinStack:\n\n    def __init__(self):\n        self.stack : list = [] # The main stack we are going to maintain.\n        self.stack_min : list = [] # Store the minimum elements.\n    def push(self, val: int) -> None:\n        if not self.stack_min:\n            self.stack_min.append(val)\n        elif self.stack_min[-1] >= val:\n            self.stack_min.append(val)\n        self.stack.append(val)\n\n    def pop(self) -> None:\n        element = self.stack.pop()\n        if element == self.stack_min[-1]:\n            self.stack_min.pop()\n\n    def top(self) -> int:\n        return self.stack[-1]\n\n    def getMin(self) -> int:\n        return self.stack_min[-1]\n\n\n# Your MinStack object will be instantiated and called as such:\n# obj = MinStack()\n# obj.push(val)\n# obj.pop()\n# param_3 = obj.top()\n# param_4 = obj.getMin()",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "155",
+        "titleSlug": "min-stack",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

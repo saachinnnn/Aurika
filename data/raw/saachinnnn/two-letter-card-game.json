@@ -1,0 +1,80 @@
+{
+  "question_name": "two-letter-card-game",
+  "problem_metadata": {
+    "questionId": "3877",
+    "title": "Two-Letter Card Game",
+    "titleSlug": "two-letter-card-game",
+    "content": "<p>You are given a deck of cards represented by a string array <code>cards</code>, and each card displays two lowercase letters.</p>\n\n<p>You are also given a letter <code>x</code>. You play a game with the following rules:</p>\n\n<ul>\n\t<li>Start with 0 points.</li>\n\t<li>On each turn, you must find two <strong>compatible</strong> cards from the deck that both contain the letter <code>x</code> in any position.</li>\n\t<li>Remove the pair of cards and earn <strong>1 point</strong>.</li>\n\t<li>The game ends when you can no longer find a pair of compatible cards.</li>\n</ul>\n\n<p>Return the <strong>maximum</strong> number of points you can gain with optimal play.</p>\n\n<p>Two cards are <strong>compatible</strong> if the strings differ in <strong>exactly</strong> 1 position.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">cards = [&quot;aa&quot;,&quot;ab&quot;,&quot;ba&quot;,&quot;ac&quot;], x = &quot;a&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>On the first turn, select and remove cards <code>&quot;ab&quot;</code> and <code>&quot;ac&quot;</code>, which are compatible because they differ at only index 1.</li>\n\t<li>On the second turn, select and remove cards <code>&quot;aa&quot;</code> and <code>&quot;ba&quot;</code>, which are compatible because they differ at only index 0.</li>\n</ul>\n\n<p>Because there are no more compatible pairs, the total score is 2.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">cards = [&quot;aa&quot;,&quot;ab&quot;,&quot;ba&quot;], x = &quot;a&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>On the first turn, select and remove cards <code>&quot;aa&quot;</code> and <code>&quot;ba&quot;</code>.</li>\n</ul>\n\n<p>Because there are no more compatible pairs, the total score is 1.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">cards = [&quot;aa&quot;,&quot;ab&quot;,&quot;ba&quot;,&quot;ac&quot;], x = &quot;b&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The only cards that contain the character <code>&#39;b&#39;</code> are <code>&quot;ab&quot;</code> and <code>&quot;ba&quot;</code>. However, they differ in both indices, so they are not compatible. Thus, the output is 0.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= cards.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>cards[i].length == 2</code></li>\n\t<li>Each <code>cards[i]</code> is composed of only lowercase English letters between <code>&#39;a&#39;</code> and <code>&#39;j&#39;</code>.</li>\n\t<li><code>x</code> is a lowercase English letter between <code>&#39;a&#39;</code> and <code>&#39;j&#39;</code>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"9.9K\", \"totalSubmission\": \"82.1K\", \"totalAcceptedRaw\": 9940, \"totalSubmissionRaw\": 82067, \"acRate\": \"12.1%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      },
+      {
+        "name": "Enumeration",
+        "slug": "enumeration",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Compute <code>both</code>, <code>cnt1</code>[c], <code>cnt2</code>[c] as the counts of cards with <code>x</code> in both positions, only the first position (other letter <code>c</code>), and only the second position.",
+      "Let <code>solve(cnt, have)</code> be the maximum pairs you can form from one‐sided counts <code>cnt</code> plus <code>have</code> two‐sided cards by sorting <code>cnt</code>, computing the total, and applying the same logic as in the solution.",
+      "Return the maximum over <code>i = 0..both</code> of <code>solve(cnt1, i) + solve(cnt2, both - i)</code>."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1753636942",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 187,
+      "memory": 35756000,
+      "timestamp": 1756565928,
+      "title": "Two-Letter Card Game",
+      "titleSlug": "two-letter-card-game",
+      "runtimeDisplay": "187 ms",
+      "runtimePercentile": 25.60280000000011,
+      "memoryDisplay": "35.8 MB",
+      "memoryPercentile": 53.62310000000001,
+      "code": "from collections import Counter\nfrom typing import List\n\nclass Solution:\n    def score(self, cards: List[str], x: str) -> int:\n        # counts of \"x?\" (front-only) by second char, and \"?x\" (back-only) by first char\n        front = Counter()  # key: second char (c[1]) for cards where c[0] == x and c[1] != x\n        back  = Counter()  # key: first  char (c[0]) for cards where c[1] == x and c[0] != x\n        both = 0            # count of \"xx\" (c[0] == c[1] == x)\n\n        for c in cards:\n            a, b = c[0], c[1]\n            if a == x and b == x:\n                both += 1\n            elif a == x:\n                front[b] += 1\n            elif b == x:\n                back[a] += 1\n\n        totalF = sum(front.values())\n        totalB = sum(back.values())\n        maxF = max(front.values()) if front else 0\n        maxB = max(back.values()) if back else 0\n\n        def pairs_with_extra(total: int, maxfreq: int, t: int) -> int:\n            \"\"\"Maximum pairs (two cards differ in the other position) after adding t 'xx' cards.\"\"\"\n            new_total = total + t\n            new_max = max(maxfreq, t)\n            return min(new_total // 2, new_total - new_max)\n\n        best = 0\n        # Try allocating t of the 'both' cards to front (and both - t to back)\n        for t in range(both + 1):\n            pf = pairs_with_extra(totalF, maxF, t)\n            pb = pairs_with_extra(totalB, maxB, both - t)\n            best = max(best, pf + pb)\n\n        return best\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3877",
+        "titleSlug": "two-letter-card-game",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

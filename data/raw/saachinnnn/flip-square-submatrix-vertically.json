@@ -1,0 +1,68 @@
+{
+  "question_name": "flip-square-submatrix-vertically",
+  "problem_metadata": {
+    "questionId": "3973",
+    "title": "Flip Square Submatrix Vertically",
+    "titleSlug": "flip-square-submatrix-vertically",
+    "content": "<p>You are given an <code>m x n</code> integer matrix <code>grid</code>, and three integers <code>x</code>, <code>y</code>, and <code>k</code>.</p>\n\n<p>The integers <code>x</code> and <code>y</code> represent the row and column indices of the <strong>top-left</strong> corner of a <strong>square</strong> submatrix and the integer <code>k</code> represents the size (side length) of the square submatrix.</p>\n\n<p>Your task is to flip the submatrix by reversing the order of its rows vertically.</p>\n\n<p>Return the updated matrix.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2025/07/20/gridexmdrawio.png\" style=\"width: 300px; height: 116px;\" />\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">grid = </span>[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]<span class=\"example-io\">, x = 1, y = 0, k = 3</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[[1,2,3,4],[13,14,15,8],[9,10,11,12],[5,6,7,16]]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The diagram above shows the grid before and after the transformation.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2025/07/20/gridexm2drawio.png\" style=\"width: 350px; height: 68px;\" />​​​​​​​\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">grid = [[3,4,2,3],[2,3,4,2]], x = 0, y = 2, k = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[[3,4,4,2],[2,3,2,3]]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The diagram above shows the grid before and after the transformation.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == grid.length</code></li>\n\t<li><code>n == grid[i].length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 50</code></li>\n\t<li><code>1 &lt;= grid[i][j] &lt;= 100</code></li>\n\t<li><code>0 &lt;= x &lt; m</code></li>\n\t<li><code>0 &lt;= y &lt; n</code></li>\n\t<li><code>1 &lt;= k &lt;= min(m - x, n - y)</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"63K\", \"totalSubmission\": \"86.6K\", \"totalAcceptedRaw\": 62959, \"totalSubmissionRaw\": 86598, \"acRate\": \"72.7%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Matrix",
+        "slug": "matrix",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Use two pointers at the block's top and bottom rows and swap their <code>k</code> columns pairwise until the pointers meet."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1729587523",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17988000,
+      "timestamp": 1754795624,
+      "title": "Flip Square Submatrix Vertically",
+      "titleSlug": "flip-square-submatrix-vertically",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 73.31359999999998,
+      "code": "class Solution:\n    def reverseSubmatrix(self, grid: List[List[int]], x: int, y: int, l: int) -> List[List[int]]:\n        for i in range(l // 2):\n            for j in range(l):\n                # Swap elements in column y+j between row x+i and row x+l-1-i\n                grid[x + i][y + j], grid[x + l - 1 - i][y + j] = grid[x + l - 1 - i][y + j], grid[x + i][y + j]\n        return grid",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3973",
+        "titleSlug": "flip-square-submatrix-vertically",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

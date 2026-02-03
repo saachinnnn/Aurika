@@ -1,0 +1,69 @@
+{
+  "question_name": "soup-servings",
+  "problem_metadata": {
+    "questionId": "826",
+    "title": "Soup Servings",
+    "titleSlug": "soup-servings",
+    "content": "<p>You have two soups, <strong>A</strong> and <strong>B</strong>, each starting with <code>n</code> mL. On every turn, one of the following four serving operations is chosen <em>at random</em>, each with probability <code>0.25</code> <strong>independent</strong> of all previous turns:</p>\n\n<ul>\n\t<li>pour 100 mL from type A and 0 mL from type B</li>\n\t<li>pour 75 mL from type A and 25 mL from type B</li>\n\t<li>pour 50 mL from type A and 50 mL from type B</li>\n\t<li>pour 25 mL from type A and 75 mL from type B</li>\n</ul>\n\n<p><strong>Note:</strong></p>\n\n<ul>\n\t<li>There is no operation that pours 0 mL from A and 100 mL from B.</li>\n\t<li>The amounts from A and B are poured <em>simultaneously</em> during the turn.</li>\n\t<li>If an operation asks you to pour <strong>more than</strong> you have left of a soup, pour all that remains of that soup.</li>\n</ul>\n\n<p>The process stops immediately after any turn in which <em>one of the soups</em> is used up.</p>\n\n<p>Return the probability that A is used up <em>before</em> B, plus half the probability that both soups are used up in the<strong> same turn</strong>. Answers within <code>10<sup>-5</sup></code> of the actual answer will be accepted.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 50\n<strong>Output:</strong> 0.62500\n<strong>Explanation:</strong> \nIf we perform either of the first two serving operations, soup A will become empty first.\nIf we perform the third operation, A and B will become empty at the same time.\nIf we perform the fourth operation, B will become empty first.\nSo the total probability of A becoming empty first plus half the probability that A and B become empty at the same time, is 0.25 * (1 + 1 + 0.5 + 0) = 0.625.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 100\n<strong>Output:</strong> 0.71875\n<strong>Explanation:</strong> \nIf we perform the first serving operation, soup A will become empty first.\nIf we perform the second serving operations, A will become empty on performing operation [1, 2, 3], and both A and B become empty on performing operation 4.\nIf we perform the third operation, A will become empty on performing operation [1, 2], and both A and B become empty on performing operation 3.\nIf we perform the fourth operation, A will become empty on performing operation 1, and both A and B become empty on performing operation 2.\nSo the total probability of A becoming empty first plus half the probability that A and B become empty at the same time, is 0.71875.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= n &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"149.4K\", \"totalSubmission\": \"250.2K\", \"totalAcceptedRaw\": 149440, \"totalSubmissionRaw\": 250173, \"acRate\": \"59.7%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      },
+      {
+        "name": "Probability and Statistics",
+        "slug": "probability-and-statistics",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "For large <code>n</code>, the answer approaches a constant value.",
+      "Which soup is more likely to deplete first if we are allowed to perform many operations without bias?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1728181343",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1788,
+      "memory": 481192000,
+      "timestamp": 1754672612,
+      "title": "Soup Servings",
+      "titleSlug": "soup-servings",
+      "runtimeDisplay": "1788 ms",
+      "runtimePercentile": 5.0920999999999585,
+      "memoryDisplay": "481.2 MB",
+      "memoryPercentile": 5.0931999999999675,
+      "code": "class Solution:\n    def soupServings(self, n: int) -> float:\n        if n>50000: return 1.0\n        @cache\n        def dfs(A, B):\n            if A<=0 and B>0: return 1\n            if A<=0 and B<=0: return 0.5\n            if A>0 and B<=0: return 0\n            return 0.25*(dfs(A-4, B)+dfs(A-3, B-1)+dfs(A-2, B-2)+dfs(A-1, B-3))\n        N=(n+24)//25\n        return dfs(N, N)\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "826",
+        "titleSlug": "soup-servings",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "question_name": "add-strings",
+  "problem_metadata": {
+    "questionId": "415",
+    "title": "Add Strings",
+    "titleSlug": "add-strings",
+    "content": "<p>Given two non-negative integers, <code>num1</code> and <code>num2</code> represented as string, return <em>the sum of</em> <code>num1</code> <em>and</em> <code>num2</code> <em>as a string</em>.</p>\n\n<p>You must solve the problem without using any built-in library for handling large integers (such as <code>BigInteger</code>). You must also not convert the inputs to integers directly.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> num1 = &quot;11&quot;, num2 = &quot;123&quot;\n<strong>Output:</strong> &quot;134&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> num1 = &quot;456&quot;, num2 = &quot;77&quot;\n<strong>Output:</strong> &quot;533&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> num1 = &quot;0&quot;, num2 = &quot;0&quot;\n<strong>Output:</strong> &quot;0&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= num1.length, num2.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>num1</code> and <code>num2</code> consist of only digits.</li>\n\t<li><code>num1</code> and <code>num2</code> don&#39;t have any leading zeros except for the zero itself.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"912K\", \"totalSubmission\": \"1.8M\", \"totalAcceptedRaw\": 911960, \"totalSubmissionRaw\": 1751278, \"acRate\": \"52.1%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Simulation",
+        "slug": "simulation",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1800445105",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 18260000,
+      "timestamp": 1760369326,
+      "title": "Add Strings",
+      "titleSlug": "add-strings",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 40.660500000000006,
+      "memoryDisplay": "18.3 MB",
+      "memoryPercentile": 57.0908,
+      "code": "class Solution:\n    def addStrings(self, num1: str, num2: str) -> str:\n        i, j = len(num1) - 1, len(num2) - 1\n        carry = 0\n        result = []\n        while i >= 0 or j >= 0 or carry:\n            digit1 = int(num1[i]) if i >= 0 else 0\n            digit2 = int(num2[j]) if j >= 0 else 0\n            total = digit1 + digit2 + carry\n            carry = total // 10\n            result.append(str(total % 10))\n            i -= 1\n            j -= 1\n        return ''.join(reversed(result))\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "415",
+        "titleSlug": "add-strings",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1800441882",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 47,
+      "memory": 17632000,
+      "timestamp": 1760369129,
+      "title": "Add Strings",
+      "titleSlug": "add-strings",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def addStrings(self, num1: str, num2: str) -> str:\n        return str(int(num1) + int(num2))",
+      "statusCode": 15,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "415",
+        "titleSlug": "add-strings",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5000 digits; use sys.set_int_max_str_digits() to increase the limit\n                           ^^^^^^^^^\n    return str(int(num1) + int(num2))\nLine 3 in addStrings (Solution.py)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ret = Solution().addStrings(param_1, param_2)\nLine 33 in _driver (Solution.py)\n    _driver()\nLine 48 in <module> (Solution.py)",
+      "compileError": null
+    }
+  ]
+}

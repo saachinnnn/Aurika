@@ -1,0 +1,35 @@
+{
+  "question_name": "to-lower-case",
+  "problem_metadata": {
+    "questionId": "742",
+    "title": "To Lower Case",
+    "titleSlug": "to-lower-case",
+    "content": "<p>Given a string <code>s</code>, return <em>the string after replacing every uppercase letter with the same lowercase letter</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;Hello&quot;\n<strong>Output:</strong> &quot;hello&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;here&quot;\n<strong>Output:</strong> &quot;here&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;LOVELY&quot;\n<strong>Output:</strong> &quot;lovely&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 100</code></li>\n\t<li><code>s</code> consists of printable ASCII characters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"703.7K\", \"totalSubmission\": \"831.1K\", \"totalAcceptedRaw\": 703720, \"totalSubmissionRaw\": 831120, \"acRate\": \"84.7%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Most languages support lowercase conversion for a string data type. However, that is certainly not the purpose of the problem. Think about how the implementation of the lowercase function call can be done easily.",
+      "<b>Think ASCII!</b>",
+      "Think about the different capital letters and their ASCII codes and how that relates to their lowercase counterparts. Does there seem to be any pattern there? Any mathematical relationship that we can use?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1469500755",
+      "statusDisplay": "Accepted",
+      "lang": "python",
+      "runtime": "0 ms",
+      "memory": "12.1 MB",
+      "timestamp": "1733249778",
+      "title": "To Lower Case",
+      "titleSlug": "to-lower-case"
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "question_name": "1-bit-and-2-bit-characters",
+  "problem_metadata": {
+    "questionId": "717",
+    "title": "1-bit and 2-bit Characters",
+    "titleSlug": "1-bit-and-2-bit-characters",
+    "content": "<p>We have two special characters:</p>\n\n<ul>\n\t<li>The first character can be represented by one bit <code>0</code>.</li>\n\t<li>The second character can be represented by two bits (<code>10</code> or <code>11</code>).</li>\n</ul>\n\n<p>Given a binary array <code>bits</code> that ends with <code>0</code>, return <code>true</code> if the last character must be a one-bit character.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> bits = [1,0,0]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> The only way to decode it is two-bit character and one-bit character.\nSo the last character is one-bit character.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> bits = [1,1,1,0]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> The only way to decode it is two-bit character and two-bit character.\nSo the last character is not one-bit character.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= bits.length &lt;= 1000</code></li>\n\t<li><code>bits[i]</code> is either <code>0</code> or <code>1</code>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"265.2K\", \"totalSubmission\": \"535.3K\", \"totalAcceptedRaw\": 265195, \"totalSubmissionRaw\": 535300, \"acRate\": \"49.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Keep track of where the next character starts.  At the end, you want to know if you started on the last bit."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1832964604",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17712000,
+      "timestamp": 1763441755,
+      "title": "1-bit and 2-bit Characters",
+      "titleSlug": "1-bit-and-2-bit-characters",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 60.91850000000001,
+      "code": "class Solution:\n    def isOneBitCharacter(self, bits: List[int]) -> bool:\n        # The cleaner solution would be...\n        idx = 0 \n        while idx < len(bits) - 1:\n            if bits[idx] == 1:\n                idx += 2\n            else:\n                idx += 1\n        return idx == len(bits) - 1",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "717",
+        "titleSlug": "1-bit-and-2-bit-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1832963077",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 2,
+      "memory": 17836000,
+      "timestamp": 1763441644,
+      "title": "1-bit and 2-bit Characters",
+      "titleSlug": "1-bit-and-2-bit-characters",
+      "runtimeDisplay": "2 ms",
+      "runtimePercentile": 21.317199999999996,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 53.72610000000001,
+      "code": "class Solution:\n    def isOneBitCharacter(self, bits: List[int]) -> bool:\n        # Edge case.\n        if len(bits) == 1:\n            return True if bits[0] == 0 else False\n        idx = 0 \n        while idx < len(bits):\n            if bits[idx] == 1:\n                if bits[idx + 1] == 1 or bits[idx + 1] == 0:\n                    idx += 2\n            elif idx < len(bits) - 1 and bits[idx] == 0:\n                idx += 1\n            if idx == len(bits) - 1:\n                return True\n        return False\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "717",
+        "titleSlug": "1-bit-and-2-bit-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1832960599",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 9950,
+      "memory": 17456000,
+      "timestamp": 1763441462,
+      "title": "1-bit and 2-bit Characters",
+      "titleSlug": "1-bit-and-2-bit-characters",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def isOneBitCharacter(self, bits: List[int]) -> bool:\n        # Edge case.\n        if len(bits) == 1:\n            return True if bits[0] == 0 else False\n        idx = 0 \n        while idx < len(bits):\n            if bits[idx] == 1:\n                if bits[idx + 1] == 1 or bits[idx + 1] == 0:\n                    idx += 2\n            if idx == len(bits) - 1:\n                return True\n        return False\n",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "717",
+        "titleSlug": "1-bit-and-2-bit-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1832867799",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17756000,
+      "timestamp": 1763433141,
+      "title": "1-bit and 2-bit Characters",
+      "titleSlug": "1-bit-and-2-bit-characters",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def isOneBitCharacter(self, bits: List[int]) -> bool:\n        if len(bits) == 1:\n            return True if bits[-1] == 0 else False\n        return True if bits[-1] == 0 and bits[-2] == 0 else False",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "717",
+        "titleSlug": "1-bit-and-2-bit-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1832867402",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 42,
+      "memory": 17852000,
+      "timestamp": 1763433096,
+      "title": "1-bit and 2-bit Characters",
+      "titleSlug": "1-bit-and-2-bit-characters",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def isOneBitCharacter(self, bits: List[int]) -> bool:\n        return True if bits[-1] == 0 and bits[-2] == 0 else False",
+      "statusCode": 15,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "717",
+        "titleSlug": "1-bit-and-2-bit-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "IndexError: list index out of range\n                                     ~~~~^^^^\n    return True if bits[-1] == 0 and bits[-2] == 0 else False\nLine 3 in isOneBitCharacter (Solution.py)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ret = Solution().isOneBitCharacter(param_1)\nLine 28 in _driver (Solution.py)\n    _driver()\nLine 43 in <module> (Solution.py)",
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "question_name": "number-of-substrings-containing-all-three-characters",
+  "problem_metadata": {
+    "questionId": "1460",
+    "title": "Number of Substrings Containing All Three Characters",
+    "titleSlug": "number-of-substrings-containing-all-three-characters",
+    "content": "<p>Given a string <code>s</code>&nbsp;consisting only of characters <em>a</em>, <em>b</em> and <em>c</em>.</p>\n\n<p>Return the number of substrings containing <b>at least</b>&nbsp;one occurrence of all these characters <em>a</em>, <em>b</em> and <em>c</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abcabc&quot;\n<strong>Output:</strong> 10\n<strong>Explanation:</strong> The substrings containing&nbsp;at least&nbsp;one occurrence of the characters&nbsp;<em>a</em>,&nbsp;<em>b</em>&nbsp;and&nbsp;<em>c are &quot;</em>abc<em>&quot;, &quot;</em>abca<em>&quot;, &quot;</em>abcab<em>&quot;, &quot;</em>abcabc<em>&quot;, &quot;</em>bca<em>&quot;, &quot;</em>bcab<em>&quot;, &quot;</em>bcabc<em>&quot;, &quot;</em>cab<em>&quot;, &quot;</em>cabc<em>&quot; </em>and<em> &quot;</em>abc<em>&quot; </em>(<strong>again</strong>)<em>. </em>\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aaacb&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The substrings containing&nbsp;at least&nbsp;one occurrence of the characters&nbsp;<em>a</em>,&nbsp;<em>b</em>&nbsp;and&nbsp;<em>c are &quot;</em>aaacb<em>&quot;, &quot;</em>aacb<em>&quot; </em>and<em> &quot;</em>acb<em>&quot;.</em><em> </em>\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abc&quot;\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= s.length &lt;= 5 x 10^4</code></li>\n\t<li><code>s</code>&nbsp;only consists of&nbsp;<em>a</em>, <em>b</em> or <em>c&nbsp;</em>characters.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"421.2K\", \"totalSubmission\": \"573.5K\", \"totalAcceptedRaw\": 421166, \"totalSubmissionRaw\": 573463, \"acRate\": \"73.4%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "For each position we simply need to find the first occurrence of a/b/c on or after this position.",
+      "So we can pre-compute three link-list of indices of each a, b, and c."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1790764128",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 107,
+      "memory": 17784000,
+      "timestamp": 1759557287,
+      "title": "Number of Substrings Containing All Three Characters",
+      "titleSlug": "number-of-substrings-containing-all-three-characters",
+      "runtimeDisplay": "107 ms",
+      "runtimePercentile": 49.62690000000009,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 72.1963,
+      "code": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        count : int = 0\n        left : int = 0\n        char_count : dict = {'a':0,'b':0,'c':0}\n\n        for right in range(len(s)):\n            char_count[s[right]] += 1\n\n            while char_count['a'] > 0 and char_count['b'] > 0 and char_count['c'] > 0:\n                count += len(s) - right\n                char_count[s[left]] -= 1\n                left += 1\n        return count",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1460",
+        "titleSlug": "number-of-substrings-containing-all-three-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1790756082",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10496,
+      "memory": 17720000,
+      "timestamp": 1759556689,
+      "title": "Number of Substrings Containing All Three Characters",
+      "titleSlug": "number-of-substrings-containing-all-three-characters",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        if len(s) <= 0:\n            return 0\n        \n        count: int = 0\n        required: set = {'a', 'b', 'c'}\n        l = 0\n        r = 0\n\n        while l < len(s):\n            window_chars = set()\n            r = l\n            while r < len(s):\n                window_chars.add(s[r])\n                if required.issubset(window_chars):\n                    count += len(s) - r\n                    break\n                r += 1\n            l += 1\n\n        return count",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1460",
+        "titleSlug": "number-of-substrings-containing-all-three-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1790755454",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10667,
+      "memory": 17788000,
+      "timestamp": 1759556642,
+      "title": "Number of Substrings Containing All Three Characters",
+      "titleSlug": "number-of-substrings-containing-all-three-characters",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        if len(s) <= 0:\n            return 0\n        \n        required : set = set(s)\n        count : int = 0\n        l = 0\n        r = 0\n\n        while l < len(s):\n            window_chars : set = set()\n            r = l\n            while r < len(s):\n                window_chars.add(s[r])\n                if required.issubset(window_chars):\n                    count += len(s) - r\n                    break\n                r += 1\n            l += 1\n        return count",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1460",
+        "titleSlug": "number-of-substrings-containing-all-three-characters",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

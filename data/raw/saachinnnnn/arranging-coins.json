@@ -1,0 +1,201 @@
+{
+  "question_name": "arranging-coins",
+  "problem_metadata": {
+    "questionId": "441",
+    "title": "Arranging Coins",
+    "titleSlug": "arranging-coins",
+    "content": "<p>You have <code>n</code> coins and you want to build a staircase with these coins. The staircase consists of <code>k</code> rows where the <code>i<sup>th</sup></code> row has exactly <code>i</code> coins. The last row of the staircase <strong>may be</strong> incomplete.</p>\n\n<p>Given the integer <code>n</code>, return <em>the number of <strong>complete rows</strong> of the staircase you will build</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/09/arrangecoins1-grid.jpg\" style=\"width: 253px; height: 253px;\" />\n<pre>\n<strong>Input:</strong> n = 5\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Because the 3<sup>rd</sup> row is incomplete, we return 2.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/04/09/arrangecoins2-grid.jpg\" style=\"width: 333px; height: 333px;\" />\n<pre>\n<strong>Input:</strong> n = 8\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> Because the 4<sup>th</sup> row is incomplete, we return 3.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"599.3K\", \"totalSubmission\": \"1.3M\", \"totalAcceptedRaw\": 599251, \"totalSubmissionRaw\": 1250328, \"acRate\": \"47.9%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1839297831",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17964000,
+      "timestamp": 1764065484,
+      "title": "Arranging Coins",
+      "titleSlug": "arranging-coins",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 49.9045,
+      "code": "import math\n\nclass Solution(object):\n    def arrangeCoins(self, n):\n        return int((math.sqrt(8 * n + 1) - 1) // 2)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "441",
+        "titleSlug": "arranging-coins",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1839292424",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 464,
+      "memory": 17724000,
+      "timestamp": 1764064975,
+      "title": "Arranging Coins",
+      "titleSlug": "arranging-coins",
+      "runtimeDisplay": "464 ms",
+      "runtimePercentile": 32.85780000000007,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 58.3969,
+      "code": "class Solution:\n    def arrangeCoins(self, n: int) -> int:\n       for num in range(1,n + 1):\n        n -= num\n        if n == 0:\n            return num\n        elif n < 0:\n            return num - 1\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "441",
+        "titleSlug": "arranging-coins",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1839284859",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17736000,
+      "timestamp": 1764064242,
+      "title": "Arranging Coins",
+      "titleSlug": "arranging-coins",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def arrangeCoins(self, n: int) -> int:\n        if n == 1 or n == 2:\n            return 1\n        return n // 2 if n % 2 != 0 else (n // 2) - 1",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "441",
+        "titleSlug": "arranging-coins",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1839284575",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17972000,
+      "timestamp": 1764064216,
+      "title": "Arranging Coins",
+      "titleSlug": "arranging-coins",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def arrangeCoins(self, n: int) -> int:\n        if n == 1:\n            return 1\n        return n // 2 if n % 2 != 0 else (n // 2) - 1",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "441",
+        "titleSlug": "arranging-coins",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1839283880",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17728000,
+      "timestamp": 1764064149,
+      "title": "Arranging Coins",
+      "titleSlug": "arranging-coins",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def arrangeCoins(self, n: int) -> int:\n        return n // 2 if n % 2 != 0 else (n // 2) - 1",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "441",
+        "titleSlug": "arranging-coins",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

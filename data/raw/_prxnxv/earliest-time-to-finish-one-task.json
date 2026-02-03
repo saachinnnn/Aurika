@@ -1,0 +1,93 @@
+{
+  "question_name": "earliest-time-to-finish-one-task",
+  "problem_metadata": {
+    "questionId": "4012",
+    "title": "Earliest Time to Finish One Task",
+    "titleSlug": "earliest-time-to-finish-one-task",
+    "content": "<p>You are given a 2D integer array <code>tasks</code> where <code>tasks[i] = [s<sub>i</sub>, t<sub>i</sub>]</code>.</p>\n\n<p>Each <code>[s<sub>i</sub>, t<sub>i</sub>]</code> in <code>tasks</code> represents a task with start time <code>s<sub>i</sub></code> that takes <code>t<sub>i</sub></code> units of time to finish.</p>\n\n<p>Return the earliest time at which at least one task is finished.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">tasks = [[1,6],[2,3]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The first task starts at time <code>t = 1</code> and finishes at time <code>1 + 6 = 7</code>. The second task finishes at time <code>2 + 3 = 5</code>. You can finish one task at time 5.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">tasks = [[100,100],[100,100],[100,100]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">200</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>All three tasks finish at time <code>100 + 100 = 200</code>.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= tasks.length &lt;= 100</code></li>\n\t<li><code>tasks[i] = [s<sub>i</sub>, t<sub>i</sub>]</code></li>\n\t<li><code>1 &lt;= s<sub>i</sub>, t<sub>i</sub> &lt;= 100</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"66.7K\", \"totalSubmission\": \"79.4K\", \"totalAcceptedRaw\": 66675, \"totalSubmissionRaw\": 79354, \"acRate\": \"84.0%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Compute <code>finish[i] = s[i] + t[i]</code> for each task and take the minimum."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1770080213",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "runtime": 4,
+      "memory": 12596000,
+      "timestamp": 1757822343,
+      "title": "Earliest Time to Finish One Task",
+      "titleSlug": "earliest-time-to-finish-one-task",
+      "runtimeDisplay": "4 ms",
+      "runtimePercentile": 50.85700000000001,
+      "memoryDisplay": "12.6 MB",
+      "memoryPercentile": 28.5715,
+      "code": "class Solution(object):\n    def earliestTime(self, tasks):\n        return min(s + t for s, t in tasks)\n\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "4012",
+        "titleSlug": "earliest-time-to-finish-one-task",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1770079215",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "runtime": 3,
+      "memory": 12524000,
+      "timestamp": 1757822301,
+      "title": "Earliest Time to Finish One Task",
+      "titleSlug": "earliest-time-to-finish-one-task",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 63.99990000000001,
+      "memoryDisplay": "12.5 MB",
+      "memoryPercentile": 28.5715,
+      "code": "class Solution(object):\n    def earliestTime(self, tasks):\n        return min(s + t for s, t in tasks)\n\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "4012",
+        "titleSlug": "earliest-time-to-finish-one-task",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

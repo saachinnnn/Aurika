@@ -1,0 +1,134 @@
+{
+  "question_name": "make-the-string-great",
+  "problem_metadata": {
+    "questionId": "1666",
+    "title": "Make The String Great",
+    "titleSlug": "make-the-string-great",
+    "content": "<p>Given a string <code>s</code> of lower and upper case English letters.</p>\n\n<p>A good string is a string which doesn&#39;t have <strong>two adjacent characters</strong> <code>s[i]</code> and <code>s[i + 1]</code> where:</p>\n\n<ul>\n\t<li><code>0 &lt;= i &lt;= s.length - 2</code></li>\n\t<li><code>s[i]</code> is a lower-case letter and <code>s[i + 1]</code> is the same letter but in upper-case or <strong>vice-versa</strong>.</li>\n</ul>\n\n<p>To make the string good, you can choose <strong>two adjacent</strong> characters that make the string bad and remove them. You can keep doing this until the string becomes good.</p>\n\n<p>Return <em>the string</em> after making it good. The answer is guaranteed to be unique under the given constraints.</p>\n\n<p><strong>Notice</strong> that an empty string is also good.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;leEeetcode&quot;\n<strong>Output:</strong> &quot;leetcode&quot;\n<strong>Explanation:</strong> In the first step, either you choose i = 1 or i = 2, both will result &quot;leEeetcode&quot; to be reduced to &quot;leetcode&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abBAcC&quot;\n<strong>Output:</strong> &quot;&quot;\n<strong>Explanation:</strong> We have many possible scenarios, and all lead to the same answer. For example:\n&quot;abBAcC&quot; --&gt; &quot;aAcC&quot; --&gt; &quot;cC&quot; --&gt; &quot;&quot;\n&quot;abBAcC&quot; --&gt; &quot;abBA&quot; --&gt; &quot;aA&quot; --&gt; &quot;&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;s&quot;\n<strong>Output:</strong> &quot;s&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 100</code></li>\n\t<li><code>s</code> contains only lower and upper case English letters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"396.2K\", \"totalSubmission\": \"579.4K\", \"totalAcceptedRaw\": 396188, \"totalSubmissionRaw\": 579382, \"acRate\": \"68.4%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Stack",
+        "slug": "stack",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "The order you choose 2 characters to remove doesn't matter.",
+      "Keep applying the mentioned step to s till the length of the string is not changed."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1815797276",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17984000,
+      "timestamp": 1761815140,
+      "title": "Make The String Great",
+      "titleSlug": "make-the-string-great",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 48.34140000000002,
+      "code": "class Solution:\n    def makeGood(self, s: str) -> str:\n        if not s:\n            return \"\"\n        difference : int = abs(ord('A') - ord('a'))\n        stack : list = []\n        for char in s:\n            if stack and abs(ord(stack[-1]) - ord(char)) == difference:\n                stack.pop()\n            else:\n                stack.append(char)\n        return \"\".join(stack)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1666",
+        "titleSlug": "make-the-string-great",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1815795015",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 17664000,
+      "timestamp": 1761814920,
+      "title": "Make The String Great",
+      "titleSlug": "make-the-string-great",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 47.953500000000005,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 66.13540000000002,
+      "code": "class Solution:\n    def makeGood(self, s: str) -> str:\n        # I can solve this string quesiton.\n        if not s:\n            return \"\"\n        stack : list = []\n        for char in s:\n            if stack and ((stack[-1] != char and stack[-1] == char.lower()) or (stack[-1] != char and stack[-1] == char.upper())):\n                stack.pop()\n            else:\n                stack.append(char)\n        return \"\".join(stack)\n\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1666",
+        "titleSlug": "make-the-string-great",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1815794219",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1,
+      "memory": 17712000,
+      "timestamp": 1761814840,
+      "title": "Make The String Great",
+      "titleSlug": "make-the-string-great",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def makeGood(self, s: str) -> str:\n        # I can solve this string quesiton.\n        if not s:\n            return \"\"\n        stack : list = []\n        for char in s:\n            if stack and stack[-1] != char and stack[-1] == char.lower():\n                stack.pop()\n            else:\n                stack.append(char)\n        return \"\".join(stack)\n\n",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1666",
+        "titleSlug": "make-the-string-great",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

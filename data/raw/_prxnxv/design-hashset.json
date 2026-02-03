@@ -1,0 +1,76 @@
+{
+  "question_name": "design-hashset",
+  "problem_metadata": {
+    "questionId": "816",
+    "title": "Design HashSet",
+    "titleSlug": "design-hashset",
+    "content": "<p>Design a HashSet without using any built-in hash table libraries.</p>\n\n<p>Implement <code>MyHashSet</code> class:</p>\n\n<ul>\n\t<li><code>void add(key)</code> Inserts the value <code>key</code> into the HashSet.</li>\n\t<li><code>bool contains(key)</code> Returns whether the value <code>key</code> exists in the HashSet or not.</li>\n\t<li><code>void remove(key)</code> Removes the value <code>key</code> in the HashSet. If <code>key</code> does not exist in the HashSet, do nothing.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input</strong>\n[&quot;MyHashSet&quot;, &quot;add&quot;, &quot;add&quot;, &quot;contains&quot;, &quot;contains&quot;, &quot;add&quot;, &quot;contains&quot;, &quot;remove&quot;, &quot;contains&quot;]\n[[], [1], [2], [1], [3], [2], [2], [2], [2]]\n<strong>Output</strong>\n[null, null, null, true, false, null, true, null, false]\n\n<strong>Explanation</strong>\nMyHashSet myHashSet = new MyHashSet();\nmyHashSet.add(1);      // set = [1]\nmyHashSet.add(2);      // set = [1, 2]\nmyHashSet.contains(1); // return True\nmyHashSet.contains(3); // return False, (not found)\nmyHashSet.add(2);      // set = [1, 2]\nmyHashSet.contains(2); // return True\nmyHashSet.remove(2);   // set = [1]\nmyHashSet.contains(2); // return False, (already removed)</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= key &lt;= 10<sup>6</sup></code></li>\n\t<li>At most <code>10<sup>4</sup></code> calls will be made to <code>add</code>, <code>remove</code>, and <code>contains</code>.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"552.9K\", \"totalSubmission\": \"817.1K\", \"totalAcceptedRaw\": 552929, \"totalSubmissionRaw\": 817109, \"acRate\": \"67.7%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Linked List",
+        "slug": "linked-list",
+        "translatedName": null
+      },
+      {
+        "name": "Design",
+        "slug": "design",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Function",
+        "slug": "hash-function",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1893518384",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 5,
+      "memory": 50428000,
+      "timestamp": 1769101368,
+      "title": "Design HashSet",
+      "titleSlug": "design-hashset",
+      "runtimeDisplay": "5 ms",
+      "runtimePercentile": 93.7383,
+      "memoryDisplay": "50.4 MB",
+      "memoryPercentile": 39.10249999999999,
+      "code": "class MyHashSet {\n    vector<bool> present;\n\npublic:\n    MyHashSet() {\n        present.resize(1000001, false);\n    }\n\n    void add(int key) {\n        present[key] = true;\n    }\n\n    void remove(int key) {\n        present[key] = false;\n    }\n\n    bool contains(int key) {\n        return present[key];\n    }\n};\n",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "816",
+        "titleSlug": "design-hashset",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

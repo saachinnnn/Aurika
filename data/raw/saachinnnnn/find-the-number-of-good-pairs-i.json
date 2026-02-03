@@ -1,0 +1,133 @@
+{
+  "question_name": "find-the-number-of-good-pairs-i",
+  "problem_metadata": {
+    "questionId": "3446",
+    "title": "Find the Number of Good Pairs I",
+    "titleSlug": "find-the-number-of-good-pairs-i",
+    "content": "<p>You are given 2 integer arrays <code>nums1</code> and <code>nums2</code> of lengths <code>n</code> and <code>m</code> respectively. You are also given a <strong>positive</strong> integer <code>k</code>.</p>\n\n<p>A pair <code>(i, j)</code> is called <strong>good</strong> if <code>nums1[i]</code> is divisible by <code>nums2[j] * k</code> (<code>0 &lt;= i &lt;= n - 1</code>, <code>0 &lt;= j &lt;= m - 1</code>).</p>\n\n<p>Return the total number of <strong>good</strong> pairs.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums1 = [1,3,4], nums2 = [1,3,4], k = 1</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\nThe 5 good pairs are <code>(0, 0)</code>, <code>(1, 0)</code>, <code>(1, 1)</code>, <code>(2, 0)</code>, and <code>(2, 2)</code>.</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums1 = [1,2,4,12], nums2 = [2,4], k = 3</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The 2 good pairs are <code>(3, 0)</code> and <code>(3, 1)</code>.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n, m &lt;= 50</code></li>\n\t<li><code>1 &lt;= nums1[i], nums2[j] &lt;= 50</code></li>\n\t<li><code>1 &lt;= k &lt;= 50</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"93.1K\", \"totalSubmission\": \"107.9K\", \"totalAcceptedRaw\": 93103, \"totalSubmissionRaw\": 107920, \"acRate\": \"86.3%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "The constraints are small. Check all pairs."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1653651800",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1,
+      "memory": 17840000,
+      "timestamp": 1749036419,
+      "title": "Find the Number of Good Pairs I",
+      "titleSlug": "find-the-number-of-good-pairs-i",
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 91.5515,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 57.6037,
+      "code": "class Solution:\n    def numberOfPairs(self, nums1: List[int], \n                            nums2: List[int], k: int, ans = 0) -> int:\n\n        nums1 = [x//k for x in nums1 if x%k==0]\n        return sum(x%y == 0 for x,y in product(nums1,nums2))",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3446",
+        "titleSlug": "find-the-number-of-good-pairs-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1653647651",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17816000,
+      "timestamp": 1749036075,
+      "title": "Find the Number of Good Pairs I",
+      "titleSlug": "find-the-number-of-good-pairs-i",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 57.6037,
+      "code": "class Solution:\n    def numberOfPairs(self, nums1: List[int], \n                            nums2: List[int], k: int, ans = 0) -> int:\n\n        nums1 = list(map(lambda x: x//k, filter(lambda x: x%k == 0, nums1)))\n        \n        for n1, n2 in product(nums1, nums2):\n            \n            if n1%n2 == 0: ans+= 1\n\n        return ans",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3446",
+        "titleSlug": "find-the-number-of-good-pairs-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1653635907",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 18024000,
+      "timestamp": 1749035152,
+      "title": "Find the Number of Good Pairs I",
+      "titleSlug": "find-the-number-of-good-pairs-i",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 29.339600000000008,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 49.0016,
+      "code": "class Solution:\n    def numberOfPairs(self, nums1: List[int], nums2: List[int], k: int) -> int:\n        # Brute force would be by using two for loops and then making it O(N^2)\n\n        count : int = 0\n        for i in range(len(nums1)):\n            for j in range(len(nums2)):\n                if (nums1[i] % (nums2[j] * k)) == 0:\n                    count += 1\n        return count",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3446",
+        "titleSlug": "find-the-number-of-good-pairs-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "[ Time taken: 2 m 40 s ]",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

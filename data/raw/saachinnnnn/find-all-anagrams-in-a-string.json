@@ -1,0 +1,136 @@
+{
+  "question_name": "find-all-anagrams-in-a-string",
+  "problem_metadata": {
+    "questionId": "438",
+    "title": "Find All Anagrams in a String",
+    "titleSlug": "find-all-anagrams-in-a-string",
+    "content": "<p>Given two strings <code>s</code> and <code>p</code>, return an array of all the start indices of <code>p</code>&#39;s <span data-keyword=\"anagram\">anagrams</span> in <code>s</code>. You may return the answer in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;cbaebabacd&quot;, p = &quot;abc&quot;\n<strong>Output:</strong> [0,6]\n<strong>Explanation:</strong>\nThe substring with start index = 0 is &quot;cba&quot;, which is an anagram of &quot;abc&quot;.\nThe substring with start index = 6 is &quot;bac&quot;, which is an anagram of &quot;abc&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abab&quot;, p = &quot;ab&quot;\n<strong>Output:</strong> [0,1,2]\n<strong>Explanation:</strong>\nThe substring with start index = 0 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.\nThe substring with start index = 1 is &quot;ba&quot;, which is an anagram of &quot;ab&quot;.\nThe substring with start index = 2 is &quot;ab&quot;, which is an anagram of &quot;ab&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length, p.length &lt;= 3 * 10<sup>4</sup></code></li>\n\t<li><code>s</code> and <code>p</code> consist of lowercase English letters.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"1.1M\", \"totalSubmission\": \"2.2M\", \"totalAcceptedRaw\": 1145770, \"totalSubmissionRaw\": 2155052, \"acRate\": \"53.2%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1769090992",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 239,
+      "memory": 18460000,
+      "timestamp": 1757754532,
+      "title": "Find All Anagrams in a String",
+      "titleSlug": "find-all-anagrams-in-a-string",
+      "runtimeDisplay": "239 ms",
+      "runtimePercentile": 16.287099999999906,
+      "memoryDisplay": "18.5 MB",
+      "memoryPercentile": 55.73440000000001,
+      "code": "from collections import Counter\nclass Solution:\n    def findAnagrams(self, s: str, p: str) -> List[int]:\n        if len(s) <= 0 or len(p) <= 0:\n            return []\n        \n        p_counter = Counter(p)\n        windowcounter = Counter()\n        result = []\n\n        for i in range(len(s)):\n            windowcounter[s[i]] += 1\n\n            if i >= len(p):\n                left_char = s[i - len(p)]\n                windowcounter[left_char] -= 1\n                if windowcounter[left_char] == 0:\n                    del windowcounter[left_char]\n            \n            if windowcounter == p_counter:\n                result.append(i- len(p) + 1)\n        return result",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "438",
+        "titleSlug": "find-all-anagrams-in-a-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1769082898",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10433,
+      "memory": 18232000,
+      "timestamp": 1757753928,
+      "title": "Find All Anagrams in a String",
+      "titleSlug": "find-all-anagrams-in-a-string",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "from collections import Counter,deque\nclass Solution:\n    def findAnagrams(self, s: str, p: str) -> List[int]:\n        if len(s) == 0 or len(p) == 0:\n            return []\n        Queue : list = deque(s[:len(p)])\n        result = []\n        if Counter(Queue) == Counter(p):\n            result.append(0)\n        \n        for i in range(len(p),len(s)):\n            Queue.popleft()\n            Queue.append(s[i])\n            if Counter(Queue) == Counter(p):\n                result.append(i - len(p) + 1)\n        return result",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "438",
+        "titleSlug": "find-all-anagrams-in-a-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1769081538",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10596,
+      "memory": 18128000,
+      "timestamp": 1757753825,
+      "title": "Find All Anagrams in a String",
+      "titleSlug": "find-all-anagrams-in-a-string",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "from collections import Counter\nclass Solution:\n    def findAnagrams(self, s: str, p: str) -> List[int]:\n        if len(s) == 0 or len(p) == 0:\n            return []\n        answer : list = list(s[:len(p)])\n        result = []\n        if Counter(answer) == Counter(p):\n            result.append(0)\n        \n        for i in range(len(p),len(s)):\n            answer.pop(0)\n            answer.append(s[i])\n            if Counter(answer) == Counter(p):\n                result.append(i - len(p) + 1)\n        return result",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "438",
+        "titleSlug": "find-all-anagrams-in-a-string",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

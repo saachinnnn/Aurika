@@ -1,0 +1,66 @@
+{
+  "question_name": "binary-search",
+  "problem_metadata": {
+    "questionId": "792",
+    "title": "Binary Search",
+    "titleSlug": "binary-search",
+    "content": "<p>Given an array of integers <code>nums</code> which is sorted in ascending order, and an integer <code>target</code>, write a function to search <code>target</code> in <code>nums</code>. If <code>target</code> exists, then return its index. Otherwise, return <code>-1</code>.</p>\n\n<p>You must write an algorithm with <code>O(log n)</code> runtime complexity.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,0,3,5,9,12], target = 9\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> 9 exists in nums and its index is 4\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,0,3,5,9,12], target = 2\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> 2 does not exist in nums so return -1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt; nums[i], target &lt; 10<sup>4</sup></code></li>\n\t<li>All the integers in <code>nums</code> are <strong>unique</strong>.</li>\n\t<li><code>nums</code> is sorted in ascending order.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"3.7M\", \"totalSubmission\": \"6.1M\", \"totalAcceptedRaw\": 3702907, \"totalSubmissionRaw\": 6128160, \"acRate\": \"60.4%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1515322101",
+      "statusDisplay": "Accepted",
+      "lang": "cpp",
+      "runtime": "0 ms",
+      "memory": "31.4 MB",
+      "timestamp": "1737433641",
+      "title": "Binary Search",
+      "titleSlug": "binary-search"
+    },
+    {
+      "id": "1515320200",
+      "statusDisplay": "Wrong Answer",
+      "lang": "cpp",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1737433499",
+      "title": "Binary Search",
+      "titleSlug": "binary-search"
+    },
+    {
+      "id": "1515318750",
+      "statusDisplay": "Wrong Answer",
+      "lang": "cpp",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1737433397",
+      "title": "Binary Search",
+      "titleSlug": "binary-search"
+    },
+    {
+      "id": "1514619028",
+      "statusDisplay": "Accepted",
+      "lang": "cpp",
+      "runtime": "0 ms",
+      "memory": "31.4 MB",
+      "timestamp": "1737381097",
+      "title": "Binary Search",
+      "titleSlug": "binary-search"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "question_name": "defanging-an-ip-address",
+  "problem_metadata": {
+    "questionId": "1205",
+    "title": "Defanging an IP Address",
+    "titleSlug": "defanging-an-ip-address",
+    "content": "<p>Given a valid (IPv4) IP <code>address</code>, return a defanged version of that IP address.</p>\r\n\r\n<p>A <em>defanged&nbsp;IP address</em>&nbsp;replaces every period <code>&quot;.&quot;</code> with <code>&quot;[.]&quot;</code>.</p>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong class=\"example\">Example 1:</strong></p>\r\n<pre><strong>Input:</strong> address = \"1.1.1.1\"\r\n<strong>Output:</strong> \"1[.]1[.]1[.]1\"\r\n</pre><p><strong class=\"example\">Example 2:</strong></p>\r\n<pre><strong>Input:</strong> address = \"255.100.50.0\"\r\n<strong>Output:</strong> \"255[.]100[.]50[.]0\"\r\n</pre>\r\n<p>&nbsp;</p>\r\n<p><strong>Constraints:</strong></p>\r\n\r\n<ul>\r\n\t<li>The given <code>address</code> is a valid IPv4 address.</li>\r\n</ul>",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"830.2K\", \"totalSubmission\": \"923K\", \"totalAcceptedRaw\": 830221, \"totalSubmissionRaw\": 923002, \"acRate\": \"89.9%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1893540214",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "cpp",
+        "verboseName": "C++"
+      },
+      "runtime": 3,
+      "memory": 7648000,
+      "timestamp": 1769102468,
+      "title": "Defanging an IP Address",
+      "titleSlug": "defanging-an-ip-address",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 25.6119,
+      "memoryDisplay": "7.6 MB",
+      "memoryPercentile": 75.1165,
+      "code": "class Solution {\npublic:\n    string defangIPaddr(string address) {\n          string ans;\n    for (char c : address) {\n        if (c == '.') ans += \"[.]\";\n        else ans += c;\n    }\n    return ans;\n        \n    }\n};",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "1205",
+        "titleSlug": "defanging-an-ip-address",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1794883637",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python",
+        "verboseName": "Python"
+      },
+      "runtime": 14,
+      "memory": 12588000,
+      "timestamp": 1759897327,
+      "title": "Defanging an IP Address",
+      "titleSlug": "defanging-an-ip-address",
+      "runtimeDisplay": "14 ms",
+      "runtimePercentile": 67.5853,
+      "memoryDisplay": "12.6 MB",
+      "memoryPercentile": 15.881099999999996,
+      "code": "class Solution(object):\n    def defangIPaddr(self, address):\n        return address.replace(\".\",\"[.]\")\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "1205",
+        "titleSlug": "defanging-an-ip-address",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

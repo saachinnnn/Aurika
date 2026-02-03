@@ -1,0 +1,94 @@
+{
+  "question_name": "count-odd-numbers-in-an-interval-range",
+  "problem_metadata": {
+    "questionId": "1630",
+    "title": "Count Odd Numbers in an Interval Range",
+    "titleSlug": "count-odd-numbers-in-an-interval-range",
+    "content": "<p>Given two non-negative integers <code>low</code> and <code><font face=\"monospace\">high</font></code>. Return the <em>count of odd numbers between </em><code>low</code><em> and </em><code><font face=\"monospace\">high</font></code><em>&nbsp;(inclusive)</em>.</p>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong class=\"example\">Example 1:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> low = 3, high = 7\r\n<strong>Output:</strong> 3\r\n<b>Explanation: </b>The odd numbers between 3 and 7 are [3,5,7].</pre>\r\n\r\n<p><strong class=\"example\">Example 2:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> low = 8, high = 10\r\n<strong>Output:</strong> 1\r\n<b>Explanation: </b>The odd numbers between 8 and 10 are [9].</pre>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong>Constraints:</strong></p>\r\n\r\n<ul>\r\n\t<li><code>0 &lt;= low &lt;= high&nbsp;&lt;= 10^9</code></li>\r\n</ul>",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"534.7K\", \"totalSubmission\": \"984.2K\", \"totalAcceptedRaw\": 534745, \"totalSubmissionRaw\": 984204, \"acRate\": \"54.3%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "If the range (high - low + 1) is even, the number of even and odd numbers in this range will be the same.",
+      "If the range (high - low + 1) is odd, the solution will depend on the parity of high and low."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1849176558",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 29,
+      "memory": 17760000,
+      "timestamp": 1765102448,
+      "title": "Count Odd Numbers in an Interval Range",
+      "titleSlug": "count-odd-numbers-in-an-interval-range",
+      "runtimeDisplay": "29 ms",
+      "runtimePercentile": 93.2973,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 49.566,
+      "code": "class Solution:\n    def countOdds(self, low: int, high: int) -> int:\n        return (high + 1) // 2 - (low // 2)",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1630",
+        "titleSlug": "count-odd-numbers-in-an-interval-range",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1796651113",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10913,
+      "memory": 17412000,
+      "timestamp": 1760033553,
+      "title": "Count Odd Numbers in an Interval Range",
+      "titleSlug": "count-odd-numbers-in-an-interval-range",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def countOdds(self, low: int, high: int) -> int:\n        return sum(1 if num % 2 != 0 else 0 for num in range(low,high + 1))",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1630",
+        "titleSlug": "count-odd-numbers-in-an-interval-range",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

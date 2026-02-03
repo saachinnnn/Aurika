@@ -1,0 +1,66 @@
+{
+  "question_name": "contiguous-array",
+  "problem_metadata": {
+    "questionId": "525",
+    "title": "Contiguous Array",
+    "titleSlug": "contiguous-array",
+    "content": "<p>Given a binary array <code>nums</code>, return <em>the maximum length of a contiguous subarray with an equal number of </em><code>0</code><em> and </em><code>1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1,0]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,1,1,1,1,1,0,0,0]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> [1,1,1,0,0,0] is the longest contiguous subarray with equal number of 0 and 1.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>nums[i]</code> is either <code>0</code> or <code>1</code>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"638.8K\", \"totalSubmission\": \"1.3M\", \"totalAcceptedRaw\": 638784, \"totalSubmissionRaw\": 1262258, \"acRate\": \"50.6%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1702995608",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 94,
+      "memory": 23356000,
+      "timestamp": 1752894341,
+      "title": "Contiguous Array",
+      "titleSlug": "contiguous-array",
+      "runtimeDisplay": "94 ms",
+      "runtimePercentile": 56.216500000000025,
+      "memoryDisplay": "23.4 MB",
+      "memoryPercentile": 69.76130000000008,
+      "code": "class Solution:\n    def findMaxLength(self, nums: List[int]) -> int:\n        prefixsum = 0\n        prefixmap = {0:-1}\n        max_len = 0\n\n        for i in range(len(nums)):\n            if nums[i] == 0:\n                prefixsum -= 1\n            else:\n                prefixsum += 1\n            if prefixsum in prefixmap:\n                max_len = max(max_len,i - prefixmap[prefixsum])\n            else:\n                prefixmap[prefixsum] = i\n        return max_len",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "525",
+        "titleSlug": "contiguous-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

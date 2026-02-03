@@ -1,0 +1,136 @@
+{
+  "question_name": "maximum-subarray",
+  "problem_metadata": {
+    "questionId": "53",
+    "title": "Maximum Subarray",
+    "titleSlug": "maximum-subarray",
+    "content": "<p>Given an integer array <code>nums</code>, find the <span data-keyword=\"subarray-nonempty\">subarray</span> with the largest sum, and return <em>its sum</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-2,1,-3,4,-1,2,1,-5,4]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The subarray [4,-1,2,1] has the largest sum 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The subarray [1] has the largest sum 1.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [5,4,-1,7,8]\n<strong>Output:</strong> 23\n<strong>Explanation:</strong> The subarray [5,4,-1,7,8] has the largest sum 23.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> If you have figured out the <code>O(n)</code> solution, try coding another solution using the <strong>divide and conquer</strong> approach, which is more subtle.</p>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"5.8M\", \"totalSubmission\": \"11M\", \"totalAcceptedRaw\": 5791804, \"totalSubmissionRaw\": 10952147, \"acRate\": \"52.9%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Divide and Conquer",
+        "slug": "divide-and-conquer",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1787846671",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 55,
+      "memory": 32708000,
+      "timestamp": 1759292510,
+      "title": "Maximum Subarray",
+      "titleSlug": "maximum-subarray",
+      "runtimeDisplay": "55 ms",
+      "runtimePercentile": 43.60650000000001,
+      "memoryDisplay": "32.7 MB",
+      "memoryPercentile": 10.457000000000015,
+      "code": "class Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n       # For Maximum Subarray Type questions we can use Kadanes Algorithm.\n       Result : int = nums[0]\n\n       total : int = 0\n       \n       for num in nums:\n            if total < 0:\n                total = 0\n            \n            total += num\n            Result = max(Result,total)\n       return Result",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "53",
+        "titleSlug": "maximum-subarray",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787843922",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 86,
+      "memory": 31764000,
+      "timestamp": 1759292274,
+      "title": "Maximum Subarray",
+      "titleSlug": "maximum-subarray",
+      "runtimeDisplay": "86 ms",
+      "runtimePercentile": 26.301700000000007,
+      "memoryDisplay": "31.8 MB",
+      "memoryPercentile": 23.676400000000015,
+      "code": "class Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n       # For Maximum Subarray Type questions we can use Kadanes Algorithm.\n       Result : int = nums[0]\n\n       Maxending : int = nums[0]\n\n       for i in range(1,len(nums)):\n            Maxending = max(Maxending + nums[i],nums[i])\n            Result = max(Maxending,Result)\n       return Result",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "53",
+        "titleSlug": "maximum-subarray",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1696357761",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 94,
+      "memory": 32796000,
+      "timestamp": 1752409488,
+      "title": "Maximum Subarray",
+      "titleSlug": "maximum-subarray",
+      "runtimeDisplay": "94 ms",
+      "runtimePercentile": 17.336700000000008,
+      "memoryDisplay": "32.8 MB",
+      "memoryPercentile": 10.457000000000015,
+      "code": "class Solution:\n    def maxSubArray(self, nums: List[int]) -> int:\n        currentsum = nums[0]\n        maxsum = nums[0]\n\n        for i in range(1,len(nums)):\n            currentsum = max(currentsum + nums[i],nums[i])\n            maxsum = max(currentsum,maxsum)\n        return maxsum\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "53",
+        "titleSlug": "maximum-subarray",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "question_name": "maximum-frequency-of-an-element-after-performing-operations-i",
+  "problem_metadata": {
+    "questionId": "3622",
+    "title": "Maximum Frequency of an Element After Performing Operations I",
+    "titleSlug": "maximum-frequency-of-an-element-after-performing-operations-i",
+    "content": "<p>You are given an integer array <code>nums</code> and two integers <code>k</code> and <code>numOperations</code>.</p>\n\n<p>You must perform an <strong>operation</strong> <code>numOperations</code> times on <code>nums</code>, where in each operation you:</p>\n\n<ul>\n\t<li>Select an index <code>i</code> that was <strong>not</strong> selected in any previous operations.</li>\n\t<li>Add an integer in the range <code>[-k, k]</code> to <code>nums[i]</code>.</li>\n</ul>\n\n<p>Return the <strong>maximum</strong> possible <span data-keyword=\"frequency-array\">frequency</span> of any element in <code>nums</code> after performing the <strong>operations</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,4,5], k = 1, numOperations = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>We can achieve a maximum frequency of two by:</p>\n\n<ul>\n\t<li>Adding 0 to <code>nums[1]</code>. <code>nums</code> becomes <code>[1, 4, 5]</code>.</li>\n\t<li>Adding -1 to <code>nums[2]</code>. <code>nums</code> becomes <code>[1, 4, 4]</code>.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [5,11,20,20], k = 5, numOperations = 1</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>We can achieve a maximum frequency of two by:</p>\n\n<ul>\n\t<li>Adding 0 to <code>nums[1]</code>.</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= k &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= numOperations &lt;= nums.length</code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"88K\", \"totalSubmission\": \"219.3K\", \"totalAcceptedRaw\": 87964, \"totalSubmissionRaw\": 219318, \"acRate\": \"40.1%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      },
+      {
+        "name": "Sliding Window",
+        "slug": "sliding-window",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Sort the array and try each value in range as a candidate."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1807583224",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 462,
+      "memory": 29852000,
+      "timestamp": 1761052276,
+      "title": "Maximum Frequency of an Element After Performing Operations I",
+      "titleSlug": "maximum-frequency-of-an-element-after-performing-operations-i",
+      "runtimeDisplay": "462 ms",
+      "runtimePercentile": 69.19230000000019,
+      "memoryDisplay": "29.9 MB",
+      "memoryPercentile": 96.71710000000002,
+      "code": "class Solution:\n    def maxFrequency(self, nums: List[int], k: int, numOps: int) -> int:\n        maxVal = max(nums) + k + 2\n        count = [0] * maxVal\n\n        for v in nums:\n            count[v] += 1\n\n        for i in range(1, maxVal):\n            count[i] += count[i - 1]\n\n        res = 0\n        for i in range(maxVal):\n            left = max(0, i - k)\n            right = min(maxVal - 1, i + k)\n            total = count[right] - (count[left - 1] if left else 0)\n            freq = count[i] - (count[i - 1] if i else 0)\n            res = max(res, freq + min(numOps, total - freq))\n\n        return res\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3622",
+        "titleSlug": "maximum-frequency-of-an-element-after-performing-operations-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

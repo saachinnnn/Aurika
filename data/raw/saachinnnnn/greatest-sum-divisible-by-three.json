@@ -1,0 +1,73 @@
+{
+  "question_name": "greatest-sum-divisible-by-three",
+  "problem_metadata": {
+    "questionId": "1388",
+    "title": "Greatest Sum Divisible by Three",
+    "titleSlug": "greatest-sum-divisible-by-three",
+    "content": "<p>Given an integer array <code>nums</code>, return <em>the <strong>maximum possible sum </strong>of elements of the array such that it is divisible by three</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,6,5,1,8]\n<strong>Output:</strong> 18\n<strong>Explanation:</strong> Pick numbers 3, 6, 1 and 8 their sum is 18 (maximum sum divisible by 3).</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [4]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> Since 4 is not divisible by 3, do not pick any number.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,4]\n<strong>Output:</strong> 12\n<strong>Explanation:</strong> Pick numbers 1, 3, 4 and 4 their sum is 12 (maximum sum divisible by 3).\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 4 * 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"160.4K\", \"totalSubmission\": \"281.1K\", \"totalAcceptedRaw\": 160400, \"totalSubmissionRaw\": 281080, \"acRate\": \"57.1%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Dynamic Programming",
+        "slug": "dynamic-programming",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Represent the state as DP[pos][mod]: maximum possible sum starting in the position \"pos\" in the array where the current sum modulo 3 is equal to mod."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1837404414",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 11,
+      "memory": 21940000,
+      "timestamp": 1763876738,
+      "title": "Greatest Sum Divisible by Three",
+      "titleSlug": "greatest-sum-divisible-by-three",
+      "runtimeDisplay": "11 ms",
+      "runtimePercentile": 91.0471,
+      "memoryDisplay": "21.9 MB",
+      "memoryPercentile": 52.149699999999996,
+      "code": "class Solution:\n    def maxSumDivThree(self, nums: List[int]) -> int:\n        sum_ = 0\n\n        min1 = min2 = float('inf')\n        min11 = min22 = float('inf')\n\n        for x in nums:\n            sum_ += x\n            r = x % 3\n\n            if r == 1:\n                if x < min1:\n                    min11, min1 = min1, x\n                elif x < min11:\n                    min11 = x\n            elif r == 2:\n                if x < min2:\n                    min22, min2 = min2, x\n                elif x < min22:\n                    min22 = x\n\n        rem = sum_ % 3\n\n        if rem == 0:\n            return sum_\n\n        if rem == 1:\n            r1 = min1\n            r2 = min2 + min22 if min2 < float('inf') and min22 < float('inf') else float('inf')\n            remove = min(r1, r2)\n            return 0 if remove == float('inf') else sum_ - remove\n        else:\n            r1 = min2\n            r2 = min1 + min11 if min1 < float('inf') and min11 < float('inf') else float('inf')\n            remove = min(r1, r2)\n            return 0 if remove == float('inf') else sum_ - remove\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1388",
+        "titleSlug": "greatest-sum-divisible-by-three",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

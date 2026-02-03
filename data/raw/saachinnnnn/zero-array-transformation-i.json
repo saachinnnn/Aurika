@@ -1,0 +1,98 @@
+{
+  "question_name": "zero-array-transformation-i",
+  "problem_metadata": {
+    "questionId": "3639",
+    "title": "Zero Array Transformation I",
+    "titleSlug": "zero-array-transformation-i",
+    "content": "<p>You are given an integer array <code>nums</code> of length <code>n</code> and a 2D array <code>queries</code>, where <code>queries[i] = [l<sub>i</sub>, r<sub>i</sub>]</code>.</p>\n\n<p>For each <code>queries[i]</code>:</p>\n\n<ul>\n\t<li>Select a <span data-keyword=\"subset\">subset</span> of indices within the range <code>[l<sub>i</sub>, r<sub>i</sub>]</code> in <code>nums</code>.</li>\n\t<li>Decrement the values at the selected indices by 1.</li>\n</ul>\n\n<p>A <strong>Zero Array</strong> is an array where all elements are equal to 0.</p>\n\n<p>Return <code>true</code> if it is <em>possible</em> to transform <code>nums</code> into a <strong>Zero Array </strong>after processing all the queries sequentially, otherwise return <code>false</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,0,1], queries = [[0,2]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li><strong>For i = 0:</strong>\n\n\t<ul>\n\t\t<li>Select the subset of indices as <code>[0, 2]</code> and decrement the values at these indices by 1.</li>\n\t\t<li>The array will become <code>[0, 0, 0]</code>, which is a Zero Array.</li>\n\t</ul>\n\t</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [4,3,2,1], queries = [[1,3],[0,2]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li><strong>For i = 0:</strong>\n\n\t<ul>\n\t\t<li>Select the subset of indices as <code>[1, 2, 3]</code> and decrement the values at these indices by 1.</li>\n\t\t<li>The array will become <code>[4, 2, 1, 0]</code>.</li>\n\t</ul>\n\t</li>\n\t<li><strong>For i = 1:</strong>\n\t<ul>\n\t\t<li>Select the subset of indices as <code>[0, 1, 2]</code> and decrement the values at these indices by 1.</li>\n\t\t<li>The array will become <code>[3, 1, 0, 0]</code>, which is not a Zero Array.</li>\n\t</ul>\n\t</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= queries.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>queries[i].length == 2</code></li>\n\t<li><code>0 &lt;= l<sub>i</sub> &lt;= r<sub>i</sub> &lt; nums.length</code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"153.7K\", \"totalSubmission\": \"282.5K\", \"totalAcceptedRaw\": 153747, \"totalSubmissionRaw\": 282543, \"acRate\": \"54.4%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Can we use difference array and prefix sum to check if an index can be made zero?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1639616046",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10446,
+      "memory": 48456000,
+      "timestamp": 1747766277,
+      "title": "Zero Array Transformation I",
+      "titleSlug": "zero-array-transformation-i",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def isZeroArray(self, nums: List[int], queries: List[List[int]]) -> bool:\n        # For each positive element in nums, check if there's a query that can decrement it\n        for i, num in enumerate(nums):\n            # Skip elements that are already 0\n            if num == 0:\n                continue\n                \n            # Check if element can be decremented to 0\n            decrements_needed = num\n            for start, end in queries:\n                if start <= i <= end:  # Element is in query range\n                    decrements_needed -= 1\n                    if decrements_needed == 0:\n                        break\n            \n            # If we can't decrement this element to 0, return False\n            if decrements_needed > 0:\n                return False\n                \n        return True\n\n        ",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3639",
+        "titleSlug": "zero-array-transformation-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1639603539",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 75,
+      "memory": 54956000,
+      "timestamp": 1747765486,
+      "title": "Zero Array Transformation I",
+      "titleSlug": "zero-array-transformation-i",
+      "runtimeDisplay": "75 ms",
+      "runtimePercentile": 69.23110000000004,
+      "memoryDisplay": "55 MB",
+      "memoryPercentile": 65.88680000000001,
+      "code": "class Solution:\n    def isZeroArray(self, nums: List[int], queries: List[List[int]]) -> bool:\n        n, m=len(nums), len(queries)\n        freq=[0]*(n+1)\n        for s, e in queries:\n            freq[s]+=1\n            freq[e+1]-=1\n        op=0\n        for i, x in enumerate(nums):\n            op+=freq[i]\n            if x>op: return False\n        return True\n\n        ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3639",
+        "titleSlug": "zero-array-transformation-i",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

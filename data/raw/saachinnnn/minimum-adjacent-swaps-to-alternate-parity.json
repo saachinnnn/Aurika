@@ -1,0 +1,103 @@
+{
+  "question_name": "minimum-adjacent-swaps-to-alternate-parity",
+  "problem_metadata": {
+    "questionId": "3904",
+    "title": "Minimum Adjacent Swaps to Alternate Parity",
+    "titleSlug": "minimum-adjacent-swaps-to-alternate-parity",
+    "content": "<p>You are given an array <code>nums</code> of <strong>distinct</strong> integers.</p>\n\n<p>In one operation, you can swap any two <strong>adjacent</strong> elements in the array.</p>\n\n<p>An arrangement of the array is considered <strong>valid</strong> if the parity of adjacent elements <strong>alternates</strong>, meaning every pair of neighboring elements consists of one even and one odd number.</p>\n\n<p>Return the <strong>minimum</strong> number of adjacent swaps required to transform <code>nums</code> into any valid arrangement.</p>\n\n<p>If it is impossible to rearrange <code>nums</code> such that no two adjacent elements have the same parity, return <code>-1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [2,4,6,5,7]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">3</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Swapping 5 and 6, the array becomes <code>[2,4,5,6,7]</code></p>\n\n<p>Swapping 5 and 4, the array becomes <code>[2,5,4,6,7]</code></p>\n\n<p>Swapping 6 and 7, the array becomes <code>[2,5,4,7,6]</code>. The array is now a valid arrangement. Thus, the answer is 3.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [2,4,5,7]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>By swapping 4 and 5, the array becomes <code>[2,5,4,7]</code>, which is a valid arrangement. Thus, the answer is 1.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The array is already a valid arrangement. Thus, no operations are needed.</p>\n</div>\n\n<p><strong class=\"example\">Example 4:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [4,5,6,8]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">-1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>No valid arrangement is possible. Thus, the answer is -1.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n\t<li>All elements in <code>nums</code> are <strong>distinct</strong>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"20.4K\", \"totalSubmission\": \"48.4K\", \"totalAcceptedRaw\": 20420, \"totalSubmissionRaw\": 48429, \"acRate\": \"42.2%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Compute <code>evenCnt</code> and <code>oddCnt</code> in <code>nums</code>. If abs(evenCnt - oddCnt) > 1, return -1 immediately.",
+      "Let <code>n</code> = len(nums). You’ll try at most two target parity‐patterns: one starting with even at index 0, one with odd at index 0.",
+      "If <code>n</code> is odd, only the pattern whose starting parity matches the larger of <code>evenCnt</code> or <code>oddCnt</code> is feasible. If <code>n</code> is even, both starting‐even and starting‐odd patterns are possible—compute both and take the minimum.",
+      "For a given target pattern, collect the indices of all even elements in <code>nums</code> (or odd elements) and the indices where an even (or odd) should go in the pattern.",
+      "The minimum adjacent‐swap cost to align those elements is the sum of absolute differences between each element’s current index and its target index.",
+      "Return the smallest cost over valid patterns."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1671693169",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 210,
+      "memory": 30240000,
+      "timestamp": 1750519705,
+      "title": "Minimum Adjacent Swaps to Alternate Parity",
+      "titleSlug": "minimum-adjacent-swaps-to-alternate-parity",
+      "runtimeDisplay": "210 ms",
+      "runtimePercentile": 42.0,
+      "memoryDisplay": "30.2 MB",
+      "memoryPercentile": 95.0,
+      "code": "class Solution:\n    def minSwaps(self, nums: List[int]) -> int:\n        def helper(start_even: bool) -> int:\n            swaps = 0\n            pos = 0\n            for i in range(len(nums)):\n                if (nums[i] % 2 == 0) == start_even:\n                    swaps += abs(i - pos)\n                    pos += 2\n            return swaps\n\n        even = sum(num % 2 == 0 for num in nums)\n        odd = len(nums) - even\n\n        if abs(even - odd) > 1:\n            return -1\n\n        if even > odd:\n            return helper(True)\n        elif odd > even:\n            return helper(False)\n        else:\n            return min(helper(True), helper(False))\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3904",
+        "titleSlug": "minimum-adjacent-swaps-to-alternate-parity",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1671690693",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10829,
+      "memory": 30580000,
+      "timestamp": 1750519620,
+      "title": "Minimum Adjacent Swaps to Alternate Parity",
+      "titleSlug": "minimum-adjacent-swaps-to-alternate-parity",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def minSwaps(self, nums: List[int]) -> int:\n        def count_swaps(start_with_even: bool) -> int:\n            swaps = 0\n            even_idx = 0\n            odd_idx = 0\n            expected_parity = 0 if start_with_even else 1\n            arr = nums[:]\n            for i in range(len(arr)):\n                if arr[i] % 2 != expected_parity:\n                    j = i\n                    while j < len(arr) and arr[j] % 2 != expected_parity:\n                        j += 1\n                    if j == len(arr):\n                        return float('inf')\n                    while j > i:\n                        arr[j], arr[j-1] = arr[j-1], arr[j]\n                        swaps += 1\n                        j -= 1\n                expected_parity ^= 1\n            return swaps\n\n        even_count = sum(num % 2 == 0 for num in nums)\n        odd_count = len(nums) - even_count\n\n        if abs(even_count - odd_count) > 1:\n            return -1\n\n        if even_count > odd_count:\n            return count_swaps(True)\n        elif odd_count > even_count:\n            return count_swaps(False)\n        else:\n            return min(count_swaps(True), count_swaps(False))",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "3904",
+        "titleSlug": "minimum-adjacent-swaps-to-alternate-parity",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

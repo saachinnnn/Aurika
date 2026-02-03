@@ -1,0 +1,46 @@
+{
+  "question_name": "valid-perfect-square",
+  "problem_metadata": {
+    "questionId": "367",
+    "title": "Valid Perfect Square",
+    "titleSlug": "valid-perfect-square",
+    "content": "<p>Given a positive integer num, return <code>true</code> <em>if</em> <code>num</code> <em>is a perfect square or</em> <code>false</code> <em>otherwise</em>.</p>\n\n<p>A <strong>perfect square</strong> is an integer that is the square of an integer. In other words, it is the product of some integer with itself.</p>\n\n<p>You must not use any built-in library function, such as <code>sqrt</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 16\n<strong>Output:</strong> true\n<strong>Explanation:</strong> We return true because 4 * 4 = 16 and 4 is an integer.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 14\n<strong>Output:</strong> false\n<strong>Explanation:</strong> We return false because 3.742 * 3.742 = 14 and 3.742 is not an integer.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= num &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"880.7K\", \"totalSubmission\": \"2M\", \"totalAcceptedRaw\": 880674, \"totalSubmissionRaw\": 1972301, \"acRate\": \"44.7%\"}",
+    "topicTags": [
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Binary Search",
+        "slug": "binary-search",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1465095721",
+      "statusDisplay": "Accepted",
+      "lang": "cpp",
+      "runtime": "0 ms",
+      "memory": "7.8 MB",
+      "timestamp": "1732806633",
+      "title": "Valid Perfect Square",
+      "titleSlug": "valid-perfect-square"
+    },
+    {
+      "id": "1465094275",
+      "statusDisplay": "Accepted",
+      "lang": "cpp",
+      "runtime": "0 ms",
+      "memory": "7.8 MB",
+      "timestamp": "1732806500",
+      "title": "Valid Perfect Square",
+      "titleSlug": "valid-perfect-square"
+    }
+  ]
+}

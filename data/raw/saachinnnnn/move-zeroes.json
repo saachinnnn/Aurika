@@ -1,0 +1,379 @@
+{
+  "question_name": "move-zeroes",
+  "problem_metadata": {
+    "questionId": "283",
+    "title": "Move Zeroes",
+    "titleSlug": "move-zeroes",
+    "content": "<p>Given an integer array <code>nums</code>, move all <code>0</code>&#39;s to the end of it while maintaining the relative order of the non-zero elements.</p>\n\n<p><strong>Note</strong> that you must do this in-place without making a copy of the array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [0,1,0,3,12]\n<strong>Output:</strong> [1,3,12,0,0]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [0]\n<strong>Output:</strong> [0]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow up:</strong> Could you minimize the total number of operations done?",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"4.8M\", \"totalSubmission\": \"7.6M\", \"totalAcceptedRaw\": 4821289, \"totalSubmissionRaw\": 7598081, \"acRate\": \"63.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "<b>In-place</b> means we should not be allocating any space for extra array. But we are allowed to modify the existing array. However, as a first step, try coming up with a solution that makes use of additional space. For this problem as well, first apply the idea discussed using an additional array and the in-place solution will pop up eventually.",
+      "A <b>two-pointer</b> approach could be helpful here. The idea would be to have one pointer for iterating the array and another pointer that just works on the non-zero elements of the array."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1787978962",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18980000,
+      "timestamp": 1759302400,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "19 MB",
+      "memoryPercentile": 57.214500000000015,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        # Apparently the simpler version.\n        ## Even more simpler version....\n\n        leftPtr : int = 0\n\n        for rightptr in range(len(nums)):\n            if nums[rightptr] != 0:\n                nums[leftPtr] , nums[rightptr] = nums[rightptr] , nums[leftPtr]\n                leftPtr += 1\n        \n            ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787975330",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 18872000,
+      "timestamp": 1759302118,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "3 ms",
+      "runtimePercentile": 81.9943,
+      "memoryDisplay": "18.9 MB",
+      "memoryPercentile": 61.44450000000001,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        # Apparently the simpler version.\n        insert_position : int = 0\n\n        for num in nums:\n            if num != 0:\n                nums[insert_position] = num\n                insert_position += 1\n        for i in range(insert_position,len(nums)):\n            nums[i] = 0\n            ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787973025",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 11,
+      "memory": 19052000,
+      "timestamp": 1759301941,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "11 ms",
+      "runtimePercentile": 19.618199999999995,
+      "memoryDisplay": "19.1 MB",
+      "memoryPercentile": 52.798200000000016,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        L , R = 0 , 1\n        while R < len(nums):\n            if nums[R] != 0 and nums[L] == 0:\n                nums[R],nums[L] = nums[L],nums[R]\n                L += 1\n                R += 1\n            elif nums[L] != 0:\n                L += 1\n                if L == R:\n                    R += 1\n            else:\n                R += 1\n            ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787969040",
+      "statusDisplay": "Runtime Error",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 32,
+      "memory": 17800000,
+      "timestamp": 1759301641,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        L , R = 0 , 1\n        while R < len(nums):\n            if nums[R] != 0 and nums[L] == 0:\n                nums[R],nums[L] = nums[L],nums[R]\n            if nums[R] == 0:\n                R += 1\n            elif nums[L] != 0:\n                L += 1\n            ",
+      "statusCode": 15,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": "IndexError: list index out of range\n                        ~~~~^^^\n    if nums[R] != 0 and nums[L] == 0:\nLine 8 in moveZeroes (Solution.py)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ret = Solution().moveZeroes(param_1)\nLine 39 in _driver (Solution.py)\n    _driver()\nLine 55 in <module> (Solution.py)",
+      "compileError": null
+    },
+    {
+      "id": "1646135571",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1,
+      "memory": 19064000,
+      "timestamp": 1748358907,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 88.0966,
+      "memoryDisplay": "19.1 MB",
+      "memoryPercentile": 52.798200000000016,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        left = 0\n\n        for right in range(len(nums)):\n            if nums[right] != 0:\n                nums[right], nums[left] = nums[left], nums[right]\n                left += 1\n        \n        return nums",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1646130379",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10,
+      "memory": 19060000,
+      "timestamp": 1748358556,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "10 ms",
+      "runtimePercentile": 20.696999999999996,
+      "memoryDisplay": "19.1 MB",
+      "memoryPercentile": 52.798200000000016,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        if 0 not in nums:\n            return nums\n        \n        left_ptr , right_ptr = 0 , 1\n        while right_ptr < len(nums):\n            if nums[left_ptr] == 0 and nums[right_ptr] != 0:\n                nums[left_ptr] , nums[right_ptr] = nums[right_ptr],nums[left_ptr]\n                left_ptr += 1\n                right_ptr += 1\n            elif nums[right_ptr] == 0 or left_ptr == right_ptr:\n                right_ptr += 1\n            elif left_ptr < right_ptr and nums[left_ptr] != 0:\n                left_ptr += 1\n        return nums",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1646128368",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10301,
+      "memory": 17292000,
+      "timestamp": 1748358415,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        if 0 not in nums:\n            return nums\n        \n        left_ptr , right_ptr = 0 , 1\n        while right_ptr < len(nums):\n            if nums[left_ptr] == 0 and nums[right_ptr] != 0:\n                nums[left_ptr] , nums[right_ptr] = nums[right_ptr],nums[left_ptr]\n                left_ptr += 1\n                right_ptr += 1\n            elif nums[right_ptr] == 0:\n                right_ptr += 1\n            elif left_ptr < right_ptr and nums[left_ptr] != 0:\n                left_ptr += 1\n        return nums",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1646127363",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10506,
+      "memory": 17500000,
+      "timestamp": 1748358348,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        left_ptr , right_ptr = 0 , 1\n        while right_ptr < len(nums):\n            if nums[left_ptr] == 0 and nums[right_ptr] != 0:\n                nums[left_ptr] , nums[right_ptr] = nums[right_ptr],nums[left_ptr]\n                left_ptr += 1\n                right_ptr += 1\n            elif nums[right_ptr] == 0:\n                right_ptr += 1\n            elif left_ptr < right_ptr and nums[left_ptr] != 0:\n                left_ptr += 1\n        return nums",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1646115475",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 19,
+      "memory": 18912000,
+      "timestamp": 1748357546,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "19 ms",
+      "runtimePercentile": 12.213999999999995,
+      "memoryDisplay": "18.9 MB",
+      "memoryPercentile": 57.214500000000015,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        i : int = 0\n        count = 1\n        while i < len(nums) and not count >= len(nums):\n            if nums[i] == 0:\n                del nums[i]\n                i -= 1\n                nums.append(0)\n            i += 1\n            count += 1\n        return nums",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "[ Time taken: 11 m 33 s ]",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1646110386",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 11,
+      "memory": 19040000,
+      "timestamp": 1748357197,
+      "title": "Move Zeroes",
+      "titleSlug": "move-zeroes",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def moveZeroes(self, nums: List[int]) -> None:\n        \"\"\"\n        Do not return anything, modify nums in-place instead.\n        \"\"\"\n        for i in range(len(nums)):\n            if nums[i] == 0:\n                del nums[i]\n                nums.append(0)\n        return nums",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "283",
+        "titleSlug": "move-zeroes",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

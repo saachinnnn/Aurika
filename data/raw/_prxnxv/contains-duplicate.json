@@ -1,0 +1,101 @@
+{
+  "question_name": "contains-duplicate",
+  "problem_metadata": {
+    "questionId": "217",
+    "title": "Contains Duplicate",
+    "titleSlug": "contains-duplicate",
+    "content": "<p>Given an integer array <code>nums</code>, return <code>true</code> if any value appears <strong>at least twice</strong> in the array, and return <code>false</code> if every element is distinct.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The element 1 occurs at the indices 0 and 3.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>All elements are distinct.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,1,3,3,4,3,2,4,2]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"6M\", \"totalSubmission\": \"9.4M\", \"totalAcceptedRaw\": 6041956, \"totalSubmissionRaw\": 9441686, \"acRate\": \"64.0%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1784413765",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 43,
+      "memory": 17348000,
+      "timestamp": 1758990166,
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate",
+      "runtimeDisplay": "43 ms",
+      "runtimePercentile": 77.7262,
+      "memoryDisplay": "17.3 MB",
+      "memoryPercentile": 55.45229999999995,
+      "code": "#include <stdbool.h>\n#include <stdlib.h>\n\n// Comparison function for qsort\nint cmpfunc(const void *a, const void *b) {\n    return (*(int*)a - *(int*)b);\n}\n\nbool containsDuplicate(int* nums, int numsSize) {\n    // Sort the array\n    qsort(nums, numsSize, sizeof(int), cmpfunc);\n\n    // Check consecutive elements\n    for (int i = 0; i < numsSize - 1; i++) {\n        if (nums[i] == nums[i + 1]) {\n            return true;\n        }\n    }\n    return false;\n}\n\n\n    \n    \n",
+      "statusCode": 10,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "217",
+        "titleSlug": "contains-duplicate",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1784411491",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 2988,
+      "memory": 12896000,
+      "timestamp": 1758990007,
+      "title": "Contains Duplicate",
+      "titleSlug": "contains-duplicate",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "\nbool containsDuplicate(int* nums, int numsSize) {\n    // Outer loop: pick each element one by one\n    for (int i = 0; i < numsSize; i++) {\n        // Inner loop: compare nums[i] with every element *after* it\n        for (int j = i + 1; j < numsSize; j++) {\n            // If any pair matches, we found a duplicate\n            if (nums[i] == nums[j]) {\n                return true;   // stop immediately — no need to check further\n            }\n        }\n    }\n    // If we finish both loops without finding a match, no duplicates\n    return false;\n}\n\n\n\n    \n    \n",
+      "statusCode": 14,
+      "user": {
+        "username": "_prxnxv",
+        "profile": {
+          "realName": "_prxnxv"
+        }
+      },
+      "question": {
+        "questionId": "217",
+        "titleSlug": "contains-duplicate",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

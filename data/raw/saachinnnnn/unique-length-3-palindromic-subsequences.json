@@ -1,0 +1,179 @@
+{
+  "question_name": "unique-length-3-palindromic-subsequences",
+  "problem_metadata": {
+    "questionId": "2059",
+    "title": "Unique Length-3 Palindromic Subsequences",
+    "titleSlug": "unique-length-3-palindromic-subsequences",
+    "content": "<p>Given a string <code>s</code>, return <em>the number of <strong>unique palindromes of length three</strong> that are a <strong>subsequence</strong> of </em><code>s</code>.</p>\n\n<p>Note that even if there are multiple ways to obtain the same subsequence, it is still only counted <strong>once</strong>.</p>\n\n<p>A <strong>palindrome</strong> is a string that reads the same forwards and backwards.</p>\n\n<p>A <strong>subsequence</strong> of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.</p>\n\n<ul>\n\t<li>For example, <code>&quot;ace&quot;</code> is a subsequence of <code>&quot;<u>a</u>b<u>c</u>d<u>e</u>&quot;</code>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aabca&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The 3 palindromic subsequences of length 3 are:\n- &quot;aba&quot; (subsequence of &quot;<u>a</u>a<u>b</u>c<u>a</u>&quot;)\n- &quot;aaa&quot; (subsequence of &quot;<u>aa</u>bc<u>a</u>&quot;)\n- &quot;aca&quot; (subsequence of &quot;<u>a</u>ab<u>ca</u>&quot;)\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;adc&quot;\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> There are no palindromic subsequences of length 3 in &quot;adc&quot;.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;bbcbaba&quot;\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The 4 palindromic subsequences of length 3 are:\n- &quot;bbb&quot; (subsequence of &quot;<u>bb</u>c<u>b</u>aba&quot;)\n- &quot;bcb&quot; (subsequence of &quot;<u>b</u>b<u>cb</u>aba&quot;)\n- &quot;bab&quot; (subsequence of &quot;<u>b</u>bcb<u>ab</u>a&quot;)\n- &quot;aba&quot; (subsequence of &quot;bbcb<u>aba</u>&quot;)\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= s.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>s</code> consists of only lowercase English letters.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"364.6K\", \"totalSubmission\": \"494K\", \"totalAcceptedRaw\": 364579, \"totalSubmissionRaw\": 494044, \"acRate\": \"73.8%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Bit Manipulation",
+        "slug": "bit-manipulation",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "What is the maximum number of length-3 palindromic strings?",
+      "How can we keep track of the characters that appeared to the left of a given position?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1835646601",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 84,
+      "memory": 18124000,
+      "timestamp": 1763694319,
+      "title": "Unique Length-3 Palindromic Subsequences",
+      "titleSlug": "unique-length-3-palindromic-subsequences",
+      "runtimeDisplay": "84 ms",
+      "runtimePercentile": 87.25080000000004,
+      "memoryDisplay": "18.1 MB",
+      "memoryPercentile": 73.5793,
+      "code": "class Solution:\n    def countPalindromicSubsequence(self, s: str) -> int:\n        r=0\n        se=set(s)\n        for i in se:\n            j=s.find(i)\n            k=s.rfind(i)\n            if j<k:\n                r+=len(set(s[j+1:k]))\n        return r\n\n           ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2059",
+        "titleSlug": "unique-length-3-palindromic-subsequences",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1835646200",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 95,
+      "memory": 18236000,
+      "timestamp": 1763694272,
+      "title": "Unique Length-3 Palindromic Subsequences",
+      "titleSlug": "unique-length-3-palindromic-subsequences",
+      "runtimeDisplay": "95 ms",
+      "runtimePercentile": 83.10340000000006,
+      "memoryDisplay": "18.2 MB",
+      "memoryPercentile": 65.2844,
+      "code": "from collections import Counter\nclass Solution:\n    def countPalindromicSubsequence(self, s: str) -> int:\n        r=0\n        se=set(s)\n        for i in se:\n            j=s.find(i)\n            k=s.rfind(i)\n            if j<k:\n                r+=len(set(s[j+1:k]))\n        return r\n\n           ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2059",
+        "titleSlug": "unique-length-3-palindromic-subsequences",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1835601257",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 77,
+      "memory": 18324000,
+      "timestamp": 1763687793,
+      "title": "Unique Length-3 Palindromic Subsequences",
+      "titleSlug": "unique-length-3-palindromic-subsequences",
+      "runtimeDisplay": "77 ms",
+      "runtimePercentile": 91.85900000000002,
+      "memoryDisplay": "18.3 MB",
+      "memoryPercentile": 58.525600000000004,
+      "code": "from collections import Counter\nclass Solution:\n    def countPalindromicSubsequence(self, s: str) -> int:\n        r=0\n        se=set(s)\n        for i in se:\n            j=s.find(i)\n            k=s.rfind(i)\n            if j<k:\n                r+=len(set(s[j+1:k]))\n        return r\n\n           ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2059",
+        "titleSlug": "unique-length-3-palindromic-subsequences",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1835600417",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 87,
+      "memory": 18240000,
+      "timestamp": 1763687658,
+      "title": "Unique Length-3 Palindromic Subsequences",
+      "titleSlug": "unique-length-3-palindromic-subsequences",
+      "runtimeDisplay": "87 ms",
+      "runtimePercentile": 86.79000000000005,
+      "memoryDisplay": "18.2 MB",
+      "memoryPercentile": 65.2844,
+      "code": "from collections import Counter\nclass Solution:\n    def countPalindromicSubsequence(self, s: str) -> int:\n        r=0\n        se=set(s)\n        for i in se:\n            j=s.find(i)\n            k=s.rfind(i)\n            if j<k:\n                r+=len(set(s[j+1:k]))\n        return r\n\n           ",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "2059",
+        "titleSlug": "unique-length-3-palindromic-subsequences",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

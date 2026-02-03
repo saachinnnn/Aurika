@@ -1,0 +1,70 @@
+{
+  "question_name": "container-with-most-water",
+  "problem_metadata": {
+    "questionId": "11",
+    "title": "Container With Most Water",
+    "titleSlug": "container-with-most-water",
+    "content": "<p>You are given an integer array <code>height</code> of length <code>n</code>. There are <code>n</code> vertical lines drawn such that the two endpoints of the <code>i<sup>th</sup></code> line are <code>(i, 0)</code> and <code>(i, height[i])</code>.</p>\n\n<p>Find two lines that together with the x-axis form a container, such that the container contains the most water.</p>\n\n<p>Return <em>the maximum amount of water a container can store</em>.</p>\n\n<p><strong>Notice</strong> that you may not slant the container.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg\" style=\"width: 600px; height: 287px;\" />\n<pre>\n<strong>Input:</strong> height = [1,8,6,2,5,4,8,3,7]\n<strong>Output:</strong> 49\n<strong>Explanation:</strong> The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> height = [1,1]\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == height.length</code></li>\n\t<li><code>2 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= height[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"5M\", \"totalSubmission\": \"8.4M\", \"totalAcceptedRaw\": 5011638, \"totalSubmissionRaw\": 8438960, \"acRate\": \"59.4%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Two Pointers",
+        "slug": "two-pointers",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "If you simulate the problem, it will be O(n^2) which is not efficient.",
+      "Try to use two-pointers. Set one pointer to the left and one to the right of the array. Always move the pointer that points to the lower line.",
+      "How can you calculate the amount of water at each step?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1791286056",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 99,
+      "memory": 28388000,
+      "timestamp": 1759597178,
+      "title": "Container With Most Water",
+      "titleSlug": "container-with-most-water",
+      "runtimeDisplay": "99 ms",
+      "runtimePercentile": 37.93260000000001,
+      "memoryDisplay": "28.4 MB",
+      "memoryPercentile": 67.70619999999997,
+      "code": "class Solution:\n    def maxArea(self, height: list[int]) -> int:\n        i = 0\n        j = len(height) - 1\n        res = 0\n\n        while i < j:\n            res = max(res, (j - i) * min(height[i], height[j]))\n            if height[i] < height[j]:\n                i += 1\n            else:\n                j -= 1\n\n        return res\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "11",
+        "titleSlug": "container-with-most-water",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

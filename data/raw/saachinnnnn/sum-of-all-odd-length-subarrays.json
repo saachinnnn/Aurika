@@ -1,0 +1,138 @@
+{
+  "question_name": "sum-of-all-odd-length-subarrays",
+  "problem_metadata": {
+    "questionId": "1693",
+    "title": "Sum of All Odd Length Subarrays",
+    "titleSlug": "sum-of-all-odd-length-subarrays",
+    "content": "<p>Given an array of positive integers <code>arr</code>, return <em>the sum of all possible <strong>odd-length subarrays</strong> of </em><code>arr</code>.</p>\n\n<p>A <strong>subarray</strong> is a contiguous subsequence of the array.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [1,4,2,5,3]\n<strong>Output:</strong> 58\n<strong>Explanation: </strong>The odd-length subarrays of arr and their sums are:\n[1] = 1\n[4] = 4\n[2] = 2\n[5] = 5\n[3] = 3\n[1,4,2] = 7\n[4,2,5] = 11\n[2,5,3] = 10\n[1,4,2,5,3] = 15\nIf we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [1,2]\n<strong>Output:</strong> 3\n<b>Explanation: </b>There are only 2 subarrays of odd length, [1] and [2]. Their sum is 3.</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [10,11,12]\n<strong>Output:</strong> 66\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= arr.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= arr[i] &lt;= 1000</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong></p>\n\n<p>Could you solve this problem in O(n) time complexity?</p>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"249.1K\", \"totalSubmission\": \"297.1K\", \"totalAcceptedRaw\": 249113, \"totalSubmissionRaw\": 297121, \"acRate\": \"83.8%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Prefix Sum",
+        "slug": "prefix-sum",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "You can brute force – try every (i,j) pair, and if the length is odd, go through and add the sum to the answer."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1787812105",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 1,
+      "memory": 17704000,
+      "timestamp": 1759289269,
+      "title": "Sum of All Odd Length Subarrays",
+      "titleSlug": "sum-of-all-odd-length-subarrays",
+      "runtimeDisplay": "1 ms",
+      "runtimePercentile": 71.8948,
+      "memoryDisplay": "17.7 MB",
+      "memoryPercentile": 61.1968,
+      "code": "class Solution:\n    def sumOddLengthSubarrays(self, arr: List[int]) -> int:\n        # Solving in Linear time using the Mathematical Approach.\n        n = len(arr)\n        result = 0\n        for i in range(n):\n            total = (i + 1) * (n - i)\n            odd_count = total // 2 + (total % 2)\n            result += arr[i] * odd_count\n        return result\n        # The number of subarrays that include arr[i] is (i + 1) * (n - i)\n        # We count how many of those have odd lengths and multiply by arr[i]",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1693",
+        "titleSlug": "sum-of-all-odd-length-subarrays",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787810084",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 18004000,
+      "timestamp": 1759289070,
+      "title": "Sum of All Odd Length Subarrays",
+      "titleSlug": "sum-of-all-odd-length-subarrays",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 49.50150000000001,
+      "code": "class Solution:\n    def sumOddLengthSubarrays(self, arr: List[int]) -> int:\n        # Solving it using the maths version...\n\n        # There exists a way to calculate the number of subarrays that are possible.\n\n        # Edge cases.\n        if len(arr) < 0:\n            return 0\n        \n        ResultSum : int = 0\n\n        for i in range(len(arr)):\n            TotalSubarrays : int = (i + 1) * (len(arr) - i)\n            OddSubarrays : int = TotalSubarrays // 2\n            if TotalSubarrays % 2 == 1:\n                OddSubarrays += 1\n            ResultSum += OddSubarrays * arr[i]\n        return ResultSum\n\n        ''' The formula for calculating the number of subarrays that are possible is (i + 1) * (n(length of the array) * i)\n            This is crucial to solve this problem '''",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1693",
+        "titleSlug": "sum-of-all-odd-length-subarrays",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1787803072",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 7,
+      "memory": 17860000,
+      "timestamp": 1759288389,
+      "title": "Sum of All Odd Length Subarrays",
+      "titleSlug": "sum-of-all-odd-length-subarrays",
+      "runtimeDisplay": "7 ms",
+      "runtimePercentile": 58.38620000000002,
+      "memoryDisplay": "17.9 MB",
+      "memoryPercentile": 56.21040000000001,
+      "code": "class Solution:\n    def sumOddLengthSubarrays(self, arr: List[int]) -> int:\n        # Since its all positive numbers.\n\n        # Edge cases.\n        if len(arr) == 0:\n            return 0\n        \n        ResultSum : int = sum(arr) # The final answer.\n\n        oddidx : int = 3\n        if oddidx > len(arr):\n            return ResultSum\n        \n        # Now getting the PrefixSum array.\n        PrefixSum : list = [0]*len(arr)\n        PrefixSum[0] = arr[0]\n\n        for i in range(1,len(arr)):\n            PrefixSum[i] = PrefixSum[i - 1] + arr[i]\n        \n        while oddidx:\n            for i in range(len(PrefixSum)):\n                if (i + oddidx - 1) < len(arr):\n                    ResultSum += PrefixSum[i + oddidx - 1] - (PrefixSum[i - 1] if i > 0 else 0)\n                else:\n                    break\n            oddidx += 2\n            if oddidx > len(PrefixSum):\n                oddidx = 0\n        return ResultSum\n",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1693",
+        "titleSlug": "sum-of-all-odd-length-subarrays",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

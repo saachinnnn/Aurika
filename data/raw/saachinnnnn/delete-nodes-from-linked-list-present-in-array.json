@@ -1,0 +1,174 @@
+{
+  "question_name": "delete-nodes-from-linked-list-present-in-array",
+  "problem_metadata": {
+    "questionId": "3501",
+    "title": "Delete Nodes From Linked List Present in Array",
+    "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+    "content": "<p>You are given an array of integers <code>nums</code> and the <code>head</code> of a linked list. Return the <code>head</code> of the modified linked list after <strong>removing</strong> all nodes from the linked list that have a value that exists in <code>nums</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3], head = [1,2,3,4,5]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[4,5]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><strong><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample0.png\" style=\"width: 400px; height: 66px;\" /></strong></p>\n\n<p>Remove the nodes with values 1, 2, and 3.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1], head = [1,2,1,2,1,2]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[2,2,2]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample1.png\" style=\"height: 62px; width: 450px;\" /></p>\n\n<p>Remove the nodes with value 1.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [5], head = [1,2,3,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[1,2,3,4]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><strong><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/06/11/linkedlistexample2.png\" style=\"width: 400px; height: 83px;\" /></strong></p>\n\n<p>No node has value 5.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n\t<li>All elements in <code>nums</code> are unique.</li>\n\t<li>The number of nodes in the given list is in the range <code>[1, 10<sup>5</sup>]</code>.</li>\n\t<li><code>1 &lt;= Node.val &lt;= 10<sup>5</sup></code></li>\n\t<li>The input is generated such that there is at least one node in the linked list that has a value not present in <code>nums</code>.</li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"331.3K\", \"totalSubmission\": \"476.5K\", \"totalAcceptedRaw\": 331329, \"totalSubmissionRaw\": 476471, \"acRate\": \"69.5%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Linked List",
+        "slug": "linked-list",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Add all elements of <code>nums</code> into a Set.",
+      "Scan the list to check if the current element should be deleted by checking the Set."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1817782689",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 55,
+      "memory": 58312000,
+      "timestamp": 1762010002,
+      "title": "Delete Nodes From Linked List Present in Array",
+      "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+      "runtimeDisplay": "55 ms",
+      "runtimePercentile": 82.67290000000006,
+      "memoryDisplay": "58.3 MB",
+      "memoryPercentile": 72.33880000000012,
+      "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:\n        # Maintaining a set to avoid duplicates.\n        nums_set = set(nums)\n        dummy = ListNode(0)\n        dummy.next = head\n        preptr = dummy\n        ptr = head\n        while ptr:\n            if ptr.val in nums_set:\n                preptr.next = ptr.next\n            else:\n                preptr = ptr\n            ptr = ptr.next\n        return dummy.next",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3501",
+        "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1817629775",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 56,
+      "memory": 58116000,
+      "timestamp": 1761997906,
+      "title": "Delete Nodes From Linked List Present in Array",
+      "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+      "runtimeDisplay": "56 ms",
+      "runtimePercentile": 78.32170000000005,
+      "memoryDisplay": "58.1 MB",
+      "memoryPercentile": 76.14610000000012,
+      "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:\n        nums_set = set(nums)\n        dummy = ListNode(0)\n        dummy.next = head\n        preptr = dummy\n        ptr = head\n\n        while ptr:\n            if ptr.val in nums_set:\n                preptr.next = ptr.next  # unlink the node\n            else:\n                preptr = ptr  # move preptr only if node is kept\n            ptr = ptr.next  # always move ptr forward\n\n        return dummy.next",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3501",
+        "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1817628784",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 67,
+      "memory": 58204000,
+      "timestamp": 1761997809,
+      "title": "Delete Nodes From Linked List Present in Array",
+      "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+      "runtimeDisplay": "67 ms",
+      "runtimePercentile": 44.83300000000005,
+      "memoryDisplay": "58.2 MB",
+      "memoryPercentile": 73.65970000000011,
+      "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:\n        nums_set = set(nums)\n        dummy = ListNode(0)\n        dummy.next = head\n        preptr = dummy\n        ptr = head\n\n        while ptr:\n            if ptr.val in nums_set:\n                preptr.next = ptr.next  # unlink the node\n            else:\n                preptr = ptr  # move preptr only if node is kept\n            ptr = ptr.next  # always move ptr forward\n\n        return dummy.next",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3501",
+        "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1817625865",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10685,
+      "memory": 46012000,
+      "timestamp": 1761997541,
+      "title": "Delete Nodes From Linked List Present in Array",
+      "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:\n        dummy = ListNode(0)\n        dummy.next = head\n        preptr = dummy\n        ptr = head\n        while ptr:\n            if ptr.val in nums:\n                preptr.next = ptr.next\n            else:\n                preptr = ptr\n            ptr = ptr.next\n        return dummy.next",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "3501",
+        "titleSlug": "delete-nodes-from-linked-list-present-in-array",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "question_name": "to-lower-case",
+  "problem_metadata": {
+    "questionId": "742",
+    "title": "To Lower Case",
+    "titleSlug": "to-lower-case",
+    "content": "<p>Given a string <code>s</code>, return <em>the string after replacing every uppercase letter with the same lowercase letter</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;Hello&quot;\n<strong>Output:</strong> &quot;hello&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;here&quot;\n<strong>Output:</strong> &quot;here&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;LOVELY&quot;\n<strong>Output:</strong> &quot;lovely&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 100</code></li>\n\t<li><code>s</code> consists of printable ASCII characters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"703.5K\", \"totalSubmission\": \"830.9K\", \"totalAcceptedRaw\": 703547, \"totalSubmissionRaw\": 830919, \"acRate\": \"84.7%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Most languages support lowercase conversion for a string data type. However, that is certainly not the purpose of the problem. Think about how the implementation of the lowercase function call can be done easily.",
+      "<b>Think ASCII!</b>",
+      "Think about the different capital letters and their ASCII codes and how that relates to their lowercase counterparts. Does there seem to be any pattern there? Any mathematical relationship that we can use?"
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1894196724",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "c",
+        "verboseName": "C"
+      },
+      "runtime": 0,
+      "memory": 7956000,
+      "timestamp": 1769162041,
+      "title": "To Lower Case",
+      "titleSlug": "to-lower-case",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "8 MB",
+      "memoryPercentile": 54.2298,
+      "code": "#include <string.h>\nchar* toLowerCase(char* s) {\n    for (int i=0;s[i];i++){\n        if (s[i]>='A' & s[i]<='Z'){\n            s[i]+=32;\n        }\n        \n    }\n    return s;\n}",
+      "statusCode": 10,
+      "user": {
+        "username": "Harsh_qwerty",
+        "profile": {
+          "realName": "Harsh_qwerty"
+        }
+      },
+      "question": {
+        "questionId": "742",
+        "titleSlug": "to-lower-case",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

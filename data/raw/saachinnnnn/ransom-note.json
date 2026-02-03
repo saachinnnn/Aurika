@@ -1,0 +1,66 @@
+{
+  "question_name": "ransom-note",
+  "problem_metadata": {
+    "questionId": "383",
+    "title": "Ransom Note",
+    "titleSlug": "ransom-note",
+    "content": "<p>Given two strings <code>ransomNote</code> and <code>magazine</code>, return <code>true</code><em> if </em><code>ransomNote</code><em> can be constructed by using the letters from </em><code>magazine</code><em> and </em><code>false</code><em> otherwise</em>.</p>\n\n<p>Each letter in <code>magazine</code> can only be used once in <code>ransomNote</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> ransomNote = \"a\", magazine = \"b\"\n<strong>Output:</strong> false\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> ransomNote = \"aa\", magazine = \"ab\"\n<strong>Output:</strong> false\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> ransomNote = \"aa\", magazine = \"aab\"\n<strong>Output:</strong> true\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= ransomNote.length, magazine.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>ransomNote</code> and <code>magazine</code> consist of lowercase English letters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"1.9M\", \"totalSubmission\": \"2.9M\", \"totalAcceptedRaw\": 1868301, \"totalSubmissionRaw\": 2850744, \"acRate\": \"65.5%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1788162791",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 12,
+      "memory": 17972000,
+      "timestamp": 1759318295,
+      "title": "Ransom Note",
+      "titleSlug": "ransom-note",
+      "runtimeDisplay": "12 ms",
+      "runtimePercentile": 84.59360000000001,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 62.69030000000001,
+      "code": "from collections import Counter\nclass Solution:\n    def canConstruct(self, ransomNote: str, magazine: str) -> bool:\n        # The simplest solution would be to compared both of the dictionaries.\n        return True if Counter(ransomNote) <= Counter(magazine) else False",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "383",
+        "titleSlug": "ransom-note",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

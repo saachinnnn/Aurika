@@ -1,0 +1,101 @@
+{
+  "question_name": "longest-consecutive-sequence",
+  "problem_metadata": {
+    "questionId": "128",
+    "title": "Longest Consecutive Sequence",
+    "titleSlug": "longest-consecutive-sequence",
+    "content": "<p>Given an unsorted array of integers <code>nums</code>, return <em>the length of the longest consecutive elements sequence.</em></p>\n\n<p>You must write an algorithm that runs in&nbsp;<code>O(n)</code>&nbsp;time.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [100,4,200,1,3,2]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The longest consecutive elements sequence is <code>[1, 2, 3, 4]</code>. Therefore its length is 4.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,3,7,2,5,8,4,6,0,1]\n<strong>Output:</strong> 9\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,0,1,2]\n<strong>Output:</strong> 3\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
+    "difficulty": "Medium",
+    "stats": "{\"totalAccepted\": \"3.1M\", \"totalSubmission\": \"6.6M\", \"totalAcceptedRaw\": 3112346, \"totalSubmissionRaw\": 6623968, \"acRate\": \"47.0%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "Union-Find",
+        "slug": "union-find",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1711946995",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 45,
+      "memory": 33280000,
+      "timestamp": 1753521976,
+      "title": "Longest Consecutive Sequence",
+      "titleSlug": "longest-consecutive-sequence",
+      "runtimeDisplay": "45 ms",
+      "runtimePercentile": 74.10410000000003,
+      "memoryDisplay": "33.3 MB",
+      "memoryPercentile": 89.80890000000002,
+      "code": "class Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        # Without sorting an array, we can find the longest sequence using numsets.\n        numset : set = set(nums)\n        longest : int = 0\n        for num in numset:\n            if num - 1 not in numset: # We ideally would like to start from the first.\n                length = 1\n                while num + length in numset: # As long as the next number is present.\n                    length += 1\n                longest = max(length,longest) # Update the longest sequence then.\n        return longest",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "128",
+        "titleSlug": "longest-consecutive-sequence",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1711941253",
+      "statusDisplay": "Time Limit Exceeded",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10534,
+      "memory": 34372000,
+      "timestamp": 1753521625,
+      "title": "Longest Consecutive Sequence",
+      "titleSlug": "longest-consecutive-sequence",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        # Without sorting an array, we can find the longest sequence using numsets.\n        numset : set = set(nums)\n        longest : int = 0\n        for num in nums:\n            if num - 1 not in numset: # We ideally would like to start from the first.\n                length = 1\n                while num + length in numset: # As long as the next number is present.\n                    length += 1\n                longest = max(length,longest) # Update the longest sequence then.\n        return longest",
+      "statusCode": 14,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "128",
+        "titleSlug": "longest-consecutive-sequence",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

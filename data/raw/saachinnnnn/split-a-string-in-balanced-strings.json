@@ -1,0 +1,69 @@
+{
+  "question_name": "split-a-string-in-balanced-strings",
+  "problem_metadata": {
+    "questionId": "1341",
+    "title": "Split a String in Balanced Strings",
+    "titleSlug": "split-a-string-in-balanced-strings",
+    "content": "<p><strong>Balanced</strong> strings are those that have an equal quantity of <code>&#39;L&#39;</code> and <code>&#39;R&#39;</code> characters.</p>\n\n<p>Given a <strong>balanced</strong> string <code>s</code>, split it into some number of substrings such that:</p>\n\n<ul>\n\t<li>Each substring is balanced.</li>\n</ul>\n\n<p>Return <em>the <strong>maximum</strong> number of balanced strings you can obtain.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;RLRRLLRLRL&quot;\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> s can be split into &quot;RL&quot;, &quot;RRLL&quot;, &quot;RL&quot;, &quot;RL&quot;, each substring contains same number of &#39;L&#39; and &#39;R&#39;.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;RLRRRLLRLL&quot;\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> s can be split into &quot;RL&quot;, &quot;RRRLLRLL&quot;, each substring contains same number of &#39;L&#39; and &#39;R&#39;.\nNote that s cannot be split into &quot;RL&quot;, &quot;RR&quot;, &quot;RL&quot;, &quot;LR&quot;, &quot;LL&quot;, because the 2<sup>nd</sup> and 5<sup>th</sup> substrings are not balanced.</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;LLLLRRRR&quot;\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> s can be split into &quot;LLLLRRRR&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= s.length &lt;= 1000</code></li>\n\t<li><code>s[i]</code> is either <code>&#39;L&#39;</code> or <code>&#39;R&#39;</code>.</li>\n\t<li><code>s</code> is a <strong>balanced</strong> string.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"377.8K\", \"totalSubmission\": \"433.1K\", \"totalAcceptedRaw\": 377801, \"totalSubmissionRaw\": 433059, \"acRate\": \"87.2%\"}",
+    "topicTags": [
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Loop from left to right maintaining a balance variable when it gets an L increase it by one otherwise decrease it by one.",
+      "Whenever the balance variable reaches zero then we increase the answer by one."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1807167216",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17832000,
+      "timestamp": 1761013440,
+      "title": "Split a String in Balanced Strings",
+      "titleSlug": "split-a-string-in-balanced-strings",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 52.970199999999984,
+      "code": "from collections import Counter\nclass Solution:\n    def balancedStringSplit(self, s: str) -> int:\n        # Calculation of balance is the answer.\n        count = 0\n        balance = 0\n        for ch in s:\n            balance +=1 if ch == 'L' else -1\n            if balance == 0:\n                count += 1\n        return count",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1341",
+        "titleSlug": "split-a-string-in-balanced-strings",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

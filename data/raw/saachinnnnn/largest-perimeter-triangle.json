@@ -1,0 +1,71 @@
+{
+  "question_name": "largest-perimeter-triangle",
+  "problem_metadata": {
+    "questionId": "1018",
+    "title": "Largest Perimeter Triangle",
+    "titleSlug": "largest-perimeter-triangle",
+    "content": "<p>Given an integer array <code>nums</code>, return <em>the largest perimeter of a triangle with a non-zero area, formed from three of these lengths</em>. If it is impossible to form any triangle of a non-zero area, return <code>0</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,1,2]\n<strong>Output:</strong> 5\n<strong>Explanation:</strong> You can form a triangle with three side lengths: 1, 2, and 2.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,1,10]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> \nYou cannot use the side lengths 1, 1, and 2 to form a triangle.\nYou cannot use the side lengths 1, 1, and 10 to form a triangle.\nYou cannot use the side lengths 1, 2, and 10 to form a triangle.\nAs we cannot use any three side lengths to form a triangle of non-zero area, we return 0.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"416K\", \"totalSubmission\": \"672.8K\", \"totalAcceptedRaw\": 415962, \"totalSubmissionRaw\": 672849, \"acRate\": \"61.8%\"}",
+    "topicTags": [
+      {
+        "name": "Array",
+        "slug": "array",
+        "translatedName": null
+      },
+      {
+        "name": "Math",
+        "slug": "math",
+        "translatedName": null
+      },
+      {
+        "name": "Greedy",
+        "slug": "greedy",
+        "translatedName": null
+      },
+      {
+        "name": "Sorting",
+        "slug": "sorting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1785216544",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 14,
+      "memory": 18600000,
+      "timestamp": 1759055748,
+      "title": "Largest Perimeter Triangle",
+      "titleSlug": "largest-perimeter-triangle",
+      "runtimeDisplay": "14 ms",
+      "runtimePercentile": 58.70150000000003,
+      "memoryDisplay": "18.6 MB",
+      "memoryPercentile": 70.44200000000001,
+      "code": "class Solution:\n    def largestPerimeter(self, nums: List[int]) -> int:\n        # Okay now I this using python3.\n\n        if len(nums) <=2:\n            return 0\n        \n        count = 0 \n        # We have to reverse the array.\n        nums.sort(reverse = True)\n\n        for i in range(len(nums) - 2):\n            # Now we will get to know if the triangle has largest perimeter or not...\n            if nums[i] < nums[i + 1] + nums[i + 2]:\n                return nums[i] + nums[i + 1] + nums[i + 2] # Returning the perimeter.\n        return 0",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1018",
+        "titleSlug": "largest-perimeter-triangle",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

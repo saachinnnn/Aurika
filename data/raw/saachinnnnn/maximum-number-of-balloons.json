@@ -1,0 +1,104 @@
+{
+  "question_name": "maximum-number-of-balloons",
+  "problem_metadata": {
+    "questionId": "1297",
+    "title": "Maximum Number of Balloons",
+    "titleSlug": "maximum-number-of-balloons",
+    "content": "<p>Given a string <code>text</code>, you want to use the characters of <code>text</code> to form as many instances of the word <strong>&quot;balloon&quot;</strong> as possible.</p>\n\n<p>You can use each character in <code>text</code> <strong>at most once</strong>. Return the maximum number of instances that can be formed.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<p><strong><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2019/09/05/1536_ex1_upd.JPG\" style=\"width: 132px; height: 35px;\" /></strong></p>\n\n<pre>\n<strong>Input:</strong> text = &quot;nlaebolko&quot;\n<strong>Output:</strong> 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<p><strong><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2019/09/05/1536_ex2_upd.JPG\" style=\"width: 267px; height: 35px;\" /></strong></p>\n\n<pre>\n<strong>Input:</strong> text = &quot;loonbalxballpoon&quot;\n<strong>Output:</strong> 2\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> text = &quot;leetcode&quot;\n<strong>Output:</strong> 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= text.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>text</code> consists of lower case English letters only.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Note:</strong> This question is the same as <a href=\"https://leetcode.com/problems/rearrange-characters-to-make-target-string/description/\" target=\"_blank\"> 2287: Rearrange Characters to Make Target String.</a></p>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"317K\", \"totalSubmission\": \"528.6K\", \"totalAcceptedRaw\": 317007, \"totalSubmissionRaw\": 528622, \"acRate\": \"60.0%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": [
+      "Count the frequency of letters in the given string.",
+      "Find the letter than can make the minimum number of instances of the word \"balloon\"."
+    ]
+  },
+  "submissions": [
+    {
+      "id": "1821642503",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 0,
+      "memory": 17812000,
+      "timestamp": 1762358714,
+      "title": "Maximum Number of Balloons",
+      "titleSlug": "maximum-number-of-balloons",
+      "runtimeDisplay": "0 ms",
+      "runtimePercentile": 100.0,
+      "memoryDisplay": "17.8 MB",
+      "memoryPercentile": 59.257199999999976,
+      "code": "from collections import Counter\nclass Solution:\n    def maxNumberOfBalloons(self, text: str) -> int:\n        freq : dict = Counter(text)\n        return min(freq['b'],freq['a'],freq['l'] // 2,freq['o'] // 2,freq['n'])",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1297",
+        "titleSlug": "maximum-number-of-balloons",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1821639219",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 3,
+      "memory": 17888000,
+      "timestamp": 1762358489,
+      "title": "Maximum Number of Balloons",
+      "titleSlug": "maximum-number-of-balloons",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "from collections import Counter\nclass Solution:\n    def maxNumberOfBalloons(self, text: str) -> int:\n        freq : dict = Counter(text)\n        flag = True\n        count = 0\n        while flag:\n            if freq['b'] > 0 and freq['a'] > 0 and freq['l'] > 1 and freq['o'] > 1 and freq['n'] > 0:\n                count += 1\n                freq['b'] -= 1\n                freq['a'] -= 1\n                freq['l'] -= 1\n                freq['o'] -= 1\n                freq['n'] -= 1\n            else:\n                flag = False\n        return count\n            ",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnnn",
+        "profile": {
+          "realName": "Iam4ari"
+        }
+      },
+      "question": {
+        "questionId": "1297",
+        "titleSlug": "maximum-number-of-balloons",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    }
+  ]
+}

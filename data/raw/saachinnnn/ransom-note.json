@@ -1,0 +1,121 @@
+{
+  "question_name": "ransom-note",
+  "problem_metadata": {
+    "questionId": "383",
+    "title": "Ransom Note",
+    "titleSlug": "ransom-note",
+    "content": "<p>Given two strings <code>ransomNote</code> and <code>magazine</code>, return <code>true</code><em> if </em><code>ransomNote</code><em> can be constructed by using the letters from </em><code>magazine</code><em> and </em><code>false</code><em> otherwise</em>.</p>\n\n<p>Each letter in <code>magazine</code> can only be used once in <code>ransomNote</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> ransomNote = \"a\", magazine = \"b\"\n<strong>Output:</strong> false\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> ransomNote = \"aa\", magazine = \"ab\"\n<strong>Output:</strong> false\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> ransomNote = \"aa\", magazine = \"aab\"\n<strong>Output:</strong> true\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= ransomNote.length, magazine.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>ransomNote</code> and <code>magazine</code> consist of lowercase English letters.</li>\n</ul>\n",
+    "difficulty": "Easy",
+    "stats": "{\"totalAccepted\": \"1.9M\", \"totalSubmission\": \"2.9M\", \"totalAcceptedRaw\": 1868060, \"totalSubmissionRaw\": 2850397, \"acRate\": \"65.5%\"}",
+    "topicTags": [
+      {
+        "name": "Hash Table",
+        "slug": "hash-table",
+        "translatedName": null
+      },
+      {
+        "name": "String",
+        "slug": "string",
+        "translatedName": null
+      },
+      {
+        "name": "Counting",
+        "slug": "counting",
+        "translatedName": null
+      }
+    ],
+    "hints": []
+  },
+  "submissions": [
+    {
+      "id": "1607534431",
+      "statusDisplay": "Accepted",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 19,
+      "memory": 17976000,
+      "timestamp": 1744721782,
+      "title": "Ransom Note",
+      "titleSlug": "ransom-note",
+      "runtimeDisplay": "19 ms",
+      "runtimePercentile": 61.05440000000001,
+      "memoryDisplay": "18 MB",
+      "memoryPercentile": 62.69030000000001,
+      "code": "class Solution:\n    def canConstruct(self, ransomNote: str, magazine: str) -> bool:\n       magazine = list(magazine)\n       for char in ransomNote:\n            if char in magazine:\n                magazine.remove(char)\n            else:\n                return False\n       return True",
+      "statusCode": 10,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "383",
+        "titleSlug": "ransom-note",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1607533385",
+      "statusDisplay": "Wrong Answer",
+      "lang": {
+        "name": "python3",
+        "verboseName": "Python3"
+      },
+      "runtime": 10620,
+      "memory": 17884000,
+      "timestamp": 1744721694,
+      "title": "Ransom Note",
+      "titleSlug": "ransom-note",
+      "runtimeDisplay": "N/A",
+      "runtimePercentile": null,
+      "memoryDisplay": "N/A",
+      "memoryPercentile": null,
+      "code": "class Solution:\n    def canConstruct(self, ransomNote: str, magazine: str) -> bool:\n       magazine = list(magazine)\n       count : int = 0\n       for i in range(len(magazine)-1,-1,-1):\n            if magazine[i] in ransomNote:\n                count += 1\n                magazine.remove(magazine[i])\n       if count == len(ransomNote):\n            return True\n       else:\n            return False",
+      "statusCode": 11,
+      "user": {
+        "username": "saachinnnn",
+        "profile": {
+          "realName": "iamkindagoated"
+        }
+      },
+      "question": {
+        "questionId": "383",
+        "titleSlug": "ransom-note",
+        "hasFrontendPreview": false
+      },
+      "notes": "",
+      "flagType": "WHITE",
+      "topicTags": [],
+      "runtimeError": null,
+      "compileError": null
+    },
+    {
+      "id": "1607529837",
+      "statusDisplay": "Accepted",
+      "lang": "python3",
+      "runtime": "19 ms",
+      "memory": "17.9 MB",
+      "timestamp": "1744721391",
+      "title": "Ransom Note",
+      "titleSlug": "ransom-note"
+    },
+    {
+      "id": "1500182072",
+      "statusDisplay": "Wrong Answer",
+      "lang": "cpp",
+      "runtime": "N/A",
+      "memory": "N/A",
+      "timestamp": "1736217556",
+      "title": "Ransom Note",
+      "titleSlug": "ransom-note"
+    }
+  ]
+}
