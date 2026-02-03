@@ -2,6 +2,7 @@ import json
 import asyncio
 import logging
 import httpx
+from pathlib import Path
 from collections import defaultdict
 from typing import List, Dict, Any, Optional
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
@@ -15,8 +16,6 @@ logger = logging.getLogger(__name__)
 # -----------------------------------------------------------------------------
 # Constants & Queries
 # -----------------------------------------------------------------------------
-
-CONCURRENCY_LIMIT = 25  # Max parallel requests
 
 QUERY_SUBMISSION_LIST = """
 query submissionList($offset: Int!, $limit: Int!) {
@@ -138,7 +137,6 @@ class LeetCodeHarvester:
         self.console = console or Console()
         self.user_raw_dir = RAW_DATA_DIR / username
         self.user_raw_dir.mkdir(parents=True, exist_ok=True)
-        self.semaphore = asyncio.Semaphore(CONCURRENCY_LIMIT)
         self.failed_slugs: List[Dict[str, str]] = []
 
     def _clean_data(self, data: Any) -> Any:
@@ -209,7 +207,6 @@ class LeetCodeHarvester:
             if status_context: status_context.__enter__()
             
             while True:
-                # List fetching is sequential because of pagination dependency
                 data = await self._gql_request(QUERY_SUBMISSION_LIST, {"offset": offset, "limit": limit}, "submissionList")
                 if not data or "data" not in data or not data["data"]["submissionList"]:
                     break
@@ -227,7 +224,7 @@ class LeetCodeHarvester:
                     break
                     
                 offset += limit
-                await asyncio.sleep(0.2) # Small delay for list paging
+                await asyncio.sleep(0.5) # Increased delay for safety
         finally:
             if status_context: status_context.__exit__(None, None, None)
             
@@ -236,60 +233,57 @@ class LeetCodeHarvester:
     async def process_problem(self, slug: str, subs: List[Dict], progress: Progress, task_id: Any):
         """
         Fetches metadata and details for a single problem.
-        Controlled by semaphore for concurrency.
+        Runs sequentially.
         """
-        async with self.semaphore:
-            try:
-                progress.update(task_id, description=f"[cyan]Processing: {slug}")
+        try:
+            progress.update(task_id, description=f"[cyan]Processing: {slug}")
+            
+            # A. Fetch Metadata
+            meta_response = await self._gql_request(QUERY_PROBLEM_DETAILS, {"titleSlug": slug}, "selectProblem")
+            if not meta_response or "data" not in meta_response:
+                raise Exception("Failed to fetch problem metadata")
+            
+            question_data = self._clean_data(meta_response["data"]["question"])
+            
+            # B. Fetch Submissions
+            full_submissions = []
+            for sub in subs:
+                sub_id = sub["id"]
+                detail_response = await self._gql_request(QUERY_SUBMISSION_DETAILS, {"submissionId": sub_id}, "submissionDetails")
                 
-                # A. Fetch Metadata
-                meta_response = await self._gql_request(QUERY_PROBLEM_DETAILS, {"titleSlug": slug}, "selectProblem")
-                if not meta_response or "data" not in meta_response:
-                    raise Exception("Failed to fetch problem metadata")
+                if detail_response and "data" in detail_response and detail_response["data"]["submissionDetails"]:
+                    cleaned_details = self._clean_data(detail_response["data"]["submissionDetails"])
+                    full_sub = {**sub, **cleaned_details}
+                    full_submissions.append(full_sub)
+                else:
+                    raise Exception(f"Failed to fetch details for submission {sub_id}")
                 
-                question_data = self._clean_data(meta_response["data"]["question"])
-                
-                # B. Fetch Submissions (Sequential per problem)
-                full_submissions = []
-                for sub in subs:
-                    sub_id = sub["id"]
-                    detail_response = await self._gql_request(QUERY_SUBMISSION_DETAILS, {"submissionId": sub_id}, "submissionDetails")
-                    
-                    if detail_response and "data" in detail_response and detail_response["data"]["submissionDetails"]:
-                        cleaned_details = self._clean_data(detail_response["data"]["submissionDetails"])
-                        full_sub = {**sub, **cleaned_details}
-                        full_submissions.append(full_sub)
-                    else:
-                        full_submissions.append(sub)
-                    
-                    await asyncio.sleep(0.1)
-                
-                # Save
-                final_output = {
-                    "question_name": slug,
-                    "problem_metadata": question_data,
-                    "submissions": full_submissions
-                }
-                
-                file_path = self.user_raw_dir / f"{slug}.json"
-                with open(file_path, "w", encoding="utf-8") as f:
-                    json.dump(final_output, f, indent=2, ensure_ascii=False)
-                
-                progress.advance(task_id)
-                
-            except Exception as e:
-                # Dead Letter Logic
-                logger.error(f"Failed to process {slug}: {e}")
-                self.failed_slugs.append({"slug": slug, "error": str(e), "submissions": subs})
-                if self.console:
-                    self.console.print(f"[red]Failed: {slug} ({e})[/red]")
-            finally:
-                # Post-task cooldown to respect rate limits globally
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(0.5) # Safe sequential delay
+            
+            # Save
+            final_output = {
+                "question_name": slug,
+                "problem_metadata": question_data,
+                "submissions": full_submissions
+            }
+            
+            file_path = self.user_raw_dir / f"{slug}.json"
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(final_output, f, indent=2, ensure_ascii=False)
+            
+            progress.advance(task_id)
+            
+        except Exception as e:
+            logger.error(f"Failed to process {slug}: {e}")
+            self.failed_slugs.append({"slug": slug, "error": str(e), "submissions": subs})
+            if self.console:
+                self.console.print(f"[red]Failed: {slug} ({e})[/red]")
+        finally:
+            await asyncio.sleep(0.5) # Post-problem cooldown
 
     async def harvest_all(self) -> List[Dict]:
         """
-        Main harvesting loop: Concurrent execution.
+        Main harvesting loop: Sequential execution.
         Returns list of failed items.
         """
         submissions_summary = await self.fetch_submission_history()
@@ -309,7 +303,7 @@ class LeetCodeHarvester:
 
         if self.console:
             self.console.print(f"[info]Unique Problems Attempted: [bold]{len(grouped)}[/bold][/info]")
-            self.console.print(f"\n[bold]Starting concurrent extraction (Max {CONCURRENCY_LIMIT} threads)...[/bold]")
+            self.console.print(f"\n[bold]Starting sequential extraction...[/bold]")
 
         # Progress Bar
         with Progress(
@@ -322,13 +316,9 @@ class LeetCodeHarvester:
             
             main_task = progress.add_task("[cyan]Processing Problems...", total=len(grouped))
             
-            # Create tasks
-            tasks = []
-            for slug, subs in grouped.items():
-                tasks.append(self.process_problem(slug, subs, progress, main_task))
-            
-            # Run concurrently
-            await asyncio.gather(*tasks)
+            # Sequential Loop
+            for i, (slug, subs) in enumerate(grouped.items(), 1):
+                await self.process_problem(slug, subs, progress, main_task)
 
         self._save_failed()
 
@@ -343,7 +333,7 @@ class LeetCodeHarvester:
 
     async def retry_failed(self, failed_items: List[Dict]):
         """
-        Retries only the failed items using the same concurrency logic.
+        Retries only the failed items sequentially.
         """
         if not failed_items:
             return
@@ -362,13 +352,10 @@ class LeetCodeHarvester:
         ) as progress:
             
             main_task = progress.add_task("[yellow]Retrying...", total=len(failed_items))
-            tasks = []
             
             for item in failed_items:
                 slug = item["slug"]
-                subs = item["submissions"] # We preserved the submissions list!
-                tasks.append(self.process_problem(slug, subs, progress, main_task))
+                subs = item["submissions"]
+                await self.process_problem(slug, subs, progress, main_task)
             
-            await asyncio.gather(*tasks)
-            
-        self._save_failed() # Save any that failed again
+        self._save_failed()

@@ -80,7 +80,7 @@ class LeetCodeAuthenticator:
         """
         logger.debug("Validating LeetCode credentials...")
         
-        with httpx.Client(http2=True, headers=self._get_headers(), cookies=self._get_cookies()) as client:
+        with httpx.Client(http2=False, headers=self._get_headers(), cookies=self._get_cookies()) as client:
             try:
                 response = client.post(
                     GRAPHQL_URL,
@@ -124,7 +124,7 @@ class LeetCodeAuthenticator:
         The caller is responsible for closing the client (context manager recommended).
         """
         return httpx.AsyncClient(
-            http2=True,
+            http2=False,
             headers=self._get_headers(),
             cookies=self._get_cookies(),
             timeout=15.0,
