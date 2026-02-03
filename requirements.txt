@@ -1,0 +1,14 @@
+# Core
+httpx[http2]>=0.28.1
+requests>=2.32.0
+python-dotenv>=1.0.0
+pydantic>=2.10.0
+tenacity>=9.0.0
+
+# UI/CLI
+rich>=13.9.0
+questionary>=2.1.0
+
+# Future / Stage 2 & 3 (Optional for now)
+# asyncpg>=0.30.0
+# openai>=1.50.0  # Or google-generativeai
