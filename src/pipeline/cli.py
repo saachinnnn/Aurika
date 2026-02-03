@@ -1,3 +1,4 @@
+import os
 import asyncio
 import questionary
 from rich.console import Console
@@ -20,10 +21,38 @@ custom_theme = Theme({
 console = Console(theme=custom_theme)
 
 async def run_harvester(auth: LeetCodeAuthenticator, username: str):
-    """Async wrapper for the harvesting process."""
+    """
+    Async wrapper for the harvesting process.
+    Handles the main harvest loop and interactive retry logic.
+    """
     async with auth.get_client() as client:
         harvester = LeetCodeHarvester(client, username, console)
-        await harvester.harvest_all()
+        
+        # 1. Initial Harvest
+        failed_items = await harvester.harvest_all()
+        
+        # 2. Retry Loop
+        while failed_items:
+            count = len(failed_items)
+            console.print(f"\n[warning]⚠️  {count} downloads failed.[/warning]")
+            
+            should_retry = await questionary.confirm(
+                f"Do you want to retry these {count} failed items?",
+                default=True
+            ).ask_async()
+            
+            if not should_retry:
+                console.print("[dim]Skipping retry. You can run the pipeline again later to retry.[/dim]")
+                break
+                
+            # Run Retry logic
+            await harvester.retry_failed(failed_items)
+            
+            # Check if any failed again
+            failed_items = harvester.failed_slugs
+            
+            if not failed_items:
+                console.print("[success]All retries successful![/success]")
 
 def start():
     console.print(Panel.fit(
@@ -32,14 +61,13 @@ def start():
         border_style="cyan"
     ))
     
-    
     console.print("\n[bold]Please enter your LeetCode credentials:[/bold]")
     console.print("[dim](You can find these in your browser cookies/headers)[/dim]")
-        
+    
     session = questionary.password("LEETCODE_SESSION:").ask()
     csrf = questionary.text("csrftoken:").ask()
     cf = questionary.text("cf_clearance:").ask()
-        
+    
     if not session or not csrf or not cf:
         console.print("[error]All credentials are required![/error]")
         return
