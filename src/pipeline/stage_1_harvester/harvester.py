@@ -2,7 +2,6 @@ import json
 import asyncio
 import logging
 import httpx
-from pathlib import Path
 from collections import defaultdict
 from typing import List, Dict, Any, Optional
 from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn, TaskProgressColumn
