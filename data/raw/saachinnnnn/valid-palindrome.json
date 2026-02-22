@@ -6,7 +6,7 @@
     "titleSlug": "valid-palindrome",
     "content": "<p>A phrase is a <strong>palindrome</strong> if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.</p>\n\n<p>Given a string <code>s</code>, return <code>true</code><em> if it is a <strong>palindrome</strong>, or </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;A man, a plan, a canal: Panama&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> &quot;amanaplanacanalpanama&quot; is a palindrome.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;race a car&quot;\n<strong>Output:</strong> false\n<strong>Explanation:</strong> &quot;raceacar&quot; is not a palindrome.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot; &quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> s is an empty string &quot;&quot; after removing non-alphanumeric characters.\nSince an empty string reads the same forward and backward, it is a palindrome.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 2 * 10<sup>5</sup></code></li>\n\t<li><code>s</code> consists only of printable ASCII characters.</li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"5.1M\", \"totalSubmission\": \"9.7M\", \"totalAcceptedRaw\": 5107279, \"totalSubmissionRaw\": 9705220, \"acRate\": \"52.6%\"}",
+    "stats": "{\"totalAccepted\": \"5.2M\", \"totalSubmission\": \"9.8M\", \"totalAcceptedRaw\": 5183502, \"totalSubmissionRaw\": 9822365, \"acRate\": \"52.8%\"}",
     "topicTags": [
       {
         "name": "Two Pointers",
@@ -35,9 +35,9 @@
       "title": "Valid Palindrome",
       "titleSlug": "valid-palindrome",
       "runtimeDisplay": "7 ms",
-      "runtimePercentile": 82.309,
+      "runtimePercentile": 82.0158,
       "memoryDisplay": "24.1 MB",
-      "memoryPercentile": 5.255099999999989,
+      "memoryPercentile": 6.974200000000019,
       "code": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        # List comprehension method.\n        Filtered_List = [char.lower() for char in s if char.isalnum()]\n        if Filtered_List[:] == Filtered_List[::-1]:\n            return True\n        else : return False\n",
       "statusCode": 10,
       "user": {
@@ -70,9 +70,9 @@
       "title": "Valid Palindrome",
       "titleSlug": "valid-palindrome",
       "runtimeDisplay": "11 ms",
-      "runtimePercentile": 35.630399999999995,
+      "runtimePercentile": 34.735400000000006,
       "memoryDisplay": "18.1 MB",
-      "memoryPercentile": 73.9389,
+      "memoryPercentile": 86.662,
       "code": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        left_ptr , right_ptr = 0 , len(s) - 1\n        \n        while left_ptr < right_ptr : \n            if s[left_ptr].isalnum() and s[right_ptr].isalnum():\n                if s[left_ptr].lower() != s[right_ptr].lower():\n                    return False\n                left_ptr += 1\n                right_ptr -= 1\n            elif not s[left_ptr].isalnum() : left_ptr += 1\n            else : right_ptr -= 1\n        return True\n",
       "statusCode": 10,
       "user": {
@@ -175,9 +175,9 @@
       "title": "Valid Palindrome",
       "titleSlug": "valid-palindrome",
       "runtimeDisplay": "7 ms",
-      "runtimePercentile": 82.309,
+      "runtimePercentile": 82.0158,
       "memoryDisplay": "18.3 MB",
-      "memoryPercentile": 65.7363,
+      "memoryPercentile": 85.12990000000002,
       "code": "class Solution:\n    def isPalindrome(self, s: str) -> bool:\n        str_ans : str = \"\"\n        for char in s:\n            if char.isalnum():\n                str_ans += char\n        final_ans = str_ans.lower()\n        if final_ans[:] == final_ans[::-1]:\n            return True\n        else: return False",
       "statusCode": 10,
       "user": {

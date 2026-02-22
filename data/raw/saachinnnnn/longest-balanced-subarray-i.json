@@ -6,7 +6,7 @@
     "titleSlug": "longest-balanced-subarray-i",
     "content": "<p>You are given an integer array <code>nums</code>.</p>\n\n<p>A <strong><span data-keyword=\"subarray-nonempty\">subarray</span></strong> is called <strong>balanced</strong> if the number of <strong>distinct even</strong> numbers in the subarray is equal to the number of <strong>distinct odd</strong> numbers.</p>\n\n<p>Return the length of the <strong>longest</strong> balanced subarray.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [2,5,4,3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">4</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The longest balanced subarray is <code>[2, 5, 4, 3]</code>.</li>\n\t<li>It has 2 distinct even numbers <code>[2, 4]</code> and 2 distinct odd numbers <code>[5, 3]</code>. Thus, the answer is 4.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [3,2,2,5,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The longest balanced subarray is <code>[3, 2, 2, 5, 4]</code>.</li>\n\t<li>It has 2 distinct even numbers <code>[2, 4]</code> and 2 distinct odd numbers <code>[3, 5]</code>. Thus, the answer is 5.</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,2]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">3</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li>The longest balanced subarray is <code>[2, 3, 2]</code>.</li>\n\t<li>It has 1 distinct even number <code>[2]</code> and 1 distinct odd number <code>[3]</code>. Thus, the answer is 3.</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1500</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"29.4K\", \"totalSubmission\": \"56K\", \"totalAcceptedRaw\": 29396, \"totalSubmissionRaw\": 55972, \"acRate\": \"52.5%\"}",
+    "stats": "{\"totalAccepted\": \"139.9K\", \"totalSubmission\": \"213K\", \"totalAcceptedRaw\": 139852, \"totalSubmissionRaw\": 213045, \"acRate\": \"65.6%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -53,9 +53,9 @@
       "title": "Longest Balanced Subarray I",
       "titleSlug": "longest-balanced-subarray-i",
       "runtimeDisplay": "312 ms",
-      "runtimePercentile": 90.7179000000001,
+      "runtimePercentile": 86.09450000000004,
       "memoryDisplay": "18.2 MB",
-      "memoryPercentile": 73.41770000000001,
+      "memoryPercentile": 99.85460000000002,
       "code": "class Solution:\n    def longestBalanced(self, nums: List[int]) -> int:\n        # aarggggggggh\n        best : int = 0\n\n        for idx in range(len(nums)):\n            even_seen : set = set()\n            odd_seen : set = set()\n\n            if len(nums) - idx  <= best:\n                break\n\n            for jdx in range(idx,len(nums)):\n                x = nums[jdx]\n\n                if x % 2 == 0:\n                    even_seen.add(x)\n                else:\n                    odd_seen.add(x)\n                if len(even_seen) == len(odd_seen):\n                    best = max(best,jdx - idx + 1)\n\n        return best\n            ",
       "statusCode": 10,
       "user": {

@@ -6,7 +6,7 @@
     "titleSlug": "xor-operation-in-an-array",
     "content": "<p>You are given an integer <code>n</code> and an integer <code>start</code>.</p>\n\n<p>Define an array <code>nums</code> where <code>nums[i] = start + 2 * i</code> (<strong>0-indexed</strong>) and <code>n == nums.length</code>.</p>\n\n<p>Return <em>the bitwise XOR of all elements of</em> <code>nums</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 5, start = 0\n<strong>Output:</strong> 8\n<strong>Explanation:</strong> Array nums is equal to [0, 2, 4, 6, 8] where (0 ^ 2 ^ 4 ^ 6 ^ 8) = 8.\nWhere &quot;^&quot; corresponds to bitwise XOR operator.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 4, start = 3\n<strong>Output:</strong> 8\n<strong>Explanation:</strong> Array nums is equal to [3, 5, 7, 9] where (3 ^ 5 ^ 7 ^ 9) = 8.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= n &lt;= 1000</code></li>\n\t<li><code>0 &lt;= start &lt;= 1000</code></li>\n\t<li><code>n == nums.length</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"258.3K\", \"totalSubmission\": \"295.7K\", \"totalAcceptedRaw\": 258262, \"totalSubmissionRaw\": 295661, \"acRate\": \"87.4%\"}",
+    "stats": "{\"totalAccepted\": \"261.2K\", \"totalSubmission\": \"298.8K\", \"totalAcceptedRaw\": 261189, \"totalSubmissionRaw\": 298816, \"acRate\": \"87.4%\"}",
     "topicTags": [
       {
         "name": "Math",
@@ -39,7 +39,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.5 MB",
-      "memoryPercentile": 65.90310000000001,
+      "memoryPercentile": 76.6773,
       "code": "class Solution:\n    def xorOperation(self, n: int, start: int) -> int:\n        result = 0\n        for i in range(n):\n            result ^= start + 2 * i\n        return result",
       "statusCode": 10,
       "user": {

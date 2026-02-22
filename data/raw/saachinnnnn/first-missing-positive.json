@@ -6,7 +6,7 @@
     "titleSlug": "first-missing-positive",
     "content": "<p>Given an unsorted integer array <code>nums</code>. Return the <em>smallest positive integer</em> that is <em>not present</em> in <code>nums</code>.</p>\n\n<p>You must implement an algorithm that runs in <code>O(n)</code> time and uses <code>O(1)</code> auxiliary space.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,0]\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The numbers in the range [1,2] are all in the array.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,4,-1,1]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> 1 is in the array but 2 is missing.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [7,8,9,11,12]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The smallest positive integer 1 is missing.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-2<sup>31</sup> &lt;= nums[i] &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
     "difficulty": "Hard",
-    "stats": "{\"totalAccepted\": \"1.7M\", \"totalSubmission\": \"4M\", \"totalAcceptedRaw\": 1674554, \"totalSubmissionRaw\": 3958833, \"acRate\": \"42.3%\"}",
+    "stats": "{\"totalAccepted\": \"1.7M\", \"totalSubmission\": \"4M\", \"totalAcceptedRaw\": 1692726, \"totalSubmissionRaw\": 3990967, \"acRate\": \"42.4%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -39,9 +39,9 @@
       "title": "First Missing Positive",
       "titleSlug": "first-missing-positive",
       "runtimeDisplay": "43 ms",
-      "runtimePercentile": 64.2446,
+      "runtimePercentile": 67.10340000000001,
       "memoryDisplay": "35.5 MB",
-      "memoryPercentile": 5.269899999999945,
+      "memoryPercentile": 5.332499999999927,
       "code": "class Solution:\n    def firstMissingPositive(self, nums: List[int]) -> int:\n        # Using a set.\n        hashset: set = {num for num in range(1,len(nums) + 1) if num > 0}\n        for num in nums:\n            if num in hashset:\n                hashset.remove(num)\n        return hashset.pop() if len(hashset) > 0 else len(nums) + 1",
       "statusCode": 10,
       "user": {

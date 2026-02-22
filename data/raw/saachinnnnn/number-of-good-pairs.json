@@ -6,7 +6,7 @@
     "titleSlug": "number-of-good-pairs",
     "content": "<p>Given an array of integers <code>nums</code>, return <em>the number of <strong>good pairs</strong></em>.</p>\n\n<p>A pair <code>(i, j)</code> is called <em>good</em> if <code>nums[i] == nums[j]</code> and <code>i</code> &lt; <code>j</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,1,1,3]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,1,1,1]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> Each pair in the array are <em>good</em>.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"1M\", \"totalSubmission\": \"1.1M\", \"totalAcceptedRaw\": 1021752, \"totalSubmissionRaw\": 1138469, \"acRate\": \"89.7%\"}",
+    "stats": "{\"totalAccepted\": \"1M\", \"totalSubmission\": \"1.1M\", \"totalAcceptedRaw\": 1031835, \"totalSubmissionRaw\": 1149332, \"acRate\": \"89.8%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -47,9 +47,9 @@
       "title": "Number of Good Pairs",
       "titleSlug": "number-of-good-pairs",
       "runtimeDisplay": "4 ms",
-      "runtimePercentile": 5.831899999999997,
+      "runtimePercentile": 5.539500000000004,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 45.9049,
+      "memoryPercentile": 77.5311,
       "code": "class Solution:\n    def numIdenticalPairs(self, nums: List[int]) -> int:\n        # I will brute force this and end it right it here.\n        ## Nah sike i am going to use a dictionary\n        return sum(nums[right + 1:].count(nums[right]) if nums[right] in nums[right + 1:] else 0 for right in range(len(nums)))\n\n        # Damnnnn the above solution is cool af.",
       "statusCode": 10,
       "user": {
@@ -84,7 +84,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.8 MB",
-      "memoryPercentile": 54.373999999999995,
+      "memoryPercentile": 77.5311,
       "code": "class Solution:\n    def numIdenticalPairs(self, nums: List[int]) -> int:\n        # I will brute force this and end it right it here.\n        ## Nah sike i am going to use a dictionary.\n\n        ans : int = 0\n        for right in range(len(nums)):\n            if nums[right] in nums[right + 1:]:\n                ans += nums[right + 1:].count(nums[right])\n        return ans",
       "statusCode": 10,
       "user": {

@@ -6,7 +6,7 @@
     "titleSlug": "maximum-product-of-three-elements-after-one-replacement",
     "content": "<p>You are given an integer array <code>nums</code>.</p>\n\n<p>You <strong>must</strong> replace <strong>exactly one</strong> element in the array with <strong>any</strong> integer value in the range <code>[-10<sup>5</sup>, 10<sup>5</sup>]</code> (inclusive).</p>\n\n<p>After performing this single replacement, determine the <strong>maximum possible product</strong> of <strong>any three</strong> elements at <strong>distinct indices</strong> from the modified array.</p>\n\n<p>Return an integer denoting the <strong>maximum product</strong> achievable.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [-5,7,0]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">3500000</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Replacing 0 with -10<sup>5</sup> gives the array <code>[-5, 7, -10<sup>5</sup>]</code>, which has a product <code>(-5) * 7 * (-10<sup>5</sup>) = 3500000</code>. The maximum product is 3500000.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [-4,-2,-1,-3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1200000</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>Two ways to achieve the maximum product include:</p>\n\n<ul>\n\t<li><code>[-4, -2, -3]</code> &rarr; replace -2 with 10<sup>5</sup> &rarr; product = <code>(-4) * 10<sup>5</sup> * (-3) = 1200000</code>.</li>\n\t<li><code>[-4, -1, -3]</code> &rarr; replace -1 with 10<sup>5</sup> &rarr; product = <code>(-4) * 10<sup>5</sup> * (-3) = 1200000</code>.</li>\n</ul>\nThe maximum product is 1200000.</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [0,10,0]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">0</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>There is no way to replace an element with another integer and not have a 0 in the array. Hence, the product of all three elements will always be 0, and the maximum product is 0.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>5</sup> &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"30.2K\", \"totalSubmission\": \"64.3K\", \"totalAcceptedRaw\": 30159, \"totalSubmissionRaw\": 64282, \"acRate\": \"46.9%\"}",
+    "stats": "{\"totalAccepted\": \"30.6K\", \"totalSubmission\": \"64.9K\", \"totalAcceptedRaw\": 30553, \"totalSubmissionRaw\": 64937, \"acRate\": \"47.1%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -47,9 +47,9 @@
       "title": "Maximum Product of Three Elements After One Replacement",
       "titleSlug": "maximum-product-of-three-elements-after-one-replacement",
       "runtimeDisplay": "99 ms",
-      "runtimePercentile": 54.46579999999992,
+      "runtimePercentile": 57.24689999999991,
       "memoryDisplay": "32.1 MB",
-      "memoryPercentile": 34.870099999999994,
+      "memoryPercentile": 24.275399999999955,
       "code": "class Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        # Hardcoded the entire solution\n        if len(nums) == 3:\n            return max(\n                (-10**5) * nums[1] * nums[2],\n                nums[0] * (-10**5) * nums[2],\n                nums[0] * nums[1] * (-10**5),\n                (10**5) * nums[1] * nums[2],\n                nums[0] * (10**5) * nums[2],\n                nums[0] * nums[1] * (10**5)\n            )\n        \n        nums.sort()\n        \n        candidates = []\n        \n        candidates.append((10**5) * nums[-1] * nums[-2])\n        candidates.append((-10**5) * nums[-1] * nums[-2])\n        candidates.append(nums[0] * nums[1] * (10**5))\n        candidates.append(nums[0] * nums[1] * (-10**5))\n        candidates.append(nums[-1] * nums[-2] * nums[-3])\n        candidates.append(nums[0] * nums[1] * nums[-1])\n        candidates.append(nums[0] * (10**5) * nums[-1])\n        candidates.append(nums[0] * (-10**5) * nums[-1])\n        candidates.append(nums[0] * nums[-1] * (10**5))\n        candidates.append(nums[0] * nums[-1] * (-10**5))\n        \n        return max(candidates)",
       "statusCode": 10,
       "user": {
@@ -82,9 +82,9 @@
       "title": "Maximum Product of Three Elements After One Replacement",
       "titleSlug": "maximum-product-of-three-elements-after-one-replacement",
       "runtimeDisplay": "87 ms",
-      "runtimePercentile": 64.26409999999993,
+      "runtimePercentile": 64.49319999999992,
       "memoryDisplay": "32.4 MB",
-      "memoryPercentile": 18.155499999999996,
+      "memoryPercentile": 6.884099999999956,
       "code": "class Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        # Hardcoded the entire solution\n        if len(nums) == 3:\n            return max(\n                (-10**5) * nums[1] * nums[2],\n                nums[0] * (-10**5) * nums[2],\n                nums[0] * nums[1] * (-10**5),\n                (10**5) * nums[1] * nums[2],\n                nums[0] * (10**5) * nums[2],\n                nums[0] * nums[1] * (10**5)\n            )\n        \n        nums.sort()\n        n = len(nums)\n        \n        candidates = []\n        \n        candidates.append((10**5) * nums[n-1] * nums[n-2])\n        candidates.append((-10**5) * nums[n-1] * nums[n-2])\n        candidates.append(nums[0] * nums[1] * (10**5))\n        candidates.append(nums[0] * nums[1] * (-10**5))\n        candidates.append(nums[n-1] * nums[n-2] * nums[n-3])\n        candidates.append(nums[0] * nums[1] * nums[n-1])\n        candidates.append(nums[0] * (10**5) * nums[n-1])\n        candidates.append(nums[0] * (-10**5) * nums[n-1])\n        candidates.append(nums[0] * nums[n-1] * (10**5))\n        candidates.append(nums[0] * nums[n-1] * (-10**5))\n        \n        return max(candidates)",
       "statusCode": 10,
       "user": {

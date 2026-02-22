@@ -6,7 +6,7 @@
     "titleSlug": "palindrome-linked-list",
     "content": "<p>Given the <code>head</code> of a singly linked list, return <code>true</code><em> if it is a </em><span data-keyword=\"palindrome-sequence\"><em>palindrome</em></span><em> or </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/03/pal1linked-list.jpg\" style=\"width: 422px; height: 62px;\" />\n<pre>\n<strong>Input:</strong> head = [1,2,2,1]\n<strong>Output:</strong> true\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/03/03/pal2linked-list.jpg\" style=\"width: 182px; height: 62px;\" />\n<pre>\n<strong>Input:</strong> head = [1,2]\n<strong>Output:</strong> false\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the list is in the range <code>[1, 10<sup>5</sup>]</code>.</li>\n\t<li><code>0 &lt;= Node.val &lt;= 9</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow up:</strong> Could you do it in <code>O(n)</code> time and <code>O(1)</code> space?",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"2.8M\", \"totalSubmission\": \"4.8M\", \"totalAcceptedRaw\": 2764727, \"totalSubmissionRaw\": 4828106, \"acRate\": \"57.3%\"}",
+    "stats": "{\"totalAccepted\": \"2.8M\", \"totalSubmission\": \"4.9M\", \"totalAcceptedRaw\": 2797730, \"totalSubmissionRaw\": 4873331, \"acRate\": \"57.4%\"}",
     "topicTags": [
       {
         "name": "Linked List",
@@ -45,9 +45,9 @@
       "title": "Palindrome Linked List",
       "titleSlug": "palindrome-linked-list",
       "runtimeDisplay": "27 ms",
-      "runtimePercentile": 74.86919999999999,
+      "runtimePercentile": 76.86439999999997,
       "memoryDisplay": "39.6 MB",
-      "memoryPercentile": 51.54020000000012,
+      "memoryPercentile": 78.4891999999998,
       "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def isPalindrome(self, head: Optional[ListNode]) -> bool:\n        # Handling Edgecases.\n        if head is None:\n            return False\n        elif head.next is None:\n            return True\n        \n        List : list = []\n\n        curr = head\n        while curr.next:\n            List.append(curr.val)\n            curr = curr.next\n        List.append(curr.val)\n        return List[::-1] == List[::]\n",
       "statusCode": 10,
       "user": {

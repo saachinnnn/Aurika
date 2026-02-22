@@ -6,7 +6,7 @@
     "titleSlug": "product-of-array-except-self",
     "content": "<p>Given an integer array <code>nums</code>, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is equal to the product of all the elements of</em> <code>nums</code> <em>except</em> <code>nums[i]</code>.</p>\n\n<p>The product of any prefix or suffix of <code>nums</code> is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</p>\n\n<p>You must write an algorithm that runs in&nbsp;<code>O(n)</code>&nbsp;time and without using the division operation.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,3,4]\n<strong>Output:</strong> [24,12,8,6]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [-1,1,0,-3,3]\n<strong>Output:</strong> [0,0,9,0,0]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-30 &lt;= nums[i] &lt;= 30</code></li>\n\t<li>The input is generated such that <code>answer[i]</code> is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong>&nbsp;Can you solve the problem in <code>O(1)</code>&nbsp;extra&nbsp;space complexity? (The output array <strong>does not</strong> count as extra space for space complexity analysis.)</p>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"4.3M\", \"totalSubmission\": \"6.3M\", \"totalAcceptedRaw\": 4290514, \"totalSubmissionRaw\": 6262128, \"acRate\": \"68.5%\"}",
+    "stats": "{\"totalAccepted\": \"4.3M\", \"totalSubmission\": \"6.3M\", \"totalAcceptedRaw\": 4344771, \"totalSubmissionRaw\": 6334973, \"acRate\": \"68.6%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -38,9 +38,9 @@
       "title": "Product of Array Except Self",
       "titleSlug": "product-of-array-except-self",
       "runtimeDisplay": "25 ms",
-      "runtimePercentile": 49.81349999999998,
+      "runtimePercentile": 48.299600000000005,
       "memoryDisplay": "23.4 MB",
-      "memoryPercentile": 84.8461,
+      "memoryPercentile": 95.78890000000001,
       "code": "class Solution:\n    def productExceptSelf(self, nums: List[int]) -> List[int]:\n        answerarray = [1]*len(nums)\n\n        # Now......\n\n        # Calculating the values multipled on the left side.....\n\n        left = 1\n        for i in range(len(nums)):\n            answerarray[i] *= left\n            left  *= nums[i]\n        \n\n        # Now calculating the values multiplied on the right side...\n        right = 1\n        for i in range(len(nums) - 1,-1,-1):\n            answerarray[i] *= right\n            right *= nums[i]\n        return answerarray",
       "statusCode": 10,
       "user": {

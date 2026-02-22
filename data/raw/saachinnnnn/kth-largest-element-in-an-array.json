@@ -6,7 +6,7 @@
     "titleSlug": "kth-largest-element-in-an-array",
     "content": "<p>Given an integer array <code>nums</code> and an integer <code>k</code>, return <em>the</em> <code>k<sup>th</sup></code> <em>largest element in the array</em>.</p>\n\n<p>Note that it is the <code>k<sup>th</sup></code> largest element in the sorted order, not the <code>k<sup>th</sup></code> distinct element.</p>\n\n<p>Can you solve it without sorting?</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [3,2,1,5,6,4], k = 2\n<strong>Output:</strong> 5\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [3,2,3,1,2,4,5,5,6], k = 4\n<strong>Output:</strong> 4\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= k &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"3.5M\", \"totalSubmission\": \"5M\", \"totalAcceptedRaw\": 3455219, \"totalSubmissionRaw\": 5027182, \"acRate\": \"68.7%\"}",
+    "stats": "{\"totalAccepted\": \"3.5M\", \"totalSubmission\": \"5.1M\", \"totalAcceptedRaw\": 3491213, \"totalSubmissionRaw\": 5076196, \"acRate\": \"68.8%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -120,9 +120,9 @@
       "title": "Kth Largest Element in an Array",
       "titleSlug": "kth-largest-element-in-an-array",
       "runtimeDisplay": "45 ms",
-      "runtimePercentile": 91.5901,
+      "runtimePercentile": 91.44799999999996,
       "memoryDisplay": "28.8 MB",
-      "memoryPercentile": 76.55150000000003,
+      "memoryPercentile": 91.55969999999995,
       "code": "class Solution:\n    def findKthLargest(self, nums: List[int], k: int) -> int:\n        # I will sort for now.\n        nums.sort()\n        return nums[-k]\n            ",
       "statusCode": 10,
       "user": {

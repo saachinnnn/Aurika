@@ -6,7 +6,7 @@
     "titleSlug": "daily-temperatures",
     "content": "<p>Given an array of integers <code>temperatures</code> represents the daily temperatures, return <em>an array</em> <code>answer</code> <em>such that</em> <code>answer[i]</code> <em>is the number of days you have to wait after the</em> <code>i<sup>th</sup></code> <em>day to get a warmer temperature</em>. If there is no future day for which this is possible, keep <code>answer[i] == 0</code> instead.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> temperatures = [73,74,75,71,69,72,76,73]\n<strong>Output:</strong> [1,1,4,2,1,1,0,0]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> temperatures = [30,40,50,60]\n<strong>Output:</strong> [1,1,1,0]\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> temperatures = [30,60,90]\n<strong>Output:</strong> [1,1,0]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;=&nbsp;temperatures.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>30 &lt;=&nbsp;temperatures[i] &lt;= 100</code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"1.6M\", \"totalSubmission\": \"2.3M\", \"totalAcceptedRaw\": 1592866, \"totalSubmissionRaw\": 2334615, \"acRate\": \"68.2%\"}",
+    "stats": "{\"totalAccepted\": \"1.6M\", \"totalSubmission\": \"2.4M\", \"totalAcceptedRaw\": 1621805, \"totalSubmissionRaw\": 2373672, \"acRate\": \"68.3%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -42,9 +42,9 @@
       "title": "Daily Temperatures",
       "titleSlug": "daily-temperatures",
       "runtimeDisplay": "106 ms",
-      "runtimePercentile": 46.71600000000007,
+      "runtimePercentile": 44.54219999999995,
       "memoryDisplay": "26.6 MB",
-      "memoryPercentile": 83.24350000000001,
+      "memoryPercentile": 88.92509999999999,
       "code": "class Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        ans = [0]*len(temperatures)\n        stack = []\n        for idx in range(len(temperatures) - 1,-1,-1):\n            while stack and temperatures[stack[-1]] <= temperatures[idx]:\n                stack.pop()\n            if stack:\n                ans[idx] = stack[-1] - idx\n            stack.append(idx)\n        return ans\n                ",
       "statusCode": 10,
       "user": {
@@ -112,9 +112,9 @@
       "title": "Daily Temperatures",
       "titleSlug": "daily-temperatures",
       "runtimeDisplay": "108 ms",
-      "runtimePercentile": 43.74640000000007,
+      "runtimePercentile": 41.19359999999995,
       "memoryDisplay": "26.8 MB",
-      "memoryPercentile": 80.01520000000002,
+      "memoryPercentile": 87.25949999999999,
       "code": "from typing import List\nclass Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        # Instead of appending the distance to the stack as well which makes things more complicated, we can calculate the distance directly.\n        ## So...\n\n        ans : List[int] = [0]*len(temperatures)\n        stack : list = []\n        for idx in range(len(temperatures) - 1,-1,-1):\n            while stack and temperatures[idx] >= temperatures[stack[-1]]:\n                stack.pop()\n            if stack:\n                ans[idx] = stack[-1] - idx\n            stack.append(idx)\n        return ans\n# In the above approach we compute the distance simply by saving the index of the element in stack and subtracting it with current index traversing through the loop so that we can get the distance for the answer.\n## Thus that distance is updated with the answer array.\n### Much simpler solution than what i did earlier but both works in the same time complexity.\n\n\n# So its not essentialy to add the distance/span to the stack like we did with stock and span question earlier.",
       "statusCode": 10,
       "user": {
@@ -147,9 +147,9 @@
       "title": "Daily Temperatures",
       "titleSlug": "daily-temperatures",
       "runtimeDisplay": "173 ms",
-      "runtimePercentile": 5.201100000000071,
+      "runtimePercentile": 5.072699999999939,
       "memoryDisplay": "26.7 MB",
-      "memoryPercentile": 83.24350000000001,
+      "memoryPercentile": 88.92509999999999,
       "code": "class Solution:\n    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:\n        # Okay I am going to solve this.\n        if not temperatures:\n            return []\n        \n        # I think this approach \n        ans : list = [0]*len(temperatures)\n        stack : list = []\n        for idx in range(len(temperatures) - 1,-1,-1):\n            temperature = 1\n            if idx == len(temperatures) - 1:\n                ans[idx] = 0\n                stack.append((temperatures[idx],1))\n            else:\n                while stack and temperatures[idx] >= stack[-1][0]:\n                    temp = stack.pop()\n                    temperature += temp[1]\n                if stack == []:\n                    ans[idx] = 0\n                else:\n                    ans[idx] = temperature\n                stack.append((temperatures[idx],temperature))\n        return ans\n            \n            \n                    ",
       "statusCode": 10,
       "user": {

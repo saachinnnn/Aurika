@@ -6,7 +6,7 @@
     "titleSlug": "count-negative-numbers-in-a-sorted-matrix",
     "content": "<p>Given a <code>m x n</code> matrix <code>grid</code> which is sorted in non-increasing order both row-wise and column-wise, return <em>the number of <strong>negative</strong> numbers in</em> <code>grid</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]\n<strong>Output:</strong> 8\n<strong>Explanation:</strong> There are 8 negatives number in the matrix.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> grid = [[3,2],[1,0]]\n<strong>Output:</strong> 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>m == grid.length</code></li>\n\t<li><code>n == grid[i].length</code></li>\n\t<li><code>1 &lt;= m, n &lt;= 100</code></li>\n\t<li><code>-100 &lt;= grid[i][j] &lt;= 100</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow up:</strong> Could you find an <code>O(n + m)</code> solution?",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"646.1K\", \"totalSubmission\": \"812.7K\", \"totalAcceptedRaw\": 646117, \"totalSubmissionRaw\": 812717, \"acRate\": \"79.5%\"}",
+    "stats": "{\"totalAccepted\": \"651.4K\", \"totalSubmission\": \"819.1K\", \"totalAcceptedRaw\": 651404, \"totalSubmissionRaw\": 819107, \"acRate\": \"79.5%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -44,7 +44,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "18.5 MB",
-      "memoryPercentile": 18.738299999999988,
+      "memoryPercentile": 21.62939999999999,
       "code": "class Solution:\n    def countNegatives(self, grid: List[List[int]]) -> int:\n        m = len(grid)\n        n = len(grid[0])\n\n        i = m - 1\n        j = 0\n        res = 0\n\n        while i >= 0 and j < n:\n            if grid[i][j] < 0:\n                res += n - j\n                i -= 1\n            else:\n                j += 1\n\n        return res\n",
       "statusCode": 10,
       "user": {

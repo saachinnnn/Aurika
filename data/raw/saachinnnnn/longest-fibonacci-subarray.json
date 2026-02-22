@@ -6,7 +6,7 @@
     "titleSlug": "longest-fibonacci-subarray",
     "content": "<p>You are given an array of <strong>positive</strong> integers <code>nums</code>.</p>\n\n<p>A <strong>Fibonacci</strong> array is a contiguous sequence whose third and subsequent terms each equal the sum of the two preceding terms.</p>\n\n<p>Return the length of the longest <strong>Fibonacci</strong> <strong><span data-keyword=\"subarray-nonempty\">subarray</span></strong> in <code>nums</code>.</p>\n\n<p><strong>Note:</strong> Subarrays of length 1 or 2 are always <strong>Fibonacci</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,1,1,2,3,5,1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The longest Fibonacci subarray is <code>nums[2..6] = [1, 1, 2, 3, 5]</code>.</p>\n\n<p><code>[1, 1, 2, 3, 5]</code> is Fibonacci because <code>1 + 1 = 2</code>, <code>1 + 2 = 3</code>, and <code>2 + 3 = 5</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [5,2,7,9,16]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The longest Fibonacci subarray is <code>nums[0..4] = [5, 2, 7, 9, 16]</code>.</p>\n\n<p><code>[5, 2, 7, 9, 16]</code> is Fibonacci because <code>5 + 2 = 7</code>, <code>2 + 7 = 9</code>, and <code>7 + 9 = 16</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1000000000,1000000000,1000000000]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The longest Fibonacci subarray is <code>nums[1..2] = [1000000000, 1000000000]</code>.</p>\n\n<p><code>[1000000000, 1000000000]</code> is Fibonacci because its length is 2.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"31.2K\", \"totalSubmission\": \"45K\", \"totalAcceptedRaw\": 31177, \"totalSubmissionRaw\": 44968, \"acRate\": \"69.3%\"}",
+    "stats": "{\"totalAccepted\": \"31.7K\", \"totalSubmission\": \"45.6K\", \"totalAcceptedRaw\": 31685, \"totalSubmissionRaw\": 45633, \"acRate\": \"69.4%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -34,9 +34,9 @@
       "title": "Longest Fibonacci Subarray",
       "titleSlug": "longest-fibonacci-subarray",
       "runtimeDisplay": "59 ms",
-      "runtimePercentile": 83.57170000000002,
+      "runtimePercentile": 79.80780000000001,
       "memoryDisplay": "33.5 MB",
-      "memoryPercentile": 63.57159999999999,
+      "memoryPercentile": 71.4745,
       "code": "class Solution:\n    def longestSubarray(self, nums: List[int]) -> int:\n        # Slding window approach I think.\n\n        ## So we use a maxanswer.\n        maxanswer : int = 2 # Minimum answer is given to be 2.\n\n        current_length = 2\n\n        for idx in range(2,len(nums)):\n            if nums[idx] == nums[idx - 1] + nums[idx - 2]: # This is the fibonacci condition.\n                current_length += 1\n                maxanswer = max(maxanswer,current_length)\n            else:\n                current_length = 2\n        return maxanswer\n            ",
       "statusCode": 10,
       "user": {

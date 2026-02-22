@@ -6,7 +6,7 @@
     "titleSlug": "palindrome-number",
     "content": "<p>Given an integer <code>x</code>, return <code>true</code><em> if </em><code>x</code><em> is a </em><span data-keyword=\"palindrome-integer\"><em><strong>palindrome</strong></em></span><em>, and </em><code>false</code><em> otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 121\n<strong>Output:</strong> true\n<strong>Explanation:</strong> 121 reads as 121 from left to right and from right to left.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = -121\n<strong>Output:</strong> false\n<strong>Explanation:</strong> From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> x = 10\n<strong>Output:</strong> false\n<strong>Explanation:</strong> Reads 01 from right to left. Therefore it is not a palindrome.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>-2<sup>31</sup>&nbsp;&lt;= x &lt;= 2<sup>31</sup>&nbsp;- 1</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow up:</strong> Could you solve it without converting the integer to a string?",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"7.7M\", \"totalSubmission\": \"12.7M\", \"totalAcceptedRaw\": 7655630, \"totalSubmissionRaw\": 12725191, \"acRate\": \"60.2%\"}",
+    "stats": "{\"totalAccepted\": \"7.8M\", \"totalSubmission\": \"12.9M\", \"totalAcceptedRaw\": 7764639, \"totalSubmissionRaw\": 12889508, \"acRate\": \"60.2%\"}",
     "topicTags": [
       {
         "name": "Math",
@@ -32,9 +32,9 @@
       "title": "Palindrome Number",
       "titleSlug": "palindrome-number",
       "runtimeDisplay": "16 ms",
-      "runtimePercentile": 14.420099999999996,
+      "runtimePercentile": 14.248199999999978,
       "memoryDisplay": "17.7 MB",
-      "memoryPercentile": 61.96010000000001,
+      "memoryPercentile": 79.424,
       "code": "class Solution:\n    def isPalindrome(self, x: int) -> bool:\n        if x < 0 or (x % 10 == 0 and x != 0):\n            return False\n        revertedNumber = 0\n        while x > revertedNumber:\n            revertedNumber = revertedNumber * 10 + x % 10\n            x //= 10\n        return x == revertedNumber or x == revertedNumber // 10",
       "statusCode": 10,
       "user": {
@@ -67,9 +67,9 @@
       "title": "Palindrome Number",
       "titleSlug": "palindrome-number",
       "runtimeDisplay": "7 ms",
-      "runtimePercentile": 63.5612,
+      "runtimePercentile": 63.807799999999986,
       "memoryDisplay": "17.6 MB",
-      "memoryPercentile": 67.55350000000001,
+      "memoryPercentile": 79.5785,
       "code": "class Solution:\n    def isPalindrome(self, x: int) -> bool:\n        x = str(x)\n        return x[::] == x[::-1]",
       "statusCode": 10,
       "user": {
@@ -102,9 +102,9 @@
       "title": "Palindrome Number",
       "titleSlug": "palindrome-number",
       "runtimeDisplay": "4 ms",
-      "runtimePercentile": 80.3565,
+      "runtimePercentile": 80.85679999999999,
       "memoryDisplay": "18 MB",
-      "memoryPercentile": 52.53780000000001,
+      "memoryPercentile": 79.4008,
       "code": "class Solution:\n    def isPalindrome(self, x: int) -> bool:\n        new_str = str(x)\n        if new_str == new_str[::-1]:\n            return True\n        return False\n        ",
       "statusCode": 10,
       "user": {

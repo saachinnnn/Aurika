@@ -6,7 +6,7 @@
     "titleSlug": "validate-stack-sequences",
     "content": "<p>Given two integer arrays <code>pushed</code> and <code>popped</code> each with distinct values, return <code>true</code><em> if this could have been the result of a sequence of push and pop operations on an initially empty stack, or </em><code>false</code><em> otherwise.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> pushed = [1,2,3,4,5], popped = [4,5,3,2,1]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> We might do the following sequence:\npush(1), push(2), push(3), push(4),\npop() -&gt; 4,\npush(5),\npop() -&gt; 5, pop() -&gt; 3, pop() -&gt; 2, pop() -&gt; 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> pushed = [1,2,3,4,5], popped = [4,3,5,1,2]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> 1 cannot be popped before 2.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= pushed.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= pushed[i] &lt;= 1000</code></li>\n\t<li>All the elements of <code>pushed</code> are <strong>unique</strong>.</li>\n\t<li><code>popped.length == pushed.length</code></li>\n\t<li><code>popped</code> is a permutation of <code>pushed</code>.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"363.5K\", \"totalSubmission\": \"518.5K\", \"totalAcceptedRaw\": 363452, \"totalSubmissionRaw\": 518539, \"acRate\": \"70.1%\"}",
+    "stats": "{\"totalAccepted\": \"366K\", \"totalSubmission\": \"521.7K\", \"totalAcceptedRaw\": 365992, \"totalSubmissionRaw\": 521688, \"acRate\": \"70.2%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -42,7 +42,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "18.1 MB",
-      "memoryPercentile": 43.453500000000005,
+      "memoryPercentile": 68.89739999999999,
       "code": "class Solution:\n    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:\n        # A bit better version of the code I had written earlier would be...\n        stack = []\n        left = 0\n        for x in pushed:\n            stack.append(x)\n            while stack and left < len(popped) and stack[-1] == popped[left]:\n                stack.pop()\n                left += 1\n        return not stack",
       "statusCode": 10,
       "user": {
@@ -75,9 +75,9 @@
       "title": "Validate Stack Sequences",
       "titleSlug": "validate-stack-sequences",
       "runtimeDisplay": "3 ms",
-      "runtimePercentile": 48.8299,
+      "runtimePercentile": 47.73740000000001,
       "memoryDisplay": "18 MB",
-      "memoryPercentile": 47.8811,
+      "memoryPercentile": 69.08859999999999,
       "code": "class Solution:\n    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:\n        # A bit better version of the code I had written earlier would be...\n        stack = []\n        left = 0\n        for x in pushed:\n            stack.append(x)\n            while stack and left < len(popped) and stack[-1] == popped[left]:\n                stack.pop()\n                left += 1\n        return len(stack) == 0",
       "statusCode": 10,
       "user": {
@@ -110,9 +110,9 @@
       "title": "Validate Stack Sequences",
       "titleSlug": "validate-stack-sequences",
       "runtimeDisplay": "3 ms",
-      "runtimePercentile": 48.8299,
+      "runtimePercentile": 47.73740000000001,
       "memoryDisplay": "18.1 MB",
-      "memoryPercentile": 38.26690000000001,
+      "memoryPercentile": 68.76989999999999,
       "code": "class Solution:\n    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:\n        # This problem seems to be a bit more easier than expected.\n        stack = []\n        left = 0\n        for idx in range(len(pushed) + 1):\n            while stack and stack[-1] == popped[left]:\n                stack.pop()\n                left += 1\n            if idx < len(pushed):\n                stack.append(pushed[idx])\n        return len(stack) == 0\n",
       "statusCode": 10,
       "user": {

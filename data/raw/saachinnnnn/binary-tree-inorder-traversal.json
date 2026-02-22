@@ -6,7 +6,7 @@
     "titleSlug": "binary-tree-inorder-traversal",
     "content": "<p>Given the <code>root</code> of a binary tree, return <em>the inorder traversal of its nodes&#39; values</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">root = [1,null,2,3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[1,3,2]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/08/29/screenshot-2024-08-29-202743.png\" style=\"width: 200px; height: 264px;\" /></p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">root = [1,2,3,4,5,null,8,null,null,6,7,9]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[4,2,6,5,7,1,3,9,8]</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p><img alt=\"\" src=\"https://assets.leetcode.com/uploads/2024/08/29/tree_2.png\" style=\"width: 350px; height: 286px;\" /></p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">root = []</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[]</span></p>\n</div>\n\n<p><strong class=\"example\">Example 4:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">root = [1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">[1]</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[0, 100]</code>.</li>\n\t<li><code>-100 &lt;= Node.val &lt;= 100</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow up:</strong> Recursive solution is trivial, could you do it iteratively?",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"3.5M\", \"totalSubmission\": \"4.5M\", \"totalAcceptedRaw\": 3544552, \"totalSubmissionRaw\": 4451637, \"acRate\": \"79.6%\"}",
+    "stats": "{\"totalAccepted\": \"3.6M\", \"totalSubmission\": \"4.5M\", \"totalAcceptedRaw\": 3580953, \"totalSubmissionRaw\": 4492063, \"acRate\": \"79.7%\"}",
     "topicTags": [
       {
         "name": "Stack",
@@ -47,7 +47,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.8 MB",
-      "memoryPercentile": 59.9951,
+      "memoryPercentile": 79.29820000000001,
       "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:\n        def inorder(node,ans):\n            if not node:\n                return []\n            inorder(node.left,ans)\n            ans.append(node.val)\n            inorder(node.right,ans)\n        ans =[]\n        inorder(root,ans)\n        return ans",
       "statusCode": 10,
       "user": {

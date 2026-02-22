@@ -6,7 +6,7 @@
     "titleSlug": "can-place-flowers",
     "content": "<p>You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers cannot be planted in <strong>adjacent</strong> plots.</p>\n\n<p>Given an integer array <code>flowerbed</code> containing <code>0</code>&#39;s and <code>1</code>&#39;s, where <code>0</code> means empty and <code>1</code> means not empty, and an integer <code>n</code>, return <code>true</code>&nbsp;<em>if</em> <code>n</code> <em>new flowers can be planted in the</em> <code>flowerbed</code> <em>without violating the no-adjacent-flowers rule and</em> <code>false</code> <em>otherwise</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> flowerbed = [1,0,0,0,1], n = 1\n<strong>Output:</strong> true\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> flowerbed = [1,0,0,0,1], n = 2\n<strong>Output:</strong> false\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= flowerbed.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>flowerbed[i]</code> is <code>0</code> or <code>1</code>.</li>\n\t<li>There are no two adjacent flowers in <code>flowerbed</code>.</li>\n\t<li><code>0 &lt;= n &lt;= flowerbed.length</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"1.3M\", \"totalSubmission\": \"4.6M\", \"totalAcceptedRaw\": 1342593, \"totalSubmissionRaw\": 4624376, \"acRate\": \"29.0%\"}",
+    "stats": "{\"totalAccepted\": \"1.4M\", \"totalSubmission\": \"4.7M\", \"totalAcceptedRaw\": 1354924, \"totalSubmissionRaw\": 4664788, \"acRate\": \"29.0%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -35,9 +35,9 @@
       "title": "Can Place Flowers",
       "titleSlug": "can-place-flowers",
       "runtimeDisplay": "11 ms",
-      "runtimePercentile": 41.99809999999999,
+      "runtimePercentile": 43.9049,
       "memoryDisplay": "18.3 MB",
-      "memoryPercentile": 52.84239999999998,
+      "memoryPercentile": 79.6264,
       "code": "class Solution:\n    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:\n        if n == 0:\n            return True\n        if len(flowerbed) == 1:\n            return True if flowerbed[0] == 0 and n == 1 else False\n        count = 0\n        for idx in range(len(flowerbed)):\n            if idx == 0 and flowerbed[idx] == 0 and flowerbed[idx + 1] == 0:\n                count += 1\n                flowerbed[idx] = 1\n            elif idx == len(flowerbed) - 1 and flowerbed[idx] == 0 and flowerbed[idx - 1] == 0:\n                count += 1\n                flowerbed[idx] = 1\n            elif idx + 1 < len(flowerbed) and idx - 1 >= 0 and flowerbed[idx] == 0 and flowerbed[idx - 1] == 0 and flowerbed[idx + 1] == 0:\n                flowerbed[idx] = 1\n                count += 1\n        return count >= n",
       "statusCode": 10,
       "user": {

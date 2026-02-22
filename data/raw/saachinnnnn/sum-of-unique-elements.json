@@ -6,7 +6,7 @@
     "titleSlug": "sum-of-unique-elements",
     "content": "<p>You are given an integer array <code>nums</code>. The unique elements of an array are the elements that appear <strong>exactly once</strong> in the array.</p>\n\n<p>Return <em>the <strong>sum</strong> of all the unique elements of </em><code>nums</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,2]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The unique elements are [1,3], and the sum is 4.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,1,1,1,1]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> There are no unique elements, and the sum is 0.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5]\n<strong>Output:</strong> 15\n<strong>Explanation:</strong> The unique elements are [1,2,3,4,5], and the sum is 15.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"250.6K\", \"totalSubmission\": \"314.3K\", \"totalAcceptedRaw\": 250565, \"totalSubmissionRaw\": 314312, \"acRate\": \"79.7%\"}",
+    "stats": "{\"totalAccepted\": \"253.5K\", \"totalSubmission\": \"317.9K\", \"totalAcceptedRaw\": 253543, \"totalSubmissionRaw\": 317855, \"acRate\": \"79.8%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -42,9 +42,9 @@
       "title": "Sum of Unique Elements",
       "titleSlug": "sum-of-unique-elements",
       "runtimeDisplay": "2 ms",
-      "runtimePercentile": 16.794300000000003,
+      "runtimePercentile": 16.882500000000004,
       "memoryDisplay": "17.7 MB",
-      "memoryPercentile": 66.849,
+      "memoryPercentile": 80.26920000000001,
       "code": "class Solution:\n    def sumOfUnique(self, nums: List[int]) -> int:\n     # Lets make it more memory efficient.\n     freq : dict = {}\n     for num in nums:\n        freq[num] = freq.get(num,0) + 1\n     return sum(num for num in nums if freq[num] == 1)   ",
       "statusCode": 10,
       "user": {
@@ -79,7 +79,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 56.6193,
+      "memoryPercentile": 80.26920000000001,
       "code": "from collections import Counter\nclass Solution:\n    def sumOfUnique(self, nums: List[int]) -> int:\n        freq_count : dict = Counter(nums)\n        sum : int = 0\n        for i in range(len(nums)):\n            if freq_count[nums[i]] == 1:\n                sum += nums[i]\n        return sum",
       "statusCode": 10,
       "user": {

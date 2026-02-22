@@ -6,7 +6,7 @@
     "titleSlug": "count-special-triplets",
     "content": "<p>You are given an integer array <code>nums</code>.</p>\n\n<p>A <strong>special triplet</strong> is defined as a triplet of indices <code>(i, j, k)</code> such that:</p>\n\n<ul>\n\t<li><code>0 &lt;= i &lt; j &lt; k &lt; n</code>, where <code>n = nums.length</code></li>\n\t<li><code>nums[i] == nums[j] * 2</code></li>\n\t<li><code>nums[k] == nums[j] * 2</code></li>\n</ul>\n\n<p>Return the total number of <strong>special triplets</strong> in the array.</p>\n\n<p>Since the answer may be large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [6,3,6]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The only special triplet is <code>(i, j, k) = (0, 1, 2)</code>, where:</p>\n\n<ul>\n\t<li><code>nums[0] = 6</code>, <code>nums[1] = 3</code>, <code>nums[2] = 6</code></li>\n\t<li><code>nums[0] = nums[1] * 2 = 3 * 2 = 6</code></li>\n\t<li><code>nums[2] = nums[1] * 2 = 3 * 2 = 6</code></li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [0,1,0,0]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">1</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The only special triplet is <code>(i, j, k) = (0, 2, 3)</code>, where:</p>\n\n<ul>\n\t<li><code>nums[0] = 0</code>, <code>nums[2] = 0</code>, <code>nums[3] = 0</code></li>\n\t<li><code>nums[0] = nums[2] * 2 = 0 * 2 = 0</code></li>\n\t<li><code>nums[3] = nums[2] * 2 = 0 * 2 = 0</code></li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [8,4,2,8,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>There are exactly two special triplets:</p>\n\n<ul>\n\t<li><code>(i, j, k) = (0, 1, 3)</code>\n\n\t<ul>\n\t\t<li><code>nums[0] = 8</code>, <code>nums[1] = 4</code>, <code>nums[3] = 8</code></li>\n\t\t<li><code>nums[0] = nums[1] * 2 = 4 * 2 = 8</code></li>\n\t\t<li><code>nums[3] = nums[1] * 2 = 4 * 2 = 8</code></li>\n\t</ul>\n\t</li>\n\t<li><code>(i, j, k) = (1, 2, 4)</code>\n\t<ul>\n\t\t<li><code>nums[1] = 4</code>, <code>nums[2] = 2</code>, <code>nums[4] = 4</code></li>\n\t\t<li><code>nums[1] = nums[2] * 2 = 2 * 2 = 4</code></li>\n\t\t<li><code>nums[4] = nums[2] * 2 = 2 * 2 = 4</code></li>\n\t</ul>\n\t</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= n == nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"115.8K\", \"totalSubmission\": \"245.8K\", \"totalAcceptedRaw\": 115824, \"totalSubmissionRaw\": 245839, \"acRate\": \"47.1%\"}",
+    "stats": "{\"totalAccepted\": \"116.3K\", \"totalSubmission\": \"246.9K\", \"totalAcceptedRaw\": 116332, \"totalSubmissionRaw\": 246935, \"acRate\": \"47.1%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -43,9 +43,9 @@
       "title": "Count Special Triplets",
       "titleSlug": "count-special-triplets",
       "runtimeDisplay": "798 ms",
-      "runtimePercentile": 38.146200000000114,
+      "runtimePercentile": 31.483400000000444,
       "memoryDisplay": "40.4 MB",
-      "memoryPercentile": 82.39000000000013,
+      "memoryPercentile": 62.77300000000004,
       "code": "class Solution:\n    def specialTriplets(self, nums: List[int]) -> int:\n        n, MOD=len(nums), 10**9+7\n        freq, prev=Counter(nums), Counter()\n        cnt=0\n        prev[nums[0]]+=1\n        for i in range(1, n-1):\n            x=nums[i]\n            x2=x<<1\n            cnt+=prev[x2]*(freq[x2]-prev[x2]-(x==0))\n            prev[x]+=1\n        return cnt%MOD",
       "statusCode": 10,
       "user": {

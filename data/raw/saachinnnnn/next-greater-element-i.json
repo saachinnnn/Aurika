@@ -6,7 +6,7 @@
     "titleSlug": "next-greater-element-i",
     "content": "<p>The <strong>next greater element</strong> of some element <code>x</code> in an array is the <strong>first greater</strong> element that is <strong>to the right</strong> of <code>x</code> in the same array.</p>\n\n<p>You are given two <strong>distinct 0-indexed</strong> integer arrays <code>nums1</code> and <code>nums2</code>, where <code>nums1</code> is a subset of <code>nums2</code>.</p>\n\n<p>For each <code>0 &lt;= i &lt; nums1.length</code>, find the index <code>j</code> such that <code>nums1[i] == nums2[j]</code> and determine the <strong>next greater element</strong> of <code>nums2[j]</code> in <code>nums2</code>. If there is no next greater element, then the answer for this query is <code>-1</code>.</p>\n\n<p>Return <em>an array </em><code>ans</code><em> of length </em><code>nums1.length</code><em> such that </em><code>ans[i]</code><em> is the <strong>next greater element</strong> as described above.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums1 = [4,1,2], nums2 = [1,3,4,2]\n<strong>Output:</strong> [-1,3,-1]\n<strong>Explanation:</strong> The next greater element for each value of nums1 is as follows:\n- 4 is underlined in nums2 = [1,3,<u>4</u>,2]. There is no next greater element, so the answer is -1.\n- 1 is underlined in nums2 = [<u>1</u>,3,4,2]. The next greater element is 3.\n- 2 is underlined in nums2 = [1,3,4,<u>2</u>]. There is no next greater element, so the answer is -1.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums1 = [2,4], nums2 = [1,2,3,4]\n<strong>Output:</strong> [3,-1]\n<strong>Explanation:</strong> The next greater element for each value of nums1 is as follows:\n- 2 is underlined in nums2 = [1,<u>2</u>,3,4]. The next greater element is 3.\n- 4 is underlined in nums2 = [1,2,3,<u>4</u>]. There is no next greater element, so the answer is -1.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums1.length &lt;= nums2.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= nums1[i], nums2[i] &lt;= 10<sup>4</sup></code></li>\n\t<li>All integers in <code>nums1</code> and <code>nums2</code> are <strong>unique</strong>.</li>\n\t<li>All the integers of <code>nums1</code> also appear in <code>nums2</code>.</li>\n</ul>\n\n<p>&nbsp;</p>\n<strong>Follow up:</strong> Could you find an <code>O(nums1.length + nums2.length)</code> solution?",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"1.3M\", \"totalSubmission\": \"1.7M\", \"totalAcceptedRaw\": 1316436, \"totalSubmissionRaw\": 1740567, \"acRate\": \"75.6%\"}",
+    "stats": "{\"totalAccepted\": \"1.3M\", \"totalSubmission\": \"1.8M\", \"totalAcceptedRaw\": 1342615, \"totalSubmissionRaw\": 1772464, \"acRate\": \"75.7%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -47,7 +47,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "18.1 MB",
-      "memoryPercentile": 55.04490000000001,
+      "memoryPercentile": 80.0453,
       "code": "class Solution:\n    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        # Using the optimal approach.\n\n        ## Using a Next Greater Element Stack.\n\n        if not nums1 or not nums2:\n            return [] # Weird ahh edge case.\n        \n        nge_stk : list = [0]*len(nums2)\n        stk : list = []\n        for idx in range(len(nums2) - 1,-1,-1):\n            if idx == len(nums2) - 1:\n                nge_stk[idx] = -1\n                stk.append(nums2[idx])\n            else:\n                while stk and nums2[idx] > stk[-1]:\n                    stk.pop()\n                if stk == []:\n                    nge_stk[idx] = -1\n                    stk.append(nums2[idx])\n                else:\n                    nge_stk[idx] = stk[-1]\n                    stk.append(nums2[idx])\n        # So we have computed the next greater stack above successfully!! sui!!!.\n        index_map = {num: i for i, num in enumerate(nums2)}\n        ans = []\n        for element in nums1:\n            index = index_map[element]\n            ans.append(nge_stk[index])\n        return ans\n\n",
       "statusCode": 10,
       "user": {
@@ -80,9 +80,9 @@
       "title": "Next Greater Element I",
       "titleSlug": "next-greater-element-i",
       "runtimeDisplay": "20 ms",
-      "runtimePercentile": 17.763299999999997,
+      "runtimePercentile": 18.4524,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 63.73370000000001,
+      "memoryPercentile": 80.102,
       "code": "class Solution:\n    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        # Using the optimal approach.\n\n        ## Using a Next Greater Element Stack.\n\n        if not nums1 or not nums2:\n            return [] # Weird ahh edge case.\n        \n        nge_stk : list = [0]*len(nums2)\n        stk : list = []\n        for idx in range(len(nums2) - 1,-1,-1):\n            if idx == len(nums2) - 1:\n                nge_stk[idx] = -1\n                stk.append(nums2[idx])\n            else:\n                while stk and nums2[idx] > stk[-1]:\n                    stk.pop()\n                if stk == []:\n                    nge_stk[idx] = -1\n                    stk.append(nums2[idx])\n                else:\n                    nge_stk[idx] = stk[-1]\n                    stk.append(nums2[idx])\n        # So we have computed the next greater stack above successfully!! sui!!!.\n        ans = []\n        for element in nums1:\n            index = nums2.index(element)\n            ans.append(nge_stk[index])\n        return ans\n\n",
       "statusCode": 10,
       "user": {
@@ -115,9 +115,9 @@
       "title": "Next Greater Element I",
       "titleSlug": "next-greater-element-i",
       "runtimeDisplay": "19 ms",
-      "runtimePercentile": 20.368399999999998,
+      "runtimePercentile": 21.0459,
       "memoryDisplay": "18 MB",
-      "memoryPercentile": 58.77540000000001,
+      "memoryPercentile": 80.0595,
       "code": "class Solution:\n    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:\n       # Let me just start to solve this question in brute force method.\n       ## Nah actually using a stack is much more easier.\n\n        if not nums1 or not nums2:\n            return []\n        \n        stack = []\n        # Precomputing the next greater element stack.\n        nge = []\n        for idx in range(len(nums2) - 1,-1,-1):\n            if idx == len(nums2) - 1:\n                nge.append(-1)\n                stack.append(nums2[idx]) # We append the element itself.\n            else:\n                while stack and nums2[idx] > stack[-1]:\n                    stack.pop()\n                if stack == []:\n                    nge.append(-1)\n                    stack.append(nums2[idx])\n                else:\n                    nge.append(stack[-1])\n                    stack.append(nums2[idx])\n        \n        # Now.\n        nge = nge[::-1]\n        ans = []\n        for element in nums1:\n            index = nums2.index(element)\n            ans.append(nge[index])\n        return ans\n       ",
       "statusCode": 10,
       "user": {

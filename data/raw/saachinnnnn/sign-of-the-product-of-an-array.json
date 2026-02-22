@@ -6,7 +6,7 @@
     "titleSlug": "sign-of-the-product-of-an-array",
     "content": "<p>Implement a function <code>signFunc(x)</code> that returns:</p>\n\n<ul>\n\t<li><code>1</code> if <code>x</code> is positive.</li>\n\t<li><code>-1</code> if <code>x</code> is negative.</li>\n\t<li><code>0</code> if <code>x</code> is equal to <code>0</code>.</li>\n</ul>\n\n<p>You are given an integer array <code>nums</code>. Let <code>product</code> be the product of all values in the array <code>nums</code>.</p>\n\n<p>Return <code>signFunc(product)</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,-2,-3,-4,3,2,1]\n<strong>Output:</strong> 1\n<strong>Explanation:</strong> The product of all values in the array is 144, and signFunc(144) = 1\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,5,0,2,-3]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> The product of all values in the array is 0, and signFunc(0) = 0\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-1,1,-1,1,-1]\n<strong>Output:</strong> -1\n<strong>Explanation:</strong> The product of all values in the array is -1, and signFunc(-1) = -1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 1000</code></li>\n\t<li><code>-100 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"428.2K\", \"totalSubmission\": \"660.1K\", \"totalAcceptedRaw\": 428168, \"totalSubmissionRaw\": 660096, \"acRate\": \"64.9%\"}",
+    "stats": "{\"totalAccepted\": \"431.4K\", \"totalSubmission\": \"665.4K\", \"totalAcceptedRaw\": 431393, \"totalSubmissionRaw\": 665446, \"acRate\": \"64.8%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -40,7 +40,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.7 MB",
-      "memoryPercentile": 65.2432,
+      "memoryPercentile": 75.7476,
       "code": "class Solution:\n    def arraySign(self, nums: List[int]) -> int:\n        product : int = 1\n        for num in nums:\n            if num < 0:\n                product *= -1\n            elif num > 0:\n                product *= 1\n            else:\n                return 0\n        return product",
       "statusCode": 10,
       "user": {

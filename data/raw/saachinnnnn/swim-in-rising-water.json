@@ -6,7 +6,7 @@
     "titleSlug": "swim-in-rising-water",
     "content": "<p>You are given an <code>n x n</code> integer matrix <code>grid</code> where each value <code>grid[i][j]</code> represents the elevation at that point <code>(i, j)</code>.</p>\n\n<p>It starts raining, and water gradually rises over time. At time <code>t</code>, the water level is <code>t</code>, meaning <strong>any</strong> cell with elevation less than equal to <code>t</code> is submerged or reachable.</p>\n\n<p>You can swim from a square to another 4-directionally adjacent square if and only if the elevation of both squares individually are at most <code>t</code>. You can swim infinite distances in zero time. Of course, you must stay within the boundaries of the grid during your swim.</p>\n\n<p>Return <em>the minimum time until you can reach the bottom right square </em><code>(n - 1, n - 1)</code><em> if you start at the top left square </em><code>(0, 0)</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/06/29/swim1-grid.jpg\" style=\"width: 164px; height: 165px;\" />\n<pre>\n<strong>Input:</strong> grid = [[0,2],[1,3]]\n<strong>Output:</strong> 3\nExplanation:\nAt time 0, you are in grid location (0, 0).\nYou cannot go anywhere else because 4-directionally adjacent neighbors have a higher elevation than t = 0.\nYou cannot reach point (1, 1) until time 3.\nWhen the depth of water is 3, we can swim anywhere inside the grid.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/06/29/swim2-grid-1.jpg\" style=\"width: 404px; height: 405px;\" />\n<pre>\n<strong>Input:</strong> grid = [[0,1,2,3,4],[24,23,22,21,5],[12,13,14,15,16],[11,17,18,19,20],[10,9,8,7,6]]\n<strong>Output:</strong> 16\n<strong>Explanation:</strong> The final route is shown.\nWe need to wait until time 16 so that (0, 0) and (4, 4) are connected.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == grid.length</code></li>\n\t<li><code>n == grid[i].length</code></li>\n\t<li><code>1 &lt;= n &lt;= 50</code></li>\n\t<li><code>0 &lt;= grid[i][j] &lt;&nbsp;n<sup>2</sup></code></li>\n\t<li>Each value <code>grid[i][j]</code> is <strong>unique</strong>.</li>\n</ul>\n",
     "difficulty": "Hard",
-    "stats": "{\"totalAccepted\": \"357K\", \"totalSubmission\": \"528.8K\", \"totalAcceptedRaw\": 357045, \"totalSubmissionRaw\": 528773, \"acRate\": \"67.5%\"}",
+    "stats": "{\"totalAccepted\": \"361.7K\", \"totalSubmission\": \"535.4K\", \"totalAcceptedRaw\": 361717, \"totalSubmissionRaw\": 535371, \"acRate\": \"67.6%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -62,9 +62,9 @@
       "title": "Swim in Rising Water",
       "titleSlug": "swim-in-rising-water",
       "runtimeDisplay": "53 ms",
-      "runtimePercentile": 18.21479999999999,
+      "runtimePercentile": 17.095900000000007,
       "memoryDisplay": "18.6 MB",
-      "memoryPercentile": 54.403199999999984,
+      "memoryPercentile": 78.29480000000001,
       "code": "class Solution:\n    def swimInWater(self, grid: List[List[int]]) -> int:\n        n = len(grid)\n        dirs = [(0,-1),(0,1),(-1,0),(1,0)]\n\n        def dfs(x, y, t, vis):\n            if x == n-1 and y == n-1:\n                return True\n            vis[x][y] = True\n            for dx, dy in dirs:\n                nx, ny = x+dx, y+dy\n                if 0 <= nx < n and 0 <= ny < n and not vis[nx][ny] and grid[nx][ny] <= t:\n                    if dfs(nx, ny, t, vis):\n                        return True\n            return False\n\n        low, high, ans = 0, n*n - 1, float('inf')\n        while low <= high:\n            mid = (low + high) // 2\n            vis = [[False]*n for _ in range(n)]\n            if grid[0][0] <= mid and dfs(0, 0, mid, vis):\n                ans = mid\n                high = mid - 1\n            else:\n                low = mid + 1\n        return ans\n",
       "statusCode": 10,
       "user": {

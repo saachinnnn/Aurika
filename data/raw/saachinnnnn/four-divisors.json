@@ -6,7 +6,7 @@
     "titleSlug": "four-divisors",
     "content": "<p>Given an integer array <code>nums</code>, return <em>the sum of divisors of the integers in that array that have exactly four divisors</em>. If there is no such integer in the array, return <code>0</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [21,4,7]\n<strong>Output:</strong> 32\n<strong>Explanation:</strong> \n21 has 4 divisors: 1, 3, 7, 21\n4 has 3 divisors: 1, 2, 4\n7 has 2 divisors: 1, 7\nThe answer is the sum of divisors of 21 only.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [21,21]\n<strong>Output:</strong> 64\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2,3,4,5]\n<strong>Output:</strong> 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"192K\", \"totalSubmission\": \"338.8K\", \"totalAcceptedRaw\": 191974, \"totalSubmissionRaw\": 338799, \"acRate\": \"56.7%\"}",
+    "stats": "{\"totalAccepted\": \"193.4K\", \"totalSubmission\": \"341.5K\", \"totalAcceptedRaw\": 193382, \"totalSubmissionRaw\": 341458, \"acRate\": \"56.6%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -38,9 +38,9 @@
       "title": "Four Divisors",
       "titleSlug": "four-divisors",
       "runtimeDisplay": "113 ms",
-      "runtimePercentile": 77.6225,
+      "runtimePercentile": 77.73689999999989,
       "memoryDisplay": "18.4 MB",
-      "memoryPercentile": 95.5103,
+      "memoryPercentile": 95.5683,
       "code": "import math\n\nclass Solution(object):\n    def sumFourDivisors(self, nums: List[int]) -> int:\n        div_sum = 0\n\n        for i in nums:\n            div_count = 0\n            in_sum = 0\n\n            for divisor in range(1, int(math.sqrt(i)) + 1):\n                if i % divisor == 0:\n                    other = i // divisor\n\n                    if divisor == other:\n                        div_count += 1\n                        in_sum += divisor\n                    else:\n                        div_count += 2\n                        in_sum += divisor + other\n\n                    if div_count > 4:\n                        break\n\n            if div_count == 4:\n                div_sum += in_sum\n\n        return div_sum\n",
       "statusCode": 10,
       "user": {
@@ -73,9 +73,9 @@
       "title": "Four Divisors",
       "titleSlug": "four-divisors",
       "runtimeDisplay": "115 ms",
-      "runtimePercentile": 76.08120000000001,
+      "runtimePercentile": 76.2015999999999,
       "memoryDisplay": "18.7 MB",
-      "memoryPercentile": 41.436800000000005,
+      "memoryPercentile": 42.241899999999994,
       "code": "import math\n\nclass Solution(object):\n    def sumFourDivisors(self, nums: List[int]) -> int:\n        div_sum = 0\n\n        for i in nums:\n            div_count = 0\n            in_sum = 0\n\n            for divisor in range(1, int(math.sqrt(i)) + 1):\n                if i % divisor == 0:\n                    other = i // divisor\n\n                    if divisor == other:\n                        div_count += 1\n                        in_sum += divisor\n                    else:\n                        div_count += 2\n                        in_sum += divisor + other\n\n                    if div_count > 4:\n                        break\n\n            if div_count == 4:\n                div_sum += in_sum\n\n        return div_sum\n",
       "statusCode": 10,
       "user": {

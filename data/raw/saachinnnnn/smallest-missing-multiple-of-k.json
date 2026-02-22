@@ -6,7 +6,7 @@
     "titleSlug": "smallest-missing-multiple-of-k",
     "content": "<p>Given an integer array <code>nums</code> and an integer <code>k</code>, return the <strong>smallest positive multiple</strong> of <code>k</code> that is <strong>missing</strong> from <code>nums</code>.</p>\n\n<p>A <strong>multiple</strong> of <code>k</code> is any positive integer divisible by <code>k</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [8,2,3,4,6], k = 2</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">10</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The multiples of <code>k = 2</code> are 2, 4, 6, 8, 10, 12... and the smallest multiple missing from <code>nums</code> is 10.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,4,7,10,15], k = 5</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">5</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The multiples of <code>k = 5</code> are 5, 10, 15, 20... and the smallest multiple missing from <code>nums</code> is 5.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n\t<li><code>1 &lt;= k &lt;= 100</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"45.1K\", \"totalSubmission\": \"71.6K\", \"totalAcceptedRaw\": 45135, \"totalSubmissionRaw\": 71613, \"acRate\": \"63.0%\"}",
+    "stats": "{\"totalAccepted\": \"46K\", \"totalSubmission\": \"73K\", \"totalAcceptedRaw\": 46013, \"totalSubmissionRaw\": 72972, \"acRate\": \"63.1%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -40,7 +40,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 58.81360000000001,
+      "memoryPercentile": 80.0331,
       "code": "class Solution:\n    def missingMultiple(self, nums: List[int], k: int) -> int:\n        # Fastest approach.\n        if not nums:\n            return 0\n\n        candidate : int = k\n        while candidate in nums:\n            candidate += k\n        return candidate",
       "statusCode": 10,
       "user": {

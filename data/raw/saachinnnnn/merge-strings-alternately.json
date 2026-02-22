@@ -6,7 +6,7 @@
     "titleSlug": "merge-strings-alternately",
     "content": "<p>You are given two strings <code>word1</code> and <code>word2</code>. Merge the strings by adding letters in alternating order, starting with <code>word1</code>. If a string is longer than the other, append the additional letters onto the end of the merged string.</p>\r\n\r\n<p>Return <em>the merged string.</em></p>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong class=\"example\">Example 1:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> word1 = &quot;abc&quot;, word2 = &quot;pqr&quot;\r\n<strong>Output:</strong> &quot;apbqcr&quot;\r\n<strong>Explanation:</strong>&nbsp;The merged string will be merged as so:\r\nword1:  a   b   c\r\nword2:    p   q   r\r\nmerged: a p b q c r\r\n</pre>\r\n\r\n<p><strong class=\"example\">Example 2:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> word1 = &quot;ab&quot;, word2 = &quot;pqrs&quot;\r\n<strong>Output:</strong> &quot;apbqrs&quot;\r\n<strong>Explanation:</strong>&nbsp;Notice that as word2 is longer, &quot;rs&quot; is appended to the end.\r\nword1:  a   b \r\nword2:    p   q   r   s\r\nmerged: a p b q   r   s\r\n</pre>\r\n\r\n<p><strong class=\"example\">Example 3:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> word1 = &quot;abcd&quot;, word2 = &quot;pq&quot;\r\n<strong>Output:</strong> &quot;apbqcd&quot;\r\n<strong>Explanation:</strong>&nbsp;Notice that as word1 is longer, &quot;cd&quot; is appended to the end.\r\nword1:  a   b   c   d\r\nword2:    p   q \r\nmerged: a p b q c   d\r\n</pre>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong>Constraints:</strong></p>\r\n\r\n<ul>\r\n\t<li><code>1 &lt;= word1.length, word2.length &lt;= 100</code></li>\r\n\t<li><code>word1</code> and <code>word2</code> consist of lowercase English letters.</li>\r\n</ul>",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"2M\", \"totalSubmission\": \"2.4M\", \"totalAcceptedRaw\": 1963783, \"totalSubmissionRaw\": 2392569, \"acRate\": \"82.1%\"}",
+    "stats": "{\"totalAccepted\": \"2M\", \"totalSubmission\": \"2.4M\", \"totalAcceptedRaw\": 1987132, \"totalSubmissionRaw\": 2420777, \"acRate\": \"82.1%\"}",
     "topicTags": [
       {
         "name": "Two Pointers",
@@ -37,9 +37,9 @@
       "title": "Merge Strings Alternately",
       "titleSlug": "merge-strings-alternately",
       "runtimeDisplay": "36 ms",
-      "runtimePercentile": 79.4431,
+      "runtimePercentile": 87.49930000000002,
       "memoryDisplay": "18 MB",
-      "memoryPercentile": 54.57490000000002,
+      "memoryPercentile": 80.84300000000002,
       "code": "class Solution:\n    def mergeAlternately(self, word1: str, word2: str) -> str:\n        # Similar approach.\n        ans = []\n        n1,n2 = len(word1),len(word2)\n        for idx in range(max(n1,n2)):\n            if idx < n1:\n                ans.append(word1[idx])\n            if idx < n2:\n                ans.append(word2[idx])\n        return \"\".join(ans)",
       "statusCode": 10,
       "user": {
@@ -72,9 +72,9 @@
       "title": "Merge Strings Alternately",
       "titleSlug": "merge-strings-alternately",
       "runtimeDisplay": "49 ms",
-      "runtimePercentile": 16.107400000000013,
+      "runtimePercentile": 23.703800000000015,
       "memoryDisplay": "17.3 MB",
-      "memoryPercentile": 86.02390000000001,
+      "memoryPercentile": 90.0883,
       "code": "class Solution:\n    def mergeAlternately(self, word1: str, word2: str) -> str:\n        # Apparently using a list is much more efficient than a string.\n        ans = []\n        idx = 0\n        while idx < len(word1) and idx < len(word2):\n            ans.append(word1[idx])\n            ans.append(word2[idx])\n            idx += 1\n        ans.append(word1[idx:])\n        ans.append(word2[idx:])\n        return \"\".join(ans)",
       "statusCode": 10,
       "user": {
@@ -107,9 +107,9 @@
       "title": "Merge Strings Alternately",
       "titleSlug": "merge-strings-alternately",
       "runtimeDisplay": "43 ms",
-      "runtimePercentile": 45.58700000000001,
+      "runtimePercentile": 60.433700000000016,
       "memoryDisplay": "17.7 MB",
-      "memoryPercentile": 67.43650000000002,
+      "memoryPercentile": 80.85820000000001,
       "code": "class Solution:\n    def mergeAlternately(self, word1: str, word2: str) -> str:\n        # Apparently using a list is much more efficient than a string.\n        ans = []\n        idx = 0\n        while idx < len(word1) and idx < len(word2):\n            ans.append(word1[idx])\n            ans.append(word2[idx])\n            idx += 1\n        if idx == len(word1) and idx < len(word2):\n            ans.append(word2[idx:])\n        elif idx == len(word2) and idx < len(word1):\n            ans.append(word1[idx:])\n        return \"\".join(ans)",
       "statusCode": 10,
       "user": {
@@ -142,9 +142,9 @@
       "title": "Merge Strings Alternately",
       "titleSlug": "merge-strings-alternately",
       "runtimeDisplay": "38 ms",
-      "runtimePercentile": 70.974,
+      "runtimePercentile": 82.06560000000002,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 59.36860000000002,
+      "memoryPercentile": 80.84300000000002,
       "code": "class Solution:\n    def mergeAlternately(self, word1: str, word2: str) -> str:\n        # Brute force.\n        idx = 0\n        ans = \"\"\n        while idx < len(word1) and idx < len(word2):\n            ans += word1[idx] + word2[idx]\n            idx += 1\n        if idx == len(word1) and idx < len(word2):\n            ans += word2[idx:]\n        elif idx == len(word2) and idx < len(word1):\n            ans += word1[idx:]\n        return ans",
       "statusCode": 10,
       "user": {

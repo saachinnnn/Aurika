@@ -6,7 +6,7 @@
     "titleSlug": "single-element-in-a-sorted-array",
     "content": "<p>You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once.</p>\n\n<p>Return <em>the single element that appears only once</em>.</p>\n\n<p>Your solution must run in <code>O(log n)</code> time and <code>O(1)</code> space.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,1,2,3,3,4,4,8,8]\n<strong>Output:</strong> 2\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [3,3,7,7,10,11,11]\n<strong>Output:</strong> 10\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"1.1M\", \"totalSubmission\": \"1.9M\", \"totalAcceptedRaw\": 1139191, \"totalSubmissionRaw\": 1924195, \"acRate\": \"59.2%\"}",
+    "stats": "{\"totalAccepted\": \"1.2M\", \"totalSubmission\": \"2M\", \"totalAcceptedRaw\": 1156915, \"totalSubmissionRaw\": 1954040, \"acRate\": \"59.2%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -35,9 +35,9 @@
       "title": "Single Element in a Sorted Array",
       "titleSlug": "single-element-in-a-sorted-array",
       "runtimeDisplay": "4 ms",
-      "runtimePercentile": 10.968599999999999,
+      "runtimePercentile": 10.737700000000007,
       "memoryDisplay": "28.5 MB",
-      "memoryPercentile": 7.964599999999967,
+      "memoryPercentile": 9.479399999999998,
       "code": "from collections import Counter\nclass Solution:\n    def singleNonDuplicate(self, nums: List[int]) -> int:\n        Dictionary : dict = Counter(nums)\n        for key in Dictionary:\n            if Dictionary[key] == 1:\n                return key\n        return -1\n",
       "statusCode": 10,
       "user": {

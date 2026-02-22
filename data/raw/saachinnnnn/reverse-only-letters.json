@@ -6,7 +6,7 @@
     "titleSlug": "reverse-only-letters",
     "content": "<p>Given a string <code>s</code>, reverse the string according to the following rules:</p>\n\n<ul>\n\t<li>All the characters that are not English letters remain in the same position.</li>\n\t<li>All the English letters (lowercase or uppercase) should be reversed.</li>\n</ul>\n\n<p>Return <code>s</code><em> after reversing it</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> s = \"ab-cd\"\n<strong>Output:</strong> \"dc-ba\"\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> s = \"a-bC-dEf-ghIj\"\n<strong>Output:</strong> \"j-Ih-gfE-dCba\"\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> s = \"Test1ng-Leet=code-Q!\"\n<strong>Output:</strong> \"Qedo1ct-eeLg=ntse-T!\"\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 100</code></li>\n\t<li><code>s</code> consists of characters with ASCII values in the range <code>[33, 122]</code>.</li>\n\t<li><code>s</code> does not contain <code>&#39;\\&quot;&#39;</code> or <code>&#39;\\\\&#39;</code>.</li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"314.1K\", \"totalSubmission\": \"461.7K\", \"totalAcceptedRaw\": 314066, \"totalSubmissionRaw\": 461705, \"acRate\": \"68.0%\"}",
+    "stats": "{\"totalAccepted\": \"317.8K\", \"totalSubmission\": \"466.6K\", \"totalAcceptedRaw\": 317830, \"totalSubmissionRaw\": 466557, \"acRate\": \"68.1%\"}",
     "topicTags": [
       {
         "name": "Two Pointers",
@@ -39,7 +39,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 58.343,
+      "memoryPercentile": 82.06729999999999,
       "code": "class Solution:\n    def reverseOnlyLetters(self, s: str) -> str:\n        # Classic two pointer approach.\n        left : int = 0\n        right : int = len(s) - 1\n\n        temp : list = list(s)\n        while left < right:\n            if (temp[left].lower()).isalpha() and (temp[right].lower()).isalpha():\n                temp[left] , temp[right] = temp[right] , temp[left]\n                left +=1\n                right -= 1\n            elif temp[left].isalpha() == False:\n                left +=1 \n            else:\n                right -= 1\n        return \"\".join(temp)",
       "statusCode": 10,
       "user": {

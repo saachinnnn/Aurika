@@ -54,6 +54,16 @@ class LeetCodeAuthenticator:
         if not all([session_id, csrf_token, cf_clearance]):
             raise ValueError("Missing one or more required credentials: LEETCODE_SESSION, CSRF_TOKEN, CF_CLEARANCE")
 
+    @property
+    def cookies(self) -> Dict[str, str]:
+        """Expose cookies as a public property."""
+        return self._get_cookies()
+
+    @property
+    def headers(self) -> Dict[str, str]:
+        """Expose headers as a public property."""
+        return self._get_headers()
+
     def _get_cookies(self) -> Dict[str, str]:
         return {
             "LEETCODE_SESSION": self.session_id,
@@ -110,7 +120,7 @@ class LeetCodeAuthenticator:
                 
                 logger.info(f"Authentication successful for user: {status.username}")
                 return status.username
-
+            
             except (httpx.HTTPStatusError, ValidationError) as e: # Validation error is the data from the GraphQL response not matching the expected schema.
                 logger.error(f"Authentication validation failed: {e}")
                 raise AuthenticationError(f"Validation failed: {str(e)}") from e # This is the custom class we have created to handle authentication errors.

@@ -6,7 +6,7 @@
     "titleSlug": "add-binary",
     "content": "<p>Given two binary strings <code>a</code> and <code>b</code>, return <em>their sum as a binary string</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> a = \"11\", b = \"1\"\n<strong>Output:</strong> \"100\"\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> a = \"1010\", b = \"1011\"\n<strong>Output:</strong> \"10101\"\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= a.length, b.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>a</code> and <code>b</code> consist&nbsp;only of <code>&#39;0&#39;</code> or <code>&#39;1&#39;</code> characters.</li>\n\t<li>Each string does not contain leading zeros except for the zero itself.</li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"2.1M\", \"totalSubmission\": \"3.8M\", \"totalAcceptedRaw\": 2138099, \"totalSubmissionRaw\": 3765108, \"acRate\": \"56.8%\"}",
+    "stats": "{\"totalAccepted\": \"2.3M\", \"totalSubmission\": \"3.9M\", \"totalAcceptedRaw\": 2261418, \"totalSubmissionRaw\": 3924755, \"acRate\": \"57.6%\"}",
     "topicTags": [
       {
         "name": "Math",
@@ -47,7 +47,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.6 MB",
-      "memoryPercentile": 69.18040000000002,
+      "memoryPercentile": 90.2226,
       "code": "class Solution:\n    def addBinary(self, a: str, b: str) -> str:\n        return bin(int(a,2) + int(b,2))[2:]",
       "statusCode": 10,
       "user": {

@@ -6,7 +6,7 @@
     "titleSlug": "reverse-string-ii",
     "content": "<p>Given a string <code>s</code> and an integer <code>k</code>, reverse the first <code>k</code> characters for every <code>2k</code> characters counting from the start of the string.</p>\n\n<p>If there are fewer than <code>k</code> characters left, reverse all of them. If there are less than <code>2k</code> but greater than or equal to <code>k</code> characters, then reverse the first <code>k</code> characters and leave the other as original.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> s = \"abcdefg\", k = 2\n<strong>Output:</strong> \"bacdfeg\"\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> s = \"abcd\", k = 2\n<strong>Output:</strong> \"bacd\"\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>s</code> consists of only lowercase English letters.</li>\n\t<li><code>1 &lt;= k &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"365.6K\", \"totalSubmission\": \"686.6K\", \"totalAcceptedRaw\": 365556, \"totalSubmissionRaw\": 686633, \"acRate\": \"53.2%\"}",
+    "stats": "{\"totalAccepted\": \"370.9K\", \"totalSubmission\": \"695.3K\", \"totalAcceptedRaw\": 370923, \"totalSubmissionRaw\": 695346, \"acRate\": \"53.3%\"}",
     "topicTags": [
       {
         "name": "Two Pointers",
@@ -37,7 +37,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "18.1 MB",
-      "memoryPercentile": 49.6789,
+      "memoryPercentile": 77.73279999999997,
       "code": "class Solution:\n    def reverseStr(self, s: str, k: int) -> str:\n        # Starting case.\n        if len(s) < k:\n            return s[::-1] \n        elif len(s) >= k and len(s) < 2*k:\n            reverse_list : list = list(s[:k][::-1]) + list(s[k:])\n            return \"\".join(reverse_list)\n        reverse_list : list = list(s)\n        iterator : int = 0\n        while iterator < len(s):\n            reverse_list[iterator:iterator + k] = reverse_list[iterator:iterator + k][::-1]\n            iterator += 2*k\n        return \"\".join(reverse_list)\n",
       "statusCode": 10,
       "user": {

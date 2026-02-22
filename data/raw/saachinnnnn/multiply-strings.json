@@ -6,7 +6,7 @@
     "titleSlug": "multiply-strings",
     "content": "<p>Given two non-negative integers <code>num1</code> and <code>num2</code> represented as strings, return the product of <code>num1</code> and <code>num2</code>, also represented as a string.</p>\n\n<p><strong>Note:</strong>&nbsp;You must not use any built-in BigInteger library or convert the inputs to integer directly.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> num1 = \"2\", num2 = \"3\"\n<strong>Output:</strong> \"6\"\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> num1 = \"123\", num2 = \"456\"\n<strong>Output:</strong> \"56088\"\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= num1.length, num2.length &lt;= 200</code></li>\n\t<li><code>num1</code> and <code>num2</code> consist of digits only.</li>\n\t<li>Both <code>num1</code> and <code>num2</code>&nbsp;do not contain any leading zero, except the number <code>0</code> itself.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"1.1M\", \"totalSubmission\": \"2.5M\", \"totalAcceptedRaw\": 1107246, \"totalSubmissionRaw\": 2548128, \"acRate\": \"43.5%\"}",
+    "stats": "{\"totalAccepted\": \"1.1M\", \"totalSubmission\": \"2.6M\", \"totalAcceptedRaw\": 1118125, \"totalSubmissionRaw\": 2567419, \"acRate\": \"43.6%\"}",
     "topicTags": [
       {
         "name": "Math",
@@ -42,7 +42,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.8 MB",
-      "memoryPercentile": 58.194600000000015,
+      "memoryPercentile": 78.0851,
       "code": "class Solution:\n    def multiply(self, num1: str, num2: str) -> str:\n        return str(int(num1) * int(num2))",
       "statusCode": 10,
       "user": {

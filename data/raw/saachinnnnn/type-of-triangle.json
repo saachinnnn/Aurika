@@ -6,7 +6,7 @@
     "titleSlug": "type-of-triangle",
     "content": "<p>You are given a <strong>0-indexed</strong> integer array <code>nums</code> of size <code>3</code> which can form the sides of a triangle.</p>\n\n<ul>\n\t<li>A triangle is called <strong>equilateral</strong> if it has all sides of equal length.</li>\n\t<li>A triangle is called <strong>isosceles</strong> if it has exactly two sides of equal length.</li>\n\t<li>A triangle is called <strong>scalene</strong> if all its sides are of different lengths.</li>\n</ul>\n\n<p>Return <em>a string representing</em> <em>the type of triangle that can be formed </em><em>or </em><code>&quot;none&quot;</code><em> if it <strong>cannot</strong> form a triangle.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,3,3]\n<strong>Output:</strong> &quot;equilateral&quot;\n<strong>Explanation:</strong> Since all the sides are of equal length, therefore, it will form an equilateral triangle.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,4,5]\n<strong>Output:</strong> &quot;scalene&quot;\n<strong>Explanation:</strong> \nnums[0] + nums[1] = 3 + 4 = 7, which is greater than nums[2] = 5.\nnums[0] + nums[2] = 3 + 5 = 8, which is greater than nums[1] = 4.\nnums[1] + nums[2] = 4 + 5 = 9, which is greater than nums[0] = 3. \nSince the sum of the two sides is greater than the third side for all three cases, therefore, it can form a triangle.\nAs all the sides are of different lengths, it will form a scalene triangle.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>nums.length == 3</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"211.3K\", \"totalSubmission\": \"478.1K\", \"totalAcceptedRaw\": 211344, \"totalSubmissionRaw\": 478083, \"acRate\": \"44.2%\"}",
+    "stats": "{\"totalAccepted\": \"213.2K\", \"totalSubmission\": \"483K\", \"totalAcceptedRaw\": 213176, \"totalSubmissionRaw\": 483035, \"acRate\": \"44.1%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -45,7 +45,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.6 MB",
-      "memoryPercentile": 70.40690000000001,
+      "memoryPercentile": 82.374,
       "code": "class Solution:\n    def triangleType(self, nums):\n        if not self._is_triangle(nums):\n            return \"none\"\n        if self.is_equilateral(nums):\n            return \"equilateral\"\n        if self.is_isosceles(nums):\n            return \"isosceles\"\n        return \"scalene\"\n\n    def _is_triangle(self, nums):\n        return (nums[0] + nums[1] > nums[2] and\n                nums[0] + nums[2] > nums[1] and\n                nums[1] + nums[2] > nums[0])\n\n    def is_equilateral(self, nums):\n        return nums[0] == nums[1] == nums[2]\n\n    def is_isosceles(self, nums):\n        return nums[0] == nums[1] or nums[1] == nums[2] or nums[0] == nums[2]",
       "statusCode": 10,
       "user": {

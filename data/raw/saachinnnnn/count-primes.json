@@ -6,7 +6,7 @@
     "titleSlug": "count-primes",
     "content": "<p>Given an integer <code>n</code>, return <em>the number of prime numbers that are strictly less than</em> <code>n</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 10\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> There are 4 prime numbers less than 10, they are 2, 3, 5, 7.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 0\n<strong>Output:</strong> 0\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> n = 1\n<strong>Output:</strong> 0\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= n &lt;= 5 * 10<sup>6</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"1.2M\", \"totalSubmission\": \"3.4M\", \"totalAcceptedRaw\": 1212827, \"totalSubmissionRaw\": 3399214, \"acRate\": \"35.7%\"}",
+    "stats": "{\"totalAccepted\": \"1.2M\", \"totalSubmission\": \"3.4M\", \"totalAcceptedRaw\": 1226425, \"totalSubmissionRaw\": 3431016, \"acRate\": \"35.7%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -49,9 +49,9 @@
       "title": "Count Primes",
       "titleSlug": "count-primes",
       "runtimeDisplay": "1217 ms",
-      "runtimePercentile": 78.1307000000005,
+      "runtimePercentile": 78.86170000000051,
       "memoryDisplay": "56.2 MB",
-      "memoryPercentile": 73.20050000000009,
+      "memoryPercentile": 83.7798000000001,
       "code": "class Solution:\n    def countPrimes(self, n: int) -> int:\n        # There is something called sieve of Eratosthenes.\n        if n < 2:\n            return 0\n        is_prime : list = [True] * n\n        is_prime[0] = is_prime[1] = False\n        for i in range(2,int(n**0.5) + 1):\n            if is_prime[i]:\n                for j in range(i*i,n,i):\n                    is_prime[j] = False\n        return sum(is_prime)",
       "statusCode": 10,
       "user": {

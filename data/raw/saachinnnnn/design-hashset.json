@@ -6,7 +6,7 @@
     "titleSlug": "design-hashset",
     "content": "<p>Design a HashSet without using any built-in hash table libraries.</p>\n\n<p>Implement <code>MyHashSet</code> class:</p>\n\n<ul>\n\t<li><code>void add(key)</code> Inserts the value <code>key</code> into the HashSet.</li>\n\t<li><code>bool contains(key)</code> Returns whether the value <code>key</code> exists in the HashSet or not.</li>\n\t<li><code>void remove(key)</code> Removes the value <code>key</code> in the HashSet. If <code>key</code> does not exist in the HashSet, do nothing.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input</strong>\n[&quot;MyHashSet&quot;, &quot;add&quot;, &quot;add&quot;, &quot;contains&quot;, &quot;contains&quot;, &quot;add&quot;, &quot;contains&quot;, &quot;remove&quot;, &quot;contains&quot;]\n[[], [1], [2], [1], [3], [2], [2], [2], [2]]\n<strong>Output</strong>\n[null, null, null, true, false, null, true, null, false]\n\n<strong>Explanation</strong>\nMyHashSet myHashSet = new MyHashSet();\nmyHashSet.add(1);      // set = [1]\nmyHashSet.add(2);      // set = [1, 2]\nmyHashSet.contains(1); // return True\nmyHashSet.contains(3); // return False, (not found)\nmyHashSet.add(2);      // set = [1, 2]\nmyHashSet.contains(2); // return True\nmyHashSet.remove(2);   // set = [1]\nmyHashSet.contains(2); // return False, (already removed)</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= key &lt;= 10<sup>6</sup></code></li>\n\t<li>At most <code>10<sup>4</sup></code> calls will be made to <code>add</code>, <code>remove</code>, and <code>contains</code>.</li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"553.8K\", \"totalSubmission\": \"818.2K\", \"totalAcceptedRaw\": 553757, \"totalSubmissionRaw\": 818199, \"acRate\": \"67.7%\"}",
+    "stats": "{\"totalAccepted\": \"558.8K\", \"totalSubmission\": \"824.7K\", \"totalAcceptedRaw\": 558798, \"totalSubmissionRaw\": 824745, \"acRate\": \"67.8%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -85,9 +85,9 @@
       "title": "Design HashSet",
       "titleSlug": "design-hashset",
       "runtimeDisplay": "12 ms",
-      "runtimePercentile": 96.26310000000001,
+      "runtimePercentile": 96.27739999999999,
       "memoryDisplay": "22.6 MB",
-      "memoryPercentile": 80.96700000000001,
+      "memoryPercentile": 90.60509999999998,
       "code": "class MyHashSet:\n\n    def __init__(self):\n        self.hashset = set()\n    def add(self, key: int) -> None:\n        self.hashset.add(key)\n    def remove(self, key: int) -> None:\n        if key in self.hashset:\n            self.hashset.remove(key)\n    def contains(self, key: int) -> bool:\n        return True if key in self.hashset else False\n\n\n# Your MyHashSet object will be instantiated and called as such:\n# obj = MyHashSet()\n# obj.add(key)\n# obj.remove(key)\n# param_3 = obj.contains(key)",
       "statusCode": 10,
       "user": {
@@ -120,9 +120,9 @@
       "title": "Design HashSet",
       "titleSlug": "design-hashset",
       "runtimeDisplay": "612 ms",
-      "runtimePercentile": 20.825300000000155,
+      "runtimePercentile": 20.18269999999984,
       "memoryDisplay": "22.1 MB",
-      "memoryPercentile": 90.28500000000001,
+      "memoryPercentile": 94.99229999999999,
       "code": "class MyHashSet:\n\n    def __init__(self):\n        self.hashset = []\n\n    def add(self, key: int) -> None:\n        if key not in self.hashset:\n            self.hashset.append(key)\n\n    def remove(self, key: int) -> None:\n        if key in self.hashset:\n            self.hashset.remove(key)\n\n    def contains(self, key: int) -> bool:\n        return True if key in self.hashset else False\n\n\n# Your MyHashSet object will be instantiated and called as such:\n# obj = MyHashSet()\n# obj.add(key)\n# obj.remove(key)\n# param_3 = obj.contains(key)",
       "statusCode": 10,
       "user": {

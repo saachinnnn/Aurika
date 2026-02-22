@@ -6,7 +6,7 @@
     "titleSlug": "maximum-product-subarray",
     "content": "<p>Given an integer array <code>nums</code>, find a <span data-keyword=\"subarray-nonempty\">subarray</span> that has the largest product, and return <em>the product</em>.</p>\n\n<p>The test cases are generated so that the answer will fit in a <strong>32-bit</strong> integer.</p>\n\n<p><strong>Note</strong> that the product of an array with a single element is the value of that element.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [2,3,-2,4]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> [2,3] has the largest product 6.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [-2,0,-1]\n<strong>Output:</strong> 0\n<strong>Explanation:</strong> The result cannot be 2, because [-2,-1] is not a subarray.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 2 * 10<sup>4</sup></code></li>\n\t<li><code>-10 &lt;= nums[i] &lt;= 10</code></li>\n\t<li>The product of any subarray of <code>nums</code> is <strong>guaranteed</strong> to fit in a <strong>32-bit</strong> integer.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"1.9M\", \"totalSubmission\": \"5.3M\", \"totalAcceptedRaw\": 1919345, \"totalSubmissionRaw\": 5345301, \"acRate\": \"35.9%\"}",
+    "stats": "{\"totalAccepted\": \"1.9M\", \"totalSubmission\": \"5.4M\", \"totalAcceptedRaw\": 1941955, \"totalSubmissionRaw\": 5396188, \"acRate\": \"36.0%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -35,9 +35,9 @@
       "title": "Maximum Product Subarray",
       "titleSlug": "maximum-product-subarray",
       "runtimeDisplay": "11 ms",
-      "runtimePercentile": 31.930699999999995,
+      "runtimePercentile": 19.279399999999985,
       "memoryDisplay": "18.5 MB",
-      "memoryPercentile": 57.022600000000004,
+      "memoryPercentile": 79.83819999999997,
       "code": "class Solution:\n    def maxProduct(self, nums: List[int]) -> int:\n        # Kadanes doesnt work here.\n        # We use the max_curr , min_curr and max_so_far strategy.\n\n        max_curr : int = nums[0]\n        min_curr : int = nums[0]\n\n        max_so_far : int = nums[0]\n\n        for num in nums[1:]:\n            if num < 0:\n                max_curr , min_curr = min_curr , max_curr \n                # Swapping the roles apparently.\n            max_curr = max(num,max_curr * num,)\n            min_curr = min(num,min_curr * num)\n            # Finally\n            max_so_far = max(max_curr,max_so_far)\n        return max_so_far\n",
       "statusCode": 10,
       "user": {

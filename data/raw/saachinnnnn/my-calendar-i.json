@@ -6,7 +6,7 @@
     "titleSlug": "my-calendar-i",
     "content": "<p>You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a <strong>double booking</strong>.</p>\n\n<p>A <strong>double booking</strong> happens when two events have some non-empty intersection (i.e., some moment is common to both events.).</p>\n\n<p>The event can be represented as a pair of integers <code>startTime</code> and <code>endTime</code> that represents a booking on the half-open interval <code>[startTime, endTime)</code>, the range of real numbers <code>x</code> such that <code>startTime &lt;= x &lt; endTime</code>.</p>\n\n<p>Implement the <code>MyCalendar</code> class:</p>\n\n<ul>\n\t<li><code>MyCalendar()</code> Initializes the calendar object.</li>\n\t<li><code>boolean book(int startTime, int endTime)</code> Returns <code>true</code> if the event can be added to the calendar successfully without causing a <strong>double booking</strong>. Otherwise, return <code>false</code> and do not add the event to the calendar.</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input</strong>\n[&quot;MyCalendar&quot;, &quot;book&quot;, &quot;book&quot;, &quot;book&quot;]\n[[], [10, 20], [15, 25], [20, 30]]\n<strong>Output</strong>\n[null, true, false, true]\n\n<strong>Explanation</strong>\nMyCalendar myCalendar = new MyCalendar();\nmyCalendar.book(10, 20); // return True\nmyCalendar.book(15, 25); // return False, It can not be booked because time 15 is already booked by another event.\nmyCalendar.book(20, 30); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= start &lt; end &lt;= 10<sup>9</sup></code></li>\n\t<li>At most <code>1000</code> calls will be made to <code>book</code>.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"451.8K\", \"totalSubmission\": \"775.7K\", \"totalAcceptedRaw\": 451775, \"totalSubmissionRaw\": 775718, \"acRate\": \"58.2%\"}",
+    "stats": "{\"totalAccepted\": \"453.8K\", \"totalSubmission\": \"779.2K\", \"totalAcceptedRaw\": 453820, \"totalSubmissionRaw\": 779184, \"acRate\": \"58.2%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -52,9 +52,9 @@
       "title": "My Calendar I",
       "titleSlug": "my-calendar-i",
       "runtimeDisplay": "199 ms",
-      "runtimePercentile": 34.43410000000016,
+      "runtimePercentile": 34.52320000000022,
       "memoryDisplay": "18.5 MB",
-      "memoryPercentile": 74.8112,
+      "memoryPercentile": 82.3409,
       "code": "class MyCalendar:\n\n    def __init__(self):\n        self.queue = []\n\n    def book(self, startTime: int, endTime: int) -> bool:\n        if not self.queue:\n            self.queue.append([startTime,endTime])\n            return True\n        for start,end in self.queue:\n            if not(startTime >= end or endTime <= start):\n                return False\n        \n        self.queue.append([startTime,endTime])\n        return True\n            \n\n# Your MyCalendar object will be instantiated and called as such:\n# obj = MyCalendar()\n# param_1 = obj.book(startTime,endTime)",
       "statusCode": 10,
       "user": {

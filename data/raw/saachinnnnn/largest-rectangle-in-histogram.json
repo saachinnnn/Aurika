@@ -6,7 +6,7 @@
     "titleSlug": "largest-rectangle-in-histogram",
     "content": "<p>Given an array of integers <code>heights</code> representing the histogram&#39;s bar height where the width of each bar is <code>1</code>, return <em>the area of the largest rectangle in the histogram</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/histogram.jpg\" style=\"width: 522px; height: 242px;\" />\n<pre>\n<strong>Input:</strong> heights = [2,1,5,6,2,3]\n<strong>Output:</strong> 10\n<strong>Explanation:</strong> The above is a histogram where width of each bar is 1.\nThe largest rectangle is shown in the red area, which has an area = 10 units.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/01/04/histogram-1.jpg\" style=\"width: 202px; height: 362px;\" />\n<pre>\n<strong>Input:</strong> heights = [2,4]\n<strong>Output:</strong> 4\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= heights.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= heights[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
     "difficulty": "Hard",
-    "stats": "{\"totalAccepted\": \"1.5M\", \"totalSubmission\": \"3M\", \"totalAcceptedRaw\": 1458705, \"totalSubmissionRaw\": 2965352, \"acRate\": \"49.2%\"}",
+    "stats": "{\"totalAccepted\": \"1.5M\", \"totalSubmission\": \"3M\", \"totalAcceptedRaw\": 1482398, \"totalSubmissionRaw\": 3005291, \"acRate\": \"49.3%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -40,9 +40,9 @@
       "title": "Largest Rectangle in Histogram",
       "titleSlug": "largest-rectangle-in-histogram",
       "runtimeDisplay": "166 ms",
-      "runtimePercentile": 29.606400000000104,
+      "runtimePercentile": 23.599,
       "memoryDisplay": "30.7 MB",
-      "memoryPercentile": 64.36260000000001,
+      "memoryPercentile": 75.40639999999999,
       "code": "class Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        # So i will solve this one last time.\n        ## Basically we use a monotonic stack here to check if the previous element is greater.\n        # So....\n        if not heights:\n            return 0\n        \n        maxarea : int = 0\n        stack : list = []\n        for idx in range(len(heights) + 1): # This is to compute the value of the last rectangle as well.\n            curr_height : int = heights[idx] if idx < len(heights) else 0 # For the last case.\n            while stack and curr_height < heights[stack[-1]]:\n                # Calculate the height and width of the previous rectangles then.\n                height : int = heights[stack.pop()]\n                width : int = idx if not stack else idx - stack[-1] - 1\n                maxarea = max(maxarea,width * height)\n            stack.append(idx)\n        return maxarea\n",
       "statusCode": 10,
       "user": {
@@ -75,9 +75,9 @@
       "title": "Largest Rectangle in Histogram",
       "titleSlug": "largest-rectangle-in-histogram",
       "runtimeDisplay": "159 ms",
-      "runtimePercentile": 36.67460000000011,
+      "runtimePercentile": 27.3727,
       "memoryDisplay": "29.7 MB",
-      "memoryPercentile": 79.61260000000001,
+      "memoryPercentile": 88.52159999999999,
       "code": "class Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        # So i will solve this one last time.\n        ## Basically we use a monotonic stack here to check if the previous element is greater.\n        # So....\n        if not heights:\n            return 0\n        \n        maxarea : int = 0\n        stack : list = []\n        for idx in range(len(heights) + 1): # This is to compute the value of the last rectangle as well.\n            curr_height : int = heights[idx] if idx < len(heights) else 0 # For the last case.\n            while stack and curr_height < heights[stack[-1]]:\n                # Calculate the height and width of the previous rectangles then.\n                height : int = heights[stack.pop()]\n                width : int = idx if not stack else idx - stack[-1] - 1\n                maxarea = max(maxarea,width * height)\n            stack.append(idx)\n        return maxarea\n",
       "statusCode": 10,
       "user": {
@@ -110,9 +110,9 @@
       "title": "Largest Rectangle in Histogram",
       "titleSlug": "largest-rectangle-in-histogram",
       "runtimeDisplay": "159 ms",
-      "runtimePercentile": 36.67460000000011,
+      "runtimePercentile": 27.3727,
       "memoryDisplay": "30.2 MB",
-      "memoryPercentile": 71.14680000000001,
+      "memoryPercentile": 82.2032,
       "code": "from typing import List\nclass Solution:\n    def largestRectangleArea(self, heights: List[int]) -> int:\n        # Monotonic stack solution.\n        if not heights:\n            return 0\n        maxarea : int = 0\n        stack : List[int] = []\n        for idx in range(len(heights) + 1):\n            curr_height = heights[idx] if idx < len(heights) else 0\n            while stack and curr_height < heights[stack[-1]]:\n                height = heights[stack.pop()]\n                width = idx if not stack else idx - stack[-1] - 1\n                maxarea = max(height*width,maxarea)\n            stack.append(idx)\n        return maxarea",
       "statusCode": 10,
       "user": {

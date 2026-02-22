@@ -6,7 +6,7 @@
     "titleSlug": "maximum-level-sum-of-a-binary-tree",
     "content": "<p>Given the <code>root</code> of a binary tree, the level of its root is <code>1</code>, the level of its children is <code>2</code>, and so on.</p>\n\n<p>Return the <strong>smallest</strong> level <code>x</code> such that the sum of all the values of nodes at level <code>x</code> is <strong>maximal</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2019/05/03/capture.JPG\" style=\"width: 200px; height: 175px;\" />\n<pre>\n<strong>Input:</strong> root = [1,7,0,7,-8,null,null]\n<strong>Output:</strong> 2\n<strong>Explanation: </strong>\nLevel 1 sum = 1.\nLevel 2 sum = 7 + 0 = 7.\nLevel 3 sum = 7 + -8 = -1.\nSo we return the level with the maximum sum which is level 2.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> root = [989,null,10250,98693,-89388,null,null,null,-32127]\n<strong>Output:</strong> 2\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the tree is in the range <code>[1, 10<sup>4</sup>]</code>.</li>\n\t<li><code>-10<sup>5</sup> &lt;= Node.val &lt;= 10<sup>5</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"555.8K\", \"totalSubmission\": \"794.3K\", \"totalAcceptedRaw\": 555754, \"totalSubmissionRaw\": 794266, \"acRate\": \"70.0%\"}",
+    "stats": "{\"totalAccepted\": \"559.6K\", \"totalSubmission\": \"799.7K\", \"totalAcceptedRaw\": 559590, \"totalSubmissionRaw\": 799704, \"acRate\": \"70.0%\"}",
     "topicTags": [
       {
         "name": "Tree",
@@ -50,9 +50,9 @@
       "title": "Maximum Level Sum of a Binary Tree",
       "titleSlug": "maximum-level-sum-of-a-binary-tree",
       "runtimeDisplay": "6 ms",
-      "runtimePercentile": 97.78270000000002,
+      "runtimePercentile": 97.74640000000001,
       "memoryDisplay": "22.9 MB",
-      "memoryPercentile": 58.2642,
+      "memoryPercentile": 60.711800000000004,
       "code": "# Definition for a binary tree node.\n# class TreeNode:\n#     def __init__(self, val=0, left=None, right=None):\n#         self.val = val\n#         self.left = left\n#         self.right = right\nclass Solution:\n    def maxLevelSum(self, root: Optional[TreeNode]) -> int:\n        idx, Sum=0, -inf\n        q=deque()\n        q.append(root)\n        level=1\n        while q:\n            qz=len(q)\n            curSum=0\n            for i in range(qz):\n                Node=q.popleft()\n                curSum+=Node.val\n                if Node.left: q.append(Node.left)\n                if Node.right: q.append(Node.right)\n            if curSum>Sum:\n                idx, Sum=level, curSum\n            level+=1\n        return idx\n",
       "statusCode": 10,
       "user": {

@@ -6,7 +6,7 @@
     "titleSlug": "find-all-numbers-disappeared-in-an-array",
     "content": "<p>Given an array <code>nums</code> of <code>n</code> integers where <code>nums[i]</code> is in the range <code>[1, n]</code>, return <em>an array of all the integers in the range</em> <code>[1, n]</code> <em>that do not appear in</em> <code>nums</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [4,3,2,7,8,2,3,1]\n<strong>Output:</strong> [5,6]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [1,1]\n<strong>Output:</strong> [2]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums.length</code></li>\n\t<li><code>1 &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= n</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you do it without extra space and in <code>O(n)</code> runtime? You may assume the returned list does not count as extra space.</p>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"1.3M\", \"totalSubmission\": \"2M\", \"totalAcceptedRaw\": 1295691, \"totalSubmissionRaw\": 2036332, \"acRate\": \"63.6%\"}",
+    "stats": "{\"totalAccepted\": \"1.3M\", \"totalSubmission\": \"2.1M\", \"totalAcceptedRaw\": 1318788, \"totalSubmissionRaw\": 2069072, \"acRate\": \"63.7%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -39,9 +39,9 @@
       "title": "Find All Numbers Disappeared in an Array",
       "titleSlug": "find-all-numbers-disappeared-in-an-array",
       "runtimeDisplay": "35 ms",
-      "runtimePercentile": 42.395200000000024,
+      "runtimePercentile": 42.533199999999994,
       "memoryDisplay": "36.5 MB",
-      "memoryPercentile": 14.543000000000001,
+      "memoryPercentile": 14.463999999999983,
       "code": "class Solution:\n    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:\n        supposed = set([num for num in range(1,len(nums) + 1)])\n        for num in nums:\n            if num in supposed:\n                supposed.remove(num)\n        return list(supposed)\n",
       "statusCode": 10,
       "user": {
@@ -74,9 +74,9 @@
       "title": "Find All Numbers Disappeared in an Array",
       "titleSlug": "find-all-numbers-disappeared-in-an-array",
       "runtimeDisplay": "32 ms",
-      "runtimePercentile": 45.55460000000002,
+      "runtimePercentile": 45.89449999999999,
       "memoryDisplay": "36.2 MB",
-      "memoryPercentile": 14.8472,
+      "memoryPercentile": 14.656099999999983,
       "code": "class Solution:\n    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:\n        supposed = set([num for num in range(1,len(nums) + 1)])\n        for num in nums:\n            if num in supposed:\n                supposed.remove(num)\n        return list(supposed)\n",
       "statusCode": 10,
       "user": {

@@ -6,7 +6,7 @@
     "titleSlug": "count-odd-numbers-in-an-interval-range",
     "content": "<p>Given two non-negative integers <code>low</code> and <code><font face=\"monospace\">high</font></code>. Return the <em>count of odd numbers between </em><code>low</code><em> and </em><code><font face=\"monospace\">high</font></code><em>&nbsp;(inclusive)</em>.</p>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong class=\"example\">Example 1:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> low = 3, high = 7\r\n<strong>Output:</strong> 3\r\n<b>Explanation: </b>The odd numbers between 3 and 7 are [3,5,7].</pre>\r\n\r\n<p><strong class=\"example\">Example 2:</strong></p>\r\n\r\n<pre>\r\n<strong>Input:</strong> low = 8, high = 10\r\n<strong>Output:</strong> 1\r\n<b>Explanation: </b>The odd numbers between 8 and 10 are [9].</pre>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong>Constraints:</strong></p>\r\n\r\n<ul>\r\n\t<li><code>0 &lt;= low &lt;= high&nbsp;&lt;= 10^9</code></li>\r\n</ul>",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"534.7K\", \"totalSubmission\": \"984.2K\", \"totalAcceptedRaw\": 534745, \"totalSubmissionRaw\": 984204, \"acRate\": \"54.3%\"}",
+    "stats": "{\"totalAccepted\": \"539.4K\", \"totalSubmission\": \"992.2K\", \"totalAcceptedRaw\": 539392, \"totalSubmissionRaw\": 992197, \"acRate\": \"54.4%\"}",
     "topicTags": [
       {
         "name": "Math",
@@ -33,9 +33,9 @@
       "title": "Count Odd Numbers in an Interval Range",
       "titleSlug": "count-odd-numbers-in-an-interval-range",
       "runtimeDisplay": "29 ms",
-      "runtimePercentile": 93.2973,
+      "runtimePercentile": 97.0315,
       "memoryDisplay": "17.8 MB",
-      "memoryPercentile": 49.566,
+      "memoryPercentile": 72.4594,
       "code": "class Solution:\n    def countOdds(self, low: int, high: int) -> int:\n        return (high + 1) // 2 - (low // 2)",
       "statusCode": 10,
       "user": {

@@ -6,7 +6,7 @@
     "titleSlug": "to-lower-case",
     "content": "<p>Given a string <code>s</code>, return <em>the string after replacing every uppercase letter with the same lowercase letter</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;Hello&quot;\n<strong>Output:</strong> &quot;hello&quot;\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;here&quot;\n<strong>Output:</strong> &quot;here&quot;\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;LOVELY&quot;\n<strong>Output:</strong> &quot;lovely&quot;\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 100</code></li>\n\t<li><code>s</code> consists of printable ASCII characters.</li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"704K\", \"totalSubmission\": \"831.5K\", \"totalAcceptedRaw\": 704027, \"totalSubmissionRaw\": 831506, \"acRate\": \"84.7%\"}",
+    "stats": "{\"totalAccepted\": \"713.3K\", \"totalSubmission\": \"841.9K\", \"totalAcceptedRaw\": 713254, \"totalSubmissionRaw\": 841902, \"acRate\": \"84.7%\"}",
     "topicTags": [
       {
         "name": "String",
@@ -36,7 +36,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 55.691700000000004,
+      "memoryPercentile": 80.32939999999999,
       "code": "class Solution:\n    def toLowerCase(self, s: str) -> str:\n        return s.lower()",
       "statusCode": 10,
       "user": {

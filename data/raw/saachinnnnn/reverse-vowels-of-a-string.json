@@ -6,7 +6,7 @@
     "titleSlug": "reverse-vowels-of-a-string",
     "content": "<p>Given a string <code>s</code>, reverse only all the vowels in the string and return it.</p>\n\n<p>The vowels are <code>&#39;a&#39;</code>, <code>&#39;e&#39;</code>, <code>&#39;i&#39;</code>, <code>&#39;o&#39;</code>, and <code>&#39;u&#39;</code>, and they can appear in both lower and upper cases, more than once.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;IceCreAm&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;AceCreIm&quot;</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The vowels in <code>s</code> are <code>[&#39;I&#39;, &#39;e&#39;, &#39;e&#39;, &#39;A&#39;]</code>. On reversing the vowels, s becomes <code>&quot;AceCreIm&quot;</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">s = &quot;leetcode&quot;</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">&quot;leotcede&quot;</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 3 * 10<sup>5</sup></code></li>\n\t<li><code>s</code> consist of <strong>printable ASCII</strong> characters.</li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"1.5M\", \"totalSubmission\": \"2.5M\", \"totalAcceptedRaw\": 1513775, \"totalSubmissionRaw\": 2504947, \"acRate\": \"60.4%\"}",
+    "stats": "{\"totalAccepted\": \"1.5M\", \"totalSubmission\": \"2.5M\", \"totalAcceptedRaw\": 1533674, \"totalSubmissionRaw\": 2529945, \"acRate\": \"60.6%\"}",
     "topicTags": [
       {
         "name": "Two Pointers",
@@ -35,9 +35,9 @@
       "title": "Reverse Vowels of a String",
       "titleSlug": "reverse-vowels-of-a-string",
       "runtimeDisplay": "10 ms",
-      "runtimePercentile": 60.94659999999999,
+      "runtimePercentile": 60.34939999999999,
       "memoryDisplay": "18.5 MB",
-      "memoryPercentile": 78.7716,
+      "memoryPercentile": 89.86959999999999,
       "code": "class Solution:\n    def reverseVowels(self, s: str) -> str:\n        left_pointer = 0\n        right_pointer = len(s) - 1\n        array = list(s)\n        vowelset = set('aeiouAEIOU')\n\n        while left_pointer < right_pointer:\n            if array[left_pointer] in vowelset and array[right_pointer] in vowelset:\n                array[left_pointer], array[right_pointer] = array[right_pointer], array[left_pointer]\n                left_pointer += 1\n                right_pointer -= 1\n            elif array[left_pointer] not in vowelset:\n                left_pointer += 1\n            elif array[right_pointer] not in vowelset:\n                right_pointer -= 1\n\n        return \"\".join(array)",
       "statusCode": 10,
       "user": {

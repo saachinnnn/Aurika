@@ -6,7 +6,7 @@
     "titleSlug": "minimum-moves-to-equal-array-elements-iii",
     "content": "<p>You are given an integer array <code>nums</code>.</p>\n\n<p>In one move, you may <strong>increase</strong> the value of any single element <code>nums[i]</code> by 1.</p>\n\n<p>Return the <strong>minimum total</strong> number of <strong>moves</strong> required so that all elements in <code>nums</code> become <strong>equal</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [2,1,3]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">3</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>To make all elements equal:</p>\n\n<ul>\n\t<li>Increase <code>nums[0] = 2</code> by 1 to make it 3.</li>\n\t<li>Increase <code>nums[1] = 1</code> by 1 to make it 2.</li>\n\t<li>Increase <code>nums[1] = 2</code> by 1 to make it 3.</li>\n</ul>\n\n<p>Now, all elements of <code>nums</code> are equal to 3. The minimum total moves is <code>3</code>.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [4,4,5]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">2</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>To make all elements equal:</p>\n\n<ul>\n\t<li>Increase <code>nums[0] = 4</code> by 1 to make it 5.</li>\n\t<li>Increase <code>nums[1] = 4</code> by 1 to make it 5.</li>\n</ul>\n\n<p>Now, all elements of <code>nums</code> are equal to 5. The minimum total moves is <code>2</code>.</p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 100</code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 100</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"34.4K\", \"totalSubmission\": \"42.5K\", \"totalAcceptedRaw\": 34417, \"totalSubmissionRaw\": 42510, \"acRate\": \"81.0%\"}",
+    "stats": "{\"totalAccepted\": \"35.4K\", \"totalSubmission\": \"43.6K\", \"totalAcceptedRaw\": 35358, \"totalSubmissionRaw\": 43557, \"acRate\": \"81.2%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -39,7 +39,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.7 MB",
-      "memoryPercentile": 58.083100000000016,
+      "memoryPercentile": 77.5163,
       "code": "class Solution:\n    def minMoves(self, nums: List[int]) -> int:\n        greatestnum : int = max(nums)\n        ans : int = 0\n        for num in nums:\n            ans += greatestnum - num\n        return ans",
       "statusCode": 10,
       "user": {
@@ -74,7 +74,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.8 MB",
-      "memoryPercentile": 58.083100000000016,
+      "memoryPercentile": 77.5163,
       "code": "class Solution:\n    def minMoves(self, nums: List[int]) -> int:\n        greatestnum : int = max(nums)\n        ans : int = 0\n        for num in nums:\n            ans += greatestnum - num\n        return ans",
       "statusCode": 10,
       "user": {
@@ -107,9 +107,9 @@
       "title": "Minimum Moves to Equal Array Elements III",
       "titleSlug": "minimum-moves-to-equal-array-elements-iii",
       "runtimeDisplay": "3 ms",
-      "runtimePercentile": 35.5659,
+      "runtimePercentile": 35.424800000000005,
       "memoryDisplay": "17.7 MB",
-      "memoryPercentile": 65.35790000000001,
+      "memoryPercentile": 77.5163,
       "code": "class Solution:\n    def minMoves(self, nums: List[int]) -> int:\n        greatestnum : int = max(nums)\n        ans : int = 0\n        for num in nums:\n            ans += greatestnum - num\n        return ans",
       "statusCode": 10,
       "user": {

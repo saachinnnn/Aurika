@@ -6,7 +6,7 @@
     "titleSlug": "majority-element-ii",
     "content": "<p>Given an integer array of size <code>n</code>, find all elements that appear more than <code>&lfloor; n/3 &rfloor;</code> times.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [3,2,3]\n<strong>Output:</strong> [3]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1]\n<strong>Output:</strong> [1]\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,2]\n<strong>Output:</strong> [1,2]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 5 * 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong>Follow up:</strong> Could you solve the problem in linear time and in <code>O(1)</code> space?</p>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"1.2M\", \"totalSubmission\": \"2.1M\", \"totalAcceptedRaw\": 1190939, \"totalSubmissionRaw\": 2138958, \"acRate\": \"55.7%\"}",
+    "stats": "{\"totalAccepted\": \"1.2M\", \"totalSubmission\": \"2.2M\", \"totalAcceptedRaw\": 1208871, \"totalSubmissionRaw\": 2166570, \"acRate\": \"55.8%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -49,9 +49,9 @@
       "title": "Majority Element II",
       "titleSlug": "majority-element-ii",
       "runtimeDisplay": "4 ms",
-      "runtimePercentile": 80.3504,
+      "runtimePercentile": 81.12710000000001,
       "memoryDisplay": "22.4 MB",
-      "memoryPercentile": 31.18900000000003,
+      "memoryPercentile": 42.95039999999999,
       "code": "from collections import Counter\nclass Solution:\n    def majorityElement(self, nums: List[int]) -> List[int]:\n        threshold = len(nums) // 3\n        FrequencyMap : dict = Counter(nums)\n        return [num for num,count in FrequencyMap.items() if count > threshold]",
       "statusCode": 10,
       "user": {
@@ -84,9 +84,9 @@
       "title": "Majority Element II",
       "titleSlug": "majority-element-ii",
       "runtimeDisplay": "2 ms",
-      "runtimePercentile": 94.443,
+      "runtimePercentile": 94.7026,
       "memoryDisplay": "22.5 MB",
-      "memoryPercentile": 31.18900000000003,
+      "memoryPercentile": 42.95039999999999,
       "code": "from collections import Counter\nclass Solution:\n    def majorityElement(self, nums: List[int]) -> List[int]:\n        # Length of the array is n/3\n        n = len(nums)\n        Length = int(n / 3)\n        Hashmap : dict = Counter(nums)\n        result : list = []\n        for key in Hashmap:\n            if Hashmap[key] > Length:\n                result.append(key)\n                Hashmap[key] -= 1\n        return result\n",
       "statusCode": 10,
       "user": {

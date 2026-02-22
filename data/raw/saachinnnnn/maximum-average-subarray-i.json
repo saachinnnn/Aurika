@@ -6,7 +6,7 @@
     "titleSlug": "maximum-average-subarray-i",
     "content": "<p>You are given an integer array <code>nums</code> consisting of <code>n</code> elements, and an integer <code>k</code>.</p>\n\n<p>Find a contiguous subarray whose <strong>length is equal to</strong> <code>k</code> that has the maximum average value and return <em>this value</em>. Any answer with a calculation error less than <code>10<sup>-5</sup></code> will be accepted.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,12,-5,-6,50,3], k = 4\n<strong>Output:</strong> 12.75000\n<strong>Explanation:</strong> Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [5], k = 1\n<strong>Output:</strong> 5.00000\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>n == nums.length</code></li>\n\t<li><code>1 &lt;= k &lt;= n &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"1.1M\", \"totalSubmission\": \"2.3M\", \"totalAcceptedRaw\": 1087557, \"totalSubmissionRaw\": 2320670, \"acRate\": \"46.9%\"}",
+    "stats": "{\"totalAccepted\": \"1.1M\", \"totalSubmission\": \"2.4M\", \"totalAcceptedRaw\": 1114135, \"totalSubmissionRaw\": 2367409, \"acRate\": \"47.1%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -35,9 +35,9 @@
       "title": "Maximum Average Subarray I",
       "titleSlug": "maximum-average-subarray-i",
       "runtimeDisplay": "88 ms",
-      "runtimePercentile": 35.31439999999999,
+      "runtimePercentile": 27.466299999999983,
       "memoryDisplay": "27.5 MB",
-      "memoryPercentile": 53.028,
+      "memoryPercentile": 82.6739,
       "code": "class Solution:\n    def findMaxAverage(self, nums: List[int], k: int) -> float:\n        # Find we find the window average.\n\n        windowavg = (sum(nums[:k])) / k\n        maxavg = windowavg # Setting the maxavg to windowavg for now.\n\n\n        # Size of the input array...\n        n = len(nums)\n\n        for i in range(n - k):\n            windowavg = windowavg - nums[i]/k + nums[k+i]/k\n            maxavg = max(maxavg,windowavg)\n        return maxavg",
       "statusCode": 10,
       "user": {

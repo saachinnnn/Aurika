@@ -6,7 +6,7 @@
     "titleSlug": "intersection-of-two-arrays",
     "content": "<p>Given two integer arrays <code>nums1</code> and <code>nums2</code>, return <em>an array of their <span data-keyword=\"array-intersection\">intersection</span></em>. Each element in the result must be <strong>unique</strong> and you may return the result in <strong>any order</strong>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums1 = [1,2,2,1], nums2 = [2,2]\n<strong>Output:</strong> [2]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums1 = [4,9,5], nums2 = [9,4,9,8,4]\n<strong>Output:</strong> [9,4]\n<strong>Explanation:</strong> [4,9] is also accepted.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums1.length, nums2.length &lt;= 1000</code></li>\n\t<li><code>0 &lt;= nums1[i], nums2[i] &lt;= 1000</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"1.8M\", \"totalSubmission\": \"2.3M\", \"totalAcceptedRaw\": 1767343, \"totalSubmissionRaw\": 2283870, \"acRate\": \"77.4%\"}",
+    "stats": "{\"totalAccepted\": \"1.8M\", \"totalSubmission\": \"2.3M\", \"totalAcceptedRaw\": 1790865, \"totalSubmissionRaw\": 2311762, \"acRate\": \"77.5%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -50,9 +50,9 @@
       "title": "Intersection of Two Arrays",
       "titleSlug": "intersection-of-two-arrays",
       "runtimeDisplay": "4 ms",
-      "runtimePercentile": 25.212999999999997,
+      "runtimePercentile": 24.974799999999995,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 65.5495,
+      "memoryPercentile": 80.26350000000001,
       "code": "from collections import Counter\nclass Solution:\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        return list(set(nums1) & set(nums2))",
       "statusCode": 10,
       "user": {
@@ -87,7 +87,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.8 MB",
-      "memoryPercentile": 65.5495,
+      "memoryPercentile": 80.26350000000001,
       "code": "from collections import Counter\nclass Solution:\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        Hashset : set = set(nums1)\n        Answer : set = set()\n        for num in nums2:\n            if num in Hashset and num not in Answer:\n                Answer.add(num)\n        return list(Answer)\n            ",
       "statusCode": 10,
       "user": {
@@ -122,7 +122,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "18 MB",
-      "memoryPercentile": 59.356199999999994,
+      "memoryPercentile": 80.26350000000001,
       "code": "from collections import Counter\nclass Solution:\n    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:\n        # We first create a hashmap to count the frequency of each character in nums1.\n        # Then we add the element from nums2 to result array only if the frequency of that character is more than 0 in the hashmap.\n        Hashmap : dict = Counter(nums1)\n        result : list = []\n        for num in nums2:\n            if num in Hashmap and Hashmap[num] > 0:\n                result.append(num)\n                Hashmap[num] -= 1\n            \n        return list(set(result))\n            ",
       "statusCode": 10,
       "user": {

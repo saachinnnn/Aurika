@@ -6,7 +6,7 @@
     "titleSlug": "contains-duplicate",
     "content": "<p>Given an integer array <code>nums</code>, return <code>true</code> if any value appears <strong>at least twice</strong> in the array, and return <code>false</code> if every element is distinct.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,1]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>The element 1 occurs at the indices 0 and 3.</p>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,2,3,4]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<p>All elements are distinct.</p>\n</div>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,1,1,3,3,4,3,2,4,2]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"6.1M\", \"totalSubmission\": \"9.5M\", \"totalAcceptedRaw\": 6054191, \"totalSubmissionRaw\": 9459234, \"acRate\": \"64.0%\"}",
+    "stats": "{\"totalAccepted\": \"6.1M\", \"totalSubmission\": \"9.6M\", \"totalAcceptedRaw\": 6134038, \"totalSubmissionRaw\": 9574906, \"acRate\": \"64.1%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -40,9 +40,9 @@
       "title": "Contains Duplicate",
       "titleSlug": "contains-duplicate",
       "runtimeDisplay": "11 ms",
-      "runtimePercentile": 68.24359999999999,
+      "runtimePercentile": 65.9509,
       "memoryDisplay": "31.4 MB",
-      "memoryPercentile": 52.23690000000002,
+      "memoryPercentile": 51.09150000000002,
       "code": "class Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        hashset : set = set()\n        for num in nums:\n            if num in hashset:\n                return True\n            hashset.add(num)\n        return False",
       "statusCode": 10,
       "user": {
@@ -75,9 +75,9 @@
       "title": "Contains Duplicate",
       "titleSlug": "contains-duplicate",
       "runtimeDisplay": "16 ms",
-      "runtimePercentile": 35.612799999999986,
+      "runtimePercentile": 33.0358,
       "memoryDisplay": "34.9 MB",
-      "memoryPercentile": 12.559700000000003,
+      "memoryPercentile": 16.119300000000027,
       "code": "class Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        hashmap : dict = {}\n        for num in nums:\n            if num in hashmap:\n                return True\n            hashmap[num] = 1\n        return False",
       "statusCode": 10,
       "user": {
@@ -110,9 +110,9 @@
       "title": "Contains Duplicate",
       "titleSlug": "contains-duplicate",
       "runtimeDisplay": "31 ms",
-      "runtimePercentile": 14.29899999999999,
+      "runtimePercentile": 14.258199999999999,
       "memoryDisplay": "35 MB",
-      "memoryPercentile": 12.559700000000003,
+      "memoryPercentile": 16.119300000000027,
       "code": "from collections import Counter\nclass Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n      # Lets try using dictionaries.\n      freq_count : dict = Counter(nums)\n      for i in range (len(nums)):\n        if freq_count[nums[i]] > 1:\n            return True\n      return False  ",
       "statusCode": 10,
       "user": {
@@ -145,9 +145,9 @@
       "title": "Contains Duplicate",
       "titleSlug": "contains-duplicate",
       "runtimeDisplay": "16 ms",
-      "runtimePercentile": 35.612799999999986,
+      "runtimePercentile": 33.0358,
       "memoryDisplay": "31.4 MB",
-      "memoryPercentile": 52.23690000000002,
+      "memoryPercentile": 51.09150000000002,
       "code": "class Solution:\n    def containsDuplicate(self, nums: List[int]) -> bool:\n        # Instead of using the elements to check for duplicates.\n        # We can use the length.\n        # sayyyy if the length of the original list and the set(which removes duplicates) are the same then we can say that the list originally didnt have any duplciates.\n        # SOOOO.....\n        # Lets start.\n        return not len(set(nums)) == len(nums) # Here not can be used or != operator as well.",
       "statusCode": 10,
       "user": {

@@ -6,7 +6,7 @@
     "titleSlug": "check-if-the-sentence-is-pangram",
     "content": "<p>A <strong>pangram</strong> is a sentence where every letter of the English alphabet appears at least once.</p>\n\n<p>Given a string <code>sentence</code> containing only lowercase English letters, return<em> </em><code>true</code><em> if </em><code>sentence</code><em> is a <strong>pangram</strong>, or </em><code>false</code><em> otherwise.</em></p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> sentence = &quot;thequickbrownfoxjumpsoverthelazydog&quot;\n<strong>Output:</strong> true\n<strong>Explanation:</strong> sentence contains at least one of every letter of the English alphabet.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> sentence = &quot;leetcode&quot;\n<strong>Output:</strong> false\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= sentence.length &lt;= 1000</code></li>\n\t<li><code>sentence</code> consists of lowercase English letters.</li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"520.7K\", \"totalSubmission\": \"619.2K\", \"totalAcceptedRaw\": 520668, \"totalSubmissionRaw\": 619172, \"acRate\": \"84.1%\"}",
+    "stats": "{\"totalAccepted\": \"527.2K\", \"totalSubmission\": \"626.7K\", \"totalAcceptedRaw\": 527165, \"totalSubmissionRaw\": 626722, \"acRate\": \"84.1%\"}",
     "topicTags": [
       {
         "name": "Hash Table",
@@ -40,7 +40,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.8 MB",
-      "memoryPercentile": 59.600199999999994,
+      "memoryPercentile": 77.6093,
       "code": "class Solution:\n    def checkIfPangram(self, sentence: str) -> bool:\n        return len(set(sentence)) == 26",
       "statusCode": 10,
       "user": {

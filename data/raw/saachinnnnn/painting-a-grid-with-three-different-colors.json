@@ -6,7 +6,7 @@
     "titleSlug": "painting-a-grid-with-three-different-colors",
     "content": "<p>You are given two integers <code>m</code> and <code>n</code>. Consider an <code>m x n</code> grid where each cell is initially white. You can paint each cell <strong>red</strong>, <strong>green</strong>, or <strong>blue</strong>. All cells <strong>must</strong> be painted.</p>\n\n<p>Return<em> the number of ways to color the grid with <strong>no two adjacent cells having the same color</strong></em>. Since the answer can be very large, return it <strong>modulo</strong> <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/06/22/colorthegrid.png\" style=\"width: 200px; height: 50px;\" />\n<pre>\n<strong>Input:</strong> m = 1, n = 1\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The three possible colorings are shown in the image above.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2021/06/22/copy-of-colorthegrid.png\" style=\"width: 321px; height: 121px;\" />\n<pre>\n<strong>Input:</strong> m = 1, n = 2\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> The six possible colorings are shown in the image above.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> m = 5, n = 5\n<strong>Output:</strong> 580986\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= m &lt;= 5</code></li>\n\t<li><code>1 &lt;= n &lt;= 1000</code></li>\n</ul>\n",
     "difficulty": "Hard",
-    "stats": "{\"totalAccepted\": \"75K\", \"totalSubmission\": \"96.9K\", \"totalAcceptedRaw\": 74956, \"totalSubmissionRaw\": 96914, \"acRate\": \"77.3%\"}",
+    "stats": "{\"totalAccepted\": \"75.3K\", \"totalSubmission\": \"97.4K\", \"totalAcceptedRaw\": 75286, \"totalSubmissionRaw\": 97405, \"acRate\": \"77.3%\"}",
     "topicTags": [
       {
         "name": "Dynamic Programming",
@@ -33,9 +33,9 @@
       "title": "Painting a Grid With Three Different Colors",
       "titleSlug": "painting-a-grid-with-three-different-colors",
       "runtimeDisplay": "566 ms",
-      "runtimePercentile": 39.534399999999806,
+      "runtimePercentile": 38.461600000000246,
       "memoryDisplay": "36.1 MB",
-      "memoryPercentile": 25.29009999999995,
+      "memoryPercentile": 21.36759999999998,
       "code": "class Solution:\n    def colorTheGrid(self, m: int, n: int) -> int:\n        g = cache(lambda prev:(gg:=lambda i,cur:i==m and [cur] or sum((gg(i+1,cur+cand) \n            for cand in 'rgb' if prev[i]!=cand and (i==0 or cur[-1]!=cand)),[]))(0,''))\n\n        return (f:=cache(lambda j,prev:j==n or sum(f(j+1,cur) for cur in g(prev))%(10**9+7)))(0,'_'*m)",
       "statusCode": 10,
       "user": {

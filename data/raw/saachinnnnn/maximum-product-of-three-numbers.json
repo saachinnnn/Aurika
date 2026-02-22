@@ -6,7 +6,7 @@
     "titleSlug": "maximum-product-of-three-numbers",
     "content": "<p>Given an integer array <code>nums</code>, <em>find three numbers whose product is maximum and return the maximum product</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,3]\n<strong>Output:</strong> 6\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,3,4]\n<strong>Output:</strong> 24\n</pre><p><strong class=\"example\">Example 3:</strong></p>\n<pre><strong>Input:</strong> nums = [-1,-2,-3]\n<strong>Output:</strong> -6\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= nums.length &lt;=&nbsp;10<sup>4</sup></code></li>\n\t<li><code>-1000 &lt;= nums[i] &lt;= 1000</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"470.2K\", \"totalSubmission\": \"1M\", \"totalAcceptedRaw\": 470155, \"totalSubmissionRaw\": 1029459, \"acRate\": \"45.7%\"}",
+    "stats": "{\"totalAccepted\": \"476.4K\", \"totalSubmission\": \"1M\", \"totalAcceptedRaw\": 476419, \"totalSubmissionRaw\": 1042171, \"acRate\": \"45.7%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -40,9 +40,9 @@
       "title": "Maximum Product of Three Numbers",
       "titleSlug": "maximum-product-of-three-numbers",
       "runtimeDisplay": "24 ms",
-      "runtimePercentile": 26.222100000000005,
+      "runtimePercentile": 24.771700000000003,
       "memoryDisplay": "18.8 MB",
-      "memoryPercentile": 59.2223,
+      "memoryPercentile": 82.05860000000001,
       "code": "class Solution:\n    def maximumProduct(self, nums: List[int]) -> int:\n        # More like threesum(The name puhlease,idk abt the name gng)\n        nums.sort()\n        product_1 : int = nums[-1]*nums[-2]*nums[-3]\n        product_2 : int = nums[-1]*nums[0]*nums[1]\n        return max(product_1,product_2)",
       "statusCode": 10,
       "user": {

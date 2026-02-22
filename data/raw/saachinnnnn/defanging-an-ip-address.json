@@ -6,7 +6,7 @@
     "titleSlug": "defanging-an-ip-address",
     "content": "<p>Given a valid (IPv4) IP <code>address</code>, return a defanged version of that IP address.</p>\r\n\r\n<p>A <em>defanged&nbsp;IP address</em>&nbsp;replaces every period <code>&quot;.&quot;</code> with <code>&quot;[.]&quot;</code>.</p>\r\n\r\n<p>&nbsp;</p>\r\n<p><strong class=\"example\">Example 1:</strong></p>\r\n<pre><strong>Input:</strong> address = \"1.1.1.1\"\r\n<strong>Output:</strong> \"1[.]1[.]1[.]1\"\r\n</pre><p><strong class=\"example\">Example 2:</strong></p>\r\n<pre><strong>Input:</strong> address = \"255.100.50.0\"\r\n<strong>Output:</strong> \"255[.]100[.]50[.]0\"\r\n</pre>\r\n<p>&nbsp;</p>\r\n<p><strong>Constraints:</strong></p>\r\n\r\n<ul>\r\n\t<li>The given <code>address</code> is a valid IPv4 address.</li>\r\n</ul>",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"831.2K\", \"totalSubmission\": \"924K\", \"totalAcceptedRaw\": 831180, \"totalSubmissionRaw\": 924035, \"acRate\": \"90.0%\"}",
+    "stats": "{\"totalAccepted\": \"838.5K\", \"totalSubmission\": \"932K\", \"totalAcceptedRaw\": 838471, \"totalSubmissionRaw\": 931957, \"acRate\": \"90.0%\"}",
     "topicTags": [
       {
         "name": "String",
@@ -32,7 +32,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 52.59030000000003,
+      "memoryPercentile": 80.34690000000002,
       "code": "class Solution:\n    def defangIPaddr(self, address: str) -> str:\n        return address.replace(\".\", \"[.]\")\n__import__(\"atexit\").register(lambda: open(\"display_runtime.txt\", \"w\").write(\"0\"))     ",
       "statusCode": 10,
       "user": {
@@ -65,9 +65,9 @@
       "title": "Defanging an IP Address",
       "titleSlug": "defanging-an-ip-address",
       "runtimeDisplay": "36 ms",
-      "runtimePercentile": 74.45060000000001,
+      "runtimePercentile": 85.66230000000003,
       "memoryDisplay": "17.6 MB",
-      "memoryPercentile": 61.30310000000003,
+      "memoryPercentile": 80.34690000000002,
       "code": "class Solution:\n    def defangIPaddr(self, address: str) -> str:\n        return address.replace(\".\",\"[.]\")",
       "statusCode": 10,
       "user": {

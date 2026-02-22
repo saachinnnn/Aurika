@@ -6,7 +6,7 @@
     "titleSlug": "zero-array-transformation-i",
     "content": "<p>You are given an integer array <code>nums</code> of length <code>n</code> and a 2D array <code>queries</code>, where <code>queries[i] = [l<sub>i</sub>, r<sub>i</sub>]</code>.</p>\n\n<p>For each <code>queries[i]</code>:</p>\n\n<ul>\n\t<li>Select a <span data-keyword=\"subset\">subset</span> of indices within the range <code>[l<sub>i</sub>, r<sub>i</sub>]</code> in <code>nums</code>.</li>\n\t<li>Decrement the values at the selected indices by 1.</li>\n</ul>\n\n<p>A <strong>Zero Array</strong> is an array where all elements are equal to 0.</p>\n\n<p>Return <code>true</code> if it is <em>possible</em> to transform <code>nums</code> into a <strong>Zero Array </strong>after processing all the queries sequentially, otherwise return <code>false</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [1,0,1], queries = [[0,2]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">true</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li><strong>For i = 0:</strong>\n\n\t<ul>\n\t\t<li>Select the subset of indices as <code>[0, 2]</code> and decrement the values at these indices by 1.</li>\n\t\t<li>The array will become <code>[0, 0, 0]</code>, which is a Zero Array.</li>\n\t</ul>\n\t</li>\n</ul>\n</div>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<div class=\"example-block\">\n<p><strong>Input:</strong> <span class=\"example-io\">nums = [4,3,2,1], queries = [[1,3],[0,2]]</span></p>\n\n<p><strong>Output:</strong> <span class=\"example-io\">false</span></p>\n\n<p><strong>Explanation:</strong></p>\n\n<ul>\n\t<li><strong>For i = 0:</strong>\n\n\t<ul>\n\t\t<li>Select the subset of indices as <code>[1, 2, 3]</code> and decrement the values at these indices by 1.</li>\n\t\t<li>The array will become <code>[4, 2, 1, 0]</code>.</li>\n\t</ul>\n\t</li>\n\t<li><strong>For i = 1:</strong>\n\t<ul>\n\t\t<li>Select the subset of indices as <code>[0, 1, 2]</code> and decrement the values at these indices by 1.</li>\n\t\t<li>The array will become <code>[3, 1, 0, 0]</code>, which is not a Zero Array.</li>\n\t</ul>\n\t</li>\n</ul>\n</div>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n\t<li><code>1 &lt;= queries.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>queries[i].length == 2</code></li>\n\t<li><code>0 &lt;= l<sub>i</sub> &lt;= r<sub>i</sub> &lt; nums.length</code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"153.7K\", \"totalSubmission\": \"282.5K\", \"totalAcceptedRaw\": 153747, \"totalSubmissionRaw\": 282543, \"acRate\": \"54.4%\"}",
+    "stats": "{\"totalAccepted\": \"154.3K\", \"totalSubmission\": \"283.4K\", \"totalAcceptedRaw\": 154292, \"totalSubmissionRaw\": 283449, \"acRate\": \"54.4%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -72,9 +72,9 @@
       "title": "Zero Array Transformation I",
       "titleSlug": "zero-array-transformation-i",
       "runtimeDisplay": "75 ms",
-      "runtimePercentile": 69.23110000000004,
+      "runtimePercentile": 68.07260000000002,
       "memoryDisplay": "55 MB",
-      "memoryPercentile": 65.88680000000001,
+      "memoryPercentile": 72.28940000000001,
       "code": "class Solution:\n    def isZeroArray(self, nums: List[int], queries: List[List[int]]) -> bool:\n        n, m=len(nums), len(queries)\n        freq=[0]*(n+1)\n        for s, e in queries:\n            freq[s]+=1\n            freq[e+1]-=1\n        op=0\n        for i, x in enumerate(nums):\n            op+=freq[i]\n            if x>op: return False\n        return True\n\n        ",
       "statusCode": 10,
       "user": {

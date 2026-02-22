@@ -6,7 +6,7 @@
     "titleSlug": "range-sum-query-immutable",
     "content": "<p>Given an integer array <code>nums</code>, handle multiple queries of the following type:</p>\n\n<ol>\n\t<li>Calculate the <strong>sum</strong> of the elements of <code>nums</code> between indices <code>left</code> and <code>right</code> <strong>inclusive</strong> where <code>left &lt;= right</code>.</li>\n</ol>\n\n<p>Implement the <code>NumArray</code> class:</p>\n\n<ul>\n\t<li><code>NumArray(int[] nums)</code> Initializes the object with the integer array <code>nums</code>.</li>\n\t<li><code>int sumRange(int left, int right)</code> Returns the <strong>sum</strong> of the elements of <code>nums</code> between indices <code>left</code> and <code>right</code> <strong>inclusive</strong> (i.e. <code>nums[left] + nums[left + 1] + ... + nums[right]</code>).</li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input</strong>\n[&quot;NumArray&quot;, &quot;sumRange&quot;, &quot;sumRange&quot;, &quot;sumRange&quot;]\n[[[-2, 0, 3, -5, 2, -1]], [0, 2], [2, 5], [0, 5]]\n<strong>Output</strong>\n[null, 1, -1, -3]\n\n<strong>Explanation</strong>\nNumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);\nnumArray.sumRange(0, 2); // return (-2) + 0 + 3 = 1\nnumArray.sumRange(2, 5); // return 3 + (-5) + 2 + (-1) = -1\nnumArray.sumRange(0, 5); // return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>-10<sup>5</sup> &lt;= nums[i] &lt;= 10<sup>5</sup></code></li>\n\t<li><code>0 &lt;= left &lt;= right &lt; nums.length</code></li>\n\t<li>At most <code>10<sup>4</sup></code> calls will be made to <code>sumRange</code>.</li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"865K\", \"totalSubmission\": \"1.2M\", \"totalAcceptedRaw\": 864960, \"totalSubmissionRaw\": 1216021, \"acRate\": \"71.1%\"}",
+    "stats": "{\"totalAccepted\": \"880.8K\", \"totalSubmission\": \"1.2M\", \"totalAcceptedRaw\": 880762, \"totalSubmissionRaw\": 1233811, \"acRate\": \"71.4%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -40,9 +40,9 @@
       "title": "Range Sum Query - Immutable",
       "titleSlug": "range-sum-query-immutable",
       "runtimeDisplay": "7 ms",
-      "runtimePercentile": 45.27769999999999,
+      "runtimePercentile": 46.087900000000005,
       "memoryDisplay": "21.6 MB",
-      "memoryPercentile": 65.97200000000001,
+      "memoryPercentile": 79.75739999999999,
       "code": "class NumArray:\n\n    def __init__(self, nums: List[int]):\n        self.nums = nums\n        for i in range(1,len(self.nums)):\n            self.nums[i] += self.nums[i-1]\n    def sumRange(self, left: int, right: int) -> int:\n        if left == 0:\n            return self.nums[right]\n        return self.nums[right] - self.nums[left-1]\n\n\n# Your NumArray object will be instantiated and called as such:\n# obj = NumArray(nums)\n# param_1 = obj.sumRange(left,right)",
       "statusCode": 10,
       "user": {
@@ -77,7 +77,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "21.7 MB",
-      "memoryPercentile": 62.53680000000001,
+      "memoryPercentile": 79.75739999999999,
       "code": "from typing import List\nclass NumArray:\n  def __init__(self,nums : List[int]):\n    self.nums = nums\n    for i in range(1,len(self.nums)):\n      self.nums[i] += self.nums[i - 1]\n  def sumRange(self,left : int,right : int):\n    if left - 1 >= 0:\n      return self.nums[right] - self.nums[left - 1]\n    else:\n      return self.nums[right]",
       "statusCode": 10,
       "user": {
@@ -110,9 +110,9 @@
       "title": "Range Sum Query - Immutable",
       "titleSlug": "range-sum-query-immutable",
       "runtimeDisplay": "7 ms",
-      "runtimePercentile": 45.27769999999999,
+      "runtimePercentile": 46.087900000000005,
       "memoryDisplay": "21.9 MB",
-      "memoryPercentile": 54.99980000000001,
+      "memoryPercentile": 79.75739999999999,
       "code": "class NumArray:\n\n    def __init__(self, nums: List[int]):\n        Prefixsum = [0]*(len(nums) + 1)\n        self.nums = nums\n        self.Prefixsum = Prefixsum\n        for i in range(1,len(self.nums) + 1):\n            self.Prefixsum[i] = self.Prefixsum[i - 1] + self.nums[i - 1]\n            \n\n    def sumRange(self, left: int, right: int) -> int:\n        return self.Prefixsum[right + 1] - self.Prefixsum[left]\n        \n\n\n# Your NumArray object will be instantiated and called as such:\n# obj = NumArray(nums)\n# param_1 = obj.sumRange(left,right)",
       "statusCode": 10,
       "user": {
@@ -145,9 +145,9 @@
       "title": "Range Sum Query - Immutable",
       "titleSlug": "range-sum-query-immutable",
       "runtimeDisplay": "7 ms",
-      "runtimePercentile": 45.27769999999999,
+      "runtimePercentile": 46.087900000000005,
       "memoryDisplay": "21.5 MB",
-      "memoryPercentile": 68.72200000000001,
+      "memoryPercentile": 79.77519999999998,
       "code": "class NumArray:\n\n    def __init__(self, nums: List[int]):\n        self.nums = nums\n        for i in range(1,len(self.nums)):\n            self.nums[i] += self.nums[i - 1]\n            \n\n    def sumRange(self, left: int, right: int) -> int:\n        if left == 0:\n            return self.nums[right]\n        else:\n            return self.nums[right] - self.nums[left - 1]\n\n\n# Your NumArray object will be instantiated and called as such:\n# obj = NumArray(nums)\n# param_1 = obj.sumRange(left,right)",
       "statusCode": 10,
       "user": {

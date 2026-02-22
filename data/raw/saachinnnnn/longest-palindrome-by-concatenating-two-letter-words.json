@@ -6,7 +6,7 @@
     "titleSlug": "longest-palindrome-by-concatenating-two-letter-words",
     "content": "<p>You are given an array of strings <code>words</code>. Each element of <code>words</code> consists of <strong>two</strong> lowercase English letters.</p>\n\n<p>Create the <strong>longest possible palindrome</strong> by selecting some elements from <code>words</code> and concatenating them in <strong>any order</strong>. Each element can be selected <strong>at most once</strong>.</p>\n\n<p>Return <em>the <strong>length</strong> of the longest palindrome that you can create</em>. If it is impossible to create any palindrome, return <code>0</code>.</p>\n\n<p>A <strong>palindrome</strong> is a string that reads the same forward and backward.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;lc&quot;,&quot;cl&quot;,&quot;gg&quot;]\n<strong>Output:</strong> 6\n<strong>Explanation:</strong> One longest palindrome is &quot;lc&quot; + &quot;gg&quot; + &quot;cl&quot; = &quot;lcggcl&quot;, of length 6.\nNote that &quot;clgglc&quot; is another longest palindrome that can be created.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;ab&quot;,&quot;ty&quot;,&quot;yt&quot;,&quot;lc&quot;,&quot;cl&quot;,&quot;ab&quot;]\n<strong>Output:</strong> 8\n<strong>Explanation:</strong> One longest palindrome is &quot;ty&quot; + &quot;lc&quot; + &quot;cl&quot; + &quot;yt&quot; = &quot;tylcclyt&quot;, of length 8.\nNote that &quot;lcyttycl&quot; is another longest palindrome that can be created.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> words = [&quot;cc&quot;,&quot;ll&quot;,&quot;xx&quot;]\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> One longest palindrome is &quot;cc&quot;, of length 2.\nNote that &quot;ll&quot; is another longest palindrome that can be created, and so is &quot;xx&quot;.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= words.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>words[i].length == 2</code></li>\n\t<li><code>words[i]</code> consists of lowercase English letters.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"241.6K\", \"totalSubmission\": \"451.1K\", \"totalAcceptedRaw\": 241599, \"totalSubmissionRaw\": 451147, \"acRate\": \"53.6%\"}",
+    "stats": "{\"totalAccepted\": \"242.2K\", \"totalSubmission\": \"452.4K\", \"totalAcceptedRaw\": 242228, \"totalSubmissionRaw\": 452374, \"acRate\": \"53.5%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -54,9 +54,9 @@
       "title": "Longest Palindrome by Concatenating Two Letter Words",
       "titleSlug": "longest-palindrome-by-concatenating-two-letter-words",
       "runtimeDisplay": "47 ms",
-      "runtimePercentile": 80.5406,
+      "runtimePercentile": 82.03440000000005,
       "memoryDisplay": "35.7 MB",
-      "memoryPercentile": 77.4325,
+      "memoryPercentile": 97.75430000000001,
       "code": "from collections import Counter\n\nclass Solution:\n    def longestPalindrome(self, words):\n        freq = Counter(words)\n        ans = 0\n        has_center = False\n\n        for word in list(freq.keys()):\n            rev = word[::-1]\n            if word == rev:\n                pairs = freq[word] // 2\n                ans += pairs * 4\n                freq[word] -= pairs * 2\n                if freq[word] == 1:\n                    has_center = True\n            else:\n                if rev in freq:\n                    pairs = min(freq[word], freq[rev])\n                    ans += pairs * 4\n                    freq[word] -= pairs\n                    freq[rev] -= pairs\n\n        if has_center:\n            ans += 2\n\n        return ans",
       "statusCode": 10,
       "user": {

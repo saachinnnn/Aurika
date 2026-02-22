@@ -6,7 +6,7 @@
     "titleSlug": "sliding-window-maximum",
     "content": "<p>You are given an array of integers&nbsp;<code>nums</code>, there is a sliding window of size <code>k</code> which is moving from the very left of the array to the very right. You can only see the <code>k</code> numbers in the window. Each time the sliding window moves right by one position.</p>\n\n<p>Return <em>the max sliding window</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,3,-1,-3,5,3,6,7], k = 3\n<strong>Output:</strong> [3,3,5,5,6,7]\n<strong>Explanation:</strong> \nWindow position                Max\n---------------               -----\n[1  3  -1] -3  5  3  6  7       <strong>3</strong>\n 1 [3  -1  -3] 5  3  6  7       <strong>3</strong>\n 1  3 [-1  -3  5] 3  6  7      <strong> 5</strong>\n 1  3  -1 [-3  5  3] 6  7       <strong>5</strong>\n 1  3  -1  -3 [5  3  6] 7       <strong>6</strong>\n 1  3  -1  -3  5 [3  6  7]      <strong>7</strong>\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1], k = 1\n<strong>Output:</strong> [1]\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>4</sup> &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= k &lt;= nums.length</code></li>\n</ul>\n",
     "difficulty": "Hard",
-    "stats": "{\"totalAccepted\": \"1.6M\", \"totalSubmission\": \"3.3M\", \"totalAcceptedRaw\": 1573543, \"totalSubmissionRaw\": 3253874, \"acRate\": \"48.4%\"}",
+    "stats": "{\"totalAccepted\": \"1.6M\", \"totalSubmission\": \"3.3M\", \"totalAcceptedRaw\": 1596849, \"totalSubmissionRaw\": 3296617, \"acRate\": \"48.4%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -54,9 +54,9 @@
       "title": "Sliding Window Maximum",
       "titleSlug": "sliding-window-maximum",
       "runtimeDisplay": "162 ms",
-      "runtimePercentile": 81.07209999999995,
+      "runtimePercentile": 88.24960000000002,
       "memoryDisplay": "30.7 MB",
-      "memoryPercentile": 99.27389999999995,
+      "memoryPercentile": 100.0,
       "code": "from typing import List\nfrom collections import deque\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        # Using Monotonic stack we can maintain the maximum element.\n        MaxQueue : list = deque()\n\n        result : list = []\n\n        for i in range(len(nums)):\n            # To see if the element is out of the window or not.\n            if MaxQueue and MaxQueue[0] < i - k + 1:\n                MaxQueue.popleft()\n            \n            # Now to remove the smaller elements before the current champion element.\n            while MaxQueue and nums[MaxQueue[-1]] < nums[i]:\n                MaxQueue.pop()\n            \n            # Now Append the current element.\n            MaxQueue.append(i)\n\n            # Now finally Check if the window is formed.\n            if i >= k - 1:\n                result.append(nums[MaxQueue[0]])\n        return result",
       "statusCode": 10,
       "user": {
@@ -89,9 +89,9 @@
       "title": "Sliding Window Maximum",
       "titleSlug": "sliding-window-maximum",
       "runtimeDisplay": "158 ms",
-      "runtimePercentile": 85.29179999999995,
+      "runtimePercentile": 90.87280000000003,
       "memoryDisplay": "32 MB",
-      "memoryPercentile": 84.21579999999997,
+      "memoryPercentile": 99.87480000000001,
       "code": "from typing import List\nfrom collections import deque\nclass Solution:\n    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:\n        dq : list = deque()\n\n        answer : list = []\n\n        for i in range(len(nums)):\n            # Now we have to check if the current greatest champion is expired or not.\n            if dq and dq[0] < i - k + 1:\n                dq.popleft()\n            \n            # Now we hv to remove the smaller elements from the back.\n            while dq and nums[dq[-1]] < nums[i]:\n                dq.pop()\n            \n            # Now we append the index of the current element.\n            dq.append(i)\n\n            # Now we wait till the formation of the window and then we append the max element.\n\n            if i >= k - 1:\n                answer.append(nums[dq[0]])\n        return answer",
       "statusCode": 10,
       "user": {

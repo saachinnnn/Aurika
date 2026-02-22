@@ -6,7 +6,7 @@
     "titleSlug": "set-mismatch",
     "content": "<p>You have a set of integers <code>s</code>, which originally contains all the numbers from <code>1</code> to <code>n</code>. Unfortunately, due to some error, one of the numbers in <code>s</code> got duplicated to another number in the set, which results in <strong>repetition of one</strong> number and <strong>loss of another</strong> number.</p>\n\n<p>You are given an integer array <code>nums</code> representing the data status of this set after the error.</p>\n\n<p>Find the number that occurs twice and the number that is missing and return <em>them in the form of an array</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<pre><strong>Input:</strong> nums = [1,2,2,4]\n<strong>Output:</strong> [2,3]\n</pre><p><strong class=\"example\">Example 2:</strong></p>\n<pre><strong>Input:</strong> nums = [1,1]\n<strong>Output:</strong> [1,2]\n</pre>\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= nums.length &lt;= 10<sup>4</sup></code></li>\n\t<li><code>1 &lt;= nums[i] &lt;= 10<sup>4</sup></code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"671.3K\", \"totalSubmission\": \"1.5M\", \"totalAcceptedRaw\": 671312, \"totalSubmissionRaw\": 1512008, \"acRate\": \"44.4%\"}",
+    "stats": "{\"totalAccepted\": \"690.6K\", \"totalSubmission\": \"1.6M\", \"totalAcceptedRaw\": 690581, \"totalSubmissionRaw\": 1561996, \"acRate\": \"44.2%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -45,9 +45,9 @@
       "title": "Set Mismatch",
       "titleSlug": "set-mismatch",
       "runtimeDisplay": "7 ms",
-      "runtimePercentile": 85.39489999999998,
+      "runtimePercentile": 85.7246,
       "memoryDisplay": "19.5 MB",
-      "memoryPercentile": 52.2179,
+      "memoryPercentile": 75.66360000000002,
       "code": "class Solution:\n    def findErrorNums(self, nums: List[int]) -> List[int]:\n        expectedsum = sum(x for x in range(1,len(nums) + 1))\n        actualsum = sum(nums)\n        missingsum = sum(set(nums))\n        return [actualsum - missingsum,expectedsum - missingsum]",
       "statusCode": 10,
       "user": {
@@ -80,9 +80,9 @@
       "title": "Set Mismatch",
       "titleSlug": "set-mismatch",
       "runtimeDisplay": "11 ms",
-      "runtimePercentile": 67.20009999999998,
+      "runtimePercentile": 67.7369,
       "memoryDisplay": "19.5 MB",
-      "memoryPercentile": 49.3026,
+      "memoryPercentile": 75.46180000000001,
       "code": "class Solution:\n    def findErrorNums(self, nums: List[int]) -> List[int]:\n        # Lets find the missing number and duplicate as well.\n        n = len(nums)\n        actualsum = n * (n + 1) // 2\n        arraysum = 0\n        uniquesum = 0\n        s = set(nums)\n\n        for a in nums:\n            arraysum += a\n        \n        for a in s:\n            uniquesum += a\n        \n        missingnum = actualsum - uniquesum\n        duplicatenum = arraysum - uniquesum\n        return [duplicatenum,missingnum]",
       "statusCode": 10,
       "user": {
@@ -115,9 +115,9 @@
       "title": "Set Mismatch",
       "titleSlug": "set-mismatch",
       "runtimeDisplay": "7273 ms",
-      "runtimePercentile": 5.002800000000539,
+      "runtimePercentile": 5.003500000000031,
       "memoryDisplay": "19.7 MB",
-      "memoryPercentile": 47.364799999999995,
+      "memoryPercentile": 75.21100000000001,
       "code": "class Solution:\n    def findErrorNums(self, nums: List[int]) -> List[int]:\n        # Lets find the missing number and duplicate as well.\n        if not nums:\n            return []\n        duplicate = -1\n        seen = set(nums)\n        for num in nums:\n            if num in seen:\n                seen.remove(num)\n                continue\n            else:\n                duplicate = num\n                break\n        missing = -1\n        for num in range(1,len(nums) + 1):\n            if num not in set(nums):\n                missing = num\n                break\n        return [duplicate,missing]",
       "statusCode": 10,
       "user": {

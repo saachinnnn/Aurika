@@ -6,7 +6,7 @@
     "titleSlug": "longest-consecutive-sequence",
     "content": "<p>Given an unsorted array of integers <code>nums</code>, return <em>the length of the longest consecutive elements sequence.</em></p>\n\n<p>You must write an algorithm that runs in&nbsp;<code>O(n)</code>&nbsp;time.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [100,4,200,1,3,2]\n<strong>Output:</strong> 4\n<strong>Explanation:</strong> The longest consecutive elements sequence is <code>[1, 2, 3, 4]</code>. Therefore its length is 4.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [0,3,7,2,5,8,4,6,0,1]\n<strong>Output:</strong> 9\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> nums = [1,0,1,2]\n<strong>Output:</strong> 3\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>0 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"3.1M\", \"totalSubmission\": \"6.6M\", \"totalAcceptedRaw\": 3112346, \"totalSubmissionRaw\": 6623968, \"acRate\": \"47.0%\"}",
+    "stats": "{\"totalAccepted\": \"3.2M\", \"totalSubmission\": \"6.7M\", \"totalAcceptedRaw\": 3155871, \"totalSubmissionRaw\": 6713824, \"acRate\": \"47.0%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -40,9 +40,9 @@
       "title": "Longest Consecutive Sequence",
       "titleSlug": "longest-consecutive-sequence",
       "runtimeDisplay": "45 ms",
-      "runtimePercentile": 74.10410000000003,
+      "runtimePercentile": 74.32089999999992,
       "memoryDisplay": "33.3 MB",
-      "memoryPercentile": 89.80890000000002,
+      "memoryPercentile": 91.73029999999989,
       "code": "class Solution:\n    def longestConsecutive(self, nums: List[int]) -> int:\n        # Without sorting an array, we can find the longest sequence using numsets.\n        numset : set = set(nums)\n        longest : int = 0\n        for num in numset:\n            if num - 1 not in numset: # We ideally would like to start from the first.\n                length = 1\n                while num + length in numset: # As long as the next number is present.\n                    length += 1\n                longest = max(length,longest) # Update the longest sequence then.\n        return longest",
       "statusCode": 10,
       "user": {

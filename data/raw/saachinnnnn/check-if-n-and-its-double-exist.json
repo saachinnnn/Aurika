@@ -6,7 +6,7 @@
     "titleSlug": "check-if-n-and-its-double-exist",
     "content": "<p>Given an array <code>arr</code> of integers, check if there exist two indices <code>i</code> and <code>j</code> such that :</p>\n\n<ul>\n\t<li><code>i != j</code></li>\n\t<li><code>0 &lt;= i, j &lt; arr.length</code></li>\n\t<li><code>arr[i] == 2 * arr[j]</code></li>\n</ul>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [10,2,5,3]\n<strong>Output:</strong> true\n<strong>Explanation:</strong> For i = 0 and j = 2, arr[i] == 10 == 2 * 5 == 2 * arr[j]\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> arr = [3,1,7,11]\n<strong>Output:</strong> false\n<strong>Explanation:</strong> There is no i and j that satisfy the conditions.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= arr.length &lt;= 500</code></li>\n\t<li><code>-10<sup>3</sup> &lt;= arr[i] &lt;= 10<sup>3</sup></code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"613.9K\", \"totalSubmission\": \"1.5M\", \"totalAcceptedRaw\": 613885, \"totalSubmissionRaw\": 1476384, \"acRate\": \"41.6%\"}",
+    "stats": "{\"totalAccepted\": \"618.9K\", \"totalSubmission\": \"1.5M\", \"totalAcceptedRaw\": 618884, \"totalSubmissionRaw\": 1486108, \"acRate\": \"41.6%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -54,9 +54,9 @@
       "title": "Check If N and Its Double Exist",
       "titleSlug": "check-if-n-and-its-double-exist",
       "runtimeDisplay": "15 ms",
-      "runtimePercentile": 11.358599999999996,
+      "runtimePercentile": 10.492299999999998,
       "memoryDisplay": "17.7 MB",
-      "memoryPercentile": 69.1131,
+      "memoryPercentile": 79.4995,
       "code": "class Solution:\n    def checkIfExist(self, arr: List[int]) -> bool:\n        for i in range(len(arr)): # Here we are iterating from 0 to last element\n            for j in range(len(arr)): # Here we are iterating inside from 0 to last element.\n                if (i!=j) and (arr[i] == 2*arr[j]): # The main test condition that it has to satisfy.\n                    return True # Returns true if the test condition is satisfied.\n        return False # Otherwise returns False.\n",
       "statusCode": 10,
       "user": {

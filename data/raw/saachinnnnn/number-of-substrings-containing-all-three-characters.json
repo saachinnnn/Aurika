@@ -6,7 +6,7 @@
     "titleSlug": "number-of-substrings-containing-all-three-characters",
     "content": "<p>Given a string <code>s</code>&nbsp;consisting only of characters <em>a</em>, <em>b</em> and <em>c</em>.</p>\n\n<p>Return the number of substrings containing <b>at least</b>&nbsp;one occurrence of all these characters <em>a</em>, <em>b</em> and <em>c</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abcabc&quot;\n<strong>Output:</strong> 10\n<strong>Explanation:</strong> The substrings containing&nbsp;at least&nbsp;one occurrence of the characters&nbsp;<em>a</em>,&nbsp;<em>b</em>&nbsp;and&nbsp;<em>c are &quot;</em>abc<em>&quot;, &quot;</em>abca<em>&quot;, &quot;</em>abcab<em>&quot;, &quot;</em>abcabc<em>&quot;, &quot;</em>bca<em>&quot;, &quot;</em>bcab<em>&quot;, &quot;</em>bcabc<em>&quot;, &quot;</em>cab<em>&quot;, &quot;</em>cabc<em>&quot; </em>and<em> &quot;</em>abc<em>&quot; </em>(<strong>again</strong>)<em>. </em>\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;aaacb&quot;\n<strong>Output:</strong> 3\n<strong>Explanation:</strong> The substrings containing&nbsp;at least&nbsp;one occurrence of the characters&nbsp;<em>a</em>,&nbsp;<em>b</em>&nbsp;and&nbsp;<em>c are &quot;</em>aaacb<em>&quot;, &quot;</em>aacb<em>&quot; </em>and<em> &quot;</em>acb<em>&quot;.</em><em> </em>\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;abc&quot;\n<strong>Output:</strong> 1\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>3 &lt;= s.length &lt;= 5 x 10^4</code></li>\n\t<li><code>s</code>&nbsp;only consists of&nbsp;<em>a</em>, <em>b</em> or <em>c&nbsp;</em>characters.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"421.2K\", \"totalSubmission\": \"573.5K\", \"totalAcceptedRaw\": 421166, \"totalSubmissionRaw\": 573463, \"acRate\": \"73.4%\"}",
+    "stats": "{\"totalAccepted\": \"429.3K\", \"totalSubmission\": \"584.1K\", \"totalAcceptedRaw\": 429319, \"totalSubmissionRaw\": 584110, \"acRate\": \"73.5%\"}",
     "topicTags": [
       {
         "name": "Hash Table",
@@ -43,9 +43,9 @@
       "title": "Number of Substrings Containing All Three Characters",
       "titleSlug": "number-of-substrings-containing-all-three-characters",
       "runtimeDisplay": "107 ms",
-      "runtimePercentile": 49.62690000000009,
+      "runtimePercentile": 46.79549999999988,
       "memoryDisplay": "17.8 MB",
-      "memoryPercentile": 72.1963,
+      "memoryPercentile": 84.83600000000001,
       "code": "class Solution:\n    def numberOfSubstrings(self, s: str) -> int:\n        count : int = 0\n        left : int = 0\n        char_count : dict = {'a':0,'b':0,'c':0}\n\n        for right in range(len(s)):\n            char_count[s[right]] += 1\n\n            while char_count['a'] > 0 and char_count['b'] > 0 and char_count['c'] > 0:\n                count += len(s) - right\n                char_count[s[left]] -= 1\n                left += 1\n        return count",
       "statusCode": 10,
       "user": {

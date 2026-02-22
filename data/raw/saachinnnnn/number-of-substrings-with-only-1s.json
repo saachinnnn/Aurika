@@ -6,7 +6,7 @@
     "titleSlug": "number-of-substrings-with-only-1s",
     "content": "<p>Given a binary string <code>s</code>, return <em>the number of substrings with all characters</em> <code>1</code><em>&#39;s</em>. Since the answer may be too large, return it modulo <code>10<sup>9</sup> + 7</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;0110111&quot;\n<strong>Output:</strong> 9\n<strong>Explanation:</strong> There are 9 substring in total with only 1&#39;s characters.\n&quot;1&quot; -&gt; 5 times.\n&quot;11&quot; -&gt; 3 times.\n&quot;111&quot; -&gt; 1 time.</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;101&quot;\n<strong>Output:</strong> 2\n<strong>Explanation:</strong> Substring &quot;1&quot; is shown 2 times in s.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n\n<pre>\n<strong>Input:</strong> s = &quot;111111&quot;\n<strong>Output:</strong> 21\n<strong>Explanation:</strong> Each substring contains only 1&#39;s characters.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>s[i]</code> is either <code>&#39;0&#39;</code> or <code>&#39;1&#39;</code>.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"156.8K\", \"totalSubmission\": \"273K\", \"totalAcceptedRaw\": 156767, \"totalSubmissionRaw\": 273004, \"acRate\": \"57.4%\"}",
+    "stats": "{\"totalAccepted\": \"157.6K\", \"totalSubmission\": \"274.6K\", \"totalAcceptedRaw\": 157628, \"totalSubmissionRaw\": 274585, \"acRate\": \"57.4%\"}",
     "topicTags": [
       {
         "name": "Math",
@@ -37,9 +37,9 @@
       "title": "Number of Substrings With Only 1s",
       "titleSlug": "number-of-substrings-with-only-1s",
       "runtimeDisplay": "44 ms",
-      "runtimePercentile": 8.479099999999999,
+      "runtimePercentile": 6.736800000000012,
       "memoryDisplay": "18.3 MB",
-      "memoryPercentile": 52.046899999999994,
+      "memoryPercentile": 83.0839,
       "code": "class Solution:\n    def numSub(self, s: str) -> int:\n        # Apparently this is solvable in one line.\n        Mod = 10**9 + 7\n        Total = 0\n        ones = 1\n        for idx in range(len(s)):\n            if s[idx] == '1':\n                if idx < len(s) - 1 and s[idx + 1] == '1':\n                    Total += ones + 1\n                    ones += 1\n                else:\n                    Total += 1\n                    ones = 1\n        return Total % Mod",
       "statusCode": 10,
       "user": {
@@ -72,9 +72,9 @@
       "title": "Number of Substrings With Only 1s",
       "titleSlug": "number-of-substrings-with-only-1s",
       "runtimeDisplay": "47 ms",
-      "runtimePercentile": 7.309499999999998,
+      "runtimePercentile": 5.988300000000011,
       "memoryDisplay": "17.9 MB",
-      "memoryPercentile": 83.04090000000001,
+      "memoryPercentile": 88.6228,
       "code": "class Solution:\n    def numSub(self, s: str) -> int:\n        # Apparently this is solvable in one line.\n        Total = 0\n        ones = 1\n        for idx in range(len(s)):\n            if s[idx] == '1':\n                if idx < len(s) - 1 and s[idx + 1] == '1':\n                    Total += ones + 1\n                    ones += 1\n                else:\n                    Total += 1\n                    ones = 1\n        return Total % (10**9 + 7)",
       "statusCode": 10,
       "user": {
@@ -107,9 +107,9 @@
       "title": "Number of Substrings With Only 1s",
       "titleSlug": "number-of-substrings-with-only-1s",
       "runtimeDisplay": "11 ms",
-      "runtimePercentile": 87.86540000000001,
+      "runtimePercentile": 88.77250000000001,
       "memoryDisplay": "18.3 MB",
-      "memoryPercentile": 58.3334,
+      "memoryPercentile": 84.2815,
       "code": "class Solution:\n    def numSub(self, s: str) -> int:\n        ones = 0\n        Total = 0\n        for ch in s:\n            if ch == '1':\n                ones += 1\n            else:\n                Total += (ones * (ones + 1)) // 2\n                ones = 0\n        # Final streak of '1's (if any)\n        Total += (ones * (ones + 1)) // 2\n        return Total % (10**9 + 7)",
       "statusCode": 10,
       "user": {

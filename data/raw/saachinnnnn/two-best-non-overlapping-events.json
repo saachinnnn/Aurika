@@ -6,7 +6,7 @@
     "titleSlug": "two-best-non-overlapping-events",
     "content": "<p>You are given a <strong>0-indexed</strong> 2D integer array of <code>events</code> where <code>events[i] = [startTime<sub>i</sub>, endTime<sub>i</sub>, value<sub>i</sub>]</code>. The <code>i<sup>th</sup></code> event starts at <code>startTime<sub>i</sub></code><sub> </sub>and ends at <code>endTime<sub>i</sub></code>, and if you attend this event, you will receive a value of <code>value<sub>i</sub></code>. You can choose <strong>at most</strong> <strong>two</strong> <strong>non-overlapping</strong> events to attend such that the sum of their values is <strong>maximized</strong>.</p>\n\n<p>Return <em>this <strong>maximum</strong> sum.</em></p>\n\n<p>Note that the start time and end time is <strong>inclusive</strong>: that is, you cannot attend two events where one of them starts and the other ends at the same time. More specifically, if you attend an event with end time <code>t</code>, the next event must start at or after <code>t + 1</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2026/01/03/untitled-diagramdrawio.png\" style=\"width: 400px; height: 86px;\" />\n<pre>\n<strong>Input:</strong> events = [[1,3,2],[4,5,2],[2,4,3]]\n<strong>Output:</strong> 4\n<strong>Explanation: </strong>Choose the green events, 0 and 1 for a sum of 2 + 2 = 4.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"Example 1 Diagram\" src=\"https://assets.leetcode.com/uploads/2026/01/03/2054b.png\" style=\"width: 400px; height: 86px;\" />\n<pre>\n<strong>Input:</strong> events = [[1,3,2],[4,5,2],[1,5,5]]\n<strong>Output:</strong> 5\n<strong>Explanation: </strong>Choose event 2 for a sum of 5.\n</pre>\n\n<p><strong class=\"example\">Example 3:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2026/01/03/2054c.png\" style=\"width: 400px; height: 74px;\" />\n<pre>\n<strong>Input:</strong> events = [[1,5,3],[1,5,1],[6,6,5]]\n<strong>Output:</strong> 8\n<strong>Explanation: </strong>Choose events 0 and 2 for a sum of 3 + 5 = 8.</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>2 &lt;= events.length &lt;= 10<sup>5</sup></code></li>\n\t<li><code>events[i].length == 3</code></li>\n\t<li><code>1 &lt;= startTime<sub>i</sub> &lt;= endTime<sub>i</sub> &lt;= 10<sup>9</sup></code></li>\n\t<li><code>1 &lt;= value<sub>i</sub> &lt;= 10<sup>6</sup></code></li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"176K\", \"totalSubmission\": \"274.9K\", \"totalAcceptedRaw\": 176010, \"totalSubmissionRaw\": 274888, \"acRate\": \"64.0%\"}",
+    "stats": "{\"totalAccepted\": \"176.7K\", \"totalSubmission\": \"275.9K\", \"totalAcceptedRaw\": 176669, \"totalSubmissionRaw\": 275904, \"acRate\": \"64.0%\"}",
     "topicTags": [
       {
         "name": "Array",
@@ -53,9 +53,9 @@
       "title": "Two Best Non-Overlapping Events",
       "titleSlug": "two-best-non-overlapping-events",
       "runtimeDisplay": "115 ms",
-      "runtimePercentile": 96.8378,
+      "runtimePercentile": 96.40469999999986,
       "memoryDisplay": "55.8 MB",
-      "memoryPercentile": 82.68080000000003,
+      "memoryPercentile": 82.91569999999992,
       "code": "class Solution:\n    def maxTwoEvents(self, events: List[List[int]]) -> int:\n\n        end_sorted = deque(sorted(events, key=itemgetter(1)))\n        start_sorted = sorted(events, key=itemgetter(0))\n\n        ans = max(v for _, _, v in events)\n\n        end_max = 0  \n\n        for start, end, value in start_sorted:\n            while end_sorted and end_sorted[0][1] < start:\n                _, _, v = end_sorted.popleft()\n                end_max = max(end_max, v)\n            ans = max(ans, value + end_max)\n\n        return ans",
       "statusCode": 10,
       "user": {

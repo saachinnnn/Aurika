@@ -6,7 +6,7 @@
     "titleSlug": "minimum-ascii-delete-sum-for-two-strings",
     "content": "<p>Given two strings <code>s1</code> and&nbsp;<code>s2</code>, return <em>the lowest <strong>ASCII</strong> sum of deleted characters to make two strings equal</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;sea&quot;, s2 = &quot;eat&quot;\n<strong>Output:</strong> 231\n<strong>Explanation:</strong> Deleting &quot;s&quot; from &quot;sea&quot; adds the ASCII value of &quot;s&quot; (115) to the sum.\nDeleting &quot;t&quot; from &quot;eat&quot; adds 116 to the sum.\nAt the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> s1 = &quot;delete&quot;, s2 = &quot;leet&quot;\n<strong>Output:</strong> 403\n<strong>Explanation:</strong> Deleting &quot;dee&quot; from &quot;delete&quot; to turn the string into &quot;let&quot;,\nadds 100[d] + 101[e] + 101[e] to the sum.\nDeleting &quot;e&quot; from &quot;leet&quot; adds 101[e] to the sum.\nAt the end, both strings are equal to &quot;let&quot;, and the answer is 100+101+101+101 = 403.\nIf instead we turned both strings into &quot;lee&quot; or &quot;eet&quot;, we would get answers of 433 or 417, which are higher.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= s1.length, s2.length &lt;= 1000</code></li>\n\t<li><code>s1</code> and <code>s2</code> consist of lowercase English letters.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"270.9K\", \"totalSubmission\": \"382.4K\", \"totalAcceptedRaw\": 270910, \"totalSubmissionRaw\": 382367, \"acRate\": \"70.9%\"}",
+    "stats": "{\"totalAccepted\": \"272.2K\", \"totalSubmission\": \"384K\", \"totalAcceptedRaw\": 272158, \"totalSubmissionRaw\": 383979, \"acRate\": \"70.9%\"}",
     "topicTags": [
       {
         "name": "String",
@@ -37,9 +37,9 @@
       "title": "Minimum ASCII Delete Sum for Two Strings",
       "titleSlug": "minimum-ascii-delete-sum-for-two-strings",
       "runtimeDisplay": "165 ms",
-      "runtimePercentile": 78.62039999999999,
+      "runtimePercentile": 78.72809999999991,
       "memoryDisplay": "20.4 MB",
-      "memoryPercentile": 68.90770000000003,
+      "memoryPercentile": 69.20909999999996,
       "code": "class Solution:\n    def minimumDeleteSum(self, s1: str, s2: str) -> int:\n        n, m = len(s1), len(s2)\n\n        # dp[i][j] = maximum ASCII sum of common subsequence\n        dp = [[0] * (m + 1) for _ in range(n + 1)]\n\n        for i in range(n):\n            for j in range(m):\n                if s1[i] == s2[j]:\n                    dp[i + 1][j + 1] = dp[i][j] + ord(s1[i])\n                else:\n                    dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j])\n\n        total_ascii = sum(ord(c) for c in s1) + sum(ord(c) for c in s2)\n        return total_ascii - 2 * dp[n][m]",
       "statusCode": 10,
       "user": {

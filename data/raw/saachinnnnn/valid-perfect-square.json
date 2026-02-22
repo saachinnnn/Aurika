@@ -6,7 +6,7 @@
     "titleSlug": "valid-perfect-square",
     "content": "<p>Given a positive integer num, return <code>true</code> <em>if</em> <code>num</code> <em>is a perfect square or</em> <code>false</code> <em>otherwise</em>.</p>\n\n<p>A <strong>perfect square</strong> is an integer that is the square of an integer. In other words, it is the product of some integer with itself.</p>\n\n<p>You must not use any built-in library function, such as <code>sqrt</code>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 16\n<strong>Output:</strong> true\n<strong>Explanation:</strong> We return true because 4 * 4 = 16 and 4 is an integer.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n\n<pre>\n<strong>Input:</strong> num = 14\n<strong>Output:</strong> false\n<strong>Explanation:</strong> We return false because 3.742 * 3.742 = 14 and 3.742 is not an integer.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li><code>1 &lt;= num &lt;= 2<sup>31</sup> - 1</code></li>\n</ul>\n",
     "difficulty": "Easy",
-    "stats": "{\"totalAccepted\": \"880.8K\", \"totalSubmission\": \"2M\", \"totalAcceptedRaw\": 880813, \"totalSubmissionRaw\": 1972578, \"acRate\": \"44.7%\"}",
+    "stats": "{\"totalAccepted\": \"892.1K\", \"totalSubmission\": \"2M\", \"totalAcceptedRaw\": 892087, \"totalSubmissionRaw\": 1996572, \"acRate\": \"44.7%\"}",
     "topicTags": [
       {
         "name": "Math",
@@ -37,7 +37,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "18 MB",
-      "memoryPercentile": 48.75669999999999,
+      "memoryPercentile": 77.752,
       "code": "class Solution:\n    def isPerfectSquare(self, num: int) -> bool:\n        # Wait i think i got it.\n\n        if num == 1:\n            return True\n        \n        low , high = 1 , num\n\n        while low <= high:\n            mid = low + (high - low) // 2\n\n            if mid*mid == num:\n                return True\n            elif mid*mid < num:\n                low = mid + 1\n            else:\n                high = mid - 1\n        return False",
       "statusCode": 10,
       "user": {
@@ -72,7 +72,7 @@
       "runtimeDisplay": "0 ms",
       "runtimePercentile": 100.0,
       "memoryDisplay": "18.1 MB",
-      "memoryPercentile": 47.010899999999985,
+      "memoryPercentile": 77.7355,
       "code": "class Solution:\n    def isPerfectSquare(self, num: int) -> bool:\n        return  math.sqrt(num).is_integer()",
       "statusCode": 10,
       "user": {

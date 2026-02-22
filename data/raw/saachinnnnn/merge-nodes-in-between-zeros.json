@@ -6,7 +6,7 @@
     "titleSlug": "merge-nodes-in-between-zeros",
     "content": "<p>You are given the <code>head</code> of a linked list, which contains a series of integers <strong>separated</strong> by <code>0</code>&#39;s. The <strong>beginning</strong> and <strong>end</strong> of the linked list will have <code>Node.val == 0</code>.</p>\n\n<p>For <strong>every </strong>two consecutive <code>0</code>&#39;s, <strong>merge</strong> all the nodes lying in between them into a single node whose value is the <strong>sum</strong> of all the merged nodes. The modified list should not contain any <code>0</code>&#39;s.</p>\n\n<p>Return <em>the</em> <code>head</code> <em>of the modified linked list</em>.</p>\n\n<p>&nbsp;</p>\n<p><strong class=\"example\">Example 1:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2022/02/02/ex1-1.png\" style=\"width: 600px; height: 41px;\" />\n<pre>\n<strong>Input:</strong> head = [0,3,1,0,4,5,2,0]\n<strong>Output:</strong> [4,11]\n<strong>Explanation:</strong> \nThe above figure represents the given linked list. The modified list contains\n- The sum of the nodes marked in green: 3 + 1 = 4.\n- The sum of the nodes marked in red: 4 + 5 + 2 = 11.\n</pre>\n\n<p><strong class=\"example\">Example 2:</strong></p>\n<img alt=\"\" src=\"https://assets.leetcode.com/uploads/2022/02/02/ex2-1.png\" style=\"width: 600px; height: 41px;\" />\n<pre>\n<strong>Input:</strong> head = [0,1,0,3,0,2,2,0]\n<strong>Output:</strong> [1,3,4]\n<strong>Explanation:</strong> \nThe above figure represents the given linked list. The modified list contains\n- The sum of the nodes marked in green: 1 = 1.\n- The sum of the nodes marked in red: 3 = 3.\n- The sum of the nodes marked in yellow: 2 + 2 = 4.\n</pre>\n\n<p>&nbsp;</p>\n<p><strong>Constraints:</strong></p>\n\n<ul>\n\t<li>The number of nodes in the list is in the range <code>[3, 2 * 10<sup>5</sup>]</code>.</li>\n\t<li><code>0 &lt;= Node.val &lt;= 1000</code></li>\n\t<li>There are <strong>no</strong> two consecutive nodes with <code>Node.val == 0</code>.</li>\n\t<li>The <strong>beginning</strong> and <strong>end</strong> of the linked list have <code>Node.val == 0</code>.</li>\n</ul>\n",
     "difficulty": "Medium",
-    "stats": "{\"totalAccepted\": \"337.2K\", \"totalSubmission\": \"376.1K\", \"totalAcceptedRaw\": 337163, \"totalSubmissionRaw\": 376083, \"acRate\": \"89.7%\"}",
+    "stats": "{\"totalAccepted\": \"339.2K\", \"totalSubmission\": \"378.3K\", \"totalAcceptedRaw\": 339193, \"totalSubmissionRaw\": 378315, \"acRate\": \"89.7%\"}",
     "topicTags": [
       {
         "name": "Linked List",
@@ -40,9 +40,9 @@
       "title": "Merge Nodes in Between Zeros",
       "titleSlug": "merge-nodes-in-between-zeros",
       "runtimeDisplay": "116 ms",
-      "runtimePercentile": 91.49719999999998,
+      "runtimePercentile": 94.98649999999998,
       "memoryDisplay": "60.6 MB",
-      "memoryPercentile": 83.91870000000002,
+      "memoryPercentile": 92.2113,
       "code": "# Definition for singly-linked list.\n# class ListNode:\n#     def __init__(self, val=0, next=None):\n#         self.val = val\n#         self.next = next\nclass Solution:\n    def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:\n        # This is pretty easy.\n        preptr = head\n        ptr = preptr.next\n        nv = 0\n        while ptr:\n            if ptr.val != 0:\n                nv += ptr.val\n            else:\n                ptr.val = nv\n                preptr.next = ptr\n                preptr = ptr\n                nv = 0\n            ptr = ptr.next\n        return head.next",
       "statusCode": 10,
       "user": {
