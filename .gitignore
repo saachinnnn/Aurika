@@ -10,18 +10,33 @@ aurika_venv/
 
 # Secrets
 .env
+.env.local
+.env.*.local
 
-# Data and Logs
+# Data (Don't commit raw or processed data)
+data/
 logs/
 
+# Database
+postgres_data/
+*.sqlite
+*.db
+
 # Tests
-tests/
+.pytest_cache/
+.coverage
+htmlcov/
 
 # IDE
 .vscode/
 .idea/
+.cursor/
 
 # Distribution
 dist/
 build/
 *.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
