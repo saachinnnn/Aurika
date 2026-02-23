@@ -10,6 +10,7 @@ from src.pipeline.config import ROOT_DIR
 from src.pipeline.harvester.authentication import LeetCodeAuthenticator, AuthenticationError
 from src.pipeline.harvester.harvester import LeetCodeHarvester
 from src.pipeline.processing.pipeline import run_pipeline
+from src.pipeline.stage_2_refinery.analyzer import run_analyzer
 
 # Custom Rich Theme
 custom_theme = Theme({
@@ -41,6 +42,7 @@ def start():
         choices=[
             "Harvest Data (Download from LeetCode)",
             "Process Data (Load JSON to Database)",
+            "Analyze Submissions (Claude AI)",
             "Exit"
         ]
     ).ask()
@@ -62,72 +64,76 @@ def start():
 
         console.print() # Spacer
         
-    # Run Pipeline
-    try:
-        # 1. Authenticate (Synchronous check)
-        auth = LeetCodeAuthenticator(session, csrf, cf)
-        username = auth.validate()
-        console.print(f"[success]Authenticated as: [bold]{username}[/bold][/success]")
-        
-        # 2. Harvest (Synchronous Task)
-        # Note: LeetCodeAuthenticator.get_client() returns an AsyncClient, but the synchronous harvester expects a synchronous Client.
-        # We need to adapt this.
-        import httpx
-        with httpx.Client(cookies=auth.cookies, headers=auth.headers, timeout=30.0) as client:
-            harvester = LeetCodeHarvester(client, username, console)
+        # Run Pipeline
+        try:
+            # 1. Authenticate (Synchronous check)
+            auth = LeetCodeAuthenticator(session, csrf, cf)
+            username = auth.validate()
+            console.print(f"[success]Authenticated as: [bold]{username}[/bold][/success]")
             
-            # 1. Initial Harvest
-            failed_items = harvester.harvest_all()
-            
-            # 2. Retry Loop
-            while failed_items:
-                count = len(failed_items)
-                console.print(f"\n[warning]⚠️  {count} downloads failed.[/warning]")
+            # 2. Harvest (Synchronous Task)
+            # Note: LeetCodeAuthenticator.get_client() returns an AsyncClient, but the synchronous harvester expects a synchronous Client.
+            # We need to adapt this.
+            import httpx
+            with httpx.Client(cookies=auth.cookies, headers=auth.headers, timeout=30.0) as client:
+                harvester = LeetCodeHarvester(client, username, console)
                 
-                should_retry = questionary.confirm(
-                    f"Do you want to retry these {count} failed items?",
-                    default=True
-                ).ask()
+                # 1. Initial Harvest
+                failed_items = harvester.harvest_all()
                 
-                if not should_retry:
-                    console.print("[dim]Skipping retry. You can run the pipeline again later to retry.[/dim]")
-                    break
+                # 2. Retry Loop
+                while failed_items:
+                    count = len(failed_items)
+                    console.print(f"\n[warning]⚠️  {count} downloads failed.[/warning]")
                     
-                # Run Retry logic
-                harvester.retry_failed(failed_items)
-                
-                # Check if any failed again
-                failed_items = harvester.failed_slugs
-                
-                if not failed_items:
-                    console.print("[success]All retries successful![/success]")
-        
-        # 3. Ask to Process Data immediately
-        should_process = questionary.confirm(
-            "Do you want to process and load the downloaded data into the database now?",
-            default=True
-        ).ask()
-        
-        if should_process:
-            console.print(f"\n[info]Starting data processing for user: {username}[/info]")
-            raw_data_dir = Path("data/raw")
-            user_data_dir = raw_data_dir / username
+                    should_retry = questionary.confirm(
+                        f"Do you want to retry these {count} failed items?",
+                        default=True
+                    ).ask()
+                    
+                    if not should_retry:
+                        console.print("[dim]Skipping retry. You can run the pipeline again later to retry.[/dim]")
+                        break
+                        
+                    # Run Retry logic
+                    harvester.retry_failed(failed_items)
+                    
+                    # Check if any failed again
+                    failed_items = harvester.failed_slugs
+                    
+                    if not failed_items:
+                        console.print("[success]All retries successful![/success]")
             
-            if not user_data_dir.exists():
-                console.print(f"[error]Data directory {user_data_dir} not found. Skipping processing.[/error]")
-            else:
-                try:
-                    asyncio.run(run_pipeline(str(user_data_dir)))
-                    console.print("[success]Data processing completed successfully![/success]")
-                except Exception as e:
-                    console.print(f"[error]Processing failed: {e}[/error]")
-                    import traceback
-                    console.print(traceback.format_exc())
-        
-    except AuthenticationError as e:
+            # 3. Ask to Process Data immediately
+            should_process = questionary.confirm(
+                "Do you want to process and load the downloaded data into the database now?",
+                default=True
+            ).ask()
+            
+            if should_process:
+                console.print(f"\n[info]Starting data processing for user: {username}[/info]")
+                raw_data_dir = Path("data/raw")
+                user_data_dir = raw_data_dir / username
+                
+                if not user_data_dir.exists():
+                    console.print(f"[error]Data directory {user_data_dir} not found. Skipping processing.[/error]")
+                else:
+                    try:
+                        asyncio.run(run_pipeline(str(user_data_dir)))
+                        console.print("[success]Data processing completed successfully![/success]")
+                    except Exception as e:
+                        console.print(f"[error]Processing failed: {e}[/error]")
+                        import traceback
+                        console.print(traceback.format_exc())
+            
+        except AuthenticationError as e:
             console.print(f"[error]Authentication Failed: {e}[/error]")
+        except Exception as e:
+            console.print(f"[error]An unexpected error occurred: {e}[/error]")
+            import traceback
+            console.print(traceback.format_exc())
 
-    if action == "Process Data (Load JSON to Database)":
+    elif action == "Process Data (Load JSON to Database)":
         # Ask for username to locate the data directory
         # Or list available directories in data/raw
         raw_data_dir = Path("data/raw")
@@ -159,6 +165,24 @@ def start():
             console.print("[success]Data processing completed successfully![/success]")
         except Exception as e:
             console.print(f"[error]Processing failed: {e}[/error]")
+            import traceback
+            console.print(traceback.format_exc())
+
+    elif action == "Analyze Submissions (Claude AI)":
+        console.print("\n[info]Starting Submission Analysis with Claude AI...[/info]")
+        console.print("[dim]This will send unanalyzed submissions to Claude for review.[/dim]")
+        
+        # Check for API Key
+        if not os.getenv("ANTHROPIC_API_KEY"):
+            console.print("[error]ANTHROPIC_API_KEY not found in environment variables.[/error]")
+            console.print("Please set it in your .env file.")
+            return
+
+        try:
+            asyncio.run(run_analyzer())
+            console.print("[success]Analysis batch completed![/success]")
+        except Exception as e:
+            console.print(f"[error]Analysis failed: {e}[/error]")
             import traceback
             console.print(traceback.format_exc())
 
