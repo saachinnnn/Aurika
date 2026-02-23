@@ -32,6 +32,13 @@ htmlcov/
 .idea/
 .cursor/
 
+# Claude Code worktrees
+.claude/
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+
 # Distribution
 dist/
 build/
